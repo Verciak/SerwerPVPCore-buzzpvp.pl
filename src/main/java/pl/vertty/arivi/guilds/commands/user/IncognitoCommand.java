@@ -4,7 +4,10 @@
 
 package pl.vertty.arivi.guilds.commands.user;
 
+import cn.nukkit.command.CommandSender;
+import pl.vertty.arivi.guilds.utils.Coooldown;
 import pl.vertty.arivi.inventory.InventoryMenuHandler;
+import pl.vertty.arivi.listeners.premium.CaseListener;
 import pl.vertty.arivi.utils.exception.SkinChangeException;
 import pl.vertty.arivi.utils.SkinUtil;
 import pl.vertty.arivi.guilds.data.yml.Config;
@@ -20,14 +23,28 @@ import cn.nukkit.Player;
 import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.guilds.utils.command.PlayerCommand;
 
+import java.util.concurrent.TimeUnit;
+
 public class IncognitoCommand extends PlayerCommand
 {
     public IncognitoCommand() {
         super("incognito", "/incognito", GroupType.PLAYER, new String[0]);
     }
-    
+
+    private static final Coooldown<Player> COOLDOWN = new Coooldown<Player>();
+
     @Override
     public boolean onCommand(final Player player, final String[] array) {
+        User u = UserManager.getUser(player);
+        if(u.getPresiz() == 0){
+            ChatUtil.sendFullTitle(player, "&9INCOGNITO", "&7MUSISZ POSIADAC 1 PRESTIZ!");
+            return false;
+        }
+        if (COOLDOWN.isOnCooldown(player)) {
+            ChatUtil.sendFullTitle(player, "&9INCOGNITO", "&7MUSISZ ODCZEKAC 10 MINUT!");
+            return false;
+        }
+        COOLDOWN.putOnCooldown(player, TimeUnit.MINUTES, 10L);
         openInv(player);
         return false;
     }
