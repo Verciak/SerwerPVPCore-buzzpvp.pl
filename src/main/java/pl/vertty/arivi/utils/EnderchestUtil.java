@@ -27,7 +27,7 @@ public class EnderchestUtil
         for (int ia = 0; ia < 11; ++ia) {
             category.addElement(ia, ItemData.fromItem(i));
         }
-        for (int ia = 16; ia < 26; ++ia) {
+        for (int ia = 16; ia < 27; ++ia) {
             category.addElement(ia, ItemData.fromItem(i));
         }
         category.addElement(11, ItemData.fromItem(new Item(130, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("&r&7Enderchest &8(&9I&8)")).setLore(ChatUtil.fixColor(new String[] { "", "&r&8>> &7Dostepny dla rangi:", "&r&f* &9PLAYER", "&r&f* &9VIP", "&r&f* &9SVIP", "&r&f* &9YOUTUBER", "&r&f* &9SPONSOR" }))), new ItemClick() {
