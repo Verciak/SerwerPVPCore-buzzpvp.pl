@@ -11,9 +11,7 @@ import cn.nukkit.entity.projectile.EntityProjectile;
 import cn.nukkit.event.Event;
 import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.EventHandler;
-import cn.nukkit.event.entity.EntityDamageByEntityEvent;
-import cn.nukkit.event.entity.EntityShootBowEvent;
-import cn.nukkit.event.entity.ProjectileHitEvent;
+import cn.nukkit.event.entity.*;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemBow;
@@ -28,106 +26,131 @@ import pl.vertty.arivi.guilds.data.User;
 import cn.nukkit.entity.Entity;
 import pl.vertty.arivi.guilds.managers.UserManager;
 import cn.nukkit.Player;
-import cn.nukkit.event.entity.EntityDamageEvent;
 import cn.nukkit.event.Listener;
 import pl.vertty.arivi.guilds.utils.ChatUtil;
 
 public class GodListener implements Listener
 {
 
-
-    public void knockBack(Entity attacker, double x, double z, double base, Player player)
-    {
-        double xzKB = base, yKB = base;
-
-        if(attacker instanceof Player)
-        {
-            xzKB = 0.56;
-            yKB = 0.56;
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onEntityMotion(EntityMotionEvent event) {
+        if (!(event.getEntity() instanceof Player)) {
+            return;
         }
-
-        double f = Math.sqrt(x * x + z * z);
-        if (f > 0.0D)
-        {
-            f = 1.0D / f;
-            Vector3 motion = new Vector3(player.motionX, player.motionY, player.motionZ);
-            motion.x /= 2.0D;
-            motion.y /= 2.0D;
-            motion.z /= 2.0D;
-            motion.x += x * f * xzKB;
-            motion.y += yKB;
-            motion.z += z * f * xzKB;
-
-            if (motion.y > yKB)
-            {
-                motion.y = yKB;
+        Player player = ((Player) event.getEntity());
+            if(player.onGround) {
+                event.getMotion().x *= 0.64;
+                event.getMotion().y *= 0.87;
+                event.getMotion().z *= 0.67;
+            }else{
+                event.getMotion().x *= 0.67;
+                event.getMotion().y *= 1.055;
+                event.getMotion().z *= 0.67;
             }
-
-            player.setMotion(motion);
-        }
     }
 
-    public void knockBack1(Entity attacker, double x, double z, double base, Player player)
-    {
-        double xzKB = base, yKB = base;
-
-        if(attacker instanceof Player)
-        {
-            xzKB = 1.06;
-            yKB = 1.06;
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onEntityDMG(EntityDamageByEntityEvent event) {
+        if (!(event.getEntity() instanceof Player)) {
+            return;
         }
-
-        double f = Math.sqrt(x * x + z * z);
-        if (f > 0.0D)
-        {
-            f = 1.0D / f;
-            Vector3 motion = new Vector3(player.motionX, player.motionY, player.motionZ);
-            motion.x /= 2.0D;
-            motion.y /= 2.0D;
-            motion.z /= 2.0D;
-            motion.x += x * f * xzKB;
-            motion.y += yKB;
-            motion.z += z * f * xzKB;
-
-            if (motion.y > yKB)
-            {
-                motion.y = yKB;
-            }
-
-            player.setMotion(motion);
-        }
+        event.setAttackCooldown(8);
+        event.setKnockBack(0.4f);
     }
 
-    public void knockBack2(Entity attacker, double x, double z, double base, Player player)
-    {
-        double xzKB = base, yKB = base;
 
-        if(attacker instanceof Player)
-        {
-            xzKB = 2.06;
-            yKB = 2.06;
-        }
-
-        double f = Math.sqrt(x * x + z * z);
-        if (f > 0.0D)
-        {
-            f = 1.0D / f;
-            Vector3 motion = new Vector3(player.motionX, player.motionY, player.motionZ);
-            motion.x /= 2.0D;
-            motion.y /= 2.0D;
-            motion.z /= 2.0D;
-            motion.x += x * f * xzKB;
-            motion.y += yKB;
-            motion.z += z * f * xzKB;
-
-            if (motion.y > yKB)
-            {
-                motion.y = yKB;
-            }
-
-            player.setMotion(motion);
-        }
-    }
+//    public void knockBack(Entity attacker, double x, double z, double base, Player player)
+//    {
+//        double xzKB = base, yKB = base;
+//
+//        if(attacker instanceof Player)
+//        {
+//            xzKB = 0.56;
+//            yKB = 0.56;
+//        }
+//
+//        double f = Math.sqrt(x * x + z * z);
+//        if (f > 0.0D)
+//        {
+//            f = 1.0D / f;
+//            Vector3 motion = new Vector3(player.motionX, player.motionY, player.motionZ);
+//            motion.x /= 2.0D;
+//            motion.y /= 2.0D;
+//            motion.z /= 2.0D;
+//            motion.x += x * f * xzKB;
+//            motion.y += yKB;
+//            motion.z += z * f * xzKB;
+//
+//            if (motion.y > yKB)
+//            {
+//                motion.y = yKB;
+//            }
+//
+//            player.setMotion(motion);
+//        }
+//    }
+//
+//    public void knockBack1(Entity attacker, double x, double z, double base, Player player)
+//    {
+//        double xzKB = base, yKB = base;
+//
+//        if(attacker instanceof Player)
+//        {
+//            xzKB = 1.06;
+//            yKB = 1.06;
+//        }
+//
+//        double f = Math.sqrt(x * x + z * z);
+//        if (f > 0.0D)
+//        {
+//            f = 1.0D / f;
+//            Vector3 motion = new Vector3(player.motionX, player.motionY, player.motionZ);
+//            motion.x /= 2.0D;
+//            motion.y /= 2.0D;
+//            motion.z /= 2.0D;
+//            motion.x += x * f * xzKB;
+//            motion.y += yKB;
+//            motion.z += z * f * xzKB;
+//
+//            if (motion.y > yKB)
+//            {
+//                motion.y = yKB;
+//            }
+//
+//            player.setMotion(motion);
+//        }
+//    }
+//
+//    public void knockBack2(Entity attacker, double x, double z, double base, Player player)
+//    {
+//        double xzKB = base, yKB = base;
+//
+//        if(attacker instanceof Player)
+//        {
+//            xzKB = 2.06;
+//            yKB = 2.06;
+//        }
+//
+//        double f = Math.sqrt(x * x + z * z);
+//        if (f > 0.0D)
+//        {
+//            f = 1.0D / f;
+//            Vector3 motion = new Vector3(player.motionX, player.motionY, player.motionZ);
+//            motion.x /= 2.0D;
+//            motion.y /= 2.0D;
+//            motion.z /= 2.0D;
+//            motion.x += x * f * xzKB;
+//            motion.y += yKB;
+//            motion.z += z * f * xzKB;
+//
+//            if (motion.y > yKB)
+//            {
+//                motion.y = yKB;
+//            }
+//
+//            player.setMotion(motion);
+//        }
+//    }
 
 
 
@@ -185,36 +208,36 @@ public class GodListener implements Listener
 
 
 
-    @EventHandler
-    public void onPVP(final EntityDamageEvent e) {
-        if (e instanceof EntityDamageByEntityEvent) {
-            if (((EntityDamageByEntityEvent)e).getDamager() instanceof Player) {
-                final Player pa = (Player)((EntityDamageByEntityEvent)e).getDamager();
-                Player paa = (Player) e.getEntity();
-                for (final Enchantment e2 : pa.getInventory().getItemInHand().getEnchantments()) {
-                    if (e2.getId() == 12) {
-                        if (e2.getLevel() == 1) {
-                            knockBack1(((EntityDamageByEntityEvent) e).getDamager(), 1.06, 1.06, 9, paa);
-                            ((EntityDamageByEntityEvent) e).setKnockBack(0.476f);
-                        } else {
-                            knockBack(((EntityDamageByEntityEvent) e).getDamager(), 0.56, 0.56, 9, paa);
-                            ((EntityDamageByEntityEvent) e).setKnockBack(0.376f);
-                        }
-                        if (e2.getLevel() == 2) {
-                            knockBack2(((EntityDamageByEntityEvent) e).getDamager(), 2.06, 2.06, 9, paa);
-                            ((EntityDamageByEntityEvent) e).setKnockBack(0.526f);
-                        } else {
-                            knockBack(((EntityDamageByEntityEvent) e).getDamager(), 0.56, 0.56, 9, paa);
-                            ((EntityDamageByEntityEvent) e).setKnockBack(0.376f);
-                        }
-                    }
-                }
-            }
-            else {
-                e.setCancelled(true);
-            }
-        }
-    }
+//    @EventHandler
+//    public void onPVP(final EntityDamageEvent e) {
+//        if (e instanceof EntityDamageByEntityEvent) {
+//            if (((EntityDamageByEntityEvent)e).getDamager() instanceof Player) {
+//                final Player pa = (Player)((EntityDamageByEntityEvent)e).getDamager();
+//                Player paa = (Player) e.getEntity();
+//                for (final Enchantment e2 : pa.getInventory().getItemInHand().getEnchantments()) {
+//                    if (e2.getId() == 12) {
+//                        if (e2.getLevel() == 1) {
+//                            knockBack1(((EntityDamageByEntityEvent) e).getDamager(), 1.06, 1.06, 9, paa);
+//                            ((EntityDamageByEntityEvent) e).setKnockBack(0.476f);
+//                        } else {
+//                            knockBack(((EntityDamageByEntityEvent) e).getDamager(), 0.56, 0.56, 9, paa);
+//                            ((EntityDamageByEntityEvent) e).setKnockBack(0.376f);
+//                        }
+//                        if (e2.getLevel() == 2) {
+//                            knockBack2(((EntityDamageByEntityEvent) e).getDamager(), 2.06, 2.06, 9, paa);
+//                            ((EntityDamageByEntityEvent) e).setKnockBack(0.526f);
+//                        } else {
+//                            knockBack(((EntityDamageByEntityEvent) e).getDamager(), 0.56, 0.56, 9, paa);
+//                            ((EntityDamageByEntityEvent) e).setKnockBack(0.376f);
+//                        }
+//                    }
+//                }
+//            }
+//            else {
+//                e.setCancelled(true);
+//            }
+//        }
+//    }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onEntityDamage(final EntityDamageEvent event) {
