@@ -26,6 +26,9 @@ public class GraczCommand extends PlayerCommand
             ChatUtil.sendMessage((CommandSender)player, "&8» &7Punkty: &9" + u.getPoints() + "\n &7» &7Zabojstwa: &9" + u.getKills() + "\n &8» &7Zgony: &9" + u.getDeaths() + "\n &8» &7Gildia: &9" + ((u.getGuild() == null) ? "Brak" : u.getGuild().getTag()) + "\n");
             return true;
         }
+        if(Server.getInstance().getPlayer(args[0]) == null){
+            return ChatUtil.sendMessage((CommandSender)player, "&4Blad: &cGracz nie istnieje badz jest offline!");
+        }
         final User u = UserManager.getUser(args[0]);
         final Player p = Server.getInstance().getPlayer(args[0]);
         if (p == null) {

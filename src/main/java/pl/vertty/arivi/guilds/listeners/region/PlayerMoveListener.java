@@ -67,8 +67,10 @@ public class PlayerMoveListener implements Listener
             ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.MOVE_GUILD_JOIN_MESSAGE.replace("{TAG}", guild.getTag()).replace("{NAZWA}", guild.getName())));
             final Long n = PlayerMoveListener.enemysTo.get(player);
             if (!guild.isMember(player) && (n == null || n < System.currentTimeMillis())) {
-                guild.message(ChatUtil.fixColor(Config.MOVE_INTRUZ_MESSAGE.replace("{NICK}", player.getName())));
-                PlayerMoveListener.enemysTo.put(player, System.currentTimeMillis() + TimeUtil.SECOND.getTime(30));
+                for(Player p : guild.getOnlineMembers()){
+                    p.sendMessage(ChatUtil.fixColor(Config.MOVE_INTRUZ_MESSAGE.replace("{NICK}", player.getName())));
+                }
+                PlayerMoveListener.enemysTo.put(player, System.currentTimeMillis() + TimeUtil.SECOND.getTime(3));
             }
         }
         else if ((playerMoveEvent.getTo().getFloorX() != playerMoveEvent.getFrom().getFloorX() || playerMoveEvent.getTo().getFloorY() != playerMoveEvent.getFrom().getFloorY() || playerMoveEvent.getTo().getFloorZ() != playerMoveEvent.getFrom().getFloorZ()) && guild == null && guild2 != null) {
@@ -81,8 +83,11 @@ public class PlayerMoveListener implements Listener
             ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.MOVE_GUILD_QUIT_MESSAGE.replace("{TAG}", guild2.getTag()).replace("{NAZWA}", guild2.getName())));
             final Long n2 = PlayerMoveListener.enemysFrom.get(player);
             if (!guild2.isMember(player) && (n2 == null || n2 < System.currentTimeMillis())) {
-                guild2.message(ChatUtil.fixColor(Config.MOVE_INTRUZ_MESSAGE2.replace("{NICK}", player.getName())));
-                PlayerMoveListener.enemysFrom.put(player, System.currentTimeMillis() + TimeUtil.SECOND.getTime(30));
+                for(Player p : guild2.getOnlineMembers()){
+                    p.sendMessage(ChatUtil.fixColor(Config.MOVE_INTRUZ_MESSAGE2.replace("{NICK}", player.getName())));
+                }
+
+                PlayerMoveListener.enemysFrom.put(player, System.currentTimeMillis() + TimeUtil.SECOND.getTime(3));
             }
         }
     }

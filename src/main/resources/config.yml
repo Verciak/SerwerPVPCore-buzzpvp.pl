@@ -3,7 +3,7 @@ mysql:
   host: localhost
   port: 3306
   user: root
-  pass: domiS2002
+  pass: domiS2002_!
   name: blazepe
 check_allowed_commands:
   - wyslij
@@ -45,33 +45,6 @@ config:
         - crafting
         - wb
         - repair all
-error:
-  already-opening: '&8>> &9Otwierasz juz skrzynke!'
-  klucz: '&8>> &cNie masz klucza do &fmagicznej skrzynki!\n&8>> &cKup klucz na stronie:
-    &fBlazePE.pl'
-gui:
-  name: '&8>> &a&lOtwierasz MAGICCASE!'
-case:
-  name: '&8>> &a&lMAGICZNA SKRZYNIA! &8<<'
-  lore1: '&8{O} &cAby otworzyc wymagany jest &fKLUCZ! &8{O}'
-  lore2: '&8{O} &cKlucz mozna kupic na &fBlazePE.pl &8{O}'
-key:
-  name: '&8>> &a&lMAGICZNY KLUCZ &8<<'
-  lore1: '&8{O} &cKlucz jest do &fMagicznej Skrzynki &8{O}'
-  lore2: '&8{O} &cKup wiecej na &fBlazePE.pl &8{O}'
-casecmd:
-  usage: '&8>> &7Uzycie: &c/case <case/key> <gracz/all> <ilosc>'
-  notint: '&8>> &9To nie jest liczba!'
-  allcase: '&8* &9Caly serwer otrzymal &a&fMagiczna Skrzynke &9x &f{ILOSC} &8*'
-  allkey: '&8* &9Caly serwer otrzymal &f&lMagiczny KLUCZ &9x &f{ILOSC} &8*'
-  offline: '&8>> &9Ten gracz jest offline!'
-  dalescase: '&8>> &9Dales graczowi &f{NICK} &fMagiczne skrzynki &9x &f{ILOSC}'
-  daleskey: '&8>> &9Dales graczowi &f{NICK} &fMagiczne Klucze &9x &f{ILOSC}'
-  dostalescase: '&8* &9Dostales &fMagiczne skrzynie &9x &f{ILOSC} &8*'
-  dostaleskey: '&8* &9Dostales &fMagiczne klucze &9x &f{ILOSC} &8*'
-place:
-  wylosowano-item: '&8* &9Gracz &f{NICK} &9otworzyl &f&lMAGICZNA SKRZYNIE &9i wylosowal:
-    &f{ITEM} &9x &f{ILOSC} &8*'
 enable:
   guilds:
     status: true
@@ -87,21 +60,15 @@ limit:
   kox: 1
   refy: 8
   perly: 3
+  sniezki: 8
 automsg:
   - '&7testowa'
   - '&ctestowa2'
 wl:
-  motd: '&eBlazePE.pl'
+  motd: '&3WaterPE.pl'
   enable: true
   list:
-    - ashureadyt
     - VerttyPL
-    - szvold
-    - NoinerYT
-    - Haykerek
-    - W11Pancza
-    - TOBIEGNER
-    - RevriKhead
   reason: '&cTrwaja prace techniczne!'
 border: 800
 borderd: 800.0
@@ -275,8 +242,8 @@ format:
       prefix: '&4'
       suffix: '&6'
       fullname: ROOT
-chest:
-  x: -2
-  y: 64
-  z: 25
-  world: world
+pomoc: "TEST{N}TEST"
+vip: "TEST{N}TEST"
+svip: "TEST{N}TEST"
+sponsor: "TEST{N}TEST"
+yt: "TEST{N}TEST"

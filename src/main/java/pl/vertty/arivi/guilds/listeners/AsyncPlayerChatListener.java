@@ -24,11 +24,6 @@ import cn.nukkit.event.Listener;
 public class AsyncPlayerChatListener implements Listener
 {
     @EventHandler(priority = EventPriority.HIGH)
-    public void onLeaves(final LeavesDecayEvent e) {
-        e.setCancelled(true);
-    }
-    
-    @EventHandler(priority = EventPriority.HIGH)
     public void onCommand(final PlayerCommandPreprocessEvent playerCommandPreprocessEvent) {
         final Player player = playerCommandPreprocessEvent.getPlayer();
         final String message = playerCommandPreprocessEvent.getMessage();

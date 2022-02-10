@@ -30,7 +30,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.io.File;
 import java.sql.SQLException;
-import net.minidev.json.JSONObject;
 import pl.vertty.arivi.Main;
 import java.util.Map;
 
@@ -38,7 +37,6 @@ public class WingsManager
 {
     public static Map<String, Wings> wingsNames;
     public static Main plugin;
-    public static JSONObject skinData;
     
     public static void init(final Main plugin) throws SQLException {
         load(plugin);

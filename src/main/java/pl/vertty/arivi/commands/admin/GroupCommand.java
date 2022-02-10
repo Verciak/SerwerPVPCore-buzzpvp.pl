@@ -48,7 +48,7 @@ public class GroupCommand extends Command
         final GroupType group = GroupType.valueOf(s.toUpperCase());
         if (!u.getGroup().equals(group)) {
             u.setGroup(group);
-            ChatUtil.sendMessage(sender, "&8» &7Nadales range &2" + group.getFullName() + "&7, graczowi &2" + u.getName() + "&7!");
+            ChatUtil.sendMessage(sender, "&8» &7Nadales range &3" + group.getFullName() + "&7, graczowi &b" + u.getName() + "&7!");
             return true;
         }
         ChatUtil.sendMessage(sender, "&cGracz &7" + u.getName() + " &cjest juz w grupie &7" + group.getFullName() + "&c!");

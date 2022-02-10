@@ -27,24 +27,4 @@ public class WeatherListener implements Listener
         e.getLevel().setThundering(false);
     }
 
-    @EventHandler
-    public void onLiscie(LeavesDecayEvent e) {
-        e.setCancelled(true);
-    }
-
-    @EventHandler
-    public void onLiscie(BlockBurnEvent e) {
-        e.setCancelled(true);
-    }
-
-    @EventHandler
-    public void onLiscie(BlockFadeEvent e) {
-        e.setCancelled(true);
-    }
-
-    @EventHandler
-    public void onLiscie(BlockFallEvent e) {
-        e.setCancelled(true);
-    }
-
 }

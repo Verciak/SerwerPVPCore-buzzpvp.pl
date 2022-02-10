@@ -47,29 +47,29 @@ public class EnchantGUI
                 }
             }
         });
-        category.addElement(18, ItemData.fromItem(new Item(403, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("&9Ochrona &eIV")).setLore(ChatUtil.fixColor(new String[] { "&9Koszt: &725 LvL", "&9Ilosc wymaganych biblioteczek: &720" }))), new ItemClick() {
+        category.addElement(37, ItemData.fromItem(new Item(403, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("&9Niezniszczalnosc &eII")).setLore(ChatUtil.fixColor(new String[] { "&9Koszt: &720 LvL", "&9Ilosc wymaganych biblioteczek: &710" }))), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item) throws SkinChangeException {
                 if (p.getInventory().getItemInHand().getId() == 322 || p.getInventory().getItemInHand().getId() == 466 || p.getInventory().getItemInHand().getId() == 122 || p.getInventory().getItemInHand().getId() == 368) {
                     return;
                 }
-                if (p.getInventory().getItemInHand().getId() != 306 && p.getInventory().getItemInHand().getId() != 307 && p.getInventory().getItemInHand().getId() != 308 && p.getInventory().getItemInHand().getId() != 309) {
+                if (p.getInventory().getItemInHand().getId() != 277 && p.getInventory().getItemInHand().getId() != 267 && p.getInventory().getItemInHand().getId() != 284 && p.getInventory().getItemInHand().getId() != 256 && p.getInventory().getItemInHand().getId() != 273 && p.getInventory().getItemInHand().getId() != 269 && p.getInventory().getItemInHand().getId() != 278 && p.getInventory().getItemInHand().getId() != 285 && p.getInventory().getItemInHand().getId() != 257 && p.getInventory().getItemInHand().getId() != 274 && p.getInventory().getItemInHand().getId() != 270 && p.getInventory().getItemInHand().getId() != 279 && p.getInventory().getItemInHand().getId() != 286 && p.getInventory().getItemInHand().getId() != 258 && p.getInventory().getItemInHand().getId() != 275 && p.getInventory().getItemInHand().getId() != 271 && p.getInventory().getItemInHand().getId() != 309 && p.getInventory().getItemInHand().getId() != 308 && p.getInventory().getItemInHand().getId() != 307 && p.getInventory().getItemInHand().getId() != 306) {
                     return;
                 }
-                if (books >= 20) {
-                    if (p.getExperienceLevel() >= 25) {
+                if (books >= 10) {
+                    if (p.getExperienceLevel() >= 20) {
                         final Item i = p.getInventory().getItemInHand();
                         p.getInventory().removeItem(new Item[] { i });
-                        i.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
+                        i.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
                         p.getInventory().addItem(new Item[] { i });
-                        p.setExperience(0, p.getExperienceLevel() - 25);
+                        p.setExperience(0, p.getExperienceLevel() - 20);
                     }
                     else {
-                        ChatUtil.sendMessage((CommandSender)p, "&cPotrzebujesz 25 level na pasku!");
+                        ChatUtil.sendMessage((CommandSender)p, "&cPotrzebujesz 20 level na pasku!");
                     }
                 }
                 else {
-                    ChatUtil.sendMessage((CommandSender)p, "&cTen enchant wymaga 20 biblioteczek!");
+                    ChatUtil.sendMessage((CommandSender)p, "&cTen enchant wymaga 10 biblioteczek!");
                 }
             }
         });
@@ -258,7 +258,7 @@ public class EnchantGUI
         menu.setDoubleChest();
         menu.setMainCategory(category);
         menu.addCategory("butyEnchant", category);
-        menu.setName(ChatUtil.fixColor("&9WYBIERANY ENCHANT"));
+        menu.setName(ChatUtil.fixColor("&9WYBIERANY ENCHANT &8- &3" + books));
         menu.setOnlyRead(true);
         menu.show(p);
         InventoryMenuHandler.registerNewMenu("butyEnchant", menu);
@@ -293,29 +293,29 @@ public class EnchantGUI
                 }
             }
         });
-        category.addElement(18, ItemData.fromItem(new Item(403, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("&9Ochrona &eIV")).setLore(ChatUtil.fixColor(new String[] { "&9Koszt: &725 LvL", "&9Ilosc wymaganych biblioteczek: &720" }))), new ItemClick() {
+        category.addElement(37, ItemData.fromItem(new Item(403, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("&9Niezniszczalnosc &eII")).setLore(ChatUtil.fixColor(new String[] { "&9Koszt: &720 LvL", "&9Ilosc wymaganych biblioteczek: &710" }))), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item) throws SkinChangeException {
                 if (p.getInventory().getItemInHand().getId() == 322 || p.getInventory().getItemInHand().getId() == 466 || p.getInventory().getItemInHand().getId() == 122 || p.getInventory().getItemInHand().getId() == 368) {
                     return;
                 }
-                if (p.getInventory().getItemInHand().getId() != 306 && p.getInventory().getItemInHand().getId() != 307 && p.getInventory().getItemInHand().getId() != 308 && p.getInventory().getItemInHand().getId() != 309) {
+                if (p.getInventory().getItemInHand().getId() != 277 && p.getInventory().getItemInHand().getId() != 267 && p.getInventory().getItemInHand().getId() != 284 && p.getInventory().getItemInHand().getId() != 256 && p.getInventory().getItemInHand().getId() != 273 && p.getInventory().getItemInHand().getId() != 269 && p.getInventory().getItemInHand().getId() != 278 && p.getInventory().getItemInHand().getId() != 285 && p.getInventory().getItemInHand().getId() != 257 && p.getInventory().getItemInHand().getId() != 274 && p.getInventory().getItemInHand().getId() != 270 && p.getInventory().getItemInHand().getId() != 279 && p.getInventory().getItemInHand().getId() != 286 && p.getInventory().getItemInHand().getId() != 258 && p.getInventory().getItemInHand().getId() != 275 && p.getInventory().getItemInHand().getId() != 271 && p.getInventory().getItemInHand().getId() != 309 && p.getInventory().getItemInHand().getId() != 308 && p.getInventory().getItemInHand().getId() != 307 && p.getInventory().getItemInHand().getId() != 306) {
                     return;
                 }
-                if (books >= 20) {
-                    if (p.getExperienceLevel() >= 25) {
+                if (books >= 10) {
+                    if (p.getExperienceLevel() >= 20) {
                         final Item i = p.getInventory().getItemInHand();
                         p.getInventory().removeItem(new Item[] { i });
-                        i.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
+                        i.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
                         p.getInventory().addItem(new Item[] { i });
-                        p.setExperience(0, p.getExperienceLevel() - 25);
+                        p.setExperience(0, p.getExperienceLevel() - 20);
                     }
                     else {
-                        ChatUtil.sendMessage((CommandSender)p, "&cPotrzebujesz 25 level na pasku!");
+                        ChatUtil.sendMessage((CommandSender)p, "&cPotrzebujesz 20 level na pasku!");
                     }
                 }
                 else {
-                    ChatUtil.sendMessage((CommandSender)p, "&cTen enchant wymaga 20 biblioteczek!");
+                    ChatUtil.sendMessage((CommandSender)p, "&cTen enchant wymaga 10 biblioteczek!");
                 }
             }
         });
@@ -400,7 +400,7 @@ public class EnchantGUI
         menu.setDoubleChest();
         menu.setMainCategory(category);
         menu.addCategory("setyEnachnt", category);
-        menu.setName(ChatUtil.fixColor("&9WYBIERANY ENCHANT"));
+        menu.setName(ChatUtil.fixColor("&9WYBIERANY ENCHANT &8- &3" + books));
         menu.setOnlyRead(true);
         menu.show(p);
         InventoryMenuHandler.registerNewMenu("setyEnachnt", menu);
@@ -724,7 +724,7 @@ public class EnchantGUI
         menu.setDoubleChest();
         menu.setMainCategory(category);
         menu.addCategory("KilofEnchant", category);
-        menu.setName(ChatUtil.fixColor("&9WYBIERANY ENCHANT"));
+        menu.setName(ChatUtil.fixColor("&9WYBIERANY ENCHANT &8- &3" + books));
         menu.setOnlyRead(true);
         menu.show(p);
         InventoryMenuHandler.registerNewMenu("KilofEnchant", menu);
@@ -996,7 +996,7 @@ public class EnchantGUI
         menu.setDoubleChest();
         menu.setMainCategory(category);
         menu.addCategory("MieczEnchant", category);
-        menu.setName(ChatUtil.fixColor("&9WYBIERANY ENCHANT"));
+        menu.setName(ChatUtil.fixColor("&9WYBIERANY ENCHANT &8- &3" + books));
         menu.setOnlyRead(true);
         menu.show(p);
         InventoryMenuHandler.registerNewMenu("MieczEnchant", menu);

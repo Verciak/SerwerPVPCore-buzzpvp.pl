@@ -28,6 +28,10 @@ public final class ChatUtil
         p.sendActionBar(fixColor(m));
         return false;
     }
+
+    public static void sendTitleRestart(final Player p, final String title, final String subttitle) {
+        sendTitle(p, title, subttitle, 1, 20, 1);
+    }
     
     public static void sendTitle(final Player p, final String title, final String subttitle) {
         sendTitle(p, title, subttitle, 30, 40, 30);

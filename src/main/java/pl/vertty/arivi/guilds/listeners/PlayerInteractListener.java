@@ -4,6 +4,7 @@
 
 package pl.vertty.arivi.guilds.listeners;
 
+import cn.nukkit.block.BlockID;
 import cn.nukkit.event.EventPriority;
 import java.util.Iterator;
 import pl.vertty.arivi.guilds.data.guild.Guild;
@@ -29,22 +30,14 @@ import pl.vertty.arivi.guilds.utils.RandomUtil;
 
 public class PlayerInteractListener implements Listener
 {
+
     @EventHandler
-    public static void onInteract(final PlayerInteractEvent playerInteractEvent) {
-        final Player player = playerInteractEvent.getPlayer();
-        if (playerInteractEvent.getAction() == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK && playerInteractEvent.getBlock().getId() == 54) {
-            final Lock lockByLocation = LockManager.getLockByLocation(playerInteractEvent.getBlock().getLocation());
-            if (lockByLocation != null) {
-                if (!lockByLocation.getNick().equalsIgnoreCase(player.getName())) {
-                    player.sendMessage(ChatUtil.fixColor(Config.CHEST_LOCK_ERROR5));
-                    playerInteractEvent.setCancelled(true);
-                    return;
-                }
-                player.sendMessage(ChatUtil.fixColor(Config.CHEST_LOCK_MESSAGE1));
-            }
+    public void kowadlo(PlayerInteractEvent e){
+        if(e.getBlock().getId() == BlockID.ANVIL){
+            e.setCancelled(true);
         }
     }
-    
+
     @EventHandler
     private void ranking(final PlayerInteractEntityEvent playerInteractEntityEvent) {
         if (playerInteractEntityEvent.getEntity() instanceof Player) {
@@ -73,11 +66,13 @@ public class PlayerInteractListener implements Listener
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void interact(PlayerInteractEvent e) {
-        if (e.isCancelled())
+        if (e.isCancelled()){
             return;
+        }
         Guild g = GuildManager.getGuild(e.getBlock().getLocation());
-        if (g != null && e.getPlayer().getInventory().getItemInHand().getId() == 333)
+        if (g != null && e.getPlayer().getInventory().getItemInHand().getId() == 333) {
             e.setCancelled(true);
+        }
     }
     
     @EventHandler(priority = EventPriority.HIGH)

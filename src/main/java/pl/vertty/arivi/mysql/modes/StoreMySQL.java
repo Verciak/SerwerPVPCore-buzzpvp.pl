@@ -75,23 +75,12 @@ public class StoreMySQL implements Store
     @Override
     public void update(final boolean now, final String update) {
         this.time = System.currentTimeMillis();
-        final Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    StoreMySQL.this.conn.createStatement().executeUpdate(update.replace("{P}", StoreMySQL.this.prefix));
-                }
-                catch (SQLException e) {
-                    System.out.println("An error occurred with given query '" + update.replace("{P}", StoreMySQL.this.prefix) + "'! Error: " + e.getMessage());
-                    e.printStackTrace();
-                }
-            }
-        };
-        if (now) {
-            r.run();
-        }
-        else {
-            this.executor.execute(r);
+        try {
+            final Statement statement = this.conn.createStatement();
+            statement.executeUpdate(update.replace("{P}", StoreMySQL.this.prefix));
+        } catch (SQLException e) {
+            System.out.println("An error occurred with given query '" + update.replace("{P}", StoreMySQL.this.prefix) + "'! Error: " + e.getMessage());
+            e.printStackTrace();
         }
     }
     

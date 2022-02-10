@@ -30,7 +30,7 @@ public class SetWarpCommand extends Command
         }
         if (args.length == 1) {
             WarpManager.addWarp(args[0], p.getLocation());
-            return ChatUtil.sendMessage((CommandSender)p, "&8>> &cUstawiles warp &6" + args[0]);
+            return ChatUtil.sendMessage((CommandSender)p, "&8>> &7Ustawiles warp &3" + args[0]);
         }
         return ChatUtil.sendMessage((CommandSender)p, this.getUsage());
     }

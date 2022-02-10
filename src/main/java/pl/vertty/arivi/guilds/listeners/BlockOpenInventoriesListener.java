@@ -26,27 +26,6 @@ public class BlockOpenInventoriesListener implements Listener
     public void changeWeather(final WeatherChangeEvent e) {
         e.setCancelled(true);
     }
-    
-    @EventHandler
-    public void onLiscie(final LeavesDecayEvent e) {
-        e.setCancelled(true);
-    }
-    
-    @EventHandler
-    public void onLiscie(final BlockBurnEvent e) {
-        e.setCancelled(true);
-    }
-    
-    @EventHandler
-    public void onLiscie(final BlockFadeEvent e) {
-        e.setCancelled(true);
-    }
-    
-    @EventHandler
-    public void onLiscie(final BlockFallEvent e) {
-        e.setCancelled(true);
-    }
-    
     @EventHandler
     public void weatherChange(final WeatherChangeEvent event) {
         event.setCancelled(true);

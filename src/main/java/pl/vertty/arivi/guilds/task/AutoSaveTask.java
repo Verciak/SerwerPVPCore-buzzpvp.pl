@@ -14,7 +14,6 @@ public class AutoSaveTask extends NukkitRunnable
     public void run() {
         RankingManager.sortUserRankings();
         RankingManager.sortGuildRankings();
-//        NameTagManager.refreshAllNameTag();
-        RoleManager.refreshRoleAll();
+
     }
 }

@@ -21,14 +21,13 @@ import pl.vertty.arivi.guilds.task.NameTagUpdateTask;
 public class TaskLoader
 {
     public static void onTaskLoad() {
-        new NameTagUpdateTask().runTaskTimer((Plugin)Main.getPlugin(), 20, 20);
+        new NameTagUpdateTask().runTaskTimer((Plugin)Main.getPlugin(), 1000, 1000);
         new CheckValidityTask().runTaskTimer((Plugin)Main.getPlugin(), 2400, 2400);
-        new AutoSaveTask().runTaskTimer((Plugin)Main.getPlugin(), TimeUtil.MINUTE.getTick(1), TimeUtil.MINUTE.getTick(1));
+        new AutoSaveTask().runTaskTimer((Plugin)Main.getPlugin(), TimeUtil.MINUTE.getTick(5), TimeUtil.MINUTE.getTick(5));
         new ActionBarTask().runTaskTimerAsynchronously((Plugin)Main.getPlugin(), 40, 20);
         new CombatTask().runTaskTimer((Plugin)Main.getPlugin(), 40, 20);
         new AutoMessageTask().runTaskTimer((Plugin)Main.getPlugin(), 600, 600);
         new LimitTask().runTaskTimer((Plugin)Main.getPlugin(), 100, 200);
-        Server.getInstance().getScheduler().scheduleDelayedRepeatingTask((Plugin)Main.getPlugin(), (Runnable)new VanishManager(), 20, 20);
         new ItemsClearTask().runTaskTimer((Plugin)Main.getPlugin(), 20, 2400);
     }
 }

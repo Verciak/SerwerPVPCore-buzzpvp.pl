@@ -26,8 +26,15 @@ public class LimitTask extends NukkitRunnable
             int koxSize = 0;
             int refSize = 0;
             int perSize = 0;
+            int sSize = 0;
             for (final Item pinv : p.getInventory().getContents().values()) {
                 if (pinv != null) {
+                    if (pinv.getId() == Item.SNOWBALL) {
+                        if (pinv.hasCustomName()) {
+                            return;
+                        }
+                        sSize += pinv.getCount();
+                    }
                     if (pinv.getId() == 368) {
                         if (pinv.hasCustomName()) {
                             return;
@@ -48,6 +55,14 @@ public class LimitTask extends NukkitRunnable
                     }
                     refSize += pinv.getCount();
                 }
+            }
+            if (sSize > LimitTask.c.getInt("limit.sniezki")) {
+                final int toRemove = sSize - LimitTask.c.getInt("limit.sniezki");
+                u.addSniezki(u.getSniezki() + toRemove);
+                p.getInventory().removeItem(new Item[] { new Item(Item.SNOWBALL, Integer.valueOf(0), toRemove) });
+                ChatUtil.sendMessage((CommandSender)p, "&7Miales przy sobie &e" + sSize + " &7sniezek");
+                ChatUtil.sendMessage((CommandSender)p, "&7Limit to &e" + LimitTask.c.getInt("limit.sniezki") + " &7sniezek");
+                ChatUtil.sendMessage((CommandSender)p, "&7Przedmioty zostaly przeniesione do schowka &e/schowek&7!");
             }
             if (perSize > LimitTask.c.getInt("limit.perly")) {
                 final int toRemove = perSize - LimitTask.c.getInt("limit.perly");

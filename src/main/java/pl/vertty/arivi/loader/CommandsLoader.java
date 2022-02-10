@@ -4,6 +4,8 @@
 
 package pl.vertty.arivi.loader;
 
+import pl.vertty.arivi.commands.helper.*;
+import pl.vertty.arivi.commands.root.*;
 import pl.vertty.arivi.commands.user.*;
 import pl.vertty.arivi.guilds.utils.command.CommandManager;
 import pl.vertty.arivi.guilds.commands.GuildGlobalCommand;
@@ -14,40 +16,29 @@ import pl.vertty.arivi.guilds.commands.GuildCommand;
 import pl.vertty.arivi.commands.admin.SkrzydlaCommand;
 import pl.vertty.arivi.commands.admin.EntityClearCommand;
 import pl.vertty.arivi.commands.admin.MotdCommand;
-import pl.vertty.arivi.commands.helper.VanishCommand;
-import pl.vertty.arivi.commands.helper.UnBanCommand;
-import pl.vertty.arivi.commands.helper.TeleportCommand;
 import pl.vertty.arivi.commands.admin.StatsCommand;
 import pl.vertty.arivi.commands.admin.SetWarpCommand;
 import pl.vertty.arivi.commands.admin.SetSpawnCommand;
 import pl.vertty.arivi.commands.moderator.OpenCommand;
-import pl.vertty.arivi.commands.admin.KickCommand;
 import pl.vertty.arivi.commands.headadmin.KickAllCommand;
 import pl.vertty.arivi.commands.moderator.ClearItemsCommand;
-import pl.vertty.arivi.commands.helper.HealCommand;
-import pl.vertty.arivi.commands.helper.GodCommand;
 import pl.vertty.arivi.commands.admin.PerformanceCommand;
 import pl.vertty.arivi.commands.admin.GamemodeCommand;
-import pl.vertty.arivi.commands.helper.FlyCommand;
 import pl.vertty.arivi.commands.moderator.DelWarpCommand;
-import pl.vertty.arivi.commands.helper.ClearInventoryCommand;
-import pl.vertty.arivi.commands.helper.ChatCommand;
 import pl.vertty.arivi.commands.moderator.BroadcastCommand;
-import pl.vertty.arivi.commands.helper.BanCommand;
 import pl.vertty.arivi.commands.moderator.AutoMessageCommand;
 import pl.vertty.arivi.commands.admin.GroupCommand;
-import pl.vertty.arivi.commands.root.CaseCommand;
-import pl.vertty.arivi.commands.root.PandoraCommand;
-import pl.vertty.arivi.commands.helper.CheaterCommand;
-import pl.vertty.arivi.commands.helper.CzystyCommand;
-import pl.vertty.arivi.commands.helper.SprawdzCommand;
-import pl.vertty.arivi.commands.root.aItemShopCommand;
 import pl.vertty.arivi.commands.admin.BackupCommand;
 import pl.vertty.arivi.commands.builder.Command;
 
 public class CommandsLoader
 {
     public static void onCommandsLoad() {
+        registerCommand(new PomocCommand());
+        registerCommand(new VIPCommand());
+        registerCommand(new sVIPCommand());
+        registerCommand(new SponsorCommand());
+        registerCommand(new YTCommand());
         registerCommand(new PingCommand());
         registerCommand(new IgnoreCommand());
         registerCommand(new WorkbenchCommand());
@@ -64,7 +55,8 @@ public class CommandsLoader
         registerCommand(new CzystyCommand());
         registerCommand(new CheaterCommand());
         registerCommand(new PandoraCommand());
-        registerCommand(new TestCommand());
+        registerCommand(new StopCommand());
+        registerCommand(new AdminPanelCommand());
         registerCommand(new CaseCommand());
         registerCommand(new DelHomeCommand());
         registerCommand(new DropCommand());
@@ -82,7 +74,6 @@ public class CommandsLoader
         registerCommand(new HealCommand());
         registerCommand(new ClearItemsCommand());
         registerCommand(new KickAllCommand());
-        registerCommand(new KickCommand());
         registerCommand(new OpenCommand());
         registerCommand(new SetSpawnCommand());
         registerCommand(new SetWarpCommand());
@@ -117,6 +108,8 @@ public class CommandsLoader
         registerrCommand(new GuildAdminCommand());
         registerrCommand(new IncognitoCommand());
         registerrCommand(new GuildGlobalCommand());
+        registerCommand(new WhitelistCommand());
+        registerCommand(new KlatkiCommand());
     }
     
     public static void registerrCommand(final ConsoleCommand consoleCommand) {

@@ -21,7 +21,6 @@ import cn.nukkit.command.CommandSender;
 import pl.vertty.arivi.guilds.managers.CombatManager;
 import pl.vertty.arivi.guilds.managers.guild.GuildManager;
 import cn.nukkit.event.EventPriority;
-import pl.vertty.arivi.guilds.utils.RandomUtil;
 import pl.vertty.arivi.guilds.utils.region.CuboidUtil;
 import cn.nukkit.block.Block;
 import cn.nukkit.Player;
@@ -31,7 +30,8 @@ import pl.vertty.arivi.guilds.utils.ChatUtil;
 import pl.vertty.arivi.guilds.data.yml.Config;
 import cn.nukkit.event.block.BlockPlaceEvent;
 import cn.nukkit.event.Listener;
-import pl.vertty.arivi.listeners.premium.CaseListener;
+import pl.vertty.arivi.managers.FakeWater;
+import pl.vertty.arivi.managers.WaterManager;
 
 import java.util.concurrent.TimeUnit;
 
@@ -59,45 +59,6 @@ public class BlockPlaceListener implements Listener
         blockPlaceEvent.setCancelled(CuboidUtil.cancelAction(blockPlaceEvent.getPlayer(), blockPlaceEvent.getBlock().getLocation(), "&cTo nie Twoja gildia!", blockPlaceEvent.getBlock().getId(), "POSTAWIENIE"));
     }
     private static final Coooldown<Player> COOLDOWN = new Coooldown<Player>();
-
-
-    @EventHandler
-    public void onWiadro(PlayerBucketEmptyEvent e) {
-        Block i = e.getBlockClicked();
-        if (i.getLocation().getFloorX() <= 150 && i.getLocation().getFloorX() >= -150 && i.getLocation().getFloorZ() <= 150 && i.getLocation().getFloorZ() >= -150) {
-            if (COOLDOWN.isOnCooldown(e.getPlayer())) {
-                e.setCancelled(true);
-                return;
-            }
-            COOLDOWN.putOnCooldown(e.getPlayer(), TimeUnit.SECONDS, 3L);
-            e.getPlayer().getInventory().remove(Item.get(ItemID.BUCKET,0,1));
-            Server.getInstance().getDefaultLevel().setBlock(new Vector3(i.getX(), i.getY(), i.getZ()), Block.get(BlockID.WATER));
-            Server.getInstance().getScheduler().scheduleDelayedTask((Plugin) Main.getPlugin(), (Runnable) new Runnable() {
-                @Override
-                public void run() {
-                    Server.getInstance().getDefaultLevel().setBlock(new Vector3(i.getX(), i.getY(), i.getZ()), Block.get(BlockID.AIR));
-                    e.getPlayer().getInventory().addItem(Item.get(ItemID.BUCKET, 8, 1));
-                }
-            }, 19);
-        }
-        final Guild g = GuildManager.getGuildByLoc(i.getLocation());
-        if (g != null) {
-            if (COOLDOWN.isOnCooldown(e.getPlayer())) {
-                e.setCancelled(true);
-                return;
-            }
-            COOLDOWN.putOnCooldown(e.getPlayer(), TimeUnit.SECONDS, 3L);
-            e.getPlayer().getInventory().remove(e.getPlayer().getInventory().getItemInHand());
-            Server.getInstance().getDefaultLevel().setBlock(new Vector3(i.getX(), i.getY(), i.getZ()), Block.get(BlockID.WATER));
-            Server.getInstance().getScheduler().scheduleDelayedTask((Plugin) Main.getPlugin(), (Runnable) new Runnable() {
-                @Override
-                public void run() {
-                    Server.getInstance().getDefaultLevel().setBlock(new Vector3(i.getX(), i.getY(), i.getZ()), Block.get(BlockID.AIR));
-                    e.getPlayer().getInventory().addItem(Item.get(ItemID.BUCKET, 8, 1));
-                }
-            }, 19);
-        }
-    }
 
     @EventHandler
     public void onPlaceCentrum(final BlockPlaceEvent blockPlaceEvent) {

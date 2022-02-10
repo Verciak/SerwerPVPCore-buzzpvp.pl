@@ -12,7 +12,7 @@ import pl.vertty.arivi.commands.builder.PlayerCommand;
 public class TopkiCommand extends PlayerCommand
 {
     public TopkiCommand() {
-        super("topki", "Wyswietl topki serwerowe", "/topki", GroupType.PLAYER, new String[] { "gtop", "top" });
+        super("topki", "Wyswietl topki serwerowe", "/topki", GroupType.PLAYER, new String[] { "gtop", "top", "topka" });
     }
     
     @Override

@@ -4,8 +4,12 @@
 
 package pl.vertty.arivi.gui;
 
+import cn.nukkit.item.ItemID;
+import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.inventory.InventoryMenuHandler;
 import pl.vertty.arivi.drop.skrzynka.SkrzynkaManager;
+import pl.vertty.arivi.managers.ItemShop;
+import pl.vertty.arivi.managers.ItemShopManager;
 import pl.vertty.arivi.utils.exception.SkinChangeException;
 import pl.vertty.arivi.utils.ItemUtil;
 import pl.vertty.arivi.drop.pierozek.PierozekManager;
@@ -28,16 +32,30 @@ public class ItemShopGui
         final InventoryMenu menu = new InventoryMenu();
         final InventoryCategory category = new InventoryCategory();
         final User user = UserManager.getUser(player);
+        ItemShop is = ItemShopManager.getUser(player);
+
         final Item pandoreItem = Item.get(122);
         pandoreItem.setCustomName(ChatUtil.fixColor("&5&lPandora"));
         pandoreItem.setLore(new String[] { ChatUtil.fixColor("&8{O} &7Do odebrania: &9" + user.getPandora()) });
-        final Item klucz = Item.get(421, Integer.valueOf(0), 1);
-        klucz.setCustomName(ChatUtil.fixColor(Main.getPlugin().getConfig().getString("key.name")));
-        klucz.setLore(new String[] { ChatUtil.fixColor("&8{O} &7Do odebrania: &9" + user.getMychest()) });
-        for (int i = 0; i < 11; ++i) {
+
+
+        final Item vip = Item.get(ItemID.BOOK);
+        vip.setCustomName(ChatUtil.fixColor("&5&lRanga VIP"));
+        vip.setLore(new String[] { ChatUtil.fixColor("&8{O} &7Do odebrania: &9" + is.getVip()) });
+
+        final Item svip = Item.get(ItemID.BOOK);
+        svip.setCustomName(ChatUtil.fixColor("&5&lRanga SVIP"));
+        svip.setLore(new String[] { ChatUtil.fixColor("&8{O} &7Do odebrania: &9" + is.getSvip()) });
+
+        final Item sponsor = Item.get(ItemID.BOOK);
+        sponsor.setCustomName(ChatUtil.fixColor("&5&lRanga SPONSOR"));
+        sponsor.setLore(new String[] { ChatUtil.fixColor("&8{O} &7Do odebrania: &9" + is.getSponsor()) });
+
+
+        for (int i = 0; i < 13; ++i) {
             category.addElement(i, new ItemData(160, DyeColor.GRAY.getDyeData(), 1, "&8*"));
         }
-        category.addElement(11, ItemData.fromItem(pandoreItem), new ItemClick() {
+        category.addElement(13, ItemData.fromItem(pandoreItem), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item) throws SkinChangeException {
                 if (user.getPandora() == 0) {
@@ -51,25 +69,47 @@ public class ItemShopGui
                 user.setPandora(0);
             }
         });
-        for (int i = 12; i < 15; ++i) {
+        for (int i = 14; i < 21; ++i) {
             category.addElement(i, new ItemData(160, DyeColor.GRAY.getDyeData(), 1, "&8*"));
         }
-        category.addElement(15, ItemData.fromItem(klucz), new ItemClick() {
+
+        category.addElement(21, ItemData.fromItem(vip), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item) throws SkinChangeException {
-                if (user.getMychest() == 0) {
-                    ChatUtil.sendMessage((CommandSender)player, "&4Blad: &cNie masz kluczy w itemshopie!");
+                ItemShop itemShop = ItemShopManager.getUser(player);
+                if (itemShop.getVip() == 0) {
+                    ChatUtil.sendMessage((CommandSender)player, "&4Blad: &cNie masz do odebrania rangi VIP!");
                     return;
                 }
-                final Item s = SkrzynkaManager.key;
-                s.setCustomName(ChatUtil.fixColor(Main.getPlugin().getConfig().getString("key.name")));
-                s.setCount(user.getMychest());
-                ItemUtil.giveItem(player, s);
-                ChatUtil.sendMessage((CommandSender)player, "&7Wyplaciles &9" + user.getMychest() + " kluczy.");
-                user.setMychest(0);
+                user.setGroup(GroupType.VIP);
+                itemShop.setVip(0);
             }
         });
-        for (int i = 16; i < 27; ++i) {
+        category.addElement(22, ItemData.fromItem(svip), new ItemClick() {
+            @Override
+            public void onClick(final Player player, final Item item) throws SkinChangeException {
+                ItemShop itemShop = ItemShopManager.getUser(player);
+                if (itemShop.getSvip() == 0) {
+                    ChatUtil.sendMessage((CommandSender)player, "&4Blad: &cNie masz do odebrania rangi SVIP!");
+                    return;
+                }
+                user.setGroup(GroupType.SVIP);
+                itemShop.setSvip(0);
+            }
+        });
+        category.addElement(23, ItemData.fromItem(sponsor), new ItemClick() {
+            @Override
+            public void onClick(final Player player, final Item item) throws SkinChangeException {
+                ItemShop itemShop = ItemShopManager.getUser(player);
+                if (itemShop.getSponsor() == 0) {
+                    ChatUtil.sendMessage((CommandSender)player, "&4Blad: &cNie masz do odebrania rangi SPONSOR!");
+                    return;
+                }
+                user.setGroup(GroupType.SPONSOR);
+                itemShop.setSponsor(0);
+            }
+        });
+        for (int i = 24; i < 27; ++i) {
             category.addElement(i, new ItemData(160, DyeColor.GRAY.getDyeData(), 1, "&8*"));
         }
         menu.setMainCategory(category);

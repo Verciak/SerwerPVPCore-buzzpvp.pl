@@ -28,7 +28,7 @@ public class TablistManager
         else {
             s = "&7" + i + ". ";
         }
-        return ChatUtil.fixColor(s + "&f" + RankingManager.getRankings().get(i - 1).getName() + " &8- &7" + RankingManager.getRankings().get(i - 1).getPoints() + "pkt &8(&9P" + RankingManager.getRankings().get(i - 1).getPresiz() + "&8)");
+        return ChatUtil.fixColor(s + "&f" + RankingManager.getRankings().get(i - 1).getName() + " &8- &7" + RankingManager.getRankings().get(i - 1).getPoints() + "pkt");
     }
     
     public static String getReplacementG(final Integer i) {

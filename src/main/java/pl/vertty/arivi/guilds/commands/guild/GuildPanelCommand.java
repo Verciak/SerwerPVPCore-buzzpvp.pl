@@ -64,10 +64,10 @@ public class GuildPanelCommand extends PlayerCommand
         category.addElement(10, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
         category.addElement(11, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
         category.addElement(12, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(13, ItemData.fromItem(new Item(373, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Efekty gilidyjne")).setLore(new String[] { ChatUtil.fixColor("&8» &7Koszt: &950 &7glow"), ChatUtil.fixColor("&8» &7Kliknij aby wylosowac efekt dla gildi") })), new ItemClick() {
+        category.addElement(13, ItemData.fromItem(new Item(373, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Efekty gilidyjne")).setLore(new String[] { ChatUtil.fixColor("&8» &7Koszt: &950 &7emeraldow"), ChatUtil.fixColor("&8» &7Kliknij aby wylosowac efekt dla gildi") })), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item) throws SkinChangeException {
-                if (guild2.getHead() < 50) {
+                if (guild2.getSkarbiec() < 50) {
                     ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_EFFECT_TITLE));
                     ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_EFFECT_SUBTITLE2.replace("{HEAD}", "50")));
                     return;
@@ -77,7 +77,7 @@ public class GuildPanelCommand extends PlayerCommand
                 while (iterator.hasNext()) {
                     iterator.next().addEffect(potionEffect);
                 }
-                guild2.setHead(guild2.getHead() - 50);
+                guild2.setSkarbiec(guild2.getSkarbiec() - 50);
                 ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_EFFECT_TITLE));
                 ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_EFFECT_SUBTITLE.replace("{EFFECT}", potionEffect.getName())));
             }
@@ -89,10 +89,10 @@ public class GuildPanelCommand extends PlayerCommand
         category.addElement(18, ItemData.fromItem(new Item(323, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Informacje o gildii!")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Tag: &9").append(guild.getTag()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Nazwa: &9").append(guild.getName()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Glowy: &9").append(guild.getHead()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7HP: &9").append(guild.getHp()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Zycia: &9").append(guild.getLife()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Sojuszy: &9").append(guild.getSojusz()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Graczy: &9").append(guild.getLimitMembers()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Rozmiar: &9").append(guild.getRegion().getSize()).append("&7x&9").append(guild.getRegion().getSize()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Wygasa za: &9").append(DataUtil.secondsToString(guild.getProlong())))) })));
         category.addElement(19, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
         category.addElement(20, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(21, ItemData.fromItem(new Item(122, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Odnow zycie gildii")).setLore(new String[] { ChatUtil.fixColor("&8» &7Koszt: &930 &7glow"), ChatUtil.fixColor("&8» &7Kliknij aby odnowic zycie jajka") })), new ItemClick() {
+        category.addElement(21, ItemData.fromItem(new Item(122, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Odnow zycie gildii")).setLore(new String[] { ChatUtil.fixColor("&8» &7Koszt: &930 &7emeraldow"), ChatUtil.fixColor("&8» &7Kliknij aby odnowic zycie jajka") })), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item) throws SkinChangeException {
-                if (guild2.getHead() < 30) {
+                if (guild2.getSkarbiec() < 30) {
                     ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_LIFE_TITLE));
                     ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_EFFECT_SUBTITLE2.replace("{HEAD}", "30")));
                     return;
@@ -103,16 +103,16 @@ public class GuildPanelCommand extends PlayerCommand
                     return;
                 }
                 guild2.setLife(guild2.getLife() + 1);
-                guild2.setHead(guild2.getHead() - 30);
+                guild2.setSkarbiec(guild2.getSkarbiec() - 30);
                 ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_LIFE_TITLE));
                 ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_LIFE_SUBTITLE));
             }
         });
         category.addElement(22, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(23, ItemData.fromItem(new Item(38, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("&9Odnow hp gildii")).setLore(new String[] { ChatUtil.fixColor("&8» &7Koszt: &930 &7glow"), ChatUtil.fixColor("&8» &7Kliknij aby odnowic hp jajka") })), new ItemClick() {
+        category.addElement(23, ItemData.fromItem(new Item(38, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("&9Odnow hp gildii")).setLore(new String[] { ChatUtil.fixColor("&8» &7Koszt: &930 &7emeraldow"), ChatUtil.fixColor("&8» &7Kliknij aby odnowic hp jajka") })), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item) throws SkinChangeException {
-                if (guild2.getHead() < 30) {
+                if (guild2.getSkarbiec() < 30) {
                     ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_HP_TITLE));
                     ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_EFFECT_SUBTITLE2.replace("{HEAD}", "30")));
                     return;
@@ -123,7 +123,7 @@ public class GuildPanelCommand extends PlayerCommand
                     return;
                 }
                 guild2.setHp(500);
-                guild2.setHead(guild2.getHead() - 30);
+                guild2.setSkarbiec(guild2.getSkarbiec() - 30);
                 ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_HP_TITLE));
                 ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_HP_SUBTITLE));
             }
@@ -133,10 +133,10 @@ public class GuildPanelCommand extends PlayerCommand
         category.addElement(26, ItemData.fromItem(new Item(323, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Informacje o gildii!")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Tag: &9").append(guild.getTag()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Nazwa: &9").append(guild.getName()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Glowy: &9").append(guild.getHead()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7HP: &9").append(guild.getHp()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Zycia: &9").append(guild.getLife()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Sojuszy: &9").append(guild.getSojusz()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Graczy: &9").append(guild.getLimitMembers()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Rozmiar: &9").append(guild.getRegion().getSize()).append("&7x&9").append(guild.getRegion().getSize()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Wygasa za: &9").append(DataUtil.secondsToString(guild.getProlong())))) })));
         category.addElement(27, ItemData.fromItem(new Item(323, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Informacje o gildii!")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Tag: &9").append(guild.getTag()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Nazwa: &9").append(guild.getName()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Glowy: &9").append(guild.getHead()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7HP: &9").append(guild.getHp()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Zycia: &9").append(guild.getLife()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Sojuszy: &9").append(guild.getSojusz()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Graczy: &9").append(guild.getLimitMembers()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Rozmiar: &9").append(guild.getRegion().getSize()).append("&7x&9").append(guild.getRegion().getSize()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Wygasa za: &9").append(DataUtil.secondsToString(guild.getProlong())))) })));
         category.addElement(28, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(29, ItemData.fromItem(new Item(283).setCustomName(ChatUtil.fixColor("&9Powieksz limit sojuszy")).setLore(new String[] { ChatUtil.fixColor("&8» &7Koszt: &930 &7glow"), ChatUtil.fixColor("&8» &7Kliknij aby powiekszyc limit sojuszy o &91") })), new ItemClick() {
+        category.addElement(29, ItemData.fromItem(new Item(283).setCustomName(ChatUtil.fixColor("&9Powieksz limit sojuszy")).setLore(new String[] { ChatUtil.fixColor("&8» &7Koszt: &930 &7emeraldow"), ChatUtil.fixColor("&8» &7Kliknij aby powiekszyc limit sojuszy o &91") })), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item) throws SkinChangeException {
-                if (guild2.getHead() < 30) {
+                if (guild2.getSkarbiec() < 30) {
                     ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_SOJUSZ_TITLE));
                     ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_EFFECT_SUBTITLE2.replace("{HEAD}", "30")));
                     return;
@@ -147,7 +147,7 @@ public class GuildPanelCommand extends PlayerCommand
                     return;
                 }
                 guild2.setSojusz(guild2.getSojusz() + 1);
-                guild2.setHead(guild2.getHead() - 30);
+                guild2.setSkarbiec(guild2.getSkarbiec() - 30);
                 ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_SOJUSZ_TITLE));
                 ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_SOJUSZ_SUBTITLE));
             }
@@ -185,10 +185,10 @@ public class GuildPanelCommand extends PlayerCommand
             }
         });
         category.addElement(32, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(33, ItemData.fromItem(new Item(421, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Powieksz limit czlonkow")).setLore(new String[] { ChatUtil.fixColor("&8» &7Koszt: &930 &7glow"), ChatUtil.fixColor("&8» &7Kliknij aby powiekszyc limit czlonkow o &910") })), new ItemClick() {
+        category.addElement(33, ItemData.fromItem(new Item(421, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Powieksz limit czlonkow")).setLore(new String[] { ChatUtil.fixColor("&8» &7Koszt: &930 &7emeraldow"), ChatUtil.fixColor("&8» &7Kliknij aby powiekszyc limit czlonkow o &910") })), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item) throws SkinChangeException {
-                if (guild2.getHead() < 30) {
+                if (guild2.getSkarbiec() < 30) {
                     ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_MEMBER_TITLE));
                     ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_EFFECT_SUBTITLE2.replace("{HEAD}", "30")));
                     return;
@@ -199,7 +199,7 @@ public class GuildPanelCommand extends PlayerCommand
                     return;
                 }
                 guild2.setLimitMembers(guild2.getLimitMembers() + 10);
-                guild2.setHead(guild2.getHead() - 30);
+                guild2.setSkarbiec(guild2.getSkarbiec() - 30);
                 ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_MEMBER_TITLE));
                 ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_MEMBER_SUBTITLE));
             }

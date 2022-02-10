@@ -57,22 +57,14 @@ public class PlayerJoinQuitListener implements Listener
         if (combat == null)
             CombatManager.createCombat(player);
     }
-    
-    @EventHandler(priority = EventPriority.HIGH)
-    public void PlayerJoinTag(final PlayerJoinEvent playerJoinEvent) {
-        lambdaPlayerJoinTag0(playerJoinEvent.getPlayer());
-    }
-    
+
     @EventHandler
     public void onQuit(final PlayerQuitEvent playerQuitEvent) {
         playerQuitEvent.setQuitMessage("");
         final Player player = playerQuitEvent.getPlayer();
         quitGame(player);
     }
-    
-    public static void lambdaPlayerJoinTag0(final Player player) {
-        NameTagManager.refreshAllNameTag();
-    }
+
     
     @EventHandler
     public void onKick(final PlayerKickEvent playerKickEvent) {
@@ -98,11 +90,6 @@ public class PlayerJoinQuitListener implements Listener
         player.setHealth(0.0f);
         final Guild guild = GuildManager.getGuild(player);
         final User user2 = UserManager.getUser(CombatManager.getCombat(player).getLastAttactkPlayer());
-        if (user2.getPoints() >= 1700) {
-            user2.setPoints(1000);
-            final User prestiz = UserManager.getUser(user2.getPlayer());
-            prestiz.setPresiz(prestiz.getPresiz() + 1);
-        }
         Server.getInstance().broadcastMessage(ChatUtil.fixColor(Config.ANTYLOGAUT_LOGAUT.replace("{NICK}", player.getName()).replace("{TAG}", (guild == null) ? "" : String.valueOf(new StringBuilder().append("&8[&c").append(guild.getTag()).append("&8] "))).replace("{PKT}", "25")));
     }
 }

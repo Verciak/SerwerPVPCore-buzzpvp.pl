@@ -210,7 +210,6 @@ public class ServerChatListener implements Listener
                         globalFormat = globalFormat.replace("{GUILD}", ChatUtil.fixColor(tag));
                         globalFormat = globalFormat.replace("{PLAYER}", ChatUtil.fixColor(p.getName()));
                         globalFormat = globalFormat.replace("{POINTS}", ChatUtil.fixColor(ua.getPoints() + ""));
-                        globalFormat = globalFormat.replace("{PRESTIZ}", ChatUtil.fixColor(u.getPresiz() + ""));
                         globalFormat = globalFormat.replace("{LVL}", ChatUtil.fixColor(Integer.toString(u.getLvl())));
                         globalFormat = globalFormat.replace("{MSG}", e.getMessage().replace("&", ""));
                         all.sendMessage(ChatUtil.fixColor(globalFormat));

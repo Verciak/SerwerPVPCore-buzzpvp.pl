@@ -50,6 +50,10 @@ public class RandomTPListener implements Listener
         final Block block = e.getBlock();
         final Block i = e.getBlock();
         if (e.getAction() == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK && block.getId() == 25 && i.getLocation().getFloorX() <= 65 && i.getLocation().getFloorX() >= -65 && i.getLocation().getFloorZ() <= 65 && i.getLocation().getFloorZ() >= -65) {
+            if (this.getPlayersInRadius(block, e.getBlock().getLocation(), 3).size() < 2) {
+                ChatUtil.sendTitle(e.getPlayer(), "", "&cPoczekaj na innych graczy aby sie teleportowac");
+                return;
+            }
             final Player p = e.getPlayer();
             randomTp(p);
             for (final Player players : this.getPlayersInRadius(block, block.getLocation(), 3)) {

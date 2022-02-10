@@ -74,7 +74,7 @@ public class KitsGui
                 KitsGui.openSvipKit(p);
             }
         });
-        category.addElement(37, new ItemData(264, 0, 1, "&9SPONSOR", new String[] { ChatUtil.fixColor("&8» &7Dostepny dla rangi: &eSPONSOR"), ChatUtil.fixColor("&8» &7Czas: &e1 minuta beta-testy"), "", ChatUtil.fixColor("&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
+        category.addElement(37, new ItemData(264, 0, 1, "&9SPONSOR", new String[] { ChatUtil.fixColor("&8» &7Dostepny dla rangi: &eSPONSOR"), ChatUtil.fixColor("&8» &7Czas: &e6 godzin"), "", ChatUtil.fixColor("&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
                 KitsGui.openSponsor(p);
@@ -159,7 +159,7 @@ public class KitsGui
                     p.getInventory().addItem(new Item[] { tnt });
                     p.getInventory().addItem(new Item[] { tnt });
                     p.getInventory().addItem(new Item[] { tnt });
-                    u.setKit_tnt(System.currentTimeMillis() + TimeUtil.MINUTE.getTime(3));
+                    u.setKit_tnt(System.currentTimeMillis() + TimeUtil.HOUR.getTime(12));
                 }
             });
         }
@@ -232,11 +232,13 @@ public class KitsGui
         kilof.addEnchantment(Enchantment.get(Enchantment.ID_DURABILITY).setLevel(3));
         final ItemData jedzenie = new ItemData(320, 0, 64);
         final ItemData ender = new ItemData(130, 0, 1);
+        final ItemData drewno = new ItemData(Item.WOOD, 0, 32);
         final ItemData woda = new ItemData(ItemID.BUCKET, 8, 1);
         category.addElement(9, ItemData.fromItem(kilof));
         category.addElement(10, jedzenie);
         category.addElement(11, ender);
-        category.addElement(12, woda);
+        category.addElement(12, drewno);
+        category.addElement(13, woda);
         for (int ia2 = 36; ia2 < 52; ++ia2) {
             category.addElement(ia2, i);
         }
@@ -261,11 +263,14 @@ public class KitsGui
                     pickaxe.addEnchantment(Enchantment.get(Enchantment.ID_DURABILITY).setLevel(3));
                     final Item ec = Item.get(130, Integer.valueOf(0), 1);
                     final Item mieso = Item.get(320, Integer.valueOf(0), 64);
+                    final Item drewno = Item.get(Item.WOOD, 0, 32);
+
                     final Item woda = Item.get(ItemID.BUCKET, 8, 1);
                     ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&7Odebrales zestaw &6GRACZ"));
                     p.getInventory().addItem(new Item[] { pickaxe });
                     p.getInventory().addItem(new Item[] { mieso });
                     p.getInventory().addItem(new Item[] { ec });
+                    p.getInventory().addItem(new Item[] { drewno });
                     p.getInventory().addItem(new Item[] { woda });
                     u.setKit_start(System.currentTimeMillis() + TimeUtil.MINUTE.getTime(3));
                 }
@@ -290,7 +295,7 @@ public class KitsGui
             category.addElement(ia, i);
         }
         final Item punch = Item.get(261, Integer.valueOf(0), 1);
-        punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(20).setLevel(2) });
+        punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(21).setLevel(1) });
         punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
         final Item arrow = Item.get(262, Integer.valueOf(0), 64);
         final Item miecz32 = Item.get(267, Integer.valueOf(0), 1);
@@ -302,17 +307,17 @@ public class KitsGui
         miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(13).setLevel(2) });
         miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
         final Item buty = Item.get(309, Integer.valueOf(0), 1);
-        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
         final Item klata = Item.get(307, Integer.valueOf(0), 1);
-        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
         final Item bania = Item.get(306, Integer.valueOf(0), 1);
-        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
         final Item spodnie = Item.get(308, Integer.valueOf(0), 1);
-        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
         final Item kilof = Item.get(278, Integer.valueOf(0), 1);
         kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(15).setLevel(5) });
         kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
@@ -370,17 +375,17 @@ public class KitsGui
                     miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(13).setLevel(2) });
                     miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
                     final Item buty = Item.get(309, Integer.valueOf(0), 1);
-                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
                     final Item klata = Item.get(307, Integer.valueOf(0), 1);
-                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
                     final Item bania = Item.get(306, Integer.valueOf(0), 1);
-                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
                     final Item spodnie = Item.get(308, Integer.valueOf(0), 1);
-                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
                     final Item kilof = Item.get(278, Integer.valueOf(0), 1);
                     kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(15).setLevel(5) });
                     kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
@@ -389,7 +394,7 @@ public class KitsGui
                     final Item refile = Item.get(322, Integer.valueOf(0), 8);
                     final Item pa = Item.get(368, Integer.valueOf(0), 3);
                     final Item punch = Item.get(261, Integer.valueOf(0), 1);
-                    punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(20).setLevel(2) });
+                    punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(21).setLevel(1) });
                     punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
                     final Item arrow = Item.get(262, Integer.valueOf(0), 64);
                     p.getInventory().addItem(new Item[] { miecz33 });
@@ -435,17 +440,17 @@ public class KitsGui
         miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(13).setLevel(2) });
         miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
         final Item buty = Item.get(309, Integer.valueOf(0), 1);
-        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
         final Item klata = Item.get(307, Integer.valueOf(0), 1);
-        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
         final Item bania = Item.get(306, Integer.valueOf(0), 1);
-        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
         final Item spodnie = Item.get(308, Integer.valueOf(0), 1);
-        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
         final Item kilof = Item.get(278, Integer.valueOf(0), 1);
         kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(15).setLevel(5) });
         kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
@@ -454,7 +459,7 @@ public class KitsGui
         final Item refile = Item.get(322, Integer.valueOf(0), 16);
         final Item pa = Item.get(368, Integer.valueOf(0), 6);
         final Item punch = Item.get(261, Integer.valueOf(0), 1);
-        punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(20).setLevel(2) });
+        punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(21).setLevel(1) });
         punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
         final Item arrow = Item.get(262, Integer.valueOf(0), 64);
         category.addElement(9, ItemData.fromItem(miecz33));
@@ -516,17 +521,17 @@ public class KitsGui
                     miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(13).setLevel(2) });
                     miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
                     final Item buty = Item.get(309, Integer.valueOf(0), 1);
-                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
                     final Item klata = Item.get(307, Integer.valueOf(0), 1);
-                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
                     final Item bania = Item.get(306, Integer.valueOf(0), 1);
-                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
                     final Item spodnie = Item.get(308, Integer.valueOf(0), 1);
-                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
                     final Item kilof = Item.get(278, Integer.valueOf(0), 1);
                     kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(15).setLevel(5) });
                     kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
@@ -535,7 +540,7 @@ public class KitsGui
                     final Item refile = Item.get(322, Integer.valueOf(0), 16);
                     final Item pa = Item.get(368, Integer.valueOf(0), 6);
                     final Item punch = Item.get(261, Integer.valueOf(0), 1);
-                    punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(20).setLevel(2) });
+                    punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(21).setLevel(1) });
                     punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
                     final Item arrow = Item.get(262, Integer.valueOf(0), 64);
                     p.getInventory().addItem(new Item[] { punch });
@@ -590,17 +595,17 @@ public class KitsGui
         miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(13).setLevel(2) });
         miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
         final Item buty = Item.get(309, Integer.valueOf(0), 1);
-        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
         final Item klata = Item.get(307, Integer.valueOf(0), 1);
-        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
         final Item bania = Item.get(306, Integer.valueOf(0), 1);
-        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
         final Item spodnie = Item.get(308, Integer.valueOf(0), 1);
-        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
         final Item kilof = Item.get(278, Integer.valueOf(0), 1);
         kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(15).setLevel(5) });
         kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
@@ -609,7 +614,7 @@ public class KitsGui
         final Item refile = Item.get(322, Integer.valueOf(0), 64);
         final Item pa = Item.get(368, Integer.valueOf(0), 6);
         final Item punch = Item.get(261, Integer.valueOf(0), 1);
-        punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(20).setLevel(2) });
+        punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(21).setLevel(1) });
         punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
         final Item arrow = Item.get(262, Integer.valueOf(0), 64);
         category.addElement(9, ItemData.fromItem(miecz33));
@@ -680,17 +685,17 @@ public class KitsGui
                     miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(13).setLevel(2) });
                     miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
                     final Item buty = Item.get(309, Integer.valueOf(0), 1);
-                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
                     final Item klata = Item.get(307, Integer.valueOf(0), 1);
-                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
                     final Item bania = Item.get(306, Integer.valueOf(0), 1);
-                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
                     final Item spodnie = Item.get(308, Integer.valueOf(0), 1);
-                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(4) });
-                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(1) });
+                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
+                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
                     final Item kilof = Item.get(278, Integer.valueOf(0), 1);
                     kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(15).setLevel(5) });
                     kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
@@ -699,7 +704,7 @@ public class KitsGui
                     final Item refile = Item.get(322, Integer.valueOf(0), 64);
                     final Item pa = Item.get(368, Integer.valueOf(0), 6);
                     final Item punch = Item.get(261, Integer.valueOf(0), 1);
-                    punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(20).setLevel(2) });
+                    punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(21).setLevel(1) });
                     punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
                     final Item arrow = Item.get(262, Integer.valueOf(0), 64);
                     p.getInventory().addItem(new Item[] { punch });
@@ -732,7 +737,7 @@ public class KitsGui
                     p.getInventory().addItem(new Item[] { kilof });
                     p.getInventory().addItem(new Item[] { kilof });
                     p.getInventory().addItem(new Item[] { kilof });
-                    u.setKit_yt(System.currentTimeMillis() + TimeUtil.MINUTE.getTime(1));
+                    u.setKit_yt(System.currentTimeMillis() + TimeUtil.HOUR.getTime(6));
                 }
             });
         }

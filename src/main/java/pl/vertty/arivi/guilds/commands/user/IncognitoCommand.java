@@ -4,10 +4,8 @@
 
 package pl.vertty.arivi.guilds.commands.user;
 
-import cn.nukkit.command.CommandSender;
 import pl.vertty.arivi.guilds.utils.Coooldown;
 import pl.vertty.arivi.inventory.InventoryMenuHandler;
-import pl.vertty.arivi.listeners.premium.CaseListener;
 import pl.vertty.arivi.utils.exception.SkinChangeException;
 import pl.vertty.arivi.utils.SkinUtil;
 import pl.vertty.arivi.guilds.data.yml.Config;
@@ -36,15 +34,6 @@ public class IncognitoCommand extends PlayerCommand
     @Override
     public boolean onCommand(final Player player, final String[] array) {
         User u = UserManager.getUser(player);
-        if(u.getPresiz() == 0){
-            ChatUtil.sendFullTitle(player, "&9INCOGNITO", "&7MUSISZ POSIADAC 1 PRESTIZ!");
-            return false;
-        }
-        if (COOLDOWN.isOnCooldown(player)) {
-            ChatUtil.sendFullTitle(player, "&9INCOGNITO", "&7MUSISZ ODCZEKAC 10 MINUT!");
-            return false;
-        }
-        COOLDOWN.putOnCooldown(player, TimeUnit.MINUTES, 10L);
         openInv(player);
         return false;
     }
@@ -60,6 +49,11 @@ public class IncognitoCommand extends PlayerCommand
                     user.setIncognitoSkin(true);
                     ChatUtil.sendTitle(p, ChatUtil.fixColor(Config.GUILD_COMMAND_INCOGNITO_TITLE));
                     ChatUtil.sendSubTitle(p, ChatUtil.fixColor(Config.GUILD_COMMAND_INCOGNITO_SUBTITLE));
+                    if (COOLDOWN.isOnCooldown(player)) {
+                        ChatUtil.sendFullTitle(player, "&9INCOGNITO", "&7MUSISZ ODCZEKAC 10 MINUT!");
+                        return;
+                    }
+                    COOLDOWN.putOnCooldown(player, TimeUnit.MINUTES, 10L);
                     SkinUtil.changeSkin(p);
                     IncognitoCommand.openInv(p);
                     return;

@@ -5,11 +5,14 @@
 package pl.vertty.arivi.loader;
 
 import pl.vertty.arivi.listeners.consume.ItemConsumeListener;
+import pl.vertty.arivi.listeners.macro.MacroListener;
+import pl.vertty.arivi.listeners.nuker.NukerListener;
+import pl.vertty.arivi.listeners.phase.PhaseListener;
+import pl.vertty.arivi.listeners.reach.ReachListener;
 import pl.vertty.arivi.listeners.rzucak.RzucakListener;
 import pl.vertty.arivi.listeners.spawn.SpawnProtectionListener;
 import pl.vertty.arivi.listeners.randomtp.RandomTPListener;
 import pl.vertty.arivi.listeners.crafting.CraftingBlockAndCreateListener;
-import pl.vertty.arivi.listeners.osiagniecia.OsiagnieciaListener;
 import pl.vertty.arivi.listeners.chat.ServerChatListener;
 import pl.vertty.arivi.listeners.water.WaterPhisicsListener;
 import pl.vertty.arivi.managers.TimerManager;
@@ -28,7 +31,6 @@ import pl.vertty.arivi.listeners.premium.PandoraListener;
 import pl.vertty.arivi.listeners.SprawdzListener;
 import pl.vertty.arivi.guilds.listeners.BlockOpenInventoriesListener;
 import pl.vertty.arivi.listeners.EnchantListener;
-import pl.vertty.arivi.listeners.premium.CaseListener;
 import pl.vertty.arivi.guilds.listeners.ShadowBlockListener;
 import pl.vertty.arivi.guilds.listeners.region.PlayerBucketListener;
 import pl.vertty.arivi.guilds.listeners.permission.PermissionListener;
@@ -81,6 +83,6 @@ public class EventsLoader
     
     public static void onEventsLoad() {
         registerListeners();
-        registerListener(Main.getPlugin(),new AsyncPlayerChatListener(), new WaterPhisicsListener(), new ItemConsumeListener(), new RzucakListener(), new CaseListener(), new EnchantListener(), new BlockOpenInventoriesListener(), new SprawdzListener(), new PandoraListener(), new PlayerInterractListener(), new PlayerJoinListener(), new BreakDropListener(), new ProtectionListener(), new CheckLoginListener(), new GodListener(), new MovementListener(), new BorderListener(), new LogsListener(), new WeatherListener(), new CobbleXListener(), new TimerManager(), new ServerChatListener(), new OsiagnieciaListener(), new CraftingBlockAndCreateListener(), new RandomTPListener(), new SpawnProtectionListener(), new pl.vertty.arivi.listeners.block.BlockBreakListener(), new pl.vertty.arivi.listeners.block.BlockPlaceListener());
+        registerListener(Main.getPlugin(),new PhaseListener(), new ReachListener(), new NukerListener(), new MacroListener(), new AsyncPlayerChatListener(), new WaterPhisicsListener(), new ItemConsumeListener(), new RzucakListener(), new EnchantListener(), new BlockOpenInventoriesListener(), new SprawdzListener(), new PandoraListener(), new PlayerInterractListener(), new PlayerJoinListener(), new BreakDropListener(), new ProtectionListener(), new CheckLoginListener(), new GodListener(), new MovementListener(), new BorderListener(), new LogsListener(), new WeatherListener(), new CobbleXListener(), new TimerManager(), new ServerChatListener(), new CraftingBlockAndCreateListener(), new RandomTPListener(), new SpawnProtectionListener(), new pl.vertty.arivi.listeners.block.BlockBreakListener(), new pl.vertty.arivi.listeners.block.BlockPlaceListener());
     }
 }

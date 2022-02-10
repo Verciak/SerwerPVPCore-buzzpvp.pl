@@ -50,7 +50,69 @@ public class BreakDropListener implements Listener
             if (user.getBlockstonext() <= 0) {
                 user.addLvl(1);
                 for (final Player p : Server.getInstance().getOnlinePlayers().values()) {
-                    ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    if(user.getLvl() == 1){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 5){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 10){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 15){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 20){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 25){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 30){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 35){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 40){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 45){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 50){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 55){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 60){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 65){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 70){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 75){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 80){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 85){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 90){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 95){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
+                    if(user.getLvl() == 100){
+                        ChatUtil.sendMessage((CommandSender)p, c.getString("bc-level").replace("{NICK}", player.getName()).replace("{LVL}", String.valueOf(user.getLvl())));
+                    }
                 }
                 user.setBlockstonext((int)(1.05 * user.getLvl() * 50.0));
             }

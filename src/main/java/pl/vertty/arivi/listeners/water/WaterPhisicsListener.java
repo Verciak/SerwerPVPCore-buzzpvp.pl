@@ -5,15 +5,12 @@ import cn.nukkit.block.BlockID;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockUpdateEvent;
+import cn.nukkit.event.block.LiquidFlowEvent;
 
 public class WaterPhisicsListener implements Listener {
 
-
     @EventHandler
-    public void onWather(final BlockUpdateEvent e){
-        final Block b = e.getBlock();
-        if (b.getLocation().getY() > 50 && b.getId() == BlockID.WATER){
-            e.setCancelled(true);
-        }
+    public void onWoda(LiquidFlowEvent e){
+        e.setCancelled(true);
     }
 }

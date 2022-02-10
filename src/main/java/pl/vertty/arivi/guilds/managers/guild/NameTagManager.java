@@ -23,7 +23,6 @@ public class NameTagManager
         for (final Player p : Server.getInstance().getOnlinePlayers().values()) {
             final User u = UserManager.getUser(p);
             final Guild g = GuildManager.getGuild(p);
-            final String device = String.valueOf(p.getLoginChainData().getDeviceOS()).replace("0", "Nieznane").replace("1", "Android").replace("2", "iOS").replace("3", "MacOS").replace("4", "FireOS").replace("5", "GearVR").replace("6", "HoloLens").replace("10", "PS 4").replace("7", "Win 10").replace("8", "Win").replace("9", "Dedicated").replace("11", "Switch");
             final Collection<Player> viewer = p.getViewers().values();
             final SetEntityDataPacket pk = new SetEntityDataPacket();
             for (final Player paa : viewer) {
@@ -32,7 +31,7 @@ public class NameTagManager
                 if (UserManager.getUser(p).isIncognitoNick() && !UserManager.getUser(paa).can(GroupType.HELPER)) {
                     nick = ChatUtil.fixColor("&8[&cNICK&8] ");
                 }
-                pk.metadata = new EntityMetadata().putString(4, ChatUtil.fixColor(getValidPrefix(p, paa) + "" + getSuffix(p) + "&7" + nick + "\n&3" + u.getPoints() + " &8| &f" + device));
+                pk.metadata = new EntityMetadata().putString(4, ChatUtil.fixColor(getValidPrefix(p, paa) + "" + getSuffix(p) + "&7" + nick + "\n&3" + u.getPoints()));
                 paa.batchDataPacket((DataPacket)pk);
             }
         }

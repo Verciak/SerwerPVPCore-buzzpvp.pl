@@ -9,6 +9,7 @@ import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.player.PlayerRespawnEvent;
 import cn.nukkit.inventory.PlayerInventory;
+import pl.vertty.arivi.Main;
 import pl.vertty.arivi.enums.TimeUtil;
 import pl.vertty.arivi.guilds.data.guild.Guild;
 import pl.vertty.arivi.guilds.rank.RankingManager;
@@ -90,76 +91,86 @@ public class PlayerDeathListener implements Listener
                 BackupManager.createBackup(p.getName(), "NIE MIAL SKRZYDEL", p.getPing(), playerInventory, 0);
                 break;
         }
-        Player k = (Player)p.getKiller();
-        if (k == null && pC != null && pC.wasFight())
-            k = pC.getLastAttactkPlayer();
-        if (k != null) {
-            User kUser = UserManager.getUser(k);
-            if (kUser == null)
-                return;
-            if (p.equals(k))
-                return;
-            if (DeathUtil.isLastKill(kUser, p)) {
-                ChatUtil.sendMessage((CommandSender)k, "&cZabiles tego samego gracza w ciagu 10m");
-                if (DeathUtil.isAsyst(pC)) {
-                    assyst(pC, user);
-                }
-                for (Player po : Server.getInstance().getOnlinePlayers().values()) {
-                    User u = UserManager.getUser(po);
-                    ChatUtil.sendMessage((CommandSender)po, DeathUtil.deathsMessage(0, 0, p, k));
-                }
-            } else {
-                int add = (int)(94.0D + (kUser.getPoints() - ((user != null) ? user.getPoints() : 0)) * -0.25D);
-                if (add <= 0) {
-                    add = RandomUtil.getRandInt(8, 15);
-                }
-                int remove = add / 4 * 3;
-                if (user != null) {
-                    user.setPoints(user.getPoints() - remove);
-                }
-                kUser.setLastKillTime(System.currentTimeMillis() + TimeUtil.MINUTE.getTime(10));
-                kUser.setLastKill(p.getName());
-                kUser.setPoints(kUser.getPoints() + add);
-                kUser.setKills(kUser.getKills() + 1);
-                kUser.getPlayer().addEffect(Effect.getEffect(12).setDuration(200).setAmplifier(0).setVisible(true));
-                if (kUser.getPoints() >= 1700) {
-                    kUser.setPoints(1000);
-                    kUser.setPresiz(kUser.getPresiz() + 1);
-                }
-                BackupManager.createBackup(p.getName(), k.getName(), p.getPing(), playerInventory, remove);
+        if(p.getKiller() instanceof Player) {
+            Player k = (Player) p.getKiller();
+            if (k == null && pC != null && pC.wasFight())
+                k = pC.getLastAttactkPlayer();
+            if (k != null) {
+                User kUser = UserManager.getUser(k);
+                if (kUser == null)
+                    return;
+                if (p.equals(k))
+                    return;
+                if (DeathUtil.isLastKill(kUser, p)) {
+                    ChatUtil.sendMessage((CommandSender) k, "&cZabiles tego samego gracza w ciagu 10m");
+                    if (DeathUtil.isAsyst(pC)) {
+                        assyst(pC, user);
+                    }
+                    for (Player po : Server.getInstance().getOnlinePlayers().values()) {
+                        User u = UserManager.getUser(po);
+                        ChatUtil.sendMessage((CommandSender) po, DeathUtil.deathsMessage(0, 0, p, k));
+                    }
+                } else {
+                    int add = (int) (94.0D + (kUser.getPoints() - ((user != null) ? user.getPoints() : 0)) * -0.25D);
+                    if (add <= 0) {
+                        add = RandomUtil.getRandInt(8, 15);
+                    }
+                    int remove = add / 4 * 3;
+                    if (user != null) {
+                        user.setPoints(user.getPoints() - remove);
+                    }
+                    kUser.setLastKillTime(System.currentTimeMillis() + TimeUtil.MINUTE.getTime(10));
+                    kUser.setLastKill(p.getName());
+                    kUser.setPoints(kUser.getPoints() + add);
+                    kUser.setKills(kUser.getKills() + 1);
+                    if (kUser != null) {
+                        kUser.getPlayer().addEffect(Effect.getEffect(12).setDuration(200).setAmplifier(0).setVisible(true));
+                    }
+                    BackupManager.createBackup(p.getName(), k.getName(), p.getPing(), playerInventory, remove);
 
-                for (Player po2 : Server.getInstance().getOnlinePlayers().values()) {
-                    User u2 = UserManager.getUser(po2);
-                    ChatUtil.sendMessage((CommandSender)po2, DeathUtil.deathsMessage(add, remove, p, k));
+                    for (Player po2 : Server.getInstance().getOnlinePlayers().values()) {
+                        User u2 = UserManager.getUser(po2);
+                        ChatUtil.sendMessage((CommandSender) po2, DeathUtil.deathsMessage(add, remove, p, k));
+                    }
+                    if (DeathUtil.isAsyst(pC))
+                        assyst(pC, user);
+                    Guild g = GuildManager.getGuild(k);
+                    if (g != null) {
+                        g.addPoints(GuildManager.addPoints(k, p));
+                        g.addKills(1);
+                    }
+                    Guild o = GuildManager.getGuild(p);
+                    if (o != null) {
+                        o.removePoints(GuildManager.removePoints(p, k));
+                        o.addDeaths(1);
+                    }
+                    RankingManager.sortGuildRankings();
                 }
-                if (DeathUtil.isAsyst(pC))
-                    assyst(pC, user);
-                Guild g = GuildManager.getGuild(k);
-                if (g != null) {
-                    g.addPoints(GuildManager.addPoints(k, p));
-                    g.addKills(1);
-                }
-                Guild o = GuildManager.getGuild(p);
-                if (o != null) {
-                    o.removePoints(GuildManager.removePoints(p, k));
-                    o.addDeaths(1);
-                }
-                RankingManager.sortGuildRankings();
+            } else if (user != null) {
+                user.setPoints(user.getPoints() - 5);
             }
-        } else if (user != null) {
-            user.setPoints(user.getPoints() - 5);
-        }
-        if (user != null) {
-            user.setDeaths(user.getDeaths() + 1);
-        }
-        ItemUtil.giveItems(k, e.getDrops());
-        e.getEntity().getInventory().clearAll();
-        e.setDrops(new Item[]{});
+            if (user != null) {
+                user.setDeaths(user.getDeaths() + 1);
+            }
+            if (k instanceof Player) {
+                ItemUtil.giveItems(k, e.getDrops());
+            }
+            e.setDrops(new Item[]{});
 
-        DeathUtil.remove(pC);
-        e.setDeathMessage("");
-        RankingManager.sortGuildRankings();
-        RankingManager.sortUserRankings();
+            DeathUtil.remove(pC);
+            e.setDeathMessage("");
+            RankingManager.sortGuildRankings();
+            RankingManager.sortUserRankings();
+
+            Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), new Runnable() {
+                public void run() {
+                    if (e.getEntity() instanceof Player) {
+                        e.getEntity().getInventory().clearAll();
+                        e.getEntity().teleport(new Vector3(0, 80, 0));
+                    }
+                }
+            }, 15);
+        }
     }
 
     private void assyst(Combat pC, User pU) {
@@ -170,10 +181,6 @@ public class PlayerDeathListener implements Listener
         if (asyst <= -1)
             asyst = -1;
         if (asysta != null) {
-            if (asysta.getPoints() >= 1700) {
-                asysta.setPoints(1000);
-                asysta.setPresiz(asysta.getPresiz() + 1);
-            }
             asysta.setPoints(asysta.getPoints() + asyst);
         }
         for (Player p : Server.getInstance().getOnlinePlayers().values()) {

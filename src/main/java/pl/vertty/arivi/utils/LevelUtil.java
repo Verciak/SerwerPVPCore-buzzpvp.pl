@@ -12,10 +12,10 @@ public class LevelUtil
 {
     public static boolean isNonPvpArea(final Location loc) {
         final Location l2 = loc.getLocation().getLevel().getSpawnLocation().getLocation();
-        final int distance = 65;
+        final int distance = 60;
         final int distancex = Math.abs(loc.getFloorX() - l2.getFloorX());
         final int distancez = Math.abs(loc.getFloorZ() - l2.getFloorZ());
-        return distancex <= 65 && distancez <= 65;
+        return distancex <= 60 && distancez <= 60;
     }
     
     public static void knockLinePvP(final Player p) {

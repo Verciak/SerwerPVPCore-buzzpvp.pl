@@ -32,13 +32,16 @@ public class TellCommand extends PlayerCommand
         if (args.length < 2) {
             return ChatUtil.sendMessage((CommandSender)player, this.getUsage());
         }
+        if(Server.getInstance().getPlayer(args[0]) == null){
+            return ChatUtil.sendMessage((CommandSender)player, "&cGracz nie jest online!");
+        }
         final Player o = Server.getInstance().getPlayer(args[0]);
         final User user = UserManager.getUser(o);
-        if (user.isIgnoreTell(player)) {
-            return ChatUtil.sendMessage((CommandSender) player, "&cTen gracz zablokowal od Ciebie prywatne wiadomosci!");
-        }
         if (o == null) {
             return ChatUtil.sendMessage((CommandSender)player, "&cGracz nie jest online!");
+        }
+        if (user.isIgnoreTell(o)) {
+            return ChatUtil.sendMessage((CommandSender) player, "&cTen gracz zablokowal od Ciebie prywatne wiadomosci!");
         }
         final Long t = TellCommand.times.get(player.getUniqueId());
         if (t != null && System.currentTimeMillis() - t < 3000L && !u.can(GroupType.ADMIN)) {

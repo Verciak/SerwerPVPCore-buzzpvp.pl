@@ -20,9 +20,5 @@ public class BlockBreakListener implements Listener
         if (b.getId() == 19) {
             e.setCancelled(true);
         }
-        if (b.getId() == 130) {
-            e.setDrops(new Item[0]);
-            Server.getInstance().getDefaultLevel().dropItem(new Vector3(b.x, b.y, b.z), Item.get(130, Integer.valueOf(0), 1));
-        }
     }
 }

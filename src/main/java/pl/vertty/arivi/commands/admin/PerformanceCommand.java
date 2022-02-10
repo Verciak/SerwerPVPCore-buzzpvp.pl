@@ -21,13 +21,13 @@ public class PerformanceCommand extends Command
     
     @Override
     public boolean onExecute(final CommandSender sender, final String[] args) {
-        final StringBuilder sb = new StringBuilder(ChatUtil.fixColor("&8>> &7TPSy 1m, 5m, 15m: &6"));
+        final StringBuilder sb = new StringBuilder(ChatUtil.fixColor("&8>> &7TPSy 1m, 5m, 15m: &3"));
         ChatUtil.sendMessage(sender, "");
         ChatUtil.sendMessage(sender, sb.toString());
-        ChatUtil.sendMessage(sender, "&8>>  &7Online serwer: &6" + DataUtil.parseLong(System.currentTimeMillis() - Main.startUpTime, false));
-        ChatUtil.sendMessage(sender, "&8>>  &7Uzyty RAM: &6" + Runtime.getRuntime().maxMemory() / 1024L / 1024L + "MB");
-        ChatUtil.sendMessage(sender, "&8>>  &7Wolny RAM: &6" + Runtime.getRuntime().freeMemory() / 1024L / 1024L + "MB");
-        ChatUtil.sendMessage(sender, "&8>>  &7Zuzycie procesora: &6" + this.getCpuUsage() + "%");
+        ChatUtil.sendMessage(sender, "&8>>  &7Online serwer: &3" + DataUtil.parseLong(System.currentTimeMillis() - Main.startUpTime, false));
+        ChatUtil.sendMessage(sender, "&8>>  &7Uzyty RAM: &3" + Runtime.getRuntime().maxMemory() / 1024L / 1024L + "MB");
+        ChatUtil.sendMessage(sender, "&8>>  &7Wolny RAM: &3" + Runtime.getRuntime().freeMemory() / 1024L / 1024L + "MB");
+        ChatUtil.sendMessage(sender, "&8>>  &7Zuzycie procesora: &3" + this.getCpuUsage() + "%");
         ChatUtil.sendMessage(sender, "");
         return true;
     }

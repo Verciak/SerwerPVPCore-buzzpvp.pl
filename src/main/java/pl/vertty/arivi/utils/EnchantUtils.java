@@ -22,6 +22,8 @@ public class EnchantUtils
         for (int x = minX; x <= maxX; ++x) {
             for (int z = minZ; z <= maxZ; ++z) {
                 locs.add(new Location((double)x, (double)center.getFloorY(), (double)z, center.getLevel()));
+                locs.add(new Location((double)x, (double)center.getFloorY() + 1, (double)z, center.getLevel()));
+                locs.add(new Location((double)x, (double)center.getFloorY() - 1, (double)z, center.getLevel()));
             }
         }
         locs.add(center);

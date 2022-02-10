@@ -35,6 +35,9 @@ public class ReplyCommand extends PlayerCommand
         if (last == null) {
             return ChatUtil.sendMessage((CommandSender)player, "&cNie masz komu odpisac!");
         }
+        if(Server.getInstance().getPlayer(last).get() == null){
+            return ChatUtil.sendMessage((CommandSender)player, "&cGracz nie jest online!");
+        }
         final Player o = Server.getInstance().getPlayer(last).get();
         if (o == null) {
             return ChatUtil.sendMessage((CommandSender)player, "&cGracz nie jest online!");

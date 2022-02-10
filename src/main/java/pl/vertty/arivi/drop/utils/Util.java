@@ -95,7 +95,7 @@ public class Util
         }
         final Item i = new Item(160, Integer.valueOf(15), 1);
         i.setCustomName(ChatUtil.fixColor("&8#"));
-        for (int ia = 36; ia < 44; ++ia) {
+        for (int ia = 36; ia < 45; ++ia) {
             category.addElement(ia, ItemData.fromItem(i));
         }
         final Item on = new Item(351, Integer.valueOf(10), 1);
@@ -164,13 +164,7 @@ public class Util
         });
         category.addElement(50, ItemData.fromItem(exp));
         category.addElement(51, ItemData.fromItem(i));
-        category.addElement(52, ItemData.fromItem(chest), new ItemClick() {
-            @Override
-            public void onClick(final Player p, final Item item) {
-                Util.openSkrzynka(p);
-            }
-        });
-        category.addElement(44, ItemData.fromItem(cx), new ItemClick() {
+        category.addElement(52, ItemData.fromItem(cx), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
                 Util.openCobbleX(p);

@@ -26,7 +26,6 @@ public class SchowekGui
         final InventoryMenu menu = new InventoryMenu();
         final InventoryCategory category = new InventoryCategory();
         category.addElement(2, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(4, new ItemData(160, 11, 1, "&8*"));
         category.addElement(6, new ItemData(160, 11, 1, "&8*"));
         category.addElement(10, new ItemData(160, 11, 1, "&8*"));
         category.addElement(12, new ItemData(160, 11, 1, "&8*"));
@@ -34,6 +33,13 @@ public class SchowekGui
         category.addElement(16, new ItemData(160, 11, 1, "&8*"));
         category.addElement(20, new ItemData(160, 11, 1, "&8*"));
         category.addElement(24, new ItemData(160, 11, 1, "&8*"));
+
+        category.addElement(4, new ItemData(Item.SNOWBALL, 0, 1, "&9SNIEZKI", new String[] { ChatUtil.fixColor("&8» &7Posiadasz: &e" + u.getSniezki()), ChatUtil.fixColor("&8» &7Obecny limit: &e" + c.getInt("limit.sniezki")), "", ChatUtil.fixColor("&8» &7Kliknij, aby wyplacic!") }), new ItemClick() {
+            @Override
+            public void onClick(final Player p, final Item item) {
+                SchowekAction.checkSniezki(p, true);
+            }
+        });
         category.addElement(11, new ItemData(466, 0, 1, "&9KOXY", new String[] { ChatUtil.fixColor("&8» &7Posiadasz: &e" + u.getKox()), ChatUtil.fixColor("&8» &7Obecny limit: &e" + c.getInt("limit.kox")), "", ChatUtil.fixColor("&8» &7Kliknij, aby wyplacic!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
@@ -58,6 +64,7 @@ public class SchowekGui
                 SchowekAction.checkKoxy(p, true);
                 SchowekAction.checkRefile(p, true);
                 SchowekAction.checkPerly(p, true);
+                SchowekAction.checkSniezki(p, true);
             }
         });
         menu.setMainCategory(category);

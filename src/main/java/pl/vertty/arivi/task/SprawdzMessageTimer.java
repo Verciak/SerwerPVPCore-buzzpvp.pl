@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.task;
 
 import cn.nukkit.plugin.Plugin;
@@ -18,7 +14,7 @@ public class SprawdzMessageTimer extends NukkitRunnable
 {
     public void run() {
         for (final Sprawdz s : SprawdzManager.getList().values()) {
-            ChatUtil.sendFullTitle(s.getPlayer(), "&9Jestes Sprawdzany!", "&7Zapraszamy na discorda: &9dc.blazepe.pl");
+            ChatUtil.sendFullTitle(s.getPlayer(), "&9Jestes Sprawdzany!", "&7Zapraszamy na discorda: &9dc.waterpe.pl");
             if (s.isEffect()) {
                 s.getPlayer().addEffect(Effect.getEffect(9).setDuration(600).setAmplifier(1));
                 s.getPlayer().addEffect(Effect.getEffect(15).setDuration(600).setAmplifier(1));

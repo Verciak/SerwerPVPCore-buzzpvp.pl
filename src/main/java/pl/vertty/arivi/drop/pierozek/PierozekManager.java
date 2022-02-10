@@ -30,7 +30,10 @@ public class PierozekManager
         final Player player = event.getPlayer();
         event.setCancelled(true);
         final Item pandoreItemm = PierozekManager.drop.get(RandomUtils.nextInt(0, PierozekManager.drop.size()));
-        if (pandoreItemm.getCustomName().contains(ChatUtil.fixColor("Kilof 6/1/1")) && !pl.vertty.arivi.drop.utils.RandomUtils.getChance(7.2)) {
+        if (pandoreItemm.getCustomName().contains(ChatUtil.fixColor("Beacon")) && !pl.vertty.arivi.drop.utils.RandomUtils.getChance(4.2)) {
+            return;
+        }
+        if (pandoreItemm.getCustomName().contains(ChatUtil.fixColor("Kilof 6/3/3")) && !pl.vertty.arivi.drop.utils.RandomUtils.getChance(7.2)) {
             return;
         }
         final Item win = Item.get(pandoreItemm.getId(), Integer.valueOf(pandoreItemm.getDamage()), pandoreItemm.getCount());
@@ -56,25 +59,28 @@ public class PierozekManager
             itemInHand.setCount(itemInHand.getCount() - 1);
             event.getPlayer().getInventory().setItemInHand(itemInHand);
         }
-        if (pandoreItemm.getCustomName().contains(ChatUtil.fixColor("Kilof 6/1/1"))) {
+        if (pandoreItemm.getCustomName().contains(ChatUtil.fixColor("Beacon"))) {
+            Server.getInstance().broadcastMessage(ChatUtil.fixColor("&7Gracz: &f{PLAYER} &7wydropil: &e{NAME} &7z &5Pandory!").replace("{PLAYER}", player.getName()).replace("{NAME}", pandoreItemm.getName()));
+        }
+        if (pandoreItemm.getCustomName().contains(ChatUtil.fixColor("Kilof 6/3/3"))) {
             Server.getInstance().broadcastMessage(ChatUtil.fixColor("&7Gracz: &f{PLAYER} &7wydropil: &e{NAME} &7z &5Pandory!").replace("{PLAYER}", player.getName()).replace("{NAME}", pandoreItemm.getName()));
         }
     }
     
     static {
         PierozekManager.drop = new ArrayList<Item>();
-        final Item helm = new Item(306, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("Zelazny Helm 4/1"));
-        helm.addEnchantment(new Enchantment[] { Enchantment.get(0).setLevel(4, true) });
-        helm.addEnchantment(new Enchantment[] { Enchantment.get(17).setLevel(1, true) });
-        final Item klata = new Item(307, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("Zelazna Klata 4/1"));
-        klata.addEnchantment(new Enchantment[] { Enchantment.get(0).setLevel(4, true) });
-        klata.addEnchantment(new Enchantment[] { Enchantment.get(17).setLevel(1, true) });
-        final Item spodnie = new Item(308, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("Zelazne Spodnie 4/1"));
-        spodnie.addEnchantment(new Enchantment[] { Enchantment.get(0).setLevel(4, true) });
-        spodnie.addEnchantment(new Enchantment[] { Enchantment.get(17).setLevel(1, true) });
-        final Item buty = new Item(309, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("Zelazne Buty 4/1"));
-        buty.addEnchantment(new Enchantment[] { Enchantment.get(0).setLevel(4, true) });
-        buty.addEnchantment(new Enchantment[] { Enchantment.get(17).setLevel(1, true) });
+        final Item helm = new Item(306, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("Zelazny Helm 3/2"));
+        helm.addEnchantment(new Enchantment[] { Enchantment.get(0).setLevel(3, true) });
+        helm.addEnchantment(new Enchantment[] { Enchantment.get(17).setLevel(2, true) });
+        final Item klata = new Item(307, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("Zelazna Klata 3/2"));
+        klata.addEnchantment(new Enchantment[] { Enchantment.get(0).setLevel(3, true) });
+        klata.addEnchantment(new Enchantment[] { Enchantment.get(17).setLevel(2, true) });
+        final Item spodnie = new Item(308, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("Zelazne Spodnie 3/2"));
+        spodnie.addEnchantment(new Enchantment[] { Enchantment.get(0).setLevel(3, true) });
+        spodnie.addEnchantment(new Enchantment[] { Enchantment.get(17).setLevel(2, true) });
+        final Item buty = new Item(309, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("Zelazne Buty 3/2"));
+        buty.addEnchantment(new Enchantment[] { Enchantment.get(0).setLevel(3, true) });
+        buty.addEnchantment(new Enchantment[] { Enchantment.get(17).setLevel(2, true) });
         final Item miecz = new Item(267, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("Zelazny Miecz 3/2/3"));
         miecz.addEnchantment(new Enchantment[] { Enchantment.get(9).setLevel(3, true) });
         miecz.addEnchantment(new Enchantment[] { Enchantment.get(13).setLevel(2, true) });
@@ -97,10 +103,10 @@ public class PierozekManager
         kilof533.addEnchantment(new Enchantment[] { Enchantment.get(18).setLevel(3, true) });
         kilof533.addEnchantment(new Enchantment[] { Enchantment.get(17).setLevel(3, true) });
         PierozekManager.drop.add(kilof533);
-        final Item kilof534 = new Item(278, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("Kilof 6/1/1"));
+        final Item kilof534 = new Item(278, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("Kilof 6/3/3"));
         kilof534.addEnchantment(new Enchantment[] { Enchantment.get(15).setLevel(6, false) });
-        kilof534.addEnchantment(new Enchantment[] { Enchantment.get(18).setLevel(1, true) });
-        kilof534.addEnchantment(new Enchantment[] { Enchantment.get(17).setLevel(1, true) });
+        kilof534.addEnchantment(new Enchantment[] { Enchantment.get(18).setLevel(3, true) });
+        kilof534.addEnchantment(new Enchantment[] { Enchantment.get(17).setLevel(3, true) });
         PierozekManager.drop.add(kilof534);
         PierozekManager.drop.add(new Item(368, Integer.valueOf(0), 2).setCustomName(ChatUtil.fixColor("Perla")));
         PierozekManager.drop.add(new Item(3, Integer.valueOf(0), 64).setCustomName(ChatUtil.fixColor("Dirt")));
@@ -113,10 +119,7 @@ public class PierozekManager
         PierozekManager.drop.add(new Item(388, Integer.valueOf(0), 16).setCustomName(ChatUtil.fixColor("Emerald")));
         PierozekManager.drop.add(new Item(388, Integer.valueOf(0), 32).setCustomName(ChatUtil.fixColor("Emerald")));
         PierozekManager.drop.add(new Item(145, Integer.valueOf(0), 3).setCustomName(ChatUtil.fixColor("Kowadlo")));
-        PierozekManager.drop.add(new Item(0, Integer.valueOf(0), 1));
-        PierozekManager.drop.add(new Item(0, Integer.valueOf(0), 1));
-        PierozekManager.drop.add(new Item(0, Integer.valueOf(0), 1));
-        PierozekManager.drop.add(new Item(0, Integer.valueOf(0), 1));
+        PierozekManager.drop.add(new Item(Item.BEACON, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("Beacon")));
         (PierozekManager.pandoreItem = Item.get(122)).setCustomName(ChatUtil.fixColor("&5&lPandora"));
     }
 }

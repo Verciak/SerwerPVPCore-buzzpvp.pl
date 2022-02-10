@@ -22,6 +22,40 @@ public class SchowekAction
     public SchowekAction(final String name) {
         this.name = name;
     }
+
+
+    public static void checkSniezki(final Player p, final boolean msg) {
+        final User u = UserManager.getUser(p);
+        final int maxKoxy = SchowekAction.c.getInt("limit.sniezki");
+        if (u.getSniezki() <= 0) {
+            if (msg) {
+                ChatUtil.sendMessage((CommandSender)p, "&cAktualnie nie masz do wyplacenia tego itemu!");
+            }
+            return;
+        }
+        int koxy = 0;
+        for (final Item i : p.getInventory().getContents().values()) {
+            if (i.getId() == Item.SNOWBALL) {
+                koxy += i.getCount();
+            }
+        }
+        if (koxy >= maxKoxy) {
+            if (msg) {
+                ChatUtil.sendMessage((CommandSender)p, "&cPosiadasz juz limit tego przedmiotu!");
+            }
+            return;
+        }
+        int j = maxKoxy - koxy;
+        if (j > u.getSniezki()) {
+            j = u.getSniezki();
+        }
+        u.removeSniezki(j);
+        final Item xd = Item.get(Item.SNOWBALL, Integer.valueOf(0), j);
+        p.getInventory().addItem(new Item[] { xd });
+        if (msg) {
+            ChatUtil.sendMessage((CommandSender)p, "&7Zwrocono: &6{ITEM} &7sniezek".replace("{ITEM}", String.valueOf(j)));
+        }
+    }
     
     public static void checkKoxy(final Player p, final boolean msg) {
         final User u = UserManager.getUser(p);

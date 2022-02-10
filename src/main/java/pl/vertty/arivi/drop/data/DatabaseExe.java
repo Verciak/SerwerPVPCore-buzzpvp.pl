@@ -25,7 +25,6 @@ public class DatabaseExe implements DataExecutor
             new DatabaseUser(user).save(db);
             ++i;
         }
-        db.closeConnection();
         Util.sendInfo("Zapisano " + Integer.toString(i) + " graczy");
     }
     
@@ -45,7 +44,6 @@ public class DatabaseExe implements DataExecutor
             e.printStackTrace();
         }
         Util.sendInfo("Zaladowano " + Integer.toString(i) + " graczy");
-        db.closeConnection();
     }
     
     @Override
@@ -59,7 +57,6 @@ public class DatabaseExe implements DataExecutor
         catch (SQLException e) {
             e.printStackTrace();
         }
-        db.closeConnection();
     }
     
     @Override

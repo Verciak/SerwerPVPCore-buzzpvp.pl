@@ -40,16 +40,12 @@ public class RepairCommand extends PlayerCommand
             return ChatUtil.sendMessage((CommandSender)p, "&cTen przedmiot jest naprawiony!");
         }
         if (u.can(GroupType.VIP)) {
-            p.getInventory().removeItem(new Item[] { is });
-            is.setDamage(Integer.valueOf(0));
-            p.getInventory().addItem(new Item[] { is });
+            RepairUtil.repairAll(p);
             ChatUtil.sendMessage((CommandSender)p, "&8>> &7Naprawiles przedmiot &e" + PolishItemNames.getPolishName(is) + "&7!");
             ChatUtil.sendMessage((CommandSender)p, "&8>> &7Item zostaly naprawiony! Mozliwe ze nie bedzie to widoczne!");
         }
         else if (p.getInventory().contains(ia)) {
-            p.getInventory().removeItem(new Item[] { is });
-            is.setDamage(Integer.valueOf(0));
-            p.getInventory().addItem(new Item[] { is });
+            RepairUtil.repairAll(p);
             ChatUtil.sendMessage((CommandSender)p, "&8>> &7Naprawiles przedmiot &e" + PolishItemNames.getPolishName(is) + "&7!");
             ChatUtil.sendMessage((CommandSender)p, "&8>> &7Item zostaly naprawiony! Mozliwe ze nie bedzie to widoczne!");
             p.getInventory().removeItem(new Item[] { ia });

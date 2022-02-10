@@ -40,12 +40,12 @@ public class CobblexCommand extends PlayerCommand
                 return ChatUtil.sendMessage((CommandSender)p, "&8>> &7Muszisz miec &69x64 &7cobblestone");
             }
             final int r = RandomUtils.getRandInt(1, 3);
-            final Item cx = Item.get(48, Integer.valueOf(0), r);
+            final Item cx = Item.get(52, Integer.valueOf(0));
+            cx.setCount(r);
             cx.setCustomName(ChatUtil.fixColor("&8* &6Cobblex &8*"));
             cx.addEnchantment(new Enchantment[] { Enchantment.get(5).setLevel(10, false) });
             final PlayerInventory inv = p.getInventory();
             boolean canAddItem = false;
-            for (int i = 0; i < cx.getCount(); ++i) {
                 canAddItem = inv.canAddItem(cx);
                 if (canAddItem) {
                     p.getInventory().addItem(new Item[] { cx });
@@ -53,7 +53,7 @@ public class CobblexCommand extends PlayerCommand
                 else {
                     p.getLevel().dropItem(new Vector3(p.getX(), (double)p.getFloorY(), p.getZ()), cx);
                 }
-            }
+
             ItemUtil.removeItems(p, "4:0-64:cobble", 9);
             return ChatUtil.sendMessage((CommandSender)p, "&8>> &7Wycraftowales &6Cobblex &7x" + r);
         }
@@ -68,6 +68,7 @@ public class CobblexCommand extends PlayerCommand
     
     static {
         (CobblexCommand.drops = new ArrayList<Item>()).add(Item.get(47, Integer.valueOf(0), 12));
+        CobblexCommand.drops.add(Item.get(Item.SNOWBALL, Integer.valueOf(0), 8));
         CobblexCommand.drops.add(Item.get(266, Integer.valueOf(0), 7));
         CobblexCommand.drops.add(Item.get(368, Integer.valueOf(0), 1));
         CobblexCommand.drops.add(Item.get(265, Integer.valueOf(0), 9));

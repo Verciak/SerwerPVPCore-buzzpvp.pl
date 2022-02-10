@@ -62,6 +62,7 @@ public class User
     private int schowek_kox;
     private int schowek_refy;
     private int schowek_perly;
+    private int schowek_sniezki;
     private int presiz;
     private long kit_mieso;
     private long kit_start;
@@ -73,6 +74,7 @@ public class User
     private long turboExp;
     private long ochrona;
     private boolean teleport;
+
     private List<Player> tpa;
     private List<Player> tpahere;
     private String home1;
@@ -110,6 +112,71 @@ public class User
     private final SimpleInventoryMenu ec3;
     private final SimpleInventoryMenu ec4;
     private final SimpleInventoryMenu ec5;
+    private long speedminePerSecondTime;
+    public int speedminePerSecond;
+    private long packetsPerSecondTime;
+    public int packetsPerSecond;
+    private long macroPerSecondTime;
+    public int macroPerSecond;
+    private long entityPerSecondTime;
+    public int entityPerSecond;
+
+    public boolean hasMacroLimit() {
+        if (this.macroPerSecond > 12) {
+            return true;
+        }
+        return false;
+    }
+    public boolean entityLimit() {
+        if (this.entityPerSecondTime < System.currentTimeMillis()) {
+            this.entityPerSecondTime = System.currentTimeMillis() + 1000L;
+            this.entityPerSecond = 0;
+        }
+        if (++this.entityPerSecond >= 60) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean speedmineLimit(boolean isHalf) {
+        if (this.speedminePerSecondTime < System.currentTimeMillis()) {
+            this.speedminePerSecondTime = System.currentTimeMillis() + (isHalf ? 500L : 1000L);
+            this.speedminePerSecond = 0;
+        }
+        if (++this.speedminePerSecond >= (isHalf ? 4 : 10)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean macroLimit() {
+        if (this.macroPerSecondTime < System.currentTimeMillis()) {
+            this.macroPerSecondTime = System.currentTimeMillis() + 1000L;
+            this.macroPerSecond = 0;
+        }
+        if (++this.macroPerSecond > 12) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean hasMacroMax() {
+        if (this.macroPerSecond >= 100) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean packetLimit() {
+        if (this.packetsPerSecondTime < System.currentTimeMillis()) {
+            this.packetsPerSecondTime = System.currentTimeMillis() + 1000L;
+            this.packetsPerSecond = 0;
+        }
+        if (++this.packetsPerSecond > 450) {
+            return true;
+        }
+        return false;
+    }
     
     public boolean isUpr_Logblock() {
         return User.upr_Logblock;
@@ -121,13 +188,13 @@ public class User
         this.setEnderchest_3(SeralizerUtil.serializeInventory((Inventory)this.ec3));
         this.setEnderchest_4(SeralizerUtil.serializeInventory((Inventory)this.ec4));
         this.setEnderchest_5(SeralizerUtil.serializeInventory((Inventory)this.ec5));
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("INSERT INTO `pCGuilds_users`(`id`, `name`, `points`, `kills`, `deaths`, `asysts`, `upr_lava`, `upr_water`, `upr_break_obsidian`, `upr_break_stone`, `upr_place_obsidian`, `upr_place_stone`, `upr_chest`, `upr_tnt`, `upr_boyfarmer`, `upr_lapis`, `upr_logblock`, `upr_furnace`, `incognitoNick`, `incognitoSkin`, `incognitoGuild`, `role`, `kamien`,`kox`,`refil`,`enderchest1`,`enderchest2`,`enderchest3`,`enderchest4`,`enderchest5`,`odblokowane_kamien`,`odblokowane_zabojstw`,`odblokowane_zgonow`,`odblokowane_kox`,`odblokowane_refil`,`firstIP`, `lastIP`, `firstJoin`, `schowek_kox`, `schowek_refy`, `schowek_perly`, `prestiz`, `kit_start`, `kit_yt`, `kit_vip`, `kit_svip`, `kit_tnt`, `turboDrop`, `turboExp`, `ochrona`, `home1`,`home2`,`home3`,`home4`,`home5`, `lastKill`, `lastKillTime`, `god`, `lvl`, `exp`, `group`, `pandora`, `klucze`) VALUES (NULL, '").append(this.getName()).append("','").append(this.getPoints()).append("','").append(this.getKills()).append("','").append(this.getDeaths()).append("','").append(this.getAsysts()).append("','").append(this.isUpr_Lava() ? 1 : 0).append("','").append(this.isUpr_Water() ? 1 : 0).append("','").append(this.isUpr_Break_Obsidian() ? 1 : 0).append("','").append(this.isUpr_Break_Stone() ? 1 : 0).append("','").append(this.isUpr_Place_Obsidian() ? 1 : 0).append("','").append(this.isUpr_Place_Stone() ? 1 : 0).append("','").append(this.isUpr_Chest() ? 1 : 0).append("','").append(this.isUpr_Tnt() ? 1 : 0).append("','").append(this.isUpr_Boyfarmer() ? 1 : 0).append("','").append(this.isUpr_Lapis() ? 1 : 0).append("','").append(this.isUpr_Logblock() ? 1 : 0).append("','").append(this.isUpr_Furnace() ? 1 : 0).append("','").append(this.isIncognitoNick() ? 1 : 0).append("','").append(this.isIncognitoSkin() ? 1 : 0).append("','").append(this.isIncognitoGuild() ? 1 : 0).append("','").append(this.getRole()).append("','").append(this.getkamien()).append("','").append(this.getkox()).append("','").append(this.getrefil()).append("','").append(this.getEnderchest_1()).append("','").append(this.getEnderchest_2()).append("','").append(this.getEnderchest_3()).append("','").append(this.getEnderchest_4()).append("','").append(this.getEnderchest_5()).append("','").append(this.getodblokowane_kamien()).append("','").append(this.getodblokowane_zabojstw()).append("','").append(this.getodblokowane_zgonow()).append("','").append(this.getodblokowane_kox()).append("','").append(this.getodblokowane_refil()).append("','").append(this.getFirstIP()).append("','").append(this.getLastIP()).append("','").append(this.getFirstJoin()).append("','").append(this.getKox()).append("','").append(this.getRefy()).append("','").append(this.getPerly()).append("','").append(this.getPresiz()).append("','").append(this.getKit_start()).append("','").append(this.getKit_yt()).append("','").append(this.getKit_vip()).append("','").append(this.getKit_svip()).append("','").append(this.getKit_tnt()).append("','").append(this.getTurboDrop()).append("','").append(this.getTurboExp()).append("','").append(this.getOchrona()).append("','").append(this.getHome1()).append("','").append(this.getHome2()).append("','").append(this.getHome3()).append("','").append(this.getHome4()).append("','").append(this.getHome5()).append("','").append(this.getLastKill()).append("','").append(this.getLastKillTime()).append("','").append(this.isGod() ? 1 : 0).append("','").append(this.getLvl()).append("','").append(this.getExp()).append("','").append(this.getGroup()).append("','").append(this.getPandora()).append("','").append(this.getMychest()).append("')")));
+        Main.getStore().update(false, String.valueOf(new StringBuilder().append("INSERT INTO `pCGuilds_users`(`id`, `name`, `points`, `kills`, `deaths`, `asysts`, `upr_lava`, `upr_water`, `upr_break_obsidian`, `upr_break_stone`, `upr_place_obsidian`, `upr_place_stone`, `upr_chest`, `upr_tnt`, `upr_boyfarmer`, `upr_lapis`, `upr_logblock`, `upr_furnace`, `incognitoNick`, `incognitoSkin`, `incognitoGuild`, `role`, `kamien`,`kox`,`refil`,`enderchest1`,`enderchest2`,`enderchest3`,`enderchest4`,`enderchest5`,`odblokowane_kamien`,`odblokowane_zabojstw`,`odblokowane_zgonow`,`odblokowane_kox`,`odblokowane_refil`,`firstIP`, `lastIP`, `firstJoin`, `schowek_kox`, `schowek_refy`, `schowek_perly`, `schowek_sniezki`, `prestiz`, `kit_start`, `kit_yt`, `kit_vip`, `kit_svip`, `kit_tnt`, `turboDrop`, `turboExp`, `ochrona`, `home1`,`home2`,`home3`,`home4`,`home5`, `lastKill`, `lastKillTime`, `god`, `lvl`, `exp`, `group`, `pandora`, `klucze`) VALUES (NULL, '").append(this.getName()).append("','").append(this.getPoints()).append("','").append(this.getKills()).append("','").append(this.getDeaths()).append("','").append(this.getAsysts()).append("','").append(this.isUpr_Lava() ? 1 : 0).append("','").append(this.isUpr_Water() ? 1 : 0).append("','").append(this.isUpr_Break_Obsidian() ? 1 : 0).append("','").append(this.isUpr_Break_Stone() ? 1 : 0).append("','").append(this.isUpr_Place_Obsidian() ? 1 : 0).append("','").append(this.isUpr_Place_Stone() ? 1 : 0).append("','").append(this.isUpr_Chest() ? 1 : 0).append("','").append(this.isUpr_Tnt() ? 1 : 0).append("','").append(this.isUpr_Boyfarmer() ? 1 : 0).append("','").append(this.isUpr_Lapis() ? 1 : 0).append("','").append(this.isUpr_Logblock() ? 1 : 0).append("','").append(this.isUpr_Furnace() ? 1 : 0).append("','").append(this.isIncognitoNick() ? 1 : 0).append("','").append(this.isIncognitoSkin() ? 1 : 0).append("','").append(this.isIncognitoGuild() ? 1 : 0).append("','").append(this.getRole()).append("','").append(this.getkamien()).append("','").append(this.getkox()).append("','").append(this.getrefil()).append("','").append(this.getEnderchest_1()).append("','").append(this.getEnderchest_2()).append("','").append(this.getEnderchest_3()).append("','").append(this.getEnderchest_4()).append("','").append(this.getEnderchest_5()).append("','").append(this.getodblokowane_kamien()).append("','").append(this.getodblokowane_zabojstw()).append("','").append(this.getodblokowane_zgonow()).append("','").append(this.getodblokowane_kox()).append("','").append(this.getodblokowane_refil()).append("','").append(this.getFirstIP()).append("','").append(this.getLastIP()).append("','").append(this.getFirstJoin()).append("','").append(this.getKox()).append("','").append(this.getRefy()).append("','").append(this.getPerly()).append("','").append(this.getSniezki()).append("','").append(this.getSniezki()).append("','").append(this.getKit_start()).append("','").append(this.getKit_yt()).append("','").append(this.getKit_vip()).append("','").append(this.getKit_svip()).append("','").append(this.getKit_tnt()).append("','").append(this.getTurboDrop()).append("','").append(this.getTurboExp()).append("','").append(this.getOchrona()).append("','").append(this.getHome1()).append("','").append(this.getHome2()).append("','").append(this.getHome3()).append("','").append(this.getHome4()).append("','").append(this.getHome5()).append("','").append(this.getLastKill()).append("','").append(this.getLastKillTime()).append("','").append(this.isGod() ? 1 : 0).append("','").append(this.getLvl()).append("','").append(this.getExp()).append("','").append(this.getGroup()).append("','").append(this.getPandora()).append("','").append(this.getMychest()).append("')")));
     }
     
     public boolean isUpr_Boyfarmer() {
         return this.upr_Boyfarmer;
     }
-    
+
     public void setKills(final int kills) {
         this.kills = kills;
         Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_users` SET `kills` = '").append(this.getKills()).append("' WHERE `name` ='").append(this.getName()).append("';")));
@@ -242,6 +309,7 @@ public class User
         this.schowek_kox = set.getInt("schowek_kox");
         this.schowek_perly = set.getInt("schowek_perly");
         this.schowek_refy = set.getInt("schowek_refy");
+        this.schowek_sniezki = set.getInt("schowek_sniezki");
         this.presiz = set.getInt("prestiz");
         this.kit_mieso = 0L;
         this.kit_start = set.getLong("kit_start");
@@ -292,6 +360,7 @@ public class User
             this.ec5.setContents((Map)InventoryUtil.itemArrayToInventoryContents(SeralizerUtil.deserializeItemArray(ec5)));
         }
     }
+
     
     public int getPandora() {
         return this.pandora;
@@ -431,13 +500,8 @@ public class User
         Main.getStore().update(false, "UPDATE `pCGuilds_users` SET `enderchest5` ='" + this.getEnderchest_5() + "' WHERE `name` ='" + this.getName() + "'");
     }
     
-    public int getPresiz() {
+    public int getPresizz() {
         return this.presiz;
-    }
-    
-    public void setPresiz(final int presiz) {
-        this.presiz = presiz;
-        Main.getStore().update("UPDATE `pCGuilds_users` SET `prestiz` ='" + this.getPresiz() + "' WHERE `name` ='" + this.getName() + "'");
     }
     
     public int getkamien() {
@@ -529,6 +593,26 @@ public class User
         this.schowek_refy = l;
         Main.getStore().update("UPDATE `pCGuilds_users` SET `schowek_refy` ='" + this.getRefy() + "' WHERE `name` ='" + this.getName() + "'");
     }
+
+
+
+    public int getSniezki() {
+        return this.schowek_sniezki;
+    }
+
+    public void addSniezki(final int l) {
+        this.schowek_sniezki = l;
+        Main.getStore().update("UPDATE `pCGuilds_users` SET `schowek_sniezki` ='" + this.getSniezki() + "' WHERE `name` ='" + this.getName() + "'");
+    }
+
+    public void removeSniezki(final int l) {
+        this.schowek_sniezki -= l;
+        Main.getStore().update("UPDATE `pCGuilds_users` SET `schowek_sniezki` ='" + this.getSniezki() + "' WHERE `name` ='" + this.getName() + "'");
+    }
+
+
+
+
     
     public int getPerly() {
         return this.schowek_perly;
@@ -992,6 +1076,7 @@ public class User
         this.schowek_kox = 0;
         this.schowek_refy = 0;
         this.schowek_perly = 0;
+        this.schowek_sniezki = 0;
         this.presiz = 0;
         this.kit_mieso = 0L;
         this.kit_start = 0L;
@@ -1019,7 +1104,7 @@ public class User
         this.helpop = true;
         this.lastHelpop = 0L;
         this.lastPearl = 0L;
-        this.group = GroupType.SPONSOR;
+        this.group = GroupType.PLAYER;
         this.insert();
     }
     

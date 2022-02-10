@@ -22,6 +22,8 @@ import pl.vertty.arivi.Main;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.EventPriority;
 import pl.vertty.arivi.enums.GroupType;
+import pl.vertty.arivi.managers.ItemShop;
+import pl.vertty.arivi.managers.ItemShopManager;
 import pl.vertty.arivi.utils.exception.SkinChangeException;
 import pl.vertty.arivi.utils.SkinUtil;
 import cn.nukkit.event.EventHandler;
@@ -42,6 +44,7 @@ public class PlayerJoinListener implements Listener
     public void onCreate(final PlayerLoginEvent e) {
         final Player p = e.getPlayer();
         final pl.vertty.arivi.guilds.data.User u = UserManager.getUser(p);
+        ItemShop is = ItemShopManager.getUser(p);
         p.setGamemode(0);
         if (UserWings.getUser(p) != null && UserWings.getUser(p).getWings() != null) {
             WingsManager.setRatWings(p, WingsManager.getWings(UserWings.getUser(p).getWings()));
@@ -51,6 +54,9 @@ public class PlayerJoinListener implements Listener
         }
         if (u == null) {
             UserManager.createrUser(p);
+        }
+        if (is == null) {
+            ItemShopManager.createrUser(p);
         }
         final Combat combat = CombatManager.getCombat(p);
         if (combat == null) {
@@ -93,12 +99,6 @@ public class PlayerJoinListener implements Listener
         }
         if (c == null) {
             CombatManager.createCombat(e.getPlayer());
-        }
-        for (final FloatingTextParticle particle : Main.getPlugin().getParticles().values()) {
-            particle.setInvisible(false);
-            for (final DataPacket pk : particle.encode()) {
-                e.getPlayer().dataPacket(pk);
-            }
         }
         e.setJoinMessage("");
     }

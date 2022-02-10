@@ -4,9 +4,14 @@
 
 package pl.vertty.arivi.task;
 
+import cn.nukkit.block.BlockID;
 import pl.vertty.arivi.guilds.data.Combat;
 import java.util.Iterator;
+import java.util.Map;
+
 import cn.nukkit.level.Level;
+import pl.vertty.arivi.managers.FakeWater;
+import pl.vertty.arivi.managers.WaterManager;
 import pl.vertty.arivi.utils.ChatUtil;
 import pl.vertty.arivi.utils.DataUtil;
 import pl.vertty.arivi.guilds.managers.CombatManager;
@@ -17,6 +22,14 @@ import cn.nukkit.scheduler.NukkitRunnable;
 public class CombatTask extends NukkitRunnable
 {
     public void run() {
+        for(Map.Entry<Long, FakeWater> entry : WaterManager.getWaters().entrySet()) {
+            if (!entry.getValue().canBeRemoved()) continue;
+            if(entry.getValue().getLevel().getBlock(entry.getValue()).getId() == BlockID.STILL_WATER || entry.getValue().getLevel().getBlock(entry.getValue()).getId() == BlockID.WATER) {
+                entry.getValue().getLocation().getLevel().setBlockAt(entry.getValue().getLocation().getFloorX(),
+                        entry.getValue().getLocation().getFloorY(), entry.getValue().getLocation().getFloorZ(), BlockID.AIR);
+            }
+            WaterManager.removeWater(entry.getValue());
+        }
         final Level l = Server.getInstance().getDefaultLevel();
         l.setTime(100);
         for (final Player p2 : Server.getInstance().getOnlinePlayers().values()) {

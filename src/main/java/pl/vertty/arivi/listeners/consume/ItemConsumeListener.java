@@ -6,6 +6,8 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerItemConsumeEvent;
 import cn.nukkit.item.Item;
 import cn.nukkit.potion.Effect;
+import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.guilds.managers.UserManager;
 
 public class ItemConsumeListener implements Listener {
 
@@ -20,6 +22,8 @@ public class ItemConsumeListener implements Listener {
             p.getFoodData().setLevel(p.getFoodData().getLevel() + 4);
             p.getInventory().removeItem(new Item[] { new Item(466, Integer.valueOf(0), 1) });
             e.setCancelled(true);
+            User u = UserManager.getUser(p);
+            u.setkox(u.getkox() + 1);
             for (Effect pot : p.getEffects().values()) {
                 if (pot.getId() == 22)
                     p.removeEffect(22);
@@ -58,6 +62,8 @@ public class ItemConsumeListener implements Listener {
             p.getInventory().removeItem(new Item[] { new Item(322, Integer.valueOf(0), 1) });
             p.getFoodData().setLevel(p.getFoodData().getLevel() + 4);
             e.setCancelled(true);
+            User u = UserManager.getUser(p);
+            u.setrefil(u.getrefil() + 1);
             for (Effect pot : p.getEffects().values()) {
                 if (pot.getId() == 22)
                     p.removeEffect(22);

@@ -12,6 +12,6 @@ public class UserPointsComparator implements Comparator<User>
 {
     @Override
     public int compare(final User user, final User user2) {
-        return Integer.valueOf(user2.getPoints() + RankingTopUtil.pointsprestiz(user2)).compareTo(user.getPoints() + RankingTopUtil.pointsprestiz(user));
+        return Integer.valueOf(user2.getPoints()).compareTo(user.getPoints());
     }
 }

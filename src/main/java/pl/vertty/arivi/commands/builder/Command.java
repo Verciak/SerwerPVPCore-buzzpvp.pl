@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.builder;
 
 import pl.vertty.arivi.guilds.data.User;

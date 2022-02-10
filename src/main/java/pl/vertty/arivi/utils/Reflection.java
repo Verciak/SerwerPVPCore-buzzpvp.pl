@@ -19,24 +19,12 @@ public final class Reflection
     private static String VERSION;
     private static Pattern MATCH_VARIABLE;
     
-    public static <T> FieldAccessor<T> getSimpleField(final Class<?> target, final String name) {
-        return (FieldAccessor<T>)getField(target, name);
-    }
-    
     public static <T> FieldAccessor<T> getField(final Class<?> target, final String name, final Class<T> fieldType) {
         return getField(target, name, fieldType, 0);
     }
     
-    public static <T> FieldAccessor<T> getField(final String className, final String name, final Class<T> fieldType) {
-        return getField(getClass(className), name, fieldType, 0);
-    }
-    
     public static <T> FieldAccessor<T> getField(final Class<?> target, final Class<T> fieldType, final int index) {
         return getField(target, null, fieldType, index);
-    }
-    
-    public static <T> FieldAccessor<T> getField(final String className, final Class<T> fieldType, final int index) {
-        return getField(getClass(className), fieldType, index);
     }
     
     private static <T> FieldAccessor<T> getField(final Class<?> target, final String name, final Class<T> fieldType, int index) {
@@ -79,50 +67,6 @@ public final class Reflection
         throw new IllegalArgumentException("Cannot find field with type " + fieldType);
     }
     
-    private static <T> FieldAccessor<T> getField(final Class<?> target, final String name) {
-        Field[] declaredFields;
-        for (int length = (declaredFields = target.getDeclaredFields()).length, i = 0; i < length; ++i) {
-            final Field field = declaredFields[i];
-            if (name == null || field.getName().equals(name)) {
-                field.setAccessible(true);
-                return new FieldAccessor<T>() {
-                    @Override
-                    public T get(final Object target) {
-                        try {
-                            return (T)field.get(target);
-                        }
-                        catch (IllegalAccessException e) {
-                            throw new RuntimeException("Cannot access reflection.", e);
-                        }
-                    }
-                    
-                    @Override
-                    public void set(final Object target, final Object value) {
-                        try {
-                            field.set(target, value);
-                        }
-                        catch (IllegalAccessException e) {
-                            throw new RuntimeException("Cannot access reflection.", e);
-                        }
-                    }
-                    
-                    @Override
-                    public boolean hasField(final Object target) {
-                        return field.getDeclaringClass().isAssignableFrom(target.getClass());
-                    }
-                };
-            }
-        }
-        if (target.getSuperclass() != null) {
-            return (FieldAccessor<T>)getField(target.getSuperclass(), name);
-        }
-        throw new IllegalArgumentException("Cannot find field with type");
-    }
-    
-    public static MethodInvoker getMethod(final String className, final String methodName, final Class<?>... params) {
-        return getTypedMethod(getClass(className), methodName, null, params);
-    }
-    
     public static MethodInvoker getMethod(final Class<?> clazz, final String methodName, final Class<?>... params) {
         return getTypedMethod(clazz, methodName, null, params);
     }
@@ -152,47 +96,8 @@ public final class Reflection
         throw new IllegalStateException(String.format("Unable to find method %s (%s).", methodName, Arrays.asList(params)));
     }
     
-    public static ConstructorInvoker getConstructor(final String className, final Class<?>... params) {
-        return getConstructor(getClass(className), params);
-    }
-    
-    public static ConstructorInvoker getConstructor(final Class<?> clazz, final Class<?>... params) {
-        Constructor[] declaredConstructors;
-        for (int length = (declaredConstructors = clazz.getDeclaredConstructors()).length, i = 0; i < length; ++i) {
-            final Constructor<?> constructor = (Constructor<?>)declaredConstructors[i];
-            if (Arrays.equals(constructor.getParameterTypes(), params)) {
-                constructor.setAccessible(true);
-                return new ConstructorInvoker() {
-                    @Override
-                    public Object invoke(final Object... arguments) {
-                        try {
-                            return constructor.newInstance(arguments);
-                        }
-                        catch (Exception e) {
-                            throw new RuntimeException("Cannot invoke constructor " + constructor, e);
-                        }
-                    }
-                };
-            }
-        }
-        throw new IllegalStateException(String.format("Unable to find constructor for %s (%s).", clazz, Arrays.asList(params)));
-    }
-    
-    public static Class<Object> getUntypedClass(final String lookupName) {
-        final Class<Object> clazz = (Class<Object>)getClass(lookupName);
-        return clazz;
-    }
-    
     public static Class<?> getClass(final String lookupName) {
         return getCanonicalClass(expandVariables(lookupName));
-    }
-    
-    public static Class<?> getMinecraftClass(final String name) {
-        return getCanonicalClass(String.valueOf(String.valueOf(Reflection.NMS_PREFIX)) + "." + name);
-    }
-    
-    public static Class<?> getCraftBukkitClass(final String name) {
-        return getCanonicalClass(String.valueOf(String.valueOf(Reflection.OBC_PREFIX)) + "." + name);
     }
     
     private static Class<?> getCanonicalClass(final String canonicalName) {

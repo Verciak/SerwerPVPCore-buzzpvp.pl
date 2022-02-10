@@ -40,10 +40,6 @@ public class BanManager
     public static void addBan(final String name, final Ban ban) {
         getBans().put(name, ban);
         final Player p = Server.getInstance().getPlayer(name);
-        if (p != null) {
-            final String reason = "\n&4Zostales zbanowany przez &c" + ban.getAdmin() + "\n&4Powod: &c" + ban.getReason() + "\n&4Wygasa: &c" + ((ban.getTime() == 0L) ? "Nigdy!" : ("&4za &c" + DataUtil.secondsToString(ban.getTime())));
-            p.kick(ChatUtil.fixColor(reason));
-        }
     }
     
     public static void unban(final Ban ban) {
