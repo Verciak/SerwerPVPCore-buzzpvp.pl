@@ -4,13 +4,12 @@
 
 package pl.vertty.arivi.wings;
 
-import java.awt.Image;
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.io.File;
-import java.awt.Color;
 
 public class Wings
 {

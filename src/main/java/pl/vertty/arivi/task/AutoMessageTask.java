@@ -4,18 +4,17 @@
 
 package pl.vertty.arivi.task;
 
+import cn.nukkit.Player;
+import cn.nukkit.Server;
+import cn.nukkit.command.CommandSender;
+import cn.nukkit.scheduler.NukkitRunnable;
+import cn.nukkit.utils.Config;
 import pl.vertty.arivi.Main;
 import pl.vertty.arivi.guilds.data.Combat;
 import pl.vertty.arivi.guilds.data.User;
-import java.util.Iterator;
-import cn.nukkit.command.CommandSender;
-import pl.vertty.arivi.utils.ChatUtil;
 import pl.vertty.arivi.guilds.managers.CombatManager;
 import pl.vertty.arivi.guilds.managers.UserManager;
-import cn.nukkit.Player;
-import cn.nukkit.Server;
-import cn.nukkit.utils.Config;
-import cn.nukkit.scheduler.NukkitRunnable;
+import pl.vertty.arivi.utils.ChatUtil;
 
 public class AutoMessageTask extends NukkitRunnable
 {

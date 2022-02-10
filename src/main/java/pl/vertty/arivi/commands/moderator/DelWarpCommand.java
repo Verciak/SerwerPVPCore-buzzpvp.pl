@@ -23,15 +23,14 @@ public class DelWarpCommand extends Command
     @Override
     public boolean onExecute(final CommandSender sender, final String[] args) {
         final Player p = (Player)sender;
-        final Config c = Main.getPlugin().getConfig();
         if (args.length < 1) {
-            return ChatUtil.sendMessage((CommandSender)p, this.getUsage());
+            return ChatUtil.sendMessage(p, this.getUsage());
         }
         final Warp w = WarpManager.getWarp(args[0]);
         if (w == null) {
-            return ChatUtil.sendMessage((CommandSender)p, "&4Blad: &cIstnieje juz warp!");
+            return ChatUtil.sendMessage(p, "&4Blad: &cIstnieje juz warp!");
         }
         WarpManager.deleteWarp(w.getName());
-        return ChatUtil.sendMessage((CommandSender)p, "&8>> &7Usuneles warp &6" + w.getName());
+        return ChatUtil.sendMessage(p, "&8>> &7Usuneles warp &6" + w.getName());
     }
 }

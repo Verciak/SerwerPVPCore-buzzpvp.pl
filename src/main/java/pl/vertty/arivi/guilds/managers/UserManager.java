@@ -46,7 +46,8 @@ public class UserManager
                 RankingManager.addRanking(value);
             }
             query.close();
-            Logger.info(String.valueOf(new StringBuilder().append("Loaded ").append(UserManager.users.size()).append(" players from pCGuilds_users")));
+//            Logger.info(String.valueOf(new StringBuilder().append("Loaded ").append(UserManager.users.size()).append(" players from pCGuilds_users")));
+            Logger.info("Loaded " + users.size() + " players from 'pCGuilds_users'");
         }
         catch (SQLException ex) {
             Logger.info("Nie mozna zaladowac tabeli pCGuilds_users");
@@ -56,7 +57,8 @@ public class UserManager
     
     public static void deleteUser(final User user) {
         UserManager.users.remove(user.getName());
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("DELETE FROM `pCGuilds_users` WHERE `name` = '").append(user.getName()).append("'")));
+//        Main.getStore().update(false, String.valueOf(new StringBuilder().append("DELETE FROM `pCGuilds_users` WHERE `name` = '").append(user.getName()).append("'")));
+        Main.getStore().asyncUpdate("DELETE FROM `pCGuilds_users` WHERE `name` = '" + user.getName() + "'");
         RankingManager.removeRanking(user);
     }
     

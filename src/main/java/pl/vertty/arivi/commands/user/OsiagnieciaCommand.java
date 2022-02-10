@@ -4,10 +4,10 @@
 
 package pl.vertty.arivi.commands.user;
 
-import pl.vertty.arivi.gui.osiagniecia.OsiagnieciaInventory;
 import cn.nukkit.Player;
-import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.commands.builder.PlayerCommand;
+import pl.vertty.arivi.enums.GroupType;
+import pl.vertty.arivi.gui.osiagniecia.OsiagnieciaInventory;
 
 public class OsiagnieciaCommand extends PlayerCommand
 {

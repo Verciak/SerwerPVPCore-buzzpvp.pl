@@ -34,7 +34,7 @@ public class WarpManager
     
     public static void deleteWarp(final String name) {
         WarpManager.warps.remove(name);
-        Main.getStore().update("DELETE FROM `{P}warp` WHERE `name` ='" + name + "';");
+        Main.getStore().asyncUpdate("DELETE FROM `{P}warp` WHERE `name` ='" + name + "';");
     }
     
     public static List<String> getWarpByGroup(final Player p) {

@@ -19,7 +19,7 @@ import pl.vertty.arivi.commands.builder.Command;
 
 public class PandoraCommand extends Command
 {
-    public static Config c;
+    public static Config c = Main.getPlugin().getConfig();
     
     public PandoraCommand() {
         super("pandora", "pandora", "/pandora <gracz/all> <ilosc>", GroupType.ADMIN, new String[] { "" });
@@ -38,28 +38,26 @@ public class PandoraCommand extends Command
         final Item itemStack = PierozekManager.getPandoreItem();
         itemStack.setCount(Integer.parseInt(args[1]));
         if (args[0].equalsIgnoreCase("all")) {
-            final Item item = itemStack;
             Server.getInstance().getOnlinePlayers().values().forEach(player -> {
-                Item daj = Item.get(item.getId(), Integer.valueOf(item.getDamage()), item.getCount());
-                if (item.hasCustomName()) {
-                    daj.setCustomName(ChatUtil.fixColor(item.getCustomName()));
+                Item daj = Item.get(itemStack.getId(), itemStack.getDamage(), itemStack.getCount());
+                if (itemStack.hasCustomName()) {
+                    daj.setCustomName(ChatUtil.fixColor(itemStack.getCustomName()));
                 }
-                daj.setLore(ChatUtil.fixColor(item.getLore()));
-                if (item.hasEnchantments()) {
-                    daj.addEnchantment(item.getEnchantments());
+                daj.setLore(ChatUtil.fixColor(itemStack.getLore()));
+                if (itemStack.hasEnchantments()) {
+                    daj.addEnchantment(itemStack.getEnchantments());
                 }
                 PlayerInventory inventoryAutoAdd = player.getInventory();
                 Item[] itemsToAdd = { daj };
-                for (int i = 0; i < itemsToAdd.length; i++) {
-                    boolean canAddItem = inventoryAutoAdd.canAddItem(itemsToAdd[i]);
+                for (Item item : itemsToAdd) {
+                    boolean canAddItem = inventoryAutoAdd.canAddItem(item);
                     if (canAddItem) {
-                        inventoryAutoAdd.addItem(new Item[] { itemsToAdd[i] });
+                        inventoryAutoAdd.addItem(new Item[]{item});
                     } else {
                         Server.getInstance().getDefaultLevel().dropItem(new Vector3(player.getX(), player.getY(), player.getZ()), daj);
                     }
                 }
-                ChatUtil.sendTitle(player, "", "&eCaly serwer otrzymal &5&lPandore &7({AMOUNT})".replace("{AMOUNT}", Integer.toString(item.getCount())), 20, 60, 20);
-                return;
+                ChatUtil.sendTitle(player, "", "&eCaly serwer otrzymal &5&lPandore &7({AMOUNT})".replace("{AMOUNT}", Integer.toString(itemStack.getCount())), 20, 60, 20);
             });
             return false;
         }
@@ -68,7 +66,7 @@ public class PandoraCommand extends Command
             ChatUtil.sendMessage(sender, "&cGracz jest offline!");
             return false;
         }
-        final Item daj2 = Item.get(itemStack.getId(), Integer.valueOf(itemStack.getDamage()), itemStack.getCount());
+        final Item daj2 = Item.get(itemStack.getId(), itemStack.getDamage(), itemStack.getCount());
         if (itemStack.hasCustomName()) {
             daj2.setCustomName(ChatUtil.fixColor(itemStack.getCustomName()));
         }
@@ -78,20 +76,16 @@ public class PandoraCommand extends Command
         }
         final PlayerInventory inventoryAutoAdd2 = player2.getInventory();
         final Item[] itemsToAdd2 = { daj2 };
-        for (int j = 0; j < itemsToAdd2.length; ++j) {
-            final boolean canAddItem2 = inventoryAutoAdd2.canAddItem(itemsToAdd2[j]);
+        for (Item item : itemsToAdd2) {
+            final boolean canAddItem2 = inventoryAutoAdd2.canAddItem(item);
             if (canAddItem2) {
-                inventoryAutoAdd2.addItem(new Item[] { itemsToAdd2[j] });
-            }
-            else {
+                inventoryAutoAdd2.addItem(new Item[]{item});
+            } else {
                 Server.getInstance().getDefaultLevel().dropItem(new Vector3(player2.getX(), player2.getY(), player2.getZ()), daj2);
             }
         }
-        ChatUtil.sendMessage((CommandSender)player2, "&fOtrzymales &5&lPandore &fw ilosci &9{AMOUNT}".replace("{AMOUNT}", Integer.toString(itemStack.getCount())));
+        ChatUtil.sendMessage(player2, "&fOtrzymales &5&lPandore &fw ilosci &9{AMOUNT}".replace("{AMOUNT}", Integer.toString(itemStack.getCount())));
         return false;
     }
-    
-    static {
-        PandoraCommand.c = Main.getPlugin().getConfig();
-    }
+
 }

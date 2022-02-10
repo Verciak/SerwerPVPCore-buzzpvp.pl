@@ -4,25 +4,24 @@
 
 package pl.vertty.arivi.utils;
 
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.drop.base.utils.UserUtils;
-import pl.vertty.arivi.guilds.managers.UserManager;
-import pl.vertty.arivi.drop.base.Drop;
-import cn.nukkit.inventory.PlayerInventory;
-import cn.nukkit.math.Vector3;
+import cn.nukkit.Player;
 import cn.nukkit.Server;
-import java.util.Collection;
-import java.util.Arrays;
 import cn.nukkit.command.CommandSender;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import pl.vertty.arivi.inventory.InventoryMenuHandler;
-import pl.vertty.arivi.inventory.item.ItemData;
+import cn.nukkit.inventory.PlayerInventory;
 import cn.nukkit.item.Item;
+import cn.nukkit.math.Vector3;
+import pl.vertty.arivi.drop.base.Drop;
+import pl.vertty.arivi.drop.base.utils.UserUtils;
+import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.guilds.managers.UserManager;
 import pl.vertty.arivi.inventory.InventoryCategory;
 import pl.vertty.arivi.inventory.InventoryMenu;
-import cn.nukkit.Player;
+import pl.vertty.arivi.inventory.InventoryMenuHandler;
+import pl.vertty.arivi.inventory.item.ItemData;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ItemUtil
 {

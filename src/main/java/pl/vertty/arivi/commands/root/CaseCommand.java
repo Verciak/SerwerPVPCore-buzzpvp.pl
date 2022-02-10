@@ -17,7 +17,7 @@ import pl.vertty.arivi.commands.builder.Command;
 
 public class CaseCommand extends Command
 {
-    public static Config c;
+    public static Config c = Main.getPlugin().getConfig();
     
     public CaseCommand() {
         super("case", "magiczne skrzynki", "/case <case/key> <gracz/all/create> <ilosc>", GroupType.ADMIN, new String[] { "" });
@@ -49,8 +49,5 @@ public class CaseCommand extends Command
         sender.sendMessage(ChatUtil.fixColor(Main.getPlugin().getConfig().getString("casecmd.usage")));
         return true;
     }
-    
-    static {
-        CaseCommand.c = Main.getPlugin().getConfig();
-    }
+
 }

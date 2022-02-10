@@ -4,15 +4,15 @@
 
 package pl.vertty.arivi.drop.base;
 
-import pl.vertty.arivi.utils.ChatUtil;
-import java.util.Iterator;
+import cn.nukkit.item.Item;
+import cn.nukkit.utils.Config;
+import pl.vertty.arivi.Main;
 import pl.vertty.arivi.drop.base.utils.DropUtils;
 import pl.vertty.arivi.drop.utils.StringUtils;
+import pl.vertty.arivi.utils.ChatUtil;
+
 import java.util.ArrayList;
-import pl.vertty.arivi.Main;
-import cn.nukkit.utils.Config;
 import java.util.List;
-import cn.nukkit.item.Item;
 
 public class Drop
 {

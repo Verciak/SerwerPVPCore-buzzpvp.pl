@@ -4,13 +4,13 @@
 
 package pl.vertty.arivi.gui;
 
-import pl.vertty.arivi.inventory.InventoryMenuHandler;
-import pl.vertty.arivi.utils.ChatUtil;
-import pl.vertty.arivi.managers.TablistManager;
-import pl.vertty.arivi.inventory.item.ItemData;
+import cn.nukkit.Player;
 import pl.vertty.arivi.inventory.InventoryCategory;
 import pl.vertty.arivi.inventory.InventoryMenu;
-import cn.nukkit.Player;
+import pl.vertty.arivi.inventory.InventoryMenuHandler;
+import pl.vertty.arivi.inventory.item.ItemData;
+import pl.vertty.arivi.managers.TablistManager;
+import pl.vertty.arivi.utils.ChatUtil;
 
 public class TopkiGui
 {

@@ -24,7 +24,7 @@ import cn.nukkit.event.Listener;
 
 public class TimerManager implements Listener
 {
-    private static final Map<Player, TimerTask> tasks;
+    private static final Map<Player, TimerTask> tasks = new HashMap<Player, TimerTask>();
     
     public static void addTask(final Player player, final TimerCallback<Player> call, final int time) {
         final User u = UserManager.getUser(player);
@@ -77,11 +77,7 @@ public class TimerManager implements Listener
             cancel(t, player);
         }
     }
-    
-    static {
-        tasks = new HashMap<Player, TimerTask>();
-    }
-    
+
     public static class TimerTask extends NukkitRunnable
     {
         private Player player;

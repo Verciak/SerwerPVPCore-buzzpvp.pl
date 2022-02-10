@@ -4,19 +4,18 @@
 
 package pl.vertty.arivi.wings;
 
-import java.io.OutputStream;
-import java.nio.file.Path;
-import java.io.IOException;
-import java.awt.image.RenderedImage;
-import javax.imageio.ImageIO;
-import java.nio.file.Files;
-import java.nio.file.StandardOpenOption;
-import java.nio.file.OpenOption;
-import java.nio.file.Paths;
-import java.awt.Color;
-import java.io.ByteArrayInputStream;
-import java.awt.image.BufferedImage;
 import pl.vertty.arivi.Main;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 public class SkinUtils
 {

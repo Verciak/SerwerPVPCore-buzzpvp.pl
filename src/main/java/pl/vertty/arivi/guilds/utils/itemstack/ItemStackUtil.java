@@ -4,16 +4,13 @@
 
 package pl.vertty.arivi.guilds.utils.itemstack;
 
-import java.util.HashMap;
-import cn.nukkit.block.Block;
-import java.util.Map;
-import cn.nukkit.command.CommandSender;
-import pl.vertty.arivi.guilds.utils.ChatUtil;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Iterator;
 import cn.nukkit.Player;
+import cn.nukkit.block.Block;
+import cn.nukkit.command.CommandSender;
 import cn.nukkit.item.Item;
+import pl.vertty.arivi.guilds.utils.ChatUtil;
+
+import java.util.*;
 
 public class ItemStackUtil
 {

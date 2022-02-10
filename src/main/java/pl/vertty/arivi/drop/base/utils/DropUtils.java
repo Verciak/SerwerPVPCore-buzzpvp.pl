@@ -4,35 +4,34 @@
 
 package pl.vertty.arivi.drop.base.utils;
 
-import java.util.Collection;
-import java.util.ArrayList;
-import java.util.Iterator;
-import cn.nukkit.utils.Config;
-import pl.vertty.arivi.drop.utils.Colors;
 import cn.nukkit.item.Item;
+import cn.nukkit.utils.Config;
 import pl.vertty.arivi.Main;
 import pl.vertty.arivi.drop.base.Drop;
+import pl.vertty.arivi.drop.utils.Colors;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class DropUtils
 {
-    private static List<Drop> drops;
-    private static List<String> cobble;
-    private static List<String> eq;
-    private static List<String> msg;
+    private static List<Drop> drops = new ArrayList<Drop>();
+    private static List<String> cobble = new ArrayList<String>();
+    private static List<String> eq = new ArrayList<String>();
+    private static List<String> msg = new ArrayList<String>();
     
     public static void load() {
         final Config c = Main.getPlugin().getConfig();
         DropUtils.drops.clear();
         for (final String s : c.getSection("drops").getKeys(false)) {
             final String name = c.getString("drops." + s + ".name");
-            final List<String> lore = (List<String>)c.getStringList("drops." + s + ".lore");
+            final List<String> lore = c.getStringList("drops." + s + ".lore");
             final Item item = new Item(c.getInt("drops." + s + ".item"), Integer.valueOf(0), 1);
             if (name != null) {
                 item.setCustomName(Colors.translate(name));
             }
             if (lore != null) {
-                item.setLore(new String[] { Colors.translate(String.valueOf(lore)) });
+                item.setLore(Colors.translate(String.valueOf(lore)));
             }
             final double chance = c.getDouble("drops." + s + ".chance");
             final boolean fortune = c.getBoolean("drops." + s + ".fortune");
@@ -60,9 +59,7 @@ public class DropUtils
     }
     
     public static void enableCobble(final String player) {
-        if (DropUtils.cobble.contains(player.toLowerCase())) {
-            DropUtils.cobble.remove(player.toLowerCase());
-        }
+        DropUtils.cobble.remove(player.toLowerCase());
     }
     
     public static boolean isEq(final String player) {
@@ -76,9 +73,7 @@ public class DropUtils
     }
     
     public static void enableEq(final String player) {
-        if (DropUtils.eq.contains(player.toLowerCase())) {
-            DropUtils.eq.remove(player.toLowerCase());
-        }
+        DropUtils.eq.remove(player.toLowerCase());
     }
     
     public static boolean isMsg(final String player) {
@@ -92,15 +87,7 @@ public class DropUtils
     }
     
     public static void enableMsg(final String player) {
-        if (DropUtils.msg.contains(player.toLowerCase())) {
-            DropUtils.msg.remove(player.toLowerCase());
-        }
+        DropUtils.msg.remove(player.toLowerCase());
     }
-    
-    static {
-        DropUtils.drops = new ArrayList<Drop>();
-        DropUtils.cobble = new ArrayList<String>();
-        DropUtils.eq = new ArrayList<String>();
-        DropUtils.msg = new ArrayList<String>();
-    }
+
 }

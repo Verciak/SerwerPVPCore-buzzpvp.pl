@@ -4,10 +4,11 @@
 
 package pl.vertty.arivi.wings.mysql;
 
-import pl.vertty.arivi.Main;
-import java.sql.SQLException;
-import java.sql.ResultSet;
 import cn.nukkit.Player;
+import pl.vertty.arivi.Main;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserWingsManager
 {

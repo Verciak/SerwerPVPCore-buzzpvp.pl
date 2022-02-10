@@ -4,9 +4,9 @@
 
 package pl.vertty.arivi.entity;
 
-import cn.nukkit.nbt.tag.CompoundTag;
-import cn.nukkit.level.format.FullChunk;
 import cn.nukkit.entity.EntityHuman;
+import cn.nukkit.level.format.FullChunk;
+import cn.nukkit.nbt.tag.CompoundTag;
 
 public class EntityHead extends EntityHuman
 {

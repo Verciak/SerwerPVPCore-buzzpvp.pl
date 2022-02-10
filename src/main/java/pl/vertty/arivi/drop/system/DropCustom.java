@@ -4,29 +4,29 @@
 
 package pl.vertty.arivi.drop.system;
 
+import cn.nukkit.Player;
+import cn.nukkit.Server;
+import cn.nukkit.block.Block;
+import cn.nukkit.inventory.PlayerInventory;
+import cn.nukkit.item.Item;
+import cn.nukkit.item.enchantment.Enchantment;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Location;
-import cn.nukkit.inventory.PlayerInventory;
-import java.util.Iterator;
-import cn.nukkit.item.enchantment.Enchantment;
-import cn.nukkit.utils.Config;
-import java.util.List;
-import cn.nukkit.Server;
-import pl.vertty.arivi.drop.utils.StringUtils;
 import cn.nukkit.math.Vector3;
-import pl.vertty.arivi.drop.utils.RandomUtils;
+import cn.nukkit.utils.Config;
+import pl.vertty.arivi.Main;
+import pl.vertty.arivi.drop.base.Drop;
+import pl.vertty.arivi.drop.base.User;
+import pl.vertty.arivi.drop.base.utils.DropUtils;
 import pl.vertty.arivi.drop.utils.MathUtils;
+import pl.vertty.arivi.drop.utils.RandomUtils;
+import pl.vertty.arivi.drop.utils.StringUtils;
 import pl.vertty.arivi.drop.utils.Util;
 import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.guilds.managers.UserManager;
-import pl.vertty.arivi.drop.base.Drop;
-import pl.vertty.arivi.drop.base.utils.DropUtils;
-import pl.vertty.arivi.Main;
+
 import java.util.ArrayList;
-import pl.vertty.arivi.drop.base.User;
-import cn.nukkit.block.Block;
-import cn.nukkit.item.Item;
-import cn.nukkit.Player;
+import java.util.List;
 
 public class DropCustom implements DropData
 {

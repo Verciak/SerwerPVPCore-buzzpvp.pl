@@ -4,15 +4,14 @@
 
 package pl.vertty.arivi.gui.action;
 
-import pl.vertty.arivi.Main;
-import java.util.Iterator;
-import pl.vertty.arivi.guilds.data.User;
-import cn.nukkit.item.Item;
-import cn.nukkit.command.CommandSender;
-import pl.vertty.arivi.utils.ChatUtil;
-import pl.vertty.arivi.guilds.managers.UserManager;
 import cn.nukkit.Player;
+import cn.nukkit.command.CommandSender;
+import cn.nukkit.item.Item;
 import cn.nukkit.utils.Config;
+import pl.vertty.arivi.Main;
+import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.utils.ChatUtil;
 
 public class SchowekAction
 {

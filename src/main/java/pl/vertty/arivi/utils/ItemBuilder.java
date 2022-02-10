@@ -4,16 +4,11 @@
 
 package pl.vertty.arivi.utils;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.ArrayList;
-import cn.nukkit.potion.Potion;
-import cn.nukkit.item.enchantment.Enchantment;
-import java.util.HashMap;
-import java.util.List;
 import cn.nukkit.item.Item;
+import cn.nukkit.item.enchantment.Enchantment;
+import cn.nukkit.potion.Potion;
+
+import java.util.*;
 
 public class ItemBuilder
 {

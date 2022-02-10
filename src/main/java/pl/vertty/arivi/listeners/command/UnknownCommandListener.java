@@ -39,7 +39,7 @@ public class UnknownCommandListener implements Listener
             for (String cmd : Main.getPlugin().getConfig().getStringList("config.blocked.cmd.incombat")) {
                 if (pcmd.toLowerCase().contains("/" + cmd)) {
                     e.setCancelled(true);
-                    ChatUtil.sendMessage((CommandSender)p, "&4Blad: &cTa komenda jest zablokowana podczas walki!");
+                    ChatUtil.sendMessage(p, "&4Blad: &cTa komenda jest zablokowana podczas walki!");
                     return;
                 }
             }
@@ -47,7 +47,7 @@ public class UnknownCommandListener implements Listener
             for (String cmd2 : Main.getPlugin().getConfig().getStringList("config.blocked.cmd.inguild")) {
                 if (pcmd.toLowerCase().contains("/" + cmd2)) {
                     e.setCancelled(true);
-                    ChatUtil.sendMessage((CommandSender)p, "&cTej komendy nie mozesz uzywac na terenie wrogiej gildii!");
+                    ChatUtil.sendMessage(p, "&cTej komendy nie mozesz uzywac na terenie wrogiej gildii!");
                 }
             }
     }

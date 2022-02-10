@@ -5,6 +5,7 @@
 package pl.vertty.arivi.guilds.rank.comparators;
 
 import pl.vertty.arivi.guilds.data.guild.Guild;
+
 import java.util.Comparator;
 
 public class GuildComparator implements Comparator<Guild>

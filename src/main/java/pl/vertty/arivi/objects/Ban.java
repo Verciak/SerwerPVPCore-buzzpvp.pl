@@ -34,7 +34,7 @@ public class Ban
     }
     
     private void insert() {
-        Main.getStore().update("INSERT INTO `{P}bans`(`id`, `name`, `admin`, `reason`, `time`, `start`) VALUES (NULL, '" + this.getName() + "','" + this.getAdmin() + "','" + this.getReason() + "','" + this.getTime() + "','" + this.getStart() + "');");
+        Main.getStore().asyncUpdate("INSERT INTO `{P}bans`(`id`, `name`, `admin`, `reason`, `time`, `start`) VALUES (NULL, '" + this.getName() + "','" + this.getAdmin() + "','" + this.getReason() + "','" + this.getTime() + "','" + this.getStart() + "');");
     }
     
     public long getStart() {

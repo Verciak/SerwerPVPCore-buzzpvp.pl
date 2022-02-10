@@ -4,11 +4,12 @@
 
 package pl.vertty.arivi.drop.skrzynka;
 
-import pl.vertty.arivi.Main;
-import cn.nukkit.item.enchantment.Enchantment;
-import pl.vertty.arivi.utils.ChatUtil;
-import java.util.ArrayList;
 import cn.nukkit.item.Item;
+import cn.nukkit.item.enchantment.Enchantment;
+import pl.vertty.arivi.Main;
+import pl.vertty.arivi.utils.ChatUtil;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class SkrzynkaManager

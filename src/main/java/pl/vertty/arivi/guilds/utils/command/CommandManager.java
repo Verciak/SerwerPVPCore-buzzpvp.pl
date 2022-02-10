@@ -4,13 +4,14 @@
 
 package pl.vertty.arivi.guilds.utils.command;
 
-import cn.nukkit.plugin.PluginManager;
 import cn.nukkit.Server;
-import cn.nukkit.command.SimpleCommandMap;
-import pl.vertty.arivi.utils.Reflection;
 import cn.nukkit.command.Command;
-import java.util.HashMap;
 import cn.nukkit.command.CommandMap;
+import cn.nukkit.command.SimpleCommandMap;
+import cn.nukkit.plugin.PluginManager;
+import pl.vertty.arivi.utils.Reflection;
+
+import java.util.HashMap;
 
 public class CommandManager
 {

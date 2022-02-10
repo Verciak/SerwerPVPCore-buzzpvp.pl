@@ -4,9 +4,9 @@
 
 package pl.vertty.arivi.drop.utils;
 
-import cn.nukkit.item.enchantment.Enchantment;
-import cn.nukkit.item.Item;
 import cn.nukkit.Player;
+import cn.nukkit.item.Item;
+import cn.nukkit.item.enchantment.Enchantment;
 
 public class ItemUtils
 {

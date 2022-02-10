@@ -4,34 +4,30 @@
 
 package pl.vertty.arivi.wings;
 
-import java.util.concurrent.ConcurrentHashMap;
-import cn.nukkit.plugin.Plugin;
-import java.awt.Graphics2D;
-import java.nio.file.Path;
+import cn.nukkit.Player;
+import cn.nukkit.Server;
+import cn.nukkit.entity.data.Skin;
 import cn.nukkit.network.protocol.DataPacket;
 import cn.nukkit.network.protocol.PlayerSkinPacket;
-import java.awt.image.ImageObserver;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import java.nio.file.Paths;
-import cn.nukkit.entity.data.Skin;
-import cn.nukkit.Server;
+import cn.nukkit.plugin.Plugin;
+import pl.vertty.arivi.Main;
 import pl.vertty.arivi.utils.SkinUtil;
 import pl.vertty.arivi.wings.mysql.UserWings;
-import cn.nukkit.Player;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-import java.util.function.Function;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
-import pl.vertty.arivi.Main;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 public class WingsManager
 {

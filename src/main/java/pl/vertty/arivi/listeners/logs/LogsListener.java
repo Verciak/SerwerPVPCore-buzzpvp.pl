@@ -25,16 +25,15 @@ public class LogsListener implements Listener
     public void onBreak(final BlockBreakEvent e) {
         final Player p = e.getPlayer();
         final User u = UserManager.getUser(p);
-        final Block b = e.getBlock();
-        final String nick = p.getName();
-        final int x = b.getFloorX();
-        final int y = b.getFloorY();
-        final int z = b.getFloorZ();
-        final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        final LocalDateTime time = LocalDateTime.now();
-        final String ranga = u.getGroup().getFullName();
         if (u.can(GroupType.HELPER)) {
-            LogsWrite.logToFileBreak("[Ranga: " + ranga + "] | Gracz " + nick + " zniszczyl " + b.getName() + " | Data: " + dtf.format(time) + "| Kordy: [x: " + x + "] [y: " + y + "] [z: " + z + "]");
+            final String ranga = u.getGroup().getFullName();
+            final Block b = e.getBlock();
+            final int x = b.getFloorX();
+            final int y = b.getFloorY();
+            final int z = b.getFloorZ();
+            final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+            final LocalDateTime time = LocalDateTime.now();
+            LogsWrite.logToFileBreak("[Ranga: " + ranga + "] | Gracz " + p.getName() + " zniszczyl " + b.getName() + " | Data: " + dtf.format(time) + "| Kordy: [x: " + x + "] [y: " + y + "] [z: " + z + "]");
         }
     }
     

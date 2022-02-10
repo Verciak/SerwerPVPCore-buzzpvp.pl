@@ -4,10 +4,10 @@
 
 package pl.vertty.arivi.guilds.utils.command;
 
-import pl.vertty.arivi.guilds.utils.ChatUtil;
+import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
 import pl.vertty.arivi.enums.GroupType;
-import cn.nukkit.Player;
+import pl.vertty.arivi.guilds.utils.ChatUtil;
 
 public abstract class PlayerCommand extends ConsoleCommand
 {

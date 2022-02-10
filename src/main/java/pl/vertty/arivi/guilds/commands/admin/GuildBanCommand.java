@@ -4,18 +4,19 @@
 
 package pl.vertty.arivi.guilds.commands.admin;
 
-import pl.vertty.arivi.enums.GroupType;
-import java.util.Iterator;
-import pl.vertty.arivi.guilds.data.guild.Guild;
-import cn.nukkit.command.CommandSender;
-import pl.vertty.arivi.guilds.utils.DataUtil;
+import cn.nukkit.Player;
 import cn.nukkit.Server;
+import cn.nukkit.command.CommandSender;
 import org.apache.commons.lang3.StringUtils;
+import pl.vertty.arivi.enums.GroupType;
+import pl.vertty.arivi.guilds.data.guild.Guild;
+import pl.vertty.arivi.guilds.data.yml.Config;
 import pl.vertty.arivi.guilds.managers.guild.GuildManager;
 import pl.vertty.arivi.guilds.utils.ChatUtil;
-import pl.vertty.arivi.guilds.data.yml.Config;
-import cn.nukkit.Player;
+import pl.vertty.arivi.guilds.utils.DataUtil;
 import pl.vertty.arivi.guilds.utils.command.PlayerCommand;
+
+import java.util.Iterator;
 
 public class GuildBanCommand extends PlayerCommand
 {

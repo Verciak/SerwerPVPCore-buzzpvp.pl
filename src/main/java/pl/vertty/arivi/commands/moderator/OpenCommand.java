@@ -26,11 +26,11 @@ public class OpenCommand extends Command
     public boolean onExecute(final CommandSender sender, final String[] args) {
         final Player p = (Player)sender;
         if (args.length != 2) {
-            return ChatUtil.sendMessage((CommandSender)p, this.getUsage());
+            return ChatUtil.sendMessage(p, this.getUsage());
         }
         final Player player = Server.getInstance().getPlayer(args[1]);
         if (player == null) {
-            ChatUtil.sendMessage((CommandSender)p, "&cGracz jest offline!");
+            ChatUtil.sendMessage(p, "&cGracz jest offline!");
             return true;
         }
         if (args[0].equalsIgnoreCase("inv") || args[0].equalsIgnoreCase("inventory")) {

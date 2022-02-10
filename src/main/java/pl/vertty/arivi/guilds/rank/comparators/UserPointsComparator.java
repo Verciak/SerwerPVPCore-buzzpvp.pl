@@ -4,8 +4,8 @@
 
 package pl.vertty.arivi.guilds.rank.comparators;
 
-import pl.vertty.arivi.utils.RankingTopUtil;
 import pl.vertty.arivi.guilds.data.User;
+
 import java.util.Comparator;
 
 public class UserPointsComparator implements Comparator<User>

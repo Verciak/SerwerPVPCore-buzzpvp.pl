@@ -14,7 +14,6 @@ public class BlockPlaceListener implements Listener
 {
     @EventHandler
     public void onPlaceSponge(final BlockPlaceEvent e) {
-        final Player p = e.getPlayer();
         final Block b = e.getBlock();
         if (b.getId() == 19) {
             e.setCancelled(true);

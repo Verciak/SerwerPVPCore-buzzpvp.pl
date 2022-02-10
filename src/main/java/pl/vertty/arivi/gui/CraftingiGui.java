@@ -4,20 +4,21 @@
 
 package pl.vertty.arivi.gui;
 
-import cn.nukkit.utils.Config;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.inventory.InventoryMenuHandler;
+import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
-import pl.vertty.arivi.utils.ItemUtil;
+import cn.nukkit.item.Item;
+import cn.nukkit.utils.Config;
+import pl.vertty.arivi.Main;
+import pl.vertty.arivi.MainConstants;
+import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.inventory.InventoryCategory;
+import pl.vertty.arivi.inventory.InventoryMenu;
+import pl.vertty.arivi.inventory.InventoryMenuHandler;
 import pl.vertty.arivi.inventory.item.ItemClick;
 import pl.vertty.arivi.inventory.item.ItemData;
 import pl.vertty.arivi.utils.ChatUtil;
-import cn.nukkit.item.Item;
-import pl.vertty.arivi.inventory.InventoryCategory;
-import pl.vertty.arivi.inventory.InventoryMenu;
-import pl.vertty.arivi.Main;
-import pl.vertty.arivi.guilds.managers.UserManager;
-import cn.nukkit.Player;
+import pl.vertty.arivi.utils.ItemUtil;
 
 public class CraftingiGui
 {
@@ -545,9 +546,6 @@ public class CraftingiGui
         final Item boy = new Item(82, Integer.valueOf(0), 1);
         boy.setCustomName(ChatUtil.fixColor("&9BOYFARMER"));
         boy.setLore(new String[] { ChatUtil.fixColor(""), ChatUtil.fixColor("&7Kliknij, PPM aby postawic BOYFARMER") });
-        final Item antynogi = new Item(317, Integer.valueOf(0), 1);
-        antynogi.setCustomName(ChatUtil.fixColor("&9ANTY-NOGI &8(&fCrafting&8)"));
-        antynogi.setLore(new String[] { ChatUtil.fixColor("&7Kliknij, aby otworzyc crafting") });
         final Item boya = new Item(82, Integer.valueOf(0), 1);
         boya.setCustomName(ChatUtil.fixColor("&9BOYFARMER &8(&fCrafting&8)"));
         boya.setLore(new String[] { ChatUtil.fixColor("&7Kliknij, aby otworzyc crafting") });
@@ -579,7 +577,7 @@ public class CraftingiGui
                 CraftingiGui.openBoyFarmer(player);
             }
         });
-        category.addElement(46, ItemData.fromItem(antynogi), new ItemClick() {
+        category.addElement(46, ItemData.fromItem(MainConstants.ANTI_LEGS_ITEM), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item) {
                 CraftingiGui.openAntyNogi(player);

@@ -4,12 +4,12 @@
 
 package pl.vertty.arivi.commands.user;
 
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.gui.home.DelHomeInventory;
-import pl.vertty.arivi.guilds.managers.UserManager;
 import cn.nukkit.Player;
-import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.commands.builder.PlayerCommand;
+import pl.vertty.arivi.enums.GroupType;
+import pl.vertty.arivi.gui.home.DelHomeInventory;
+import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.guilds.managers.UserManager;
 
 public class DelHomeCommand extends PlayerCommand
 {

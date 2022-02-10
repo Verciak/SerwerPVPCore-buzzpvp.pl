@@ -4,17 +4,17 @@
 
 package pl.vertty.arivi.gui;
 
-import pl.vertty.arivi.inventory.InventoryMenuHandler;
-import pl.vertty.arivi.utils.exception.SkinChangeException;
+import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
+import cn.nukkit.item.Item;
 import cn.nukkit.item.enchantment.Enchantment;
+import pl.vertty.arivi.inventory.InventoryCategory;
+import pl.vertty.arivi.inventory.InventoryMenu;
+import pl.vertty.arivi.inventory.InventoryMenuHandler;
 import pl.vertty.arivi.inventory.item.ItemClick;
 import pl.vertty.arivi.inventory.item.ItemData;
 import pl.vertty.arivi.utils.ChatUtil;
-import cn.nukkit.item.Item;
-import pl.vertty.arivi.inventory.InventoryCategory;
-import pl.vertty.arivi.inventory.InventoryMenu;
-import cn.nukkit.Player;
+import pl.vertty.arivi.utils.exception.SkinChangeException;
 
 public class EnchantGUI
 {

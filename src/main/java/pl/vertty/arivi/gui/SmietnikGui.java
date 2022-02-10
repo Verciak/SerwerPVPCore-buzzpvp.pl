@@ -4,11 +4,11 @@
 
 package pl.vertty.arivi.gui;
 
-import pl.vertty.arivi.inventory.InventoryMenuHandler;
-import pl.vertty.arivi.utils.ChatUtil;
+import cn.nukkit.Player;
 import pl.vertty.arivi.inventory.InventoryCategory;
 import pl.vertty.arivi.inventory.InventoryMenu;
-import cn.nukkit.Player;
+import pl.vertty.arivi.inventory.InventoryMenuHandler;
+import pl.vertty.arivi.utils.ChatUtil;
 
 public class SmietnikGui
 {

@@ -4,17 +4,10 @@
 
 package pl.vertty.arivi.utils;
 
-import java.util.Calendar;
-import java.util.regex.Matcher;
-import java.util.GregorianCalendar;
-import java.util.regex.Pattern;
-import java.util.Date;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.LinkedHashMap;
 import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DataUtil
 {

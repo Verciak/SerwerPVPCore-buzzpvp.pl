@@ -4,38 +4,33 @@
 
 package pl.vertty.arivi.tnt;
 
-import cn.nukkit.blockentity.BlockEntity;
-import java.util.Iterator;
-import cn.nukkit.math.AxisAlignedBB;
-import cn.nukkit.level.particle.Particle;
-import cn.nukkit.level.particle.HugeExplodeSeedParticle;
-import cn.nukkit.event.block.BlockUpdateEvent;
-import cn.nukkit.utils.Hash;
-import cn.nukkit.math.BlockFace;
-import cn.nukkit.item.Item;
-import cn.nukkit.blockentity.BlockEntityShulkerBox;
-import cn.nukkit.inventory.InventoryHolder;
-import cn.nukkit.math.NukkitRandom;
+import cn.nukkit.block.Block;
 import cn.nukkit.block.BlockTNT;
-import cn.nukkit.item.ItemBlock;
-import cn.nukkit.entity.item.EntityXPOrb;
+import cn.nukkit.blockentity.BlockEntity;
+import cn.nukkit.blockentity.BlockEntityShulkerBox;
+import cn.nukkit.entity.Entity;
 import cn.nukkit.entity.item.EntityItem;
+import cn.nukkit.entity.item.EntityXPOrb;
+import cn.nukkit.event.Event;
+import cn.nukkit.event.block.BlockUpdateEvent;
 import cn.nukkit.event.entity.EntityDamageByBlockEvent;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
-import cn.nukkit.math.SimpleAxisAlignedBB;
-import cn.nukkit.math.NukkitMath;
-import cn.nukkit.event.Event;
 import cn.nukkit.event.entity.EntityExplodeEvent;
-import it.unimi.dsi.fastutil.longs.LongArraySet;
-import java.util.concurrent.ThreadLocalRandom;
-import cn.nukkit.math.Vector3;
-import java.util.ArrayList;
-import cn.nukkit.entity.Entity;
-import cn.nukkit.block.Block;
-import java.util.List;
-import cn.nukkit.level.Position;
+import cn.nukkit.inventory.InventoryHolder;
+import cn.nukkit.item.Item;
+import cn.nukkit.item.ItemBlock;
 import cn.nukkit.level.Level;
+import cn.nukkit.level.Position;
+import cn.nukkit.level.particle.HugeExplodeSeedParticle;
+import cn.nukkit.level.particle.Particle;
+import cn.nukkit.math.*;
+import cn.nukkit.utils.Hash;
+import it.unimi.dsi.fastutil.longs.LongArraySet;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Explosion
 {

@@ -4,10 +4,10 @@
 
 package pl.vertty.arivi.utils;
 
-import java.util.Collection;
+import cn.nukkit.level.Location;
+
 import java.util.ArrayList;
 import java.util.List;
-import cn.nukkit.level.Location;
 
 public class EnchantUtils
 {

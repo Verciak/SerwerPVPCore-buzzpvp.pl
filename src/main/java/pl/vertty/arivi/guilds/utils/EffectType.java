@@ -4,8 +4,9 @@
 
 package pl.vertty.arivi.guilds.utils;
 
-import java.util.ArrayList;
 import cn.nukkit.potion.Effect;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class EffectType

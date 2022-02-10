@@ -4,11 +4,12 @@
 
 package pl.vertty.arivi.guilds.data.guild;
 
-import java.sql.SQLException;
-import java.sql.ResultSet;
+import pl.vertty.arivi.Main;
 import pl.vertty.arivi.guilds.managers.guild.WarManager;
 import pl.vertty.arivi.guilds.utils.TimeUtil;
-import pl.vertty.arivi.Main;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class War
 {

@@ -1,14 +1,13 @@
 package pl.vertty.arivi.task;
 
-import cn.nukkit.plugin.Plugin;
 import cn.nukkit.Server;
-import pl.vertty.arivi.Main;
-import java.util.Iterator;
+import cn.nukkit.plugin.Plugin;
 import cn.nukkit.potion.Effect;
-import pl.vertty.arivi.guilds.utils.ChatUtil;
-import pl.vertty.arivi.objects.Sprawdz;
-import pl.vertty.arivi.managers.SprawdzManager;
 import cn.nukkit.scheduler.NukkitRunnable;
+import pl.vertty.arivi.Main;
+import pl.vertty.arivi.guilds.utils.ChatUtil;
+import pl.vertty.arivi.managers.SprawdzManager;
+import pl.vertty.arivi.objects.Sprawdz;
 
 public class SprawdzMessageTimer extends NukkitRunnable
 {

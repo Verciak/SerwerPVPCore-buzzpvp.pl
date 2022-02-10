@@ -27,7 +27,7 @@ public class Warp
     }
     
     private void insert() {
-        Main.getStore().update("INSERT INTO `{P}warp`(`id`, `name`, `location`) VALUES (NULL, '" + this.getName() + "','" + ChatUtil.locToString(this.getLocation()) + "');");
+        Main.getStore().asyncUpdate("INSERT INTO `{P}warp`(`id`, `name`, `location`) VALUES (NULL, '" + this.getName() + "','" + ChatUtil.locToString(this.getLocation()) + "');");
     }
     
     public String getName() {

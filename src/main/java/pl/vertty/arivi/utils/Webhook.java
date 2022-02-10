@@ -4,18 +4,14 @@
 
 package pl.vertty.arivi.utils;
 
-import java.util.Set;
-import java.lang.reflect.Array;
-import java.util.Map;
-import java.util.HashMap;
+import javax.net.ssl.HttpsURLConnection;
+import java.awt.*;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.awt.Color;
-import java.util.Iterator;
-import javax.net.ssl.HttpsURLConnection;
+import java.lang.reflect.Array;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
 
 public class Webhook
 {

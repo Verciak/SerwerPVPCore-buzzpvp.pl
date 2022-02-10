@@ -4,10 +4,8 @@
 
 package pl.vertty.arivi.guilds.task;
 
-import pl.vertty.arivi.guilds.managers.guild.RoleManager;
-import pl.vertty.arivi.guilds.managers.guild.NameTagManager;
-import pl.vertty.arivi.guilds.rank.RankingManager;
 import cn.nukkit.scheduler.NukkitRunnable;
+import pl.vertty.arivi.guilds.rank.RankingManager;
 
 public class AutoSaveTask extends NukkitRunnable
 {

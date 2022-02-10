@@ -4,12 +4,12 @@
 
 package pl.vertty.arivi.tnt;
 
-import cn.nukkit.level.Position;
+import cn.nukkit.entity.Entity;
 import cn.nukkit.event.Event;
 import cn.nukkit.event.entity.EntityExplosionPrimeEvent;
-import cn.nukkit.entity.Entity;
-import cn.nukkit.nbt.tag.CompoundTag;
+import cn.nukkit.level.Position;
 import cn.nukkit.level.format.FullChunk;
+import cn.nukkit.nbt.tag.CompoundTag;
 
 public class EntityPrimedTNT extends cn.nukkit.entity.item.EntityPrimedTNT
 {

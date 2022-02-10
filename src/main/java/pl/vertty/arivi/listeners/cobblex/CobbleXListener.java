@@ -35,7 +35,7 @@ public class CobbleXListener implements Listener
     public void s(final BlockPlaceEvent e) {
         final Player p = e.getPlayer();
         final Block b = e.getBlock();
-        final Item cx = new ItemBuilder(Item.get(52)).setTitle(ChatUtil.fixColor("&8* &6Cobblex &8*")).addEnchantment(Enchantment.get(5), 10).build();
+//        final Item cx = new ItemBuilder(Item.get(52)).setTitle(ChatUtil.fixColor("&8* &6Cobblex &8*")).addEnchantment(Enchantment.get(5), 10).build();
         if (b.getId() == 52) {
             final Item drop = Item.get(CobblexCommand.drops.get(RandomUtils.getRandInt(0, CobblexCommand.drops.size() - 1)).getId(), Integer.valueOf(CobblexCommand.drops.get(RandomUtils.getRandInt(0, CobblexCommand.drops.size() - 1)).getDamage()), CobblexCommand.drops.get(RandomUtils.getRandInt(0, CobblexCommand.drops.size() - 1)).getCount());
             ChatUtil.giveItems(p, drop);
@@ -48,7 +48,7 @@ public class CobbleXListener implements Listener
                 itemInHand.setCount(itemInHand.getCount() - 1);
                 e.getPlayer().getInventory().setItemInHand(itemInHand);
             }
-            ChatUtil.sendMessage((CommandSender)p, "&8>> &cOtworzyles &6Cobblex &ci wylosowales &6" + PolishItemNames.getPolishName(drop) + " &8| &cx" + drop.getCount());
+            ChatUtil.sendMessage(p, "&8>> &cOtworzyles &6Cobblex &ci wylosowales &6" + PolishItemNames.getPolishName(drop) + " &8| &cx" + drop.getCount());
         }
     }
 }

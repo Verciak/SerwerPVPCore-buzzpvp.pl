@@ -4,11 +4,12 @@
 
 package pl.vertty.arivi.drop.data;
 
-import java.sql.SQLException;
-import java.sql.DriverManager;
 import cn.nukkit.utils.Config;
 import pl.vertty.arivi.Main;
+
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Database {
     private static Database inst;

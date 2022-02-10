@@ -4,11 +4,11 @@
 
 package pl.vertty.arivi.gui;
 
-import cn.nukkit.utils.Config;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.Main;
-import pl.vertty.arivi.guilds.managers.UserManager;
 import cn.nukkit.Player;
+import cn.nukkit.utils.Config;
+import pl.vertty.arivi.Main;
+import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.guilds.managers.UserManager;
 
 public class EnderchestGui
 {

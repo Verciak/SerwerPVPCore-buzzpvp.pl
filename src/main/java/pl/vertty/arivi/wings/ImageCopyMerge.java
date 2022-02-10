@@ -4,10 +4,7 @@
 
 package pl.vertty.arivi.wings;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImageOp;
-import java.awt.Paint;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class ImageCopyMerge

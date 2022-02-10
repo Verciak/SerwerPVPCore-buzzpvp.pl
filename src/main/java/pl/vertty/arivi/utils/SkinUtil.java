@@ -4,24 +4,25 @@
 
 package pl.vertty.arivi.utils;
 
-import java.util.HashMap;
-import java.awt.image.BufferedImage;
-import java.nio.file.Path;
-import cn.nukkit.network.protocol.DataPacket;
-import java.util.Collection;
+import cn.nukkit.Player;
 import cn.nukkit.Server;
+import cn.nukkit.entity.data.Skin;
+import cn.nukkit.network.protocol.DataPacket;
 import cn.nukkit.network.protocol.PlayerSkinPacket;
-import java.io.IOException;
+import pl.vertty.arivi.Main;
 import pl.vertty.arivi.utils.exception.SkinChangeException;
+
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import pl.vertty.arivi.Main;
-import cn.nukkit.Player;
-import cn.nukkit.entity.data.Skin;
-import java.util.UUID;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class SkinUtil
 {

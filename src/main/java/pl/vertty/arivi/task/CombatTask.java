@@ -4,20 +4,19 @@
 
 package pl.vertty.arivi.task;
 
+import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.block.BlockID;
-import pl.vertty.arivi.guilds.data.Combat;
-import java.util.Iterator;
-import java.util.Map;
-
 import cn.nukkit.level.Level;
+import cn.nukkit.scheduler.NukkitRunnable;
+import pl.vertty.arivi.guilds.data.Combat;
+import pl.vertty.arivi.guilds.managers.CombatManager;
 import pl.vertty.arivi.managers.FakeWater;
 import pl.vertty.arivi.managers.WaterManager;
 import pl.vertty.arivi.utils.ChatUtil;
 import pl.vertty.arivi.utils.DataUtil;
-import pl.vertty.arivi.guilds.managers.CombatManager;
-import cn.nukkit.Player;
-import cn.nukkit.Server;
-import cn.nukkit.scheduler.NukkitRunnable;
+
+import java.util.Map;
 
 public class CombatTask extends NukkitRunnable
 {

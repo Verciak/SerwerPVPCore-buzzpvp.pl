@@ -35,10 +35,10 @@ public class CommandsLoader
 {
     public static void onCommandsLoad() {
         registerCommand(new PomocCommand());
-        registerCommand(new VIPCommand());
-        registerCommand(new sVIPCommand());
-        registerCommand(new SponsorCommand());
-        registerCommand(new YTCommand());
+//        registerCommand(new VIPCommand());
+//        registerCommand(new sVIPCommand());
+//        registerCommand(new SponsorCommand());
+//        registerCommand(new YTCommand());
         registerCommand(new PingCommand());
         registerCommand(new IgnoreCommand());
         registerCommand(new WorkbenchCommand());
@@ -56,7 +56,7 @@ public class CommandsLoader
         registerCommand(new CheaterCommand());
         registerCommand(new PandoraCommand());
         registerCommand(new StopCommand());
-        registerCommand(new AdminPanelCommand());
+//        registerCommand(new AdminPanelCommand());
         registerCommand(new CaseCommand());
         registerCommand(new DelHomeCommand());
         registerCommand(new DropCommand());
@@ -108,8 +108,8 @@ public class CommandsLoader
         registerrCommand(new GuildAdminCommand());
         registerrCommand(new IncognitoCommand());
         registerrCommand(new GuildGlobalCommand());
-        registerCommand(new WhitelistCommand());
-        registerCommand(new KlatkiCommand());
+//        registerCommand(new WhitelistCommand());
+//        registerCommand(new KlatkiCommand());
     }
     
     public static void registerrCommand(final ConsoleCommand consoleCommand) {

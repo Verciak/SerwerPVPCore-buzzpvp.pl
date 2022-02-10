@@ -27,19 +27,19 @@ public class CraftingLoader
         final Map<Character, Item> ingredientsewa = new HashMap<Character, Item>();
         ingredientsewa.put('G', Item.get(41));
         ingredientsewa.put('A', Item.get(260));
-        Server.getInstance().getCraftingManager().registerRecipe((Recipe)new ShapedRecipe(applae, shapeaaaaa, (Map)ingredientsewa, (List)Collections.emptyList()));
+        Server.getInstance().getCraftingManager().registerRecipe(new ShapedRecipe(applae, shapeaaaaa, ingredientsewa, Collections.emptyList()));
         Server.getInstance().getCraftingManager().rebuildPacket();
     }
     
     public static void onStoniarka() {
         final Item applae = Item.get(121);
         applae.setCustomName(ChatUtil.fixColor("&9Stoniarka"));
-        applae.setLore(new String[] { ChatUtil.fixColor("&8>> &7Postaw na ziemi!"), ChatUtil.fixColor("&8>> &7nad blokiem pojawi sie stone!") });
+        applae.setLore(ChatUtil.fixColor("&8>> &7Postaw na ziemi!"), ChatUtil.fixColor("&8>> &7nad blokiem pojawi sie stone!"));
         final String[] shapeaaaaa = { "GGG", "GAG", "GGG" };
         final Map<Character, Item> ingredientsewa = new HashMap<Character, Item>();
         ingredientsewa.put('G', Item.get(1));
         ingredientsewa.put('A', Item.get(264));
-        Server.getInstance().getCraftingManager().registerRecipe((Recipe)new ShapedRecipe(applae, shapeaaaaa, (Map)ingredientsewa, (List)Collections.emptyList()));
+        Server.getInstance().getCraftingManager().registerRecipe(new ShapedRecipe(applae, shapeaaaaa, ingredientsewa, Collections.emptyList()));
         Server.getInstance().getCraftingManager().rebuildPacket();
     }
 }

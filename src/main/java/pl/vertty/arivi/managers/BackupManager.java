@@ -39,8 +39,13 @@ public class BackupManager
     }
     
     public static ArrayList<Backup> getPlayerBackups(final Player p) {
-        final ArrayList<Backup> lista = BackupManager.backups.stream().filter(backup -> backup.getName().equalsIgnoreCase(p.getName())).collect(Collectors.toCollection(ArrayList::new));
-        return lista;
+        ArrayList<Backup> result = new ArrayList<>();
+        for (Backup backup : BackupManager.backups) {
+            if (backup.getName().equalsIgnoreCase(p.getName())) {
+                result.add(backup);
+            }
+        }
+        return result;
     }
     
     public static Backup findTimeToBackup(final long time, final String name) {
@@ -57,7 +62,7 @@ public class BackupManager
         final InventoryCategory category = new InventoryCategory();
         final AtomicInteger slot = new AtomicInteger();
         getPlayerBackups(p).forEach(backup -> {
-            Item item = new Item(397, Integer.valueOf(1), 1);
+            Item item = new Item(397, 1, 1);
             item.setCustomName(ChatUtil.fixColor("&7Data zgonu: &9" + DataUtil.getDate(backup.getTime())));
             item.setLore(ChatUtil.fixColor(new String[] { "&7Nick: &9" + backup.getName(), "&7Zabojca: &9" + backup.getKiller(), "&7ID: &9" + backup.getTime(), "&7Ping: &9" + backup.getPing(), "&7Stracone Punkty: &9" + backup.getPoints() }));
             category.addElement(slot.getAndIncrement(), ItemData.fromItem(item), new ItemClick() {
@@ -65,7 +70,7 @@ public class BackupManager
                 @Override
                 public void onClick(final Player player, final Item item) throws SkinChangeException {
                     if (p == null) {
-                        ChatUtil.sendMessage((CommandSender)player, "&4Blad: &cGracz jest offline!");
+                        ChatUtil.sendMessage(player, "&4Blad: &cGracz jest offline!");
                         return;
                     }
                     final String name = Arrays.stream(item.getLore()).iterator().next().substring(10);
@@ -78,7 +83,6 @@ public class BackupManager
                     BackupManager.deleteBackup(backupp);
                 }
             });
-            return;
         });
         menu.setDoubleChest();
         menu.setMainCategory(category);

@@ -5,7 +5,6 @@
 package pl.vertty.arivi.drop.utils;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class StringUtils

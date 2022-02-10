@@ -4,18 +4,18 @@
 
 package pl.vertty.arivi.utils;
 
-import java.util.regex.Pattern;
-import cn.nukkit.command.ConsoleCommandSender;
+import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
-import java.util.List;
-import java.util.Iterator;
-import java.util.ArrayList;
-import java.util.Collection;
-import cn.nukkit.utils.TextFormat;
-import cn.nukkit.level.Location;
+import cn.nukkit.command.ConsoleCommandSender;
 import cn.nukkit.inventory.Inventory;
 import cn.nukkit.item.Item;
-import cn.nukkit.Player;
+import cn.nukkit.level.Location;
+import cn.nukkit.utils.TextFormat;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.regex.Pattern;
 
 public final class ChatUtil
 {
@@ -66,6 +66,7 @@ public final class ChatUtil
         if (s == null) {
             return "";
         }
+
         return TextFormat.colorize('&', s).replace(">>", "»").replace("<<", "«").replace("*", "\u25cf").replace("{O}", "\u2022");
     }
     

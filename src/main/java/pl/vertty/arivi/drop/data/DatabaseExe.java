@@ -4,12 +4,12 @@
 
 package pl.vertty.arivi.drop.data;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Iterator;
-import pl.vertty.arivi.drop.utils.Util;
 import pl.vertty.arivi.drop.base.User;
 import pl.vertty.arivi.drop.base.utils.UserUtils;
+import pl.vertty.arivi.drop.utils.Util;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class DatabaseExe implements DataExecutor
 {

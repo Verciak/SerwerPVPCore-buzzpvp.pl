@@ -4,10 +4,10 @@
 
 package pl.vertty.arivi.commands.user;
 
-import pl.vertty.arivi.gui.CraftingiGui;
 import cn.nukkit.Player;
-import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.commands.builder.PlayerCommand;
+import pl.vertty.arivi.enums.GroupType;
+import pl.vertty.arivi.gui.CraftingiGui;
 
 public class CraftingiCommand extends PlayerCommand
 {

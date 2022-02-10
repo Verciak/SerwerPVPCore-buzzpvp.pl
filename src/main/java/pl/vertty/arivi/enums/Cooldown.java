@@ -4,9 +4,9 @@
 
 package pl.vertty.arivi.enums;
 
-import java.util.concurrent.TimeUnit;
-import java.util.WeakHashMap;
 import java.util.Map;
+import java.util.WeakHashMap;
+import java.util.concurrent.TimeUnit;
 
 public final class Cooldown<T>
 {

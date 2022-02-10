@@ -4,13 +4,11 @@
 
 package pl.vertty.arivi.wings;
 
-import java.awt.image.ImageProducer;
-import java.awt.image.ImageFilter;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.image.FilteredImageSource;
+import java.awt.image.ImageFilter;
+import java.awt.image.ImageProducer;
 import java.awt.image.RGBImageFilter;
-import java.awt.Color;
-import java.awt.Image;
 
 public class ImageColorTransparent
 {

@@ -4,25 +4,26 @@
 
 package pl.vertty.arivi.guilds.data;
 
-import pl.vertty.arivi.enums.TimeUtil;
-import pl.vertty.arivi.guilds.managers.guild.GuildManager;
-import cn.nukkit.Server;
 import cn.nukkit.OfflinePlayer;
-import cn.nukkit.level.Location;
-import java.sql.SQLException;
-import java.util.Map;
-import pl.vertty.arivi.utils.InventoryUtil;
-import java.util.ArrayList;
-import pl.vertty.arivi.utils.ChatUtil;
-import java.sql.ResultSet;
-import pl.vertty.arivi.Main;
-import cn.nukkit.inventory.Inventory;
-import pl.vertty.arivi.utils.SeralizerUtil;
-import pl.vertty.arivi.inventory.SimpleInventoryMenu;
-import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.guilds.data.guild.Guild;
 import cn.nukkit.Player;
+import cn.nukkit.Server;
+import cn.nukkit.inventory.Inventory;
+import cn.nukkit.level.Location;
+import pl.vertty.arivi.Main;
+import pl.vertty.arivi.enums.GroupType;
+import pl.vertty.arivi.enums.TimeUtil;
+import pl.vertty.arivi.guilds.data.guild.Guild;
+import pl.vertty.arivi.guilds.managers.guild.GuildManager;
+import pl.vertty.arivi.inventory.SimpleInventoryMenu;
+import pl.vertty.arivi.utils.ChatUtil;
+import pl.vertty.arivi.utils.InventoryUtil;
+import pl.vertty.arivi.utils.SeralizerUtil;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class User
 {

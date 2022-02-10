@@ -4,12 +4,12 @@
 
 package pl.vertty.arivi.logs;
 
-import java.io.IOException;
-import java.io.Writer;
-import java.io.PrintWriter;
-import java.io.FileWriter;
-import java.io.File;
 import pl.vertty.arivi.Main;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class LogsWrite
 {

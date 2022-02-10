@@ -1,18 +1,12 @@
 package pl.vertty.arivi.utils;
 
 import cn.nukkit.Player;
-import cn.nukkit.Server;
 import cn.nukkit.scheduler.NukkitRunnable;
 import pl.vertty.arivi.Main;
-import pl.vertty.arivi.enums.TimeUtil;
 import pl.vertty.arivi.guilds.data.Combat;
 import pl.vertty.arivi.guilds.data.User;
 import pl.vertty.arivi.guilds.data.guild.Guild;
-import pl.vertty.arivi.guilds.managers.CombatManager;
-import pl.vertty.arivi.guilds.managers.UserManager;
 import pl.vertty.arivi.guilds.managers.guild.GuildManager;
-
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class DeathUtil {
     public static String deathsMessage(final int plus, int minus, Player player, final Player killer) {

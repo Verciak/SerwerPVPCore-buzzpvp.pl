@@ -4,15 +4,16 @@
 
 package pl.vertty.arivi.guilds.utils;
 
-import cn.nukkit.command.CommandSender;
-import java.util.Iterator;
+import cn.nukkit.Player;
 import cn.nukkit.Server;
+import cn.nukkit.command.CommandSender;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
-import cn.nukkit.utils.TextFormat;
-import java.util.regex.Pattern;
-import cn.nukkit.Player;
 import cn.nukkit.level.Location;
+import cn.nukkit.utils.TextFormat;
+
+import java.util.Iterator;
+import java.util.regex.Pattern;
 
 public final class ChatUtil
 {

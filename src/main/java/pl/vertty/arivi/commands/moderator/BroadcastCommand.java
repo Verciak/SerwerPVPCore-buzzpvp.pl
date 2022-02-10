@@ -21,32 +21,32 @@ public class BroadcastCommand extends Command
     
     @Override
     public boolean onExecute(final CommandSender sender, final String[] args) {
-        final Player p = (Player)sender;
-        final Config c = Main.getPlugin().getConfig();
-        if (args.length < 2) {
-            return ChatUtil.sendMessage(sender, this.getUsage());
-        }
-        final String type = args[0];
-        final String message = this.message(args);
-        final String s6;
-        final String s5;
-        final String s7;
-        final String s4 = s7 = (s5 = (s6 = type));
-        switch (s7) {
+        if (args.length < 2) return ChatUtil.sendMessage(sender, this.getUsage());
+
+        String message = ChatUtil.fixColor(message(args));
+        switch (args[0]) {
             case "title": {
-                Server.getInstance().getOnlinePlayers().values().forEach(player -> ChatUtil.sendTitle(player, ChatUtil.fixColor(message), " "));
+                for (Player player : Server.getInstance().getOnlinePlayers().values()) {
+                    ChatUtil.sendTitle(player, message, " ");
+                }
                 break;
             }
             case "subtitle": {
-                Server.getInstance().getOnlinePlayers().values().forEach(player -> ChatUtil.sendTitle(player, " ", ChatUtil.fixColor(message)));
+                for (Player player : Server.getInstance().getOnlinePlayers().values()) {
+                    ChatUtil.sendTitle(player, " ", message);
+                }
                 break;
             }
             case "actionbar": {
-                Server.getInstance().getOnlinePlayers().values().forEach(player -> ChatUtil.sendActionBar(player, ChatUtil.fixColor(message)));
+                for (Player player : Server.getInstance().getOnlinePlayers().values()) {
+                    ChatUtil.sendActionBar(player, message);
+                }
                 break;
             }
             case "chat": {
-                Server.getInstance().getOnlinePlayers().values().forEach(player -> player.sendMessage(ChatUtil.fixColor(message)));
+                for (Player player : Server.getInstance().getOnlinePlayers().values()) {
+                    player.sendMessage(message);
+                }
                 break;
             }
             default: {

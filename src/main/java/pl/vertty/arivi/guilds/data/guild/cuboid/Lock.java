@@ -4,11 +4,12 @@
 
 package pl.vertty.arivi.guilds.data.guild.cuboid;
 
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import pl.vertty.arivi.guilds.utils.ChatUtil;
-import pl.vertty.arivi.Main;
 import cn.nukkit.level.Location;
+import pl.vertty.arivi.Main;
+import pl.vertty.arivi.guilds.utils.ChatUtil;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Lock
 {

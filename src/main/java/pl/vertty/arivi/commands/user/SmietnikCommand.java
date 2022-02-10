@@ -4,10 +4,10 @@
 
 package pl.vertty.arivi.commands.user;
 
-import pl.vertty.arivi.gui.SmietnikGui;
 import cn.nukkit.Player;
-import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.commands.builder.PlayerCommand;
+import pl.vertty.arivi.enums.GroupType;
+import pl.vertty.arivi.gui.SmietnikGui;
 
 public class SmietnikCommand extends PlayerCommand
 {

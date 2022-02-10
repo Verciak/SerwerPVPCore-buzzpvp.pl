@@ -4,8 +4,8 @@
 
 package pl.vertty.arivi.guilds.utils;
 
-import pl.vertty.arivi.Main;
 import cn.nukkit.utils.LogLevel;
+import pl.vertty.arivi.Main;
 
 public final class Logger
 {

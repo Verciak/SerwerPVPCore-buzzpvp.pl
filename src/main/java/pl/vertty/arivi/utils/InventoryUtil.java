@@ -4,11 +4,11 @@
 
 package pl.vertty.arivi.utils;
 
-import java.util.Iterator;
-import java.util.HashMap;
-import cn.nukkit.item.Item;
-import java.util.Map;
 import cn.nukkit.inventory.Inventory;
+import cn.nukkit.item.Item;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public final class InventoryUtil
 {

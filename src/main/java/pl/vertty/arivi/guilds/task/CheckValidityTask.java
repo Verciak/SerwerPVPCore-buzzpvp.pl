@@ -4,15 +4,14 @@
 
 package pl.vertty.arivi.guilds.task;
 
-import java.util.Iterator;
+import cn.nukkit.Server;
+import cn.nukkit.scheduler.NukkitRunnable;
+import pl.vertty.arivi.guilds.data.guild.Guild;
 import pl.vertty.arivi.guilds.data.guild.War;
+import pl.vertty.arivi.guilds.data.yml.Config;
+import pl.vertty.arivi.guilds.managers.guild.GuildManager;
 import pl.vertty.arivi.guilds.managers.guild.WarManager;
 import pl.vertty.arivi.guilds.utils.ChatUtil;
-import pl.vertty.arivi.guilds.data.yml.Config;
-import cn.nukkit.Server;
-import pl.vertty.arivi.guilds.data.guild.Guild;
-import pl.vertty.arivi.guilds.managers.guild.GuildManager;
-import cn.nukkit.scheduler.NukkitRunnable;
 
 public class CheckValidityTask extends NukkitRunnable
 {

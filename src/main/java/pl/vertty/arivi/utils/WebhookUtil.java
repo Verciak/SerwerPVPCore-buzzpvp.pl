@@ -4,8 +4,8 @@
 
 package pl.vertty.arivi.utils;
 
+import java.awt.*;
 import java.io.IOException;
-import java.awt.Color;
 
 public class WebhookUtil
 {

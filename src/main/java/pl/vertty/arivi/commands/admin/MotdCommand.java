@@ -26,10 +26,7 @@ public class MotdCommand extends Command
         if (args.length < 1) {
             return ChatUtil.sendMessage(sender, "/motd <set|reload|obecne>");
         }
-        final String s3;
-        final String s4;
-        final String s2 = s4 = (s3 = args[0]);
-        switch (s4) {
+        switch (args[0]) {
             case "obecne": {
                 return ChatUtil.sendMessage(sender, "&8>> &cObecne motd to: " + MotdCommand.c.getString("wl.motd"));
             }
@@ -41,9 +38,11 @@ public class MotdCommand extends Command
                 if (args.length < 2) {
                     return ChatUtil.sendMessage(sender, "/motd set <tekst>");
                 }
-                final String reason = StringUtils.join((Object[])args, " ", 1, args.length);
-                MotdCommand.c.set("wl.motd", (Object)reason);
+                final String reason = StringUtils.join(args, " ", 1, args.length);
+
+                MotdCommand.c.set("wl.motd", reason);
                 MotdCommand.c.save();
+
                 Server.getInstance().getNetwork().setName(ChatUtil.fixColor(MotdCommand.c.getString("wl.motd")));
                 return ChatUtil.sendMessage(sender, "&8>> &cUstawiles motd na: &r" + reason);
             }

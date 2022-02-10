@@ -4,10 +4,10 @@
 
 package pl.vertty.arivi.drop.utils;
 
-import java.util.Iterator;
+import cn.nukkit.utils.TextFormat;
+
 import java.util.ArrayList;
 import java.util.List;
-import cn.nukkit.utils.TextFormat;
 
 public class Colors
 {

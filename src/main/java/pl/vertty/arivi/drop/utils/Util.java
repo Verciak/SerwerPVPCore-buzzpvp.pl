@@ -4,27 +4,26 @@
 
 package pl.vertty.arivi.drop.utils;
 
-import pl.vertty.arivi.utils.ItemUtil;
+import cn.nukkit.Player;
+import cn.nukkit.command.CommandSender;
+import cn.nukkit.item.Item;
+import cn.nukkit.utils.Config;
 import cn.nukkit.utils.DyeColor;
+import pl.vertty.arivi.Main;
 import pl.vertty.arivi.commands.user.CobblexCommand;
+import pl.vertty.arivi.drop.base.Drop;
+import pl.vertty.arivi.drop.base.User;
+import pl.vertty.arivi.drop.base.utils.DropUtils;
+import pl.vertty.arivi.drop.base.utils.UserUtils;
 import pl.vertty.arivi.drop.pierozek.PierozekManager;
 import pl.vertty.arivi.drop.skrzynka.SkrzynkaManager;
-import pl.vertty.arivi.drop.base.User;
+import pl.vertty.arivi.inventory.InventoryCategory;
+import pl.vertty.arivi.inventory.InventoryMenu;
 import pl.vertty.arivi.inventory.InventoryMenuHandler;
-import java.util.Iterator;
 import pl.vertty.arivi.inventory.item.ItemClick;
 import pl.vertty.arivi.inventory.item.ItemData;
 import pl.vertty.arivi.utils.ChatUtil;
-import pl.vertty.arivi.drop.base.Drop;
-import pl.vertty.arivi.drop.base.utils.DropUtils;
-import pl.vertty.arivi.drop.base.utils.UserUtils;
-import pl.vertty.arivi.inventory.InventoryCategory;
-import pl.vertty.arivi.inventory.InventoryMenu;
-import cn.nukkit.Player;
-import cn.nukkit.command.CommandSender;
-import cn.nukkit.utils.Config;
-import pl.vertty.arivi.Main;
-import cn.nukkit.item.Item;
+import pl.vertty.arivi.utils.ItemUtil;
 
 public class Util
 {

@@ -4,11 +4,10 @@
 
 package pl.vertty.arivi.wings;
 
-import java.io.IOException;
-import java.awt.Graphics2D;
-import java.awt.Color;
-import java.io.File;
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class CreateImageFileFromGraphicsObject
 {

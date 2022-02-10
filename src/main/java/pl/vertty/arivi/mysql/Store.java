@@ -5,8 +5,9 @@
 package pl.vertty.arivi.mysql;
 
 import pl.vertty.arivi.mysql.modes.StoreMode;
-import java.sql.ResultSet;
+
 import java.sql.Connection;
+import java.sql.ResultSet;
 
 public interface Store
 {
@@ -27,6 +28,8 @@ public interface Store
     void update(final boolean p0, final String p1);
     
     ResultSet update(final String p0);
-    
+
+    void asyncUpdate(String s);
+
     StoreMode getStoreMode();
 }

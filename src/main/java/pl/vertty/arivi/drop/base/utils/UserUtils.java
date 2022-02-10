@@ -4,19 +4,14 @@
 
 package pl.vertty.arivi.drop.base.utils;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Collection;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import pl.vertty.arivi.drop.base.User;
-import java.util.Map;
+
+import java.util.*;
 
 public class UserUtils
 {
-    private static Map<String, User> users;
-    private static List<User> top;
+    private static Map<String, User> users = new HashMap<String, User>();
+    private static List<User> top = new ArrayList<User>();
     
     public static void add(final User user) {
         UserUtils.users.put(user.getName().toLowerCase(), user);
@@ -75,9 +70,5 @@ public class UserUtils
     public static List<User> getTops() {
         return new ArrayList<User>(UserUtils.top);
     }
-    
-    static {
-        UserUtils.users = new HashMap<String, User>();
-        UserUtils.top = new ArrayList<User>();
-    }
+
 }

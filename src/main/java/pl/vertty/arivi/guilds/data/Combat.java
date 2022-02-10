@@ -1,7 +1,6 @@
 package pl.vertty.arivi.guilds.data;
 
 import cn.nukkit.Player;
-import java.util.ArrayList;
 
 public class Combat {
     private Player player;

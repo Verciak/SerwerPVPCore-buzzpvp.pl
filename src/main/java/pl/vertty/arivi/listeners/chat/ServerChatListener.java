@@ -82,17 +82,17 @@ public class ServerChatListener implements Listener
             return;
         }
         if (!u.can(GroupType.VIP) && ChatManager.vipChat) {
-            ChatUtil.sendMessage((CommandSender)p, "&cChat jest dostepny od rangi &3VIP");
+            ChatUtil.sendMessage(p, "&cChat jest dostepny od rangi &3VIP");
             e.setCancelled(true);
             return;
         }
         if (!u.can(GroupType.HELPER) && !ChatManager.enable && !ChatManager.vipChat) {
-            ChatUtil.sendMessage((CommandSender)p, "&cChat jest aktualnie wylaczony!");
+            ChatUtil.sendMessage(p, "&cChat jest aktualnie wylaczony!");
             e.setCancelled(true);
             return;
         }
         if (!u.can(GroupType.HELPER) && !u.isChat()) {
-            ChatUtil.sendMessage((CommandSender)p, "&8>> &cNa czacie bedziesz mogl pisac dopiero za &3" + (DataUtil.secondsToString(u.getLastChat()).isEmpty() ? "0s" : DataUtil.secondsToString(u.getLastChat())));
+            ChatUtil.sendMessage(p, "&8>> &cNa czacie bedziesz mogl pisac dopiero za &3" + (DataUtil.secondsToString(u.getLastChat()).isEmpty() ? "0s" : DataUtil.secondsToString(u.getLastChat())));
             e.setCancelled(true);
             return;
         }
@@ -116,7 +116,7 @@ public class ServerChatListener implements Listener
                 return;
             }
             guild.setSkarbiec(guild.getSkarbiec() + Integer.parseInt(message));
-            player.getInventory().removeItem(new Item[] { new Item(388, Integer.valueOf(0), Integer.parseInt(message)) });
+            player.getInventory().removeItem(new Item(388, Integer.valueOf(0), Integer.parseInt(message)));
             pl.vertty.arivi.guilds.utils.ChatUtil.sendTitle(player, pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.GUILD_PANEL_SKARBIEC_TITLE));
             pl.vertty.arivi.guilds.utils.ChatUtil.sendSubTitle(player, pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.GUILD_PANEL_SKARBIEC_SUBTITLE3));
             e.setCancelled(true);
@@ -137,7 +137,7 @@ public class ServerChatListener implements Listener
                 return;
             }
             guild.setHead(guild.getHead() + Integer.parseInt(message));
-            player.getInventory().removeItem(new Item[] { Item.get(397, Integer.valueOf(3), Integer.parseInt(message)) });
+            player.getInventory().removeItem(Item.get(397, Integer.valueOf(3), Integer.parseInt(message)));
             pl.vertty.arivi.guilds.utils.ChatUtil.sendTitle(player, pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.GUILD_PANEL_SKARBIEC_TITLE));
             pl.vertty.arivi.guilds.utils.ChatUtil.sendSubTitle(player, pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.GUILD_PANEL_SKARBIEC_SUBTITLE));
             e.setCancelled(true);
@@ -147,7 +147,7 @@ public class ServerChatListener implements Listener
             if (User.update_name) {
                 GuildPermissionCommand.roler.setName(message);
                 User.update_name = false;
-                pl.vertty.arivi.guilds.utils.ChatUtil.sendMessage((CommandSender)player, "&7Nazwa roli zostala zmieniona na &9" + GuildPermissionCommand.roler.getName());
+                pl.vertty.arivi.guilds.utils.ChatUtil.sendMessage(player, "&7Nazwa roli zostala zmieniona na &9" + GuildPermissionCommand.roler.getName());
                 e.setCancelled(true);
                 return;
             }
@@ -155,7 +155,7 @@ public class ServerChatListener implements Listener
                 e.setCancelled(true);
                 final Guild guild = GuildManager.getGuild(player);
                 if (guild == null) {
-                    pl.vertty.arivi.guilds.utils.ChatUtil.sendMessage((CommandSender)player, pl.vertty.arivi.guilds.data.yml.Config.GUILD_NOT_GUILD);
+                    pl.vertty.arivi.guilds.utils.ChatUtil.sendMessage(player, pl.vertty.arivi.guilds.data.yml.Config.GUILD_NOT_GUILD);
                     return;
                 }
                 final String replace = message.replaceFirst("##", "").replace("&", "");
@@ -172,7 +172,7 @@ public class ServerChatListener implements Listener
                 e.setCancelled(true);
                 final Guild guild3 = GuildManager.getGuild(player);
                 if (guild3 == null) {
-                    pl.vertty.arivi.guilds.utils.ChatUtil.sendMessage((CommandSender)player, pl.vertty.arivi.guilds.data.yml.Config.GUILD_NOT_GUILD);
+                    pl.vertty.arivi.guilds.utils.ChatUtil.sendMessage(player, pl.vertty.arivi.guilds.data.yml.Config.GUILD_NOT_GUILD);
                     return;
                 }
                 guild3.message(pl.vertty.arivi.guilds.data.yml.Config.CHAT_GUILD_USAGE.replace("{NICK}", player.getName()).replace("{MESSAGE}", message.replaceFirst("#", "").replace("&", "")));

@@ -4,27 +4,25 @@
 
 package pl.vertty.arivi.gui;
 
-import cn.nukkit.item.ItemID;
-import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.inventory.InventoryMenuHandler;
-import pl.vertty.arivi.drop.skrzynka.SkrzynkaManager;
-import pl.vertty.arivi.managers.ItemShop;
-import pl.vertty.arivi.managers.ItemShopManager;
-import pl.vertty.arivi.utils.exception.SkinChangeException;
-import pl.vertty.arivi.utils.ItemUtil;
-import pl.vertty.arivi.drop.pierozek.PierozekManager;
+import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.inventory.item.ItemClick;
-import pl.vertty.arivi.inventory.item.ItemData;
-import cn.nukkit.utils.DyeColor;
-import pl.vertty.arivi.Main;
-import pl.vertty.arivi.utils.ChatUtil;
 import cn.nukkit.item.Item;
+import cn.nukkit.item.ItemID;
+import cn.nukkit.utils.DyeColor;
+import pl.vertty.arivi.drop.pierozek.PierozekManager;
+import pl.vertty.arivi.enums.GroupType;
+import pl.vertty.arivi.guilds.data.User;
 import pl.vertty.arivi.guilds.managers.UserManager;
 import pl.vertty.arivi.inventory.InventoryCategory;
 import pl.vertty.arivi.inventory.InventoryMenu;
-import cn.nukkit.Player;
+import pl.vertty.arivi.inventory.InventoryMenuHandler;
+import pl.vertty.arivi.inventory.item.ItemClick;
+import pl.vertty.arivi.inventory.item.ItemData;
+import pl.vertty.arivi.managers.ItemShop;
+import pl.vertty.arivi.managers.ItemShopManager;
+import pl.vertty.arivi.utils.ChatUtil;
+import pl.vertty.arivi.utils.ItemUtil;
+import pl.vertty.arivi.utils.exception.SkinChangeException;
 
 public class ItemShopGui
 {

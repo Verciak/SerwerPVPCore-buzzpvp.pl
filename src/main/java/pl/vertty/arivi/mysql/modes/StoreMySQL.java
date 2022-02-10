@@ -4,21 +4,20 @@
 
 package pl.vertty.arivi.mysql.modes;
 
-import pl.vertty.arivi.mysql.Callback;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.DriverManager;
-import pl.vertty.arivi.utils.Timming;
+import cn.nukkit.Server;
 import cn.nukkit.plugin.Plugin;
+import cn.nukkit.scheduler.AsyncTask;
+import cn.nukkit.scheduler.NukkitRunnable;
 import pl.vertty.arivi.Main;
 import pl.vertty.arivi.enums.TimeUtil;
-import cn.nukkit.scheduler.NukkitRunnable;
+import pl.vertty.arivi.mysql.Callback;
+import pl.vertty.arivi.mysql.Store;
+import pl.vertty.arivi.utils.Timming;
+
+import java.sql.*;
+import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.Executor;
-import java.sql.Connection;
-import pl.vertty.arivi.mysql.Store;
 
 public class StoreMySQL implements Store
 {
@@ -100,7 +99,24 @@ public class StoreMySQL implements Store
         }
         return null;
     }
-    
+
+    @Override
+    public void asyncUpdate(String s) {
+
+        Server.getInstance().getScheduler().scheduleAsyncTask(Main.getPlugin(), new AsyncTask() {
+            @Override
+            public void onRun() {
+                final Statement statement;
+                try {
+                    statement = conn.createStatement();
+                    statement.executeUpdate(s.replace("{P}", prefix), Statement.RETURN_GENERATED_KEYS);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        });
+    }
+
     @Override
     public void disconnect() {
         if (this.conn != null) {

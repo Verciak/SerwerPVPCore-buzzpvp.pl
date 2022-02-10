@@ -24,7 +24,7 @@ import cn.nukkit.event.Listener;
 
 public class CheckLoginListener implements Listener
 {
-    public static Config c;
+    public static Config c = Main.getPlugin().getConfig();
     
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onLogin(final PlayerLoginEvent e) {
@@ -40,8 +40,5 @@ public class CheckLoginListener implements Listener
             e.setCancelled(true);
         }
     }
-    
-    static {
-        CheckLoginListener.c = Main.getPlugin().getConfig();
-    }
+
 }

@@ -4,11 +4,12 @@
 
 package pl.vertty.arivi.drop.data;
 
-import java.sql.ResultSet;
-import pl.vertty.arivi.drop.utils.StringUtils;
-import java.sql.SQLException;
-import pl.vertty.arivi.drop.utils.Util;
 import pl.vertty.arivi.drop.base.User;
+import pl.vertty.arivi.drop.utils.StringUtils;
+import pl.vertty.arivi.drop.utils.Util;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class DatabaseUser
 {

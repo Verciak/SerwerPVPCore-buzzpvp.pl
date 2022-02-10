@@ -4,12 +4,12 @@
 
 package pl.vertty.arivi.guilds.rank;
 
-import java.util.LinkedList;
-import pl.vertty.arivi.guilds.rank.comparators.UserPointsComparator;
-import java.util.Comparator;
-import pl.vertty.arivi.guilds.rank.comparators.GuildComparator;
-import pl.vertty.arivi.guilds.data.guild.Guild;
 import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.guilds.data.guild.Guild;
+import pl.vertty.arivi.guilds.rank.comparators.GuildComparator;
+import pl.vertty.arivi.guilds.rank.comparators.UserPointsComparator;
+
+import java.util.LinkedList;
 import java.util.List;
 
 public class RankingManager
