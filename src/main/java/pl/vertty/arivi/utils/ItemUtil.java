@@ -246,7 +246,7 @@ public class ItemUtil
                     return;
                 }
                 final pl.vertty.arivi.drop.base.User user = UserUtils.get(player.getName());
-                user.addPlecak(drop, item.getCount());
+                player.dropItem(Item.get(drop.getItem().getId(), drop.getItem().getDamage(), item.getCount()));
             }
         }
     }

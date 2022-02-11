@@ -102,13 +102,6 @@ public class Main extends PluginBase
     }
     
     public void onDisable() {
-        for (final User user : UserManager.getUsers().values()) {
-            user.setEnderchest_1(SeralizerUtil.serializeInventory((Inventory) user.getEc1()));
-            user.setEnderchest_2(SeralizerUtil.serializeInventory((Inventory) user.getEc2()));
-            user.setEnderchest_3(SeralizerUtil.serializeInventory((Inventory) user.getEc3()));
-            user.setEnderchest_4(SeralizerUtil.serializeInventory((Inventory) user.getEc4()));
-            user.setEnderchest_5(SeralizerUtil.serializeInventory((Inventory) user.getEc5()));
-        }
         for (final Guild user2 : GuildManager.getGuilds().values()) {
             user2.setSkrzynka1(SeralizerUtil.serializeInventory((Inventory) user2.getSkrzynka()));
         }
@@ -144,13 +137,6 @@ public class Main extends PluginBase
 
 
     public static void onRestart(){
-        for (final User user : UserManager.getUsers().values()) {
-            user.setEnderchest_1(SeralizerUtil.serializeInventory((Inventory) user.getEc1()));
-            user.setEnderchest_2(SeralizerUtil.serializeInventory((Inventory) user.getEc2()));
-            user.setEnderchest_3(SeralizerUtil.serializeInventory((Inventory) user.getEc3()));
-            user.setEnderchest_4(SeralizerUtil.serializeInventory((Inventory) user.getEc4()));
-            user.setEnderchest_5(SeralizerUtil.serializeInventory((Inventory) user.getEc5()));
-        }
         for (final Guild user2 : GuildManager.getGuilds().values()) {
             user2.setSkrzynka1(SeralizerUtil.serializeInventory((Inventory) user2.getSkrzynka()));
         }
