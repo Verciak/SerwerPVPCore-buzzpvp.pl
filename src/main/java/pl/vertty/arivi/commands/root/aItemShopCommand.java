@@ -1,7 +1,5 @@
 package pl.vertty.arivi.commands.root;
 
-import java.util.Iterator;
-
 import pl.vertty.arivi.drop.base.utils.UserUtils;
 import pl.vertty.arivi.drop.utils.TimeUtils;
 import pl.vertty.arivi.enums.GroupType;
@@ -11,7 +9,7 @@ import pl.vertty.arivi.guilds.managers.UserManager;
 import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
 import pl.vertty.arivi.managers.BanManager;
-import pl.vertty.arivi.managers.ItemShop;
+import pl.vertty.arivi.objects.ItemShop;
 import pl.vertty.arivi.managers.ItemShopManager;
 import pl.vertty.arivi.objects.Ban;
 import pl.vertty.arivi.utils.ChatUtil;

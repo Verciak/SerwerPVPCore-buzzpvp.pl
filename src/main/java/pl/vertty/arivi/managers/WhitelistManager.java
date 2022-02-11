@@ -2,6 +2,9 @@ package pl.vertty.arivi.managers;
 
 
 import pl.vertty.arivi.Main;
+import pl.vertty.arivi.objects.WhiteList;
+import pl.vertty.arivi.objects.WhiteListReason;
+import pl.vertty.arivi.objects.WhiteListStatus;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

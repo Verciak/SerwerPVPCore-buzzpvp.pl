@@ -2,15 +2,12 @@
 package pl.vertty.arivi.managers;
 
 import cn.nukkit.Player;
-import cn.nukkit.level.Location;
-import cn.nukkit.utils.Config;
 import pl.vertty.arivi.Main;
 import pl.vertty.arivi.guilds.utils.Logger;
+import pl.vertty.arivi.objects.ItemShop;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ItemShopManager

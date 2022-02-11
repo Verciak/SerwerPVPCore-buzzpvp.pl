@@ -15,7 +15,7 @@ import pl.vertty.arivi.inventory.InventoryMenu;
 import pl.vertty.arivi.inventory.InventoryMenuHandler;
 import pl.vertty.arivi.inventory.item.ItemClick;
 import pl.vertty.arivi.inventory.item.ItemData;
-import pl.vertty.arivi.managers.ItemShop;
+import pl.vertty.arivi.objects.ItemShop;
 import pl.vertty.arivi.managers.ItemShopManager;
 import pl.vertty.arivi.utils.ChatUtil;
 import pl.vertty.arivi.utils.ItemUtil;

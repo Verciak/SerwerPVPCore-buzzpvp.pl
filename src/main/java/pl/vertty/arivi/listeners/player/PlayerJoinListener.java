@@ -3,7 +3,6 @@ package pl.vertty.arivi.listeners.player;
 
 import cn.nukkit.Server;
 import cn.nukkit.block.Block;
-import cn.nukkit.utils.Config;
 import cn.nukkit.event.player.PlayerTeleportEvent;
 import cn.nukkit.level.Location;
 import cn.nukkit.math.Vector3;
@@ -15,12 +14,11 @@ import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.network.protocol.DataPacket;
 import java.util.Iterator;
-import cn.nukkit.level.particle.FloatingTextParticle;
-import pl.vertty.arivi.Main;
+
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.EventPriority;
 import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.managers.ItemShop;
+import pl.vertty.arivi.objects.ItemShop;
 import pl.vertty.arivi.managers.ItemShopManager;
 import pl.vertty.arivi.utils.exception.SkinChangeException;
 import pl.vertty.arivi.utils.SkinUtil;

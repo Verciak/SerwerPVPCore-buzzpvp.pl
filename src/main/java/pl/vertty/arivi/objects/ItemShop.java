@@ -1,5 +1,5 @@
 
-package pl.vertty.arivi.managers;
+package pl.vertty.arivi.objects;
 
 import cn.nukkit.OfflinePlayer;
 import cn.nukkit.Player;

@@ -3,6 +3,7 @@ package pl.vertty.arivi.managers;
 
 
 import pl.vertty.arivi.Main;
+import pl.vertty.arivi.objects.Restart;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

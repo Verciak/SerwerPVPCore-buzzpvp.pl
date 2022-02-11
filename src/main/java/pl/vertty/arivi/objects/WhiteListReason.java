@@ -1,4 +1,4 @@
-package pl.vertty.arivi.managers;
+package pl.vertty.arivi.objects;
 
 import pl.vertty.arivi.Main;
 
