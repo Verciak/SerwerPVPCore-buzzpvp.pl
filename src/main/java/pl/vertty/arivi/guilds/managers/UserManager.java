@@ -1,41 +1,28 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
 
 package pl.vertty.arivi.guilds.managers;
 
-import java.util.Iterator;
 import cn.nukkit.Player;
+import cn.nukkit.level.Location;
+import pl.vertty.arivi.Main;
+import pl.vertty.arivi.MainConstants;
+import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.guilds.rank.RankingManager;
+import pl.vertty.arivi.guilds.utils.Logger;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import pl.vertty.arivi.MainConstants;
-import pl.vertty.arivi.guilds.utils.Logger;
-import pl.vertty.arivi.guilds.rank.RankingManager;
-import java.util.Collection;
-import java.util.ArrayList;
-import cn.nukkit.utils.Config;
-import pl.vertty.arivi.Main;
-import cn.nukkit.level.Location;
-import java.util.List;
-import pl.vertty.arivi.guilds.data.User;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class UserManager
 {
-    private static final ConcurrentHashMap<String, User> users;
-    private static final List<User> online;
-    
+    private static final ConcurrentHashMap<String, User> users = new ConcurrentHashMap<>();
+
     public static ConcurrentHashMap<String, User> getUsers() {
         return UserManager.users;
     }
     
     public static boolean canPlaceByBorder(final Location loc) {
         return Math.abs(MainConstants.BORDER - loc.getFloorX()) >= 10 && Math.abs(MainConstants.BORDER - loc.getFloorZ()) >= 10 && Math.abs(-MainConstants.BORDER - loc.getFloorX()) >= 10 && Math.abs(-MainConstants.BORDER - loc.getFloorZ()) >= 10 && Math.abs(-MainConstants.BORDER - loc.getFloorX()) >= 10 && Math.abs(MainConstants.BORDER - loc.getFloorZ()) >= 10 && Math.abs(MainConstants.BORDER - loc.getFloorX()) >= 10 && Math.abs(-MainConstants.BORDER - loc.getFloorZ()) >= 10;
-    }
-    
-    public static List<User> getOnline() {
-        return new ArrayList<User>(UserManager.online);
     }
     
     public static void loadUsers() {
@@ -70,25 +57,11 @@ public class UserManager
     }
     
     public static User getUser(final Player player) {
-        for (final User user : UserManager.users.values()) {
-            if (user.getName().equalsIgnoreCase(player.getName())) {
-                return user;
-            }
-        }
-        return null;
+        return users.get(player.getName());
     }
     
     public static User getUser(final String anotherString) {
-        for (final User user : UserManager.users.values()) {
-            if (user.getName().equalsIgnoreCase(anotherString)) {
-                return user;
-            }
-        }
-        return null;
+        return  users.get(anotherString);
     }
-    
-    static {
-        online = new ArrayList<User>();
-        users = new ConcurrentHashMap<String, User>();
-    }
+
 }

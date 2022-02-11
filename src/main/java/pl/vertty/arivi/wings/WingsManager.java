@@ -1,6 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
 
 package pl.vertty.arivi.wings;
 
@@ -31,8 +28,8 @@ import java.util.stream.Collectors;
 
 public class WingsManager
 {
-    public static Map<String, Wings> wingsNames;
-    public static Main plugin;
+    public static Map<String, Wings> wingsNames = new ConcurrentHashMap<>();
+    public static Main plugin = Main.getPlugin();
     
     public static void init(final Main plugin) throws SQLException {
         load(plugin);
@@ -40,25 +37,25 @@ public class WingsManager
     
     public static void load(final Main plugin) {
         final String path = plugin.getDataFolder() + "/wings";
-        System.out.println("");
+        System.out.println();
         System.out.println("Lokalizacja skrzydel:");
-        System.out.println("");
+        System.out.println();
         System.out.println(path);
         final File actual = new File(path);
-        System.out.println("");
+        System.out.println();
         System.out.println("Wczytano skrzydla o nazwe:");
-        System.out.println("");
+        System.out.println();
         final List<String> fileNames = new ArrayList<String>();
         for (final File file : actual.listFiles()) {
             fileNames.add(file.getName());
         }
-        System.out.println("");
+        System.out.println();
         System.out.println("Nazwy skrzydel w liscie:");
-        System.out.println("");
+        System.out.println();
         System.out.println(fileNames);
-        System.out.println("");
+        System.out.println();
         System.out.println("Zaladowane Skrzydla:");
-        System.out.println("");
+        System.out.println();
         for (final String wingName : fileNames) {
             final String pathName = plugin.getDataFolder() + "/wings/" + wingName;
             WingsManager.wingsNames.put(wingName, new Wings(wingName, pathName));
@@ -77,11 +74,7 @@ public class WingsManager
     public static Map<String, Wings> getHashMapWings() {
         return WingsManager.wingsNames;
     }
-    
-    public static List<String> getWingsNames() {
-        return getCollectionWings().stream().map(Wings::getName).collect(Collectors.toList());
-    }
-    
+
     public static void setRatWings(final Player player, final Wings wings) {
         if (UserWings.getUser(player) != null) {
             UserWings.deleteUser(player);
@@ -90,11 +83,11 @@ public class WingsManager
         UserWings.createrUser(player);
         UserWings.getUser(player).setWings(wings.getName());
         final Skin playerSkin = player.getSkin();
-        SkinUtils.saveImage(Main.getPlugin(), playerSkin.getSkinData().width, playerSkin.getSkinData().height, playerSkin.getSkinData().data, player.getName());
-        Server.getInstance().getScheduler().scheduleDelayedTask((Plugin)Main.getPlugin(), (Runnable)new Runnable() {
+        SkinUtils.saveImage(playerSkin.getSkinData().width, playerSkin.getSkinData().height, playerSkin.getSkinData().data, player.getName());
+        Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), new Runnable() {
             @Override
             public void run() {
-                final Path skinPath = Paths.get(Main.getPlugin().getDataFolder() + "/skins/" + player.getName() + ".png", new String[0]);
+                final Path skinPath = Paths.get(Main.getPlugin().getDataFolder() + "/skins/" + player.getName() + ".png");
                 BufferedImage skinData = null;
                 try {
                     skinData = ImageIO.read(skinPath.toFile());
@@ -128,17 +121,13 @@ public class WingsManager
                 packet.newSkinName = player.getName();
                 packet.oldSkinName = playerSkin.getSkinId();
                 packet.uuid = player.getUniqueId();
-                Server.broadcastPacket((Collection)Server.getInstance().getOnlinePlayers().values(), (DataPacket)packet);
+                Server.broadcastPacket(Server.getInstance().getOnlinePlayers().values(), packet);
                 final Collection<Player> viewer = player.getViewers().values();
                 for (final Player paa : viewer) {
-                    paa.batchDataPacket((DataPacket)packet);
+                    paa.batchDataPacket(packet);
                 }
             }
         }, 200);
     }
-    
-    static {
-        WingsManager.wingsNames = new ConcurrentHashMap<String, Wings>();
-        WingsManager.plugin = Main.getPlugin();
-    }
+
 }

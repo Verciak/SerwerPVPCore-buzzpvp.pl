@@ -1,6 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
 
 package pl.vertty.arivi.listeners.chat;
 
@@ -31,7 +28,7 @@ import cn.nukkit.event.Listener;
 
 public class ServerChatListener implements Listener
 {
-    public static Config c;
+    public static Config c = Main.getPlugin().getConfig();
     
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPlayerCommandPreprocess(final PlayerCommandPreprocessEvent event) {
@@ -160,9 +157,8 @@ public class ServerChatListener implements Listener
                 }
                 final String replace = message.replaceFirst("##", "").replace("&", "");
                 guild.message(pl.vertty.arivi.guilds.data.yml.Config.CHAT_ALLY_USAGE.replace("{TAG}", guild.getTag()).replace("{NICK}", player.getName()).replace("{MESSAGE}", replace));
-                final Iterator<String> iterator = guild.getAlly().iterator();
-                while (iterator.hasNext()) {
-                    final Guild guild2 = GuildManager.getGuild(iterator.next());
+                for (String s : guild.getAlly()) {
+                    final Guild guild2 = GuildManager.getGuild(s);
                     if (guild2 != null) {
                         guild2.message(pl.vertty.arivi.guilds.data.yml.Config.CHAT_ALLY_USAGE.replace("{TAG}", guild.getTag()).replace("{NICK}", player.getName()).replace("{MESSAGE}", replace));
                     }
@@ -226,8 +222,5 @@ public class ServerChatListener implements Listener
             }
         }
     }
-    
-    static {
-        ServerChatListener.c = Main.getPlugin().getConfig();
-    }
+
 }

@@ -1,6 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
 
 package pl.vertty.arivi.managers;
 
@@ -31,7 +28,7 @@ import java.util.ArrayList;
 
 public class BackupManager
 {
-    static ArrayList<Backup> backups;
+    static ArrayList<Backup> backups = new ArrayList<>();
     
     public static void createBackup(final String name, final String killer, final int ping, final PlayerInventory inventory, final int points) {
         final Backup backup = new Backup(name, killer, ping, inventory, points);
@@ -113,8 +110,5 @@ public class BackupManager
         BackupManager.backups.remove(backup);
         Main.getStore().update(false, String.valueOf(new StringBuilder().append("DELETE FROM `{P}backups` WHERE `name` = '").append(backup.getName()).append("'")));
     }
-    
-    static {
-        BackupManager.backups = new ArrayList<Backup>();
-    }
+
 }

@@ -19,7 +19,7 @@ public class WhiteList {
     }
 
     private void insert() {
-        Main.getStore().update("INSERT INTO `whitelist`(`id`, `name`) VALUES (NULL, '" + getName() + "');");
+        Main.getStore().asyncUpdate("INSERT INTO `whitelist`(`id`, `name`) VALUES (NULL, '" + getName() + "');");
     }
 
     public String getName() {

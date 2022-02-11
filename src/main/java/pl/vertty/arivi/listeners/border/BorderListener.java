@@ -1,6 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
 
 package pl.vertty.arivi.listeners.border;
 
@@ -23,7 +20,6 @@ public class BorderListener implements Listener {
     @EventHandler
     public static void onMove(final PlayerMoveEvent event) {
         final Player player = event.getPlayer();
-        final Config c = Main.getPlugin().getConfig();
         if (event.getTo().getFloorX() > MainConstants.BORDER || event.getTo().getFloorX() < -MainConstants.BORDER || event.getTo().getFloorZ() > MainConstants.BORDER || event.getTo().getFloorZ() < -MainConstants.BORDER) {
             event.setTo(event.getFrom());
             player.sendMessage(ChatUtil.fixColor("&4Dotarles do granicy swiata! &8(&e%BORDER% kratek&8)").replace("%BORDER%", String.valueOf(MainConstants.BORDER)));
@@ -34,7 +30,7 @@ public class BorderListener implements Listener {
     public void onBlockPlace(final BlockPlaceEvent event) {
         if (!UserManager.canPlaceByBorder(event.getBlock().getLocation())) {
             event.setCancelled(true);
-            ChatUtil.sendMessage((CommandSender) event.getPlayer(), "&4Nie mozesz stawiac przy borderze!");
+            ChatUtil.sendMessage(event.getPlayer(), "&4Nie mozesz stawiac przy borderze!");
         }
     }
 
@@ -42,7 +38,7 @@ public class BorderListener implements Listener {
     public void onBlockBreak(final BlockBreakEvent event) {
         if (!UserManager.canPlaceByBorder(event.getBlock().getLocation())) {
             event.setCancelled(true);
-            ChatUtil.sendMessage((CommandSender) event.getPlayer(), "&4Nie mozesz niszczyc przy borderze!");
+            ChatUtil.sendMessage(event.getPlayer(), "&4Nie mozesz niszczyc przy borderze!");
         }
     }
 }

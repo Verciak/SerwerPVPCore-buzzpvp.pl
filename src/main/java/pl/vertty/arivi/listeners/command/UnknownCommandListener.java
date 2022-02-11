@@ -1,6 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
 
 package pl.vertty.arivi.listeners.command;
 
@@ -57,11 +54,11 @@ public class UnknownCommandListener implements Listener
     private void onPlayerCommandPreprocessEvent(final PlayerCommandPreprocessEvent e) {
         final Player p = e.getPlayer();
         final User u = UserManager.getUser(p);
-        boolean valid = false;
-        final Config c = Main.getPlugin().getConfig();
         if (u.can(GroupType.ROOT)) {
             return;
         }
+        boolean valid = false;
+        final Config c = Main.getPlugin().getConfig();
         for (final String cmd : UnknownCommandListener.registeredCommands) {
             final String[] args = e.getMessage().split(" ");
             if (args[0].equalsIgnoreCase("/" + cmd) || args[0].equalsIgnoreCase("/:" + cmd)) {

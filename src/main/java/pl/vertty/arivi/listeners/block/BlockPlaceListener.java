@@ -1,6 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
 
 package pl.vertty.arivi.listeners.block;
 
@@ -10,16 +7,12 @@ import cn.nukkit.Player;
 import cn.nukkit.event.block.BlockPlaceEvent;
 import cn.nukkit.event.Listener;
 
-public class BlockPlaceListener implements Listener
-{
+public class BlockPlaceListener implements Listener {
     @EventHandler
-    public void onPlaceSponge(final BlockPlaceEvent e) {
-        final Block b = e.getBlock();
-        if (b.getId() == 19) {
-            e.setCancelled(true);
-        }
-        if (b.getId() == 145) {
-            e.setCancelled(true);
+    public void onBlockPlace(BlockPlaceEvent event) {
+        Block block = event.getBlock();
+        if (block.getId() == 19 || block.getId() == 145) {
+            event.setCancelled(true);
         }
     }
 }

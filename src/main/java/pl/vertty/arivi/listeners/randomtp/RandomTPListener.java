@@ -1,6 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
 
 package pl.vertty.arivi.listeners.randomtp;
 
@@ -27,7 +24,7 @@ public class RandomTPListener implements Listener
         final Location location = player.getLocation();
         final Block tele = player.getLocation().getLevel().getBlock(new Vector3(location.getX(), location.getY(), location.getZ()));
         final Location telep = tele.getLocation();
-        final Location loc = new Location((double)x, (double)telep.getLevel().getHighestBlockAt(x, z), (double)z);
+        final Location loc = new Location(x, telep.getLevel().getHighestBlockAt(x, z), z);
         player.teleport(loc, PlayerTeleportEvent.TeleportCause.PLUGIN);
         if (player.getEffects() != null) {
             player.removeAllEffects();
@@ -38,7 +35,7 @@ public class RandomTPListener implements Listener
     public List<Player> getPlayersInRadius(final Block b, final Location location, final int size) {
         final List<Player> players = new ArrayList<Player>();
         for (final Player p : location.getLevel().getPlayers().values()) {
-            if (b.distance((Vector3)p.getLocation()) <= size) {
+            if (b.distance(p.getLocation()) <= size) {
                 players.add(p);
             }
         }

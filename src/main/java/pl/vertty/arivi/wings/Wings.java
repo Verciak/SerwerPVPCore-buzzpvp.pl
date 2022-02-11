@@ -1,6 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
 
 package pl.vertty.arivi.wings;
 
@@ -52,7 +49,7 @@ public class Wings
     }
     
     public BufferedImage getImage() throws IOException {
-        final BufferedImage image = CreateImageFileFromGraphicsObject.main(this.path + "/skin.png");
+        final BufferedImage image = CreateImageFileFromGraphicsObject.main();
         ImageColorTransparent.makeColorTransparent(image, this.color = new Color(0, 0, 0, 127));
         return image;
     }

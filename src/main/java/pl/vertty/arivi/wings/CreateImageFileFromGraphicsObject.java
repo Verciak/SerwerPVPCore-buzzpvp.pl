@@ -1,6 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
 
 package pl.vertty.arivi.wings;
 
@@ -11,8 +8,7 @@ import java.io.IOException;
 
 public class CreateImageFileFromGraphicsObject
 {
-    public static BufferedImage main(final String args) throws IOException {
-        final File file = new File(args);
+    public static BufferedImage main() throws IOException {
         final int width = 250;
         final int height = 250;
         final BufferedImage bufferedImage = new BufferedImage(width, height, 1);

@@ -1,6 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
 
 package pl.vertty.arivi.wings.mysql;
 
@@ -13,24 +10,14 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class UserWings
 {
-    public static final ConcurrentHashMap<String, UserWingsManager> users;
+    public static final ConcurrentHashMap<String, UserWingsManager> users = new ConcurrentHashMap<>();
     
     public static UserWingsManager getUser(final Player p) {
-        for (final UserWingsManager u : UserWings.users.values()) {
-            if (u.getName().equalsIgnoreCase(p.getName())) {
-                return u;
-            }
-        }
-        return null;
+        return users.get(p.getName());
     }
     
     public static UserWingsManager getUser(final String name) {
-        for (final UserWingsManager u : UserWings.users.values()) {
-            if (u.getName().equalsIgnoreCase(name)) {
-                return u;
-            }
-        }
-        return null;
+        return users.get(name);
     }
     
     public static void createrUser(final Player p) {
@@ -65,8 +52,5 @@ public class UserWings
     public static ConcurrentHashMap<String, UserWingsManager> getUsers() {
         return UserWings.users;
     }
-    
-    static {
-        users = new ConcurrentHashMap<String, UserWingsManager>();
-    }
+
 }

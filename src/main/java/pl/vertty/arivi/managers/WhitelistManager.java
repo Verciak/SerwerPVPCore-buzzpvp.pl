@@ -39,7 +39,7 @@ public class WhitelistManager {
 
     public static void deleteWhitelist(String name) {
         wl.remove(name);
-        Main.getStore().update("DELETE FROM `whitelist` WHERE `name` ='" + name + "';");
+        Main.getStore().asyncUpdate("DELETE FROM `whitelist` WHERE `name` ='" + name + "';");
     }
 
     public static void addWhiteListStatus(Integer name) {
@@ -48,7 +48,7 @@ public class WhitelistManager {
 
     public static void deleteWhitelistStatus(Integer name) {
         wl_status.remove(name);
-        Main.getStore().update("DELETE FROM `whitelist-status` WHERE `name` ='" + name + "';");
+        Main.getStore().asyncUpdate("DELETE FROM `whitelist-status` WHERE `name` ='" + name + "';");
     }
 
 
@@ -104,7 +104,7 @@ public class WhitelistManager {
     public static void setWl_reason(String name, int numer) {
         wl_reason.clear();
         wl_reason.put(name, new WhiteListReason(name, numer));
-        Main.getStore().update("UPDATE `whitelist-reason` SET `name`='" + name + "' WHERE `numer`='" + numer + "'");
+        Main.getStore().asyncUpdate("UPDATE `whitelist-reason` SET `name`='" + name + "' WHERE `numer`='" + numer + "'");
     }
 
     public static ConcurrentHashMap<String, WhiteList> wl = new ConcurrentHashMap<>();

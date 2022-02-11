@@ -90,26 +90,16 @@ public class PhaseListener implements Listener {
     public static Block getBlock(Level level, int x, int y, int z, boolean load) {
         int fullState;
         if (y >= 0 && y < 256) {
-            int cx = x >> 4;
-            int cz = z >> 4;
-            BaseFullChunk chunk;
-            if (load) {
-                chunk = level.getChunk(cx, cz);
-            } else {
-                chunk = level.getChunkIfLoaded(cx, cz);
-            }
-            if (chunk != null) {
-                fullState = chunk.getFullBlock(x & 15, y, z & 15);
-            } else {
-                fullState = 0;
-            }
+            int cx = x >> 4, cz = z >> 4;
+            BaseFullChunk chunk = load ? level.getChunk(cx, cz) : level.getChunkIfLoaded(cx, cz);
+            fullState = chunk != null ? chunk.getFullBlock(x & 15, y, z & 15) : 0;
         } else {
             fullState = 0;
         }
         Block block = Block.fullList[fullState & 4095].clone();
-        block.x = (double)x;
-        block.y = (double)y;
-        block.z = (double)z;
+        block.x = x;
+        block.y = y;
+        block.z = z;
         block.level = level;
         return block;
     }
