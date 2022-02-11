@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.drop.utils;
 
 import java.text.SimpleDateFormat;
@@ -33,7 +29,7 @@ public class TimeUtils
                     }
                     if (calc) {
                         try {
-                            final long i = Integer.valueOf(value.toString());
+                            final long i = Integer.parseInt(value.toString());
                             switch ((char)type.pop()) {
                                 case 'd': {
                                     time += i * 86400000L;
@@ -54,7 +50,7 @@ public class TimeUtils
                             }
                         }
                         catch (NumberFormatException e) {
-                            Util.sendError("Unknown number: " + value.toString());
+                            Util.sendError("Unknown number: " + value);
                             return time;
                         }
                     }
