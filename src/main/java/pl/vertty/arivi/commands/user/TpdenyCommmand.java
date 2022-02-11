@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.user;
 
 import cn.nukkit.Player;
@@ -26,16 +22,16 @@ public class TpdenyCommmand extends PlayerCommand
             if (u.getTpa().contains(o)) {
                 u.getTpa().remove(o);
             }
-            return ChatUtil.sendMessage((CommandSender)p, "&cGracz jest offline");
+            return ChatUtil.sendMessage(p, "&cGracz jest offline");
         }
         if (u == null) {
             return true;
         }
         if (!u.getTpa().contains(o)) {
-            return ChatUtil.sendMessage((CommandSender)p, "&cNie masz zaproszenia do teleportacji od gracza " + o.getName() + "!");
+            return ChatUtil.sendMessage(p, "&cNie masz zaproszenia do teleportacji od gracza " + o.getName() + "!");
         }
         u.getTpa().remove(p);
-        ChatUtil.sendMessage((CommandSender)p, "&8>> &7Odrzuciles prosbe o teleport od gracza &6" + o.getName() + "&7!");
-        return ChatUtil.sendMessage((CommandSender)o, "&8>> &7Gracz &6" + p.getName() + " &7odrzucil twoja prosbe o teleport!");
+        ChatUtil.sendMessage(p, "&8>> &7Odrzuciles prosbe o teleport od gracza &6" + o.getName() + "&7!");
+        return ChatUtil.sendMessage(o, "&8>> &7Gracz &6" + p.getName() + " &7odrzucil twoja prosbe o teleport!");
     }
 }

@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.helper;
 
 import pl.vertty.arivi.managers.BanManager;
@@ -26,21 +22,21 @@ public class CheaterCommand extends Command
     public boolean onExecute(final CommandSender sender, final String[] args) {
         final Player p = (Player)sender;
         if (args.length < 1) {
-            ChatUtil.sendMessage((CommandSender)p, "&4Blad: &cPoprawne Uzycie: &7{USAGE}".replace("{USAGE}", this.getUsage()));
+            ChatUtil.sendMessage(p, "&4Blad: &cPoprawne Uzycie: &7{USAGE}".replace("{USAGE}", this.getUsage()));
             return false;
         }
         final Player tar = Server.getInstance().getPlayer(args[0]);
         if (tar == null) {
-            ChatUtil.sendMessage((CommandSender)p, "&4Blad: &cTen gracz jest offline!".replace("{USAGE}", this.getUsage()));
+            ChatUtil.sendMessage(p, "&4Blad: &cTen gracz jest offline!".replace("{USAGE}", this.getUsage()));
             return false;
         }
         if (SprawdzManager.getByPlayer(tar) == null) {
-            ChatUtil.sendMessage((CommandSender)p, "&4Blad: &cTen gracz nie jest sprawdzany!");
+            ChatUtil.sendMessage(p, "&4Blad: &cTen gracz nie jest sprawdzany!");
             return false;
         }
         final Sprawdz s = SprawdzManager.getByPlayer(tar);
         if (s.getAdmin() != p) {
-            ChatUtil.sendMessage((CommandSender)p, "&4Blad: &cTo nie ty sprawdzasz tego gracza!");
+            ChatUtil.sendMessage(p, "&4Blad: &cTo nie ty sprawdzasz tego gracza!");
             return false;
         }
         Server.getInstance().broadcastMessage(ChatUtil.fixColor("&7U gracza &9{USER}&7, zostaly wykryte cheaty przez &9{ADMIN}&7!").replace("{USER}", s.getPlayer().getName()).replace("{ADMIN}", p.getName()));

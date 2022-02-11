@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.user;
 
 import cn.nukkit.Player;
@@ -17,7 +13,7 @@ public class CraftingiCommand extends PlayerCommand
     
     @Override
     public boolean onCommand(final Player player, final String[] args) {
-        CraftingiGui.openBoyFarmer(player);
+        CraftingiGui.openAntyNogi(player);
         return false;
     }
 }

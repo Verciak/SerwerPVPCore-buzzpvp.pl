@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.user;
 
 import cn.nukkit.Player;
@@ -22,26 +18,26 @@ public class TpaCommand extends PlayerCommand
     @Override
     public boolean onCommand(final Player p, final String[] args) {
         if (args.length < 1) {
-            return ChatUtil.sendMessage((CommandSender)p, this.getUsage());
+            return ChatUtil.sendMessage(p, this.getUsage());
         }
         final Player o = Server.getInstance().getPlayer(args[0]);
         if (o == null) {
-            return ChatUtil.sendMessage((CommandSender)p, "&cGracz jest offline!");
+            return ChatUtil.sendMessage(p, "&cGracz jest offline!");
         }
         final User u = UserManager.getUser(o);
         if (u == null) {
             return true;
         }
         if (o == p) {
-            return ChatUtil.sendMessage((CommandSender)p, "&cNie mozesz wyslac prosby do samego siebie!");
+            return ChatUtil.sendMessage(p, "&cNie mozesz wyslac prosby do samego siebie!");
         }
         if (u.getTpa().contains(p)) {
-            return ChatUtil.sendMessage((CommandSender)p, "&cWyslales juz zaproszenie o teleport do gracza " + o.getName() + "!");
+            return ChatUtil.sendMessage(p, "&cWyslales juz zaproszenie o teleport do gracza " + o.getName() + "!");
         }
         u.getTpa().add(p);
-        ChatUtil.sendMessage((CommandSender)p, "&8>> &7Wyslales prosbe o teleport do gracza &6" + o.getName() + "&7!");
-        ChatUtil.sendMessage((CommandSender)o, "&8>> &7Gracz &6" + p.getName() + " &7chce sie przeteleportowac do Ciebie!");
-        ChatUtil.sendMessage((CommandSender)o, "&8>> &7Wpisz &6/tpaccept &7aby zaakceptowac!");
-        return ChatUtil.sendMessage((CommandSender)o, "&8>> &7Wpisz &6/tpdeny &7aby odrzucic!");
+        ChatUtil.sendMessage(p, "&8>> &7Wyslales prosbe o teleport do gracza &6" + o.getName() + "&7!");
+        ChatUtil.sendMessage(o, "&8>> &7Gracz &6" + p.getName() + " &7chce sie przeteleportowac do Ciebie!");
+        ChatUtil.sendMessage(o, "&8>> &7Wpisz &6/tpaccept &7aby zaakceptowac!");
+        return ChatUtil.sendMessage(o, "&8>> &7Wpisz &6/tpdeny &7aby odrzucic!");
     }
 }

@@ -1,11 +1,6 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.builder;
 
 import cn.nukkit.plugin.PluginManager;
-import java.util.Collection;
 import java.util.Arrays;
 import pl.vertty.arivi.listeners.command.UnknownCommandListener;
 import cn.nukkit.Server;
@@ -22,9 +17,9 @@ public class CommandManager
     
     public static void register(final Command cmd) {
         if (CommandManager.cmdMap == null) {
-            CommandManager.cmdMap = (CommandMap)CommandManager.f.get(Server.getInstance().getPluginManager());
+            CommandManager.cmdMap = CommandManager.f.get(Server.getInstance().getPluginManager());
         }
-        CommandManager.cmdMap.register(cmd.getName(), (cn.nukkit.command.Command)cmd);
+        CommandManager.cmdMap.register(cmd.getName(), cmd);
         CommandManager.commands.put(cmd.getName(), cmd);
         UnknownCommandListener.registeredCommands.add(cmd.getName());
         if (cmd.getAliases() != null) {
@@ -35,6 +30,6 @@ public class CommandManager
     static {
         commands = new HashMap<String, Command>();
         f = Reflection.getField(PluginManager.class, "commandMap", SimpleCommandMap.class);
-        CommandManager.cmdMap = (CommandMap)CommandManager.f.get(Server.getInstance().getPluginManager());
+        CommandManager.cmdMap = CommandManager.f.get(Server.getInstance().getPluginManager());
     }
 }

@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.user;
 
 import cn.nukkit.Player;
@@ -24,10 +20,10 @@ public class PrzyznajesieCommand extends PlayerCommand
         if (SprawdzManager.getByPlayer(p) != null) {
             final Sprawdz s = SprawdzManager.getByPlayer(p);
             Server.getInstance().broadcastMessage(ChatUtil.fixColor("&7Gracz &b{USER}&7 przyznal sie do posiadania cheatow! Sprawdzal go &b{ADMIN}&7!".replace("{USER}", p.getName()).replace("{ADMIN}", s.getAdmin().getName())));
-            Server.getInstance().dispatchCommand((CommandSender)Server.getInstance().getConsoleSender(), "ban {USER} 3d PRZYZNANIE".replace("{USER}", p.getName()));
+            Server.getInstance().dispatchCommand(Server.getInstance().getConsoleSender(), "ban {USER} 3d PRZYZNANIE".replace("{USER}", p.getName()));
             return false;
         }
-        ChatUtil.sendMessage((CommandSender)p, "&4Blad: &cNie jestes sprawdzany!");
+        ChatUtil.sendMessage(p, "&4Blad: &cNie jestes sprawdzany!");
         return true;
     }
 }

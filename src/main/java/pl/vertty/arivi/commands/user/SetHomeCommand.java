@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.user;
 
 import cn.nukkit.Player;
@@ -22,7 +18,7 @@ public class SetHomeCommand extends PlayerCommand
     @Override
     public boolean onCommand(final Player p, final String[] args) {
         if (p.getLocation().getY() <= 2.0) {
-            return ChatUtil.sendMessage((CommandSender)p, "&cHome mozesz ustawic powyzej 2 kratek wysokosci!");
+            return ChatUtil.sendMessage(p, "&cHome mozesz ustawic powyzej 2 kratek wysokosci!");
         }
         final User u = UserManager.getUser(p);
         if (u == null) {

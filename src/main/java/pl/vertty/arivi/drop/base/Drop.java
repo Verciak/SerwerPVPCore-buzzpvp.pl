@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.drop.base;
 
 import cn.nukkit.item.Item;
@@ -18,19 +14,19 @@ public class Drop
 {
     private String name;
     private Item item;
-    private double chance;
-    private boolean fortune;
-    private int height;
-    private int slot;
-    private List<String> disabled;
-    private String invname;
-    private String message;
-    private int lvl;
+    private final double chance;
+    private final boolean fortune;
+    private final int height;
+    private final int slot;
+    private final List<String> disabled;
+    private final String invname;
+    private final String message;
+    private final int lvl;
     Config config;
     
     public Drop(final String name, final Item item, final int height, final int slot, final double chance, final boolean fortune, final String message, final int lvl) {
         this.config = Main.getPlugin().getConfig();
-        this.disabled = new ArrayList<String>();
+        this.disabled = new ArrayList<>();
         this.name = name;
         this.item = item;
         this.chance = chance;
@@ -84,18 +80,6 @@ public class Drop
     
     public void setItem(final Item item) {
         this.item = item;
-    }
-    
-    public void setChance(final double chance) {
-        this.chance = chance;
-    }
-    
-    public void setFortune(final boolean fortune) {
-        this.fortune = fortune;
-    }
-    
-    public void setDisabled(final List<String> disabled) {
-        this.disabled = disabled;
     }
     
     public void disable(final String player) {

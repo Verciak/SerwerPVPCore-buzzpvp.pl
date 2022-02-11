@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.drop.utils;
 
 import java.util.Random;
@@ -20,10 +16,6 @@ public final class RandomUtils
     
     public static Double getRandDouble(final double min, final double max) throws IllegalArgumentException {
         return RandomUtils.rand.nextDouble() * (max - min) + min;
-    }
-    
-    public static Float getRandFloat(final float min, final float max) throws IllegalArgumentException {
-        return RandomUtils.rand.nextFloat() * (max - min) + min;
     }
     
     public static boolean getChance(final double chance) {

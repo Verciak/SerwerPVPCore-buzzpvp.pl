@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.user;
 
 import cn.nukkit.Player;
@@ -24,14 +20,14 @@ public class WarpCommand extends PlayerCommand
     public boolean onCommand(final Player p, final String[] args) {
         if (args.length < 1) {
             if (WarpManager.getWarpByGroup(p).size() == 0) {
-                return ChatUtil.sendMessage((CommandSender)p, "&8>> &cBrak warpow!");
+                return ChatUtil.sendMessage(p, "&8>> &cBrak warpow!");
             }
-            return ChatUtil.sendMessage((CommandSender)p, "&8>> &7Warpy: &6" + StringUtils.join(WarpManager.getWarpByGroup(p), "&8, &6"));
+            return ChatUtil.sendMessage(p, "&8>> &7Warpy: &6" + StringUtils.join(WarpManager.getWarpByGroup(p), "&8, &6"));
         }
         else {
             final Warp w = WarpManager.getWarp(args[0]);
             if (w == null) {
-                return ChatUtil.sendMessage((CommandSender)p, "&cWarp nie istnieje!");
+                return ChatUtil.sendMessage(p, "&cWarp nie istnieje!");
             }
             TimerUtil.teleport(p, w.getLocation(), 10);
             return true;

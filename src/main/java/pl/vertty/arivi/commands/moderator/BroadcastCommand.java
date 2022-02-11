@@ -1,13 +1,7 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.moderator;
 
-import cn.nukkit.utils.Config;
 import cn.nukkit.Server;
 import pl.vertty.arivi.utils.ChatUtil;
-import pl.vertty.arivi.Main;
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
 import pl.vertty.arivi.enums.GroupType;
@@ -22,7 +16,6 @@ public class BroadcastCommand extends Command
     @Override
     public boolean onExecute(final CommandSender sender, final String[] args) {
         if (args.length < 2) return ChatUtil.sendMessage(sender, this.getUsage());
-
         String message = ChatUtil.fixColor(message(args));
         switch (args[0]) {
             case "title": {

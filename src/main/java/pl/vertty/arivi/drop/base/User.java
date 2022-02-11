@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.drop.base;
 
 import pl.vertty.arivi.drop.base.utils.UserUtils;
@@ -18,7 +14,6 @@ public class User implements Comparable<User>
     private int blocks;
     private int blockstonext;
     private Map<String, Integer> drops;
-    public static Map<String, Integer> plecak;
     private int cobble;
     private int dirt;
     private boolean changes;
@@ -31,8 +26,7 @@ public class User implements Comparable<User>
         this.blocks = 0;
         this.blockstonext = 50;
         this.changes = true;
-        this.drops = new HashMap<String, Integer>();
-        User.plecak = new HashMap<String, Integer>();
+        this.drops = new HashMap<>();
         UserUtils.add(this);
     }
     
@@ -102,23 +96,8 @@ public class User implements Comparable<User>
         this.changes();
     }
     
-    public void removeLvl(final int remove) {
-        this.lvl -= remove;
-        this.changes();
-    }
-    
     public void addBlocks(final int add) {
         this.blocks += add;
-        this.changes();
-    }
-    
-    public void removeBlocks(final int remove) {
-        this.blocks -= remove;
-        this.changes();
-    }
-    
-    public void addBlocksToNext(final int add) {
-        this.blockstonext += add;
         this.changes();
     }
     
@@ -143,22 +122,6 @@ public class User implements Comparable<User>
         return this.drops;
     }
     
-    public void addPlecak(final Drop drop, final int amount) {
-        int i = this.getDrop(drop.getName());
-        i += amount;
-        User.plecak.put(drop.getName().toLowerCase(), i);
-        this.changes();
-    }
-    
-    public void setPlecak(final Map<String, Integer> plecak) {
-        User.plecak = plecak;
-        this.changes();
-    }
-    
-    public Map<String, Integer> getPlecak() {
-        return User.plecak;
-    }
-    
     public int getDrop(final String drop) {
         if (!this.drops.containsKey(drop.toLowerCase())) {
             return 0;
@@ -166,22 +129,11 @@ public class User implements Comparable<User>
         return this.drops.get(drop.toLowerCase());
     }
     
-    public int getPlecak(final String drop) {
-        if (!User.plecak.containsKey(drop.toLowerCase())) {
-            return 0;
-        }
-        return User.plecak.get(drop.toLowerCase());
-    }
-    
     public void addCobble() {
         ++this.cobble;
         this.changes();
     }
-    
-    public void addDirt() {
-        ++this.dirt;
-        this.changes();
-    }
+
     
     public int getCobble() {
         return this.cobble;

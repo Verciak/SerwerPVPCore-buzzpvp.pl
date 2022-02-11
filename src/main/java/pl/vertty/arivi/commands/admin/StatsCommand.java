@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.admin;
 
 import pl.vertty.arivi.guilds.data.User;
@@ -34,10 +30,8 @@ public class StatsCommand extends Command
             return ChatUtil.sendMessage(sender, "&4Blad: &cTo nie liczba!");
         }
         final int i = Integer.parseInt(args[2]);
-        final String s3;
-        final String s4;
-        final String s2 = s4 = (s3 = args[1]);
-        switch (s4) {
+        final String s = args[1];
+        switch (s) {
             case "ochrona": {
                 u.setOchrona(System.currentTimeMillis() + TimeUtil.MINUTE.getTime(3));
                 return ChatUtil.sendMessage(sender, "&8>> &7nadales ochrone dla &6" + u.getName());

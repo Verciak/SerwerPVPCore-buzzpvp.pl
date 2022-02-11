@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.helper;
 
 import pl.vertty.arivi.objects.Sprawdz;
@@ -23,21 +19,21 @@ public class CzystyCommand extends Command
     public boolean onExecute(final CommandSender sender, final String[] args) {
         final Player p = (Player)sender;
         if (args.length < 1) {
-            ChatUtil.sendMessage((CommandSender)p, SprawdzManager.messages.get("currect_usage").replace("{USAGE}", this.getUsage()));
+            ChatUtil.sendMessage(p, SprawdzManager.messages.get("currect_usage").replace("{USAGE}", this.getUsage()));
             return false;
         }
         final Player tar = Server.getInstance().getPlayer(args[0]);
         if (tar == null) {
-            ChatUtil.sendMessage((CommandSender)p, SprawdzManager.messages.get("user_offline").replace("{USAGE}", this.getUsage()));
+            ChatUtil.sendMessage(p, SprawdzManager.messages.get("user_offline").replace("{USAGE}", this.getUsage()));
             return false;
         }
         if (SprawdzManager.getByPlayer(tar) == null) {
-            ChatUtil.sendMessage((CommandSender)p, SprawdzManager.messages.get("not_user"));
+            ChatUtil.sendMessage(p, SprawdzManager.messages.get("not_user"));
             return false;
         }
         final Sprawdz s = SprawdzManager.getByPlayer(tar);
         if (s.getAdmin() != p) {
-            ChatUtil.sendMessage((CommandSender)p, SprawdzManager.messages.get("not_admin"));
+            ChatUtil.sendMessage(p, SprawdzManager.messages.get("not_admin"));
             return false;
         }
         Server.getInstance().broadcastMessage(ChatUtil.fixColor("&9{USER} &7jest czysty! Zostal sprawdzany przez: &9{ADMIN}").replace("{USER}", s.getPlayer().getName()).replace("{ADMIN}", p.getName()));

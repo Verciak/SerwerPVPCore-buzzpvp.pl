@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.helper;
 
 import cn.nukkit.utils.Config;
@@ -25,20 +21,19 @@ public class FlyCommand extends Command
     public boolean onExecute(final CommandSender sender, final String[] args) {
         final Player p = (Player)sender;
         final User u = UserManager.getUser(p);
-        final Config c = Main.getPlugin().getConfig();
         if (args.length == 0) {
             p.setAllowFlight(!p.getAllowFlight());
-            return ChatUtil.sendMessage((CommandSender)p, "&8>> &cFly zostal &6" + (p.getAllowFlight() ? "wlaczony" : "wylaczony"));
+            return ChatUtil.sendMessage(p, "&8>> &cFly zostal &6" + (p.getAllowFlight() ? "wlaczony" : "wylaczony"));
         }
         if (!u.can(GroupType.MODERATOR)) {
-            return ChatUtil.sendMessage((CommandSender)p, "&cNie masz dostepu!");
+            return ChatUtil.sendMessage(p, "&cNie masz dostepu!");
         }
         final Player o = Server.getInstance().getPlayer(args[0]);
         if (o == null) {
-            return ChatUtil.sendMessage((CommandSender)p, "&4Blad: &cGracz jest offline");
+            return ChatUtil.sendMessage(p, "&4Blad: &cGracz jest offline");
         }
         o.setAllowFlight(!o.getAllowFlight());
-        ChatUtil.sendMessage((CommandSender)o, "&8>> &cFly zostal &6" + (o.getAllowFlight() ? "wlaczony" : "wylaczony") + " &cprzez &6" + p.getName());
-        return ChatUtil.sendMessage((CommandSender)p, "&8>> &cFly zostal &c" + (o.getAllowFlight() ? "wlaczony" : "wylaczony") + " &7dla &6" + o.getName());
+        ChatUtil.sendMessage(o, "&8>> &cFly zostal &6" + (o.getAllowFlight() ? "wlaczony" : "wylaczony") + " &cprzez &6" + p.getName());
+        return ChatUtil.sendMessage(p, "&8>> &cFly zostal &c" + (o.getAllowFlight() ? "wlaczony" : "wylaczony") + " &7dla &6" + o.getName());
     }
 }

@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.drop.data;
 
 import cn.nukkit.utils.Config;
@@ -14,15 +10,15 @@ import java.sql.SQLException;
 public class Database {
     private static Database inst;
 
-    private String host;
+    private final String host;
 
-    private String base;
+    private final String base;
 
-    private String user;
+    private final String user;
 
-    private String pass;
+    private final String pass;
 
-    private int port;
+    private final int port;
 
     private static Connection conn;
 
@@ -46,21 +42,20 @@ public class Database {
         return conn;
     }
 
-    public Connection openConnection() {
+    public void openConnection() {
         try {
             if (conn != null && !conn.isClosed())
-                return null;
+                return;
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            return conn = DriverManager.getConnection("jdbc:mysql://" + this.host + ":" + Integer.toString(this.port) + "/" + this.base + "?useSSL=false&serverTimezone=Europe/Warsaw&user=" + this.user + "&password=" + this.pass);
+            conn = DriverManager.getConnection("jdbc:mysql://" + this.host + ":" + this.port + "/" + this.base + "?useSSL=false&serverTimezone=Europe/Warsaw&user=" + this.user + "&password=" + this.pass);
         } catch (SQLException|ClassNotFoundException|InstantiationException|IllegalAccessException ex2) {
             ex2.printStackTrace();
-            return null;
         }
     }
 
     public void closeConnection() {
         try {
-            if (conn == null || (conn != null && conn.isClosed()))
+            if (conn == null || conn.isClosed())
                 return;
             conn.close();
         } catch (SQLException e) {
@@ -71,7 +66,7 @@ public class Database {
     public void check() {
         openConnection();
         try {
-            conn.createStatement().executeUpdate("CREATE TABLE IF NOT EXISTS `DMdrops` (name varchar(50) not null, turbo long not null, turboexp long not null, lvl int not null, blocks int not null, blockstonext int not null, drops text not null, plecak text not null, cobble int not null, dirt int not null, primary key(name));");
+            conn.createStatement().executeUpdate("CREATE TABLE IF NOT EXISTS `DMdrops` (name varchar(50) not null, turbo long not null, turboexp long not null, lvl int not null, blocks int not null, blockstonext int not null, drops text not null, cobble int not null, dirt int not null, primary key(name));");
         } catch (SQLException e) {
             e.printStackTrace();
         }

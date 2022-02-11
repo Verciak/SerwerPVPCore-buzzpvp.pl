@@ -8,6 +8,8 @@ import java.util.Iterator;
 import cn.nukkit.Player;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import pl.vertty.arivi.MainConstants;
 import pl.vertty.arivi.guilds.utils.Logger;
 import pl.vertty.arivi.guilds.rank.RankingManager;
 import java.util.Collection;
@@ -29,8 +31,7 @@ public class UserManager
     }
     
     public static boolean canPlaceByBorder(final Location loc) {
-        final Config c = Main.getPlugin().getConfig();
-        return Math.abs(c.getInt("border") - loc.getFloorX()) >= 10 && Math.abs(c.getInt("border") - loc.getFloorZ()) >= 10 && Math.abs(-c.getInt("border") - loc.getFloorX()) >= 10 && Math.abs(-c.getInt("border") - loc.getFloorZ()) >= 10 && Math.abs(-c.getInt("border") - loc.getFloorX()) >= 10 && Math.abs(c.getInt("border") - loc.getFloorZ()) >= 10 && Math.abs(c.getInt("border") - loc.getFloorX()) >= 10 && Math.abs(-c.getInt("border") - loc.getFloorZ()) >= 10;
+        return Math.abs(MainConstants.BORDER - loc.getFloorX()) >= 10 && Math.abs(MainConstants.BORDER - loc.getFloorZ()) >= 10 && Math.abs(-MainConstants.BORDER - loc.getFloorX()) >= 10 && Math.abs(-MainConstants.BORDER - loc.getFloorZ()) >= 10 && Math.abs(-MainConstants.BORDER - loc.getFloorX()) >= 10 && Math.abs(MainConstants.BORDER - loc.getFloorZ()) >= 10 && Math.abs(MainConstants.BORDER - loc.getFloorX()) >= 10 && Math.abs(-MainConstants.BORDER - loc.getFloorZ()) >= 10;
     }
     
     public static List<User> getOnline() {

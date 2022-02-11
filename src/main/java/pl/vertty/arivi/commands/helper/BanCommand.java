@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.helper;
 
 import pl.vertty.arivi.guilds.data.User;
@@ -27,8 +23,6 @@ public class BanCommand extends Command
     
     @Override
     public boolean onExecute(final CommandSender sender, final String[] args) {
-        final Player p = (Player)sender;
-        final Config c = Main.getPlugin().getConfig();
         if (args.length < 2) {
             return ChatUtil.sendMessage(sender, this.getUsage());
         }
@@ -43,7 +37,7 @@ public class BanCommand extends Command
         final String admin = sender.getName().equals("CONSOLE") ? "konsola" : sender.getName();
         String reason = "Brak!";
         if (args.length > 2) {
-            reason = StringUtils.join((Object[])args, " ", 2, args.length);
+            reason = StringUtils.join(args, " ", 2, args.length);
         }
         final long time = DataUtil.parseDateDiff(args[1], true);
         if (time > System.currentTimeMillis()) {

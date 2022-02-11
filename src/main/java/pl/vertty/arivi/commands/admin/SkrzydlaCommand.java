@@ -1,10 +1,5 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.admin;
 
-import java.util.Iterator;
 import java.util.List;
 import pl.vertty.arivi.wings.mysql.UserWings;
 import pl.vertty.arivi.utils.SkinUtil;
@@ -51,11 +46,11 @@ public class SkrzydlaCommand extends Command
         if (args[0].equalsIgnoreCase("nadaj")) {
             final Player o = Server.getInstance().getPlayer(args[1]);
             if (o == null) {
-                ChatUtil.sendMessage((CommandSender)p, "&4Blad: &cGracz jest offline!");
+                ChatUtil.sendMessage(p, "&4Blad: &cGracz jest offline!");
                 return false;
             }
             WingsManager.setRatWings(o, WingsManager.getWings(args[2]));
-            ChatUtil.sendMessage((CommandSender)p, "&6Nadano skrzydla o nazwe: &c" + args[2]);
+            ChatUtil.sendMessage(p, "&6Nadano skrzydla o nazwe: &c" + args[2]);
         }
         else {
             if (!args[0].equalsIgnoreCase("usun")) {
@@ -71,7 +66,7 @@ public class SkrzydlaCommand extends Command
             else {
                 UserWings.deleteUser(args[1]);
             }
-            ChatUtil.sendMessage((CommandSender)p, "&6Usunieto skrzydla");
+            ChatUtil.sendMessage(p, "&6Usunieto skrzydla");
         }
         return false;
     }

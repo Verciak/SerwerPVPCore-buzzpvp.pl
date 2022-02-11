@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.user;
 
 import cn.nukkit.Player;
@@ -21,7 +17,6 @@ import java.util.UUID;
 
 public class HelpopCommand extends PlayerCommand
 {
-    private static final HashMap<UUID, Long> times;
     
     public HelpopCommand() {
         super("helpop", "Wysylanie zgloszenia do administracji", "/helpop <wiadomosc>", GroupType.PLAYER, new String[] { "" });
@@ -30,24 +25,20 @@ public class HelpopCommand extends PlayerCommand
     @Override
     public boolean onCommand(final Player p, final String[] args) {
         if (args.length < 1) {
-            return ChatUtil.sendMessage((CommandSender)p, this.getUsage());
+            return ChatUtil.sendMessage(p, this.getUsage());
         }
         final User u = UserManager.getUser(p);
         if (!u.can(GroupType.HELPER) && u.isLastHelpop()) {
-            return ChatUtil.sendMessage((CommandSender)p, "&8>> &7Helpop mozesz uzyc za &6" + DataUtil.secondsToString(u.getLastHelpop()));
+            return ChatUtil.sendMessage(p, "&8>> &7Helpop mozesz uzyc za &6" + DataUtil.secondsToString(u.getLastHelpop()));
         }
         u.setLastHelpop(System.currentTimeMillis() + TimeUtil.MINUTE.getTime(1));
-        final String msg = StringUtils.join((Object[])args, " ");
+        final String msg = StringUtils.join(args, " ");
         for (final Player players : Server.getInstance().getOnlinePlayers().values()) {
             final User user = UserManager.getUser(players);
             if (user.can(GroupType.HELPER)) {
-                ChatUtil.sendMessage((CommandSender)user.getPlayer(), "&c&l[&e&lHelpOp&c&l] &6" + p.getName() + "&8: &7" + msg);
+                ChatUtil.sendMessage(user.getPlayer(), "&c&l[&e&lHelpOp&c&l] &6" + p.getName() + "&8: &7" + msg);
             }
         }
-        return ChatUtil.sendMessage((CommandSender)p, "&8>> &7Twoje zgloszenie zostalo wyslane!");
-    }
-    
-    static {
-        times = new HashMap<UUID, Long>();
+        return ChatUtil.sendMessage(p, "&8>> &7Twoje zgloszenie zostalo wyslane!");
     }
 }

@@ -1,12 +1,7 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.moderator;
 
 import pl.vertty.arivi.inventory.InventoryMenuHandler;
 import pl.vertty.arivi.inventory.item.ItemData;
-import cn.nukkit.item.Item;
 import pl.vertty.arivi.inventory.InventoryCategory;
 import pl.vertty.arivi.inventory.InventoryMenu;
 import cn.nukkit.Server;

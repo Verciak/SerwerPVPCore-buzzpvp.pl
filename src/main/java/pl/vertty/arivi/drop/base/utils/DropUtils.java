@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.drop.base.utils;
 
 import cn.nukkit.item.Item;
@@ -15,10 +11,10 @@ import java.util.List;
 
 public class DropUtils
 {
-    private static List<Drop> drops = new ArrayList<Drop>();
-    private static List<String> cobble = new ArrayList<String>();
-    private static List<String> eq = new ArrayList<String>();
-    private static List<String> msg = new ArrayList<String>();
+    private static final List<Drop> drops = new ArrayList<>();
+    private static final List<String> cobble = new ArrayList<>();
+    private static final List<String> eq = new ArrayList<>();
+    private static final List<String> msg = new ArrayList<>();
     
     public static void load() {
         final Config c = Main.getPlugin().getConfig();
@@ -26,7 +22,7 @@ public class DropUtils
         for (final String s : c.getSection("drops").getKeys(false)) {
             final String name = c.getString("drops." + s + ".name");
             final List<String> lore = c.getStringList("drops." + s + ".lore");
-            final Item item = new Item(c.getInt("drops." + s + ".item"), Integer.valueOf(0), 1);
+            final Item item = new Item(c.getInt("drops." + s + ".item"), 0, 1);
             if (name != null) {
                 item.setCustomName(Colors.translate(name));
             }
@@ -45,7 +41,7 @@ public class DropUtils
     }
     
     public static List<Drop> getDrops() {
-        return new ArrayList<Drop>(DropUtils.drops);
+        return new ArrayList<>(DropUtils.drops);
     }
     
     public static boolean isCobble(final String player) {
@@ -66,16 +62,7 @@ public class DropUtils
         return !DropUtils.eq.contains(player.toLowerCase());
     }
     
-    public static void disableEq(final String player) {
-        if (!DropUtils.eq.contains(player.toLowerCase())) {
-            DropUtils.eq.add(player.toLowerCase());
-        }
-    }
-    
-    public static void enableEq(final String player) {
-        DropUtils.eq.remove(player.toLowerCase());
-    }
-    
+
     public static boolean isMsg(final String player) {
         return !DropUtils.msg.contains(player.toLowerCase());
     }

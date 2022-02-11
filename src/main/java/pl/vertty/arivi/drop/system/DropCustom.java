@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.drop.system;
 
 import cn.nukkit.Player;
@@ -32,7 +28,7 @@ public class DropCustom implements DropData
 {
     @Override
     public void breakBlock(final Player player, final Item tool, final Block block, final User user) {
-        final List<Item> drops = new ArrayList<Item>();
+        final List<Item> drops = new ArrayList<>();
         final Config c = Main.getPlugin().getConfig();
         player.addExperience(user.isTurboExp() ? (c.getInt("exp.stone") + 15) : c.getInt("exp.stone"));
         if (DropUtils.isCobble(player.getName())) {
@@ -94,14 +90,14 @@ public class DropCustom implements DropData
                             u.addPerly(u.getPerly() + amount);
                             return;
                         }
-                        user.addPlecak(drop, amount);
+                        player.dropItem(Item.get(drop.getItem().getId(), drop.getItem().getDamage(), amount));
                     }
                 }
             }
             else {
                 final Location loc = block.getLocation();
                 final Item ia = new Item(drop.getItem().getId(), Integer.valueOf(0), amount);
-                loc.getLevel().dropItem((Vector3)block.getLocation(), ia);
+                loc.getLevel().dropItem(block.getLocation(), ia);
             }
             if (!DropUtils.isMsg(player.getName())) {
                 continue;

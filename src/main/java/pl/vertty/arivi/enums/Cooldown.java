@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.enums;
 
 import java.util.Map;
@@ -13,7 +9,7 @@ public final class Cooldown<T>
     private final Map<T, Long> cooldowns;
     
     public Cooldown() {
-        this.cooldowns = new WeakHashMap<T, Long>(32);
+        this.cooldowns = new WeakHashMap<>(32);
     }
     
     public boolean isOnCooldown(final T key) {
