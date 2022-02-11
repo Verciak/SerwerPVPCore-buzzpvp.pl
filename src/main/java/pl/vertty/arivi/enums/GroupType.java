@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.enums;
 
 import pl.vertty.arivi.Main;
@@ -25,7 +21,7 @@ public enum GroupType
     private String fullName;
     private String suffix;
     
-    private GroupType(final String s, final int n, final int level, final String prefix, final String fullName, final String suffix) {
+    GroupType(final String s, final int n, final int level, final String prefix, final String fullName, final String suffix) {
         this.level = level;
         this.prefix = prefix;
         this.suffix = suffix;

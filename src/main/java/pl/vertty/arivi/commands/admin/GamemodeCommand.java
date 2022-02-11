@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.admin;
 
 import cn.nukkit.Server;
@@ -25,7 +21,7 @@ public class GamemodeCommand extends Command
         }
         final Player p = (Player)sender;
         if (args.length == 1) {
-            p.setGamemode((int)Integer.valueOf(args[0]));
+            p.setGamemode(Integer.valueOf(args[0]));
             ChatUtil.sendMessage(sender, "&8» &7Twoj tryb gamemode zostal zmieniony na &b" + args[0] + "&7!");
             return false;
         }
@@ -34,8 +30,8 @@ public class GamemodeCommand extends Command
             ChatUtil.sendMessage(sender, "&c&lBlad: &7Gracz jest offline");
             return false;
         }
-        o.setGamemode((int)Integer.valueOf(args[0]));
-        ChatUtil.sendMessage((CommandSender)o, "&8» &7Twoj tryb gamemode zostal zmieniony na &b" + args[0] + "&7 przez &3" + sender.getName() + "&7!");
+        o.setGamemode(Integer.valueOf(args[0]));
+        ChatUtil.sendMessage(o, "&8» &7Twoj tryb gamemode zostal zmieniony na &b" + args[0] + "&7 przez &3" + sender.getName() + "&7!");
         ChatUtil.sendMessage(sender, "&8» &7Zmieniles tryb gamemode graczowi &3" + o.getName() + " &7na &b" + args[0] + "&7!");
         return true;
     }

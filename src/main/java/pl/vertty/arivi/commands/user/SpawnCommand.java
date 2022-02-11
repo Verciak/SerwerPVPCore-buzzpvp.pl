@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.user;
 
 import cn.nukkit.Player;
@@ -28,13 +24,13 @@ public class SpawnCommand extends PlayerCommand
         }
         final User u = UserManager.getUser(p);
         if (!u.can(GroupType.ADMIN)) {
-            return ChatUtil.sendMessage((CommandSender)p, "&8>> &cNie masz dostepu!");
+            return ChatUtil.sendMessage(p, "&8>> &cNie masz dostepu!");
         }
         final Player o = Server.getInstance().getPlayer(args[0]);
         if (o == null) {
-            return ChatUtil.sendMessage((CommandSender)p, "&cGracz jest offline!");
+            return ChatUtil.sendMessage(p, "&cGracz jest offline!");
         }
         TimerUtil.teleportSpawn(o, Server.getInstance().getDefaultLevel().getSpawnLocation().getLocation(), 10);
-        return ChatUtil.sendMessage((CommandSender)p, "&8>> &cPrzeteleportowales gracza &4" + o.getName() + " &cna spawn!");
+        return ChatUtil.sendMessage(p, "&8>> &cPrzeteleportowales gracza &4" + o.getName() + " &cna spawn!");
     }
 }

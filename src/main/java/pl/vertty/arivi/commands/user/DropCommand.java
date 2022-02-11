@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.user;
 
 import cn.nukkit.Player;
@@ -35,23 +31,23 @@ public class DropCommand extends PlayerCommand
         if (args[0].equalsIgnoreCase("reload")) {
             DropUtils.load();
             new DataManager();
-            ChatUtil.sendMessage((CommandSender)player, "&aKonfiguracja dropu zostala przeladowana");
+            ChatUtil.sendMessage(player, "&aKonfiguracja dropu zostala przeladowana");
             return true;
         }
         if (args.length == 1 || args.length == 2) {
-            ChatUtil.sendMessage((CommandSender)player, "&6/drop turbo [drop/exp] [nick] [czas] &8-&7 wlacza turbodrop graczowi");
-            ChatUtil.sendMessage((CommandSender)player, "&6/drop turbo [drop/exp] [nick] -1 &8-&7 wlacza turbodrop na zawsze");
-            ChatUtil.sendMessage((CommandSender)player, "&6/drop turbo [drop/exp] [nick] off &8-&7 wylacza turbodrop graczowi");
-            ChatUtil.sendMessage((CommandSender)player, "&6/drop turbo [drop/exp] [nick] &8-&7 sprawdza czy gracz ma turbodrop");
-            ChatUtil.sendMessage((CommandSender)player, "&6/drop turboall [drop/exp] [czas] &8-&7 wlacza turbodrop dla wszystkich");
-            ChatUtil.sendMessage((CommandSender)player, "&6/drop turboall [drop/exp] off &8-&7 wylacza turbodrop dla wszystkich");
-            ChatUtil.sendMessage((CommandSender)player, "&6/drop reload &8-&7 przeladowywuje konfiguracje");
+            ChatUtil.sendMessage(player, "&6/drop turbo [drop/exp] [nick] [czas] &8-&7 wlacza turbodrop graczowi");
+            ChatUtil.sendMessage(player, "&6/drop turbo [drop/exp] [nick] -1 &8-&7 wlacza turbodrop na zawsze");
+            ChatUtil.sendMessage(player, "&6/drop turbo [drop/exp] [nick] off &8-&7 wylacza turbodrop graczowi");
+            ChatUtil.sendMessage(player, "&6/drop turbo [drop/exp] [nick] &8-&7 sprawdza czy gracz ma turbodrop");
+            ChatUtil.sendMessage(player, "&6/drop turboall [drop/exp] [czas] &8-&7 wlacza turbodrop dla wszystkich");
+            ChatUtil.sendMessage(player, "&6/drop turboall [drop/exp] off &8-&7 wylacza turbodrop dla wszystkich");
+            ChatUtil.sendMessage(player, "&6/drop reload &8-&7 przeladowywuje konfiguracje");
             return false;
         }
         if (args[0].equalsIgnoreCase("turbo") && args.length == 3) {
             final pl.vertty.arivi.drop.base.User user = UserUtils.get(args[2]);
             if (user == null) {
-                ChatUtil.sendMessage((CommandSender)player, "&cNie odnaleziono gracza");
+                ChatUtil.sendMessage(player, "&cNie odnaleziono gracza");
                 return false;
             }
             if (args[1].equalsIgnoreCase("exp")) {
@@ -66,7 +62,7 @@ public class DropCommand extends PlayerCommand
         else if (args[0].equalsIgnoreCase("turbo") && args.length == 4) {
             final pl.vertty.arivi.drop.base.User user = UserUtils.get(args[2]);
             if (user == null) {
-                ChatUtil.sendMessage((CommandSender)player, "&cNie odnaleziono gracza");
+                ChatUtil.sendMessage(player, "&cNie odnaleziono gracza");
                 return false;
             }
             if (args[1].equalsIgnoreCase("exp")) {

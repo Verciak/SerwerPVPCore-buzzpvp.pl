@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.admin;
 
 import pl.vertty.arivi.Main;
@@ -15,8 +11,6 @@ import pl.vertty.arivi.commands.builder.Command;
 
 public class EntityClearCommand extends Command
 {
-    public static Config c;
-    
     public EntityClearCommand() {
         super("entity", "Usuwanie entity serwera", "/entity", GroupType.ADMIN, new String[] { "" });
     }
@@ -33,9 +27,5 @@ public class EntityClearCommand extends Command
         }
         player.sendMessage(TextFormat.DARK_GREEN + "Wypierdalam tych smieci..." + TextFormat.RED + " " + amount);
         return false;
-    }
-    
-    static {
-        EntityClearCommand.c = Main.getPlugin().getConfig();
     }
 }

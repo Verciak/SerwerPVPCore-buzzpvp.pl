@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.helper;
 
 import cn.nukkit.Server;
@@ -10,7 +6,6 @@ import cn.nukkit.command.CommandSender;
 import pl.vertty.arivi.Main;
 import pl.vertty.arivi.commands.builder.Command;
 import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.commands.builder.PlayerCommand;
 import pl.vertty.arivi.managers.RestartManager;
 import pl.vertty.arivi.utils.ChatUtil;
 

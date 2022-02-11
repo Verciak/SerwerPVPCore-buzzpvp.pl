@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.helper;
 
 import pl.vertty.arivi.guilds.data.User;
@@ -23,19 +19,19 @@ public class HealCommand extends Command
     public boolean onExecute(final CommandSender sender, final String[] args) {
         final Player p = (Player)sender;
         if (args.length == 0) {
-            p.setHealth((float)p.getMaxHealth());
-            return ChatUtil.sendMessage((CommandSender)p, "&8>> &cZostales uleczony!");
+            p.setHealth(p.getMaxHealth());
+            return ChatUtil.sendMessage(p, "&8>> &cZostales uleczony!");
         }
         final User u = UserManager.getUser(p);
         if (!u.can(GroupType.ADMIN)) {
-            return ChatUtil.sendMessage((CommandSender)p, "&8>> &cNie masz dostepu!");
+            return ChatUtil.sendMessage(p, "&8>> &cNie masz dostepu!");
         }
         final Player o = Server.getInstance().getPlayer(args[0]);
         if (o == null) {
-            return ChatUtil.sendMessage((CommandSender)p, "&4Blad: &cGracz jest offline!");
+            return ChatUtil.sendMessage(p, "&4Blad: &cGracz jest offline!");
         }
-        o.setHealth((float)p.getMaxHealth());
-        ChatUtil.sendMessage((CommandSender)o, "&8>> &cZostales uleczony przez &6" + p.getName());
-        return ChatUtil.sendMessage((CommandSender)p, "&8>> &cUleczyles &6" + o.getName());
+        o.setHealth(p.getMaxHealth());
+        ChatUtil.sendMessage(o, "&8>> &cZostales uleczony przez &6" + p.getName());
+        return ChatUtil.sendMessage(p, "&8>> &cUleczyles &6" + o.getName());
     }
 }

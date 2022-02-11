@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.loader;
 
 import pl.vertty.arivi.commands.helper.*;
@@ -35,15 +31,13 @@ public class CommandsLoader
 {
     public static void onCommandsLoad() {
         registerCommand(new PomocCommand());
-//        registerCommand(new VIPCommand());
-//        registerCommand(new sVIPCommand());
-//        registerCommand(new SponsorCommand());
-//        registerCommand(new YTCommand());
+        registerCommand(new VIPCommand());
+        registerCommand(new sVIPCommand());
+        registerCommand(new SponsorCommand());
+        registerCommand(new YTCommand());
         registerCommand(new PingCommand());
         registerCommand(new IgnoreCommand());
         registerCommand(new WorkbenchCommand());
-        registerCommand(new EnderchestCommand());
-        registerCommand(new PlecakCommand());
         registerCommand(new ReplyCommand());
         registerCommand(new BackupCommand());
         registerCommand(new aItemShopCommand());
@@ -56,8 +50,7 @@ public class CommandsLoader
         registerCommand(new CheaterCommand());
         registerCommand(new PandoraCommand());
         registerCommand(new StopCommand());
-//        registerCommand(new AdminPanelCommand());
-        registerCommand(new CaseCommand());
+        registerCommand(new AdminPanelCommand());
         registerCommand(new DelHomeCommand());
         registerCommand(new DropCommand());
         registerCommand(new GroupCommand());
@@ -99,7 +92,6 @@ public class CommandsLoader
         registerCommand(new TpaCommand());
         registerCommand(new TpdenyCommmand());
         registerCommand(new WarpCommand());
-        registerCommand(new OsiagnieciaCommand());
         registerCommand(new EntityClearCommand());
         registerCommand(new EfektyCommand());
         registerCommand(new SkrzydlaCommand());
@@ -108,8 +100,7 @@ public class CommandsLoader
         registerrCommand(new GuildAdminCommand());
         registerrCommand(new IncognitoCommand());
         registerrCommand(new GuildGlobalCommand());
-//        registerCommand(new WhitelistCommand());
-//        registerCommand(new KlatkiCommand());
+        registerCommand(new WhitelistCommand());
     }
     
     public static void registerrCommand(final ConsoleCommand consoleCommand) {

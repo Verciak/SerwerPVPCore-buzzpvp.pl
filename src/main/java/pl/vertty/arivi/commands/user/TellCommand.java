@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.user;
 
 import cn.nukkit.Player;
@@ -31,39 +27,35 @@ public class TellCommand extends PlayerCommand
     public boolean onCommand(final Player player, final String[] args) {
         final User u = UserManager.getUser(player);
         if (args.length < 2) {
-            return ChatUtil.sendMessage((CommandSender)player, this.getUsage());
+            return ChatUtil.sendMessage(player, this.getUsage());
         }
         if(Server.getInstance().getPlayer(args[0]) == null){
-            return ChatUtil.sendMessage((CommandSender)player, "&cGracz nie jest online!");
+            return ChatUtil.sendMessage(player, "&cGracz nie jest online!");
         }
         final Player o = Server.getInstance().getPlayer(args[0]);
         final User user = UserManager.getUser(o);
         if (o == null) {
-            return ChatUtil.sendMessage((CommandSender)player, "&cGracz nie jest online!");
+            return ChatUtil.sendMessage(player, "&cGracz nie jest online!");
         }
         if (user.isIgnoreTell(o)) {
-            return ChatUtil.sendMessage((CommandSender) player, "&cTen gracz zablokowal od Ciebie prywatne wiadomosci!");
+            return ChatUtil.sendMessage( player, "&cTen gracz zablokowal od Ciebie prywatne wiadomosci!");
         }
         final Long t = TellCommand.times.get(player.getUniqueId());
         if (t != null && System.currentTimeMillis() - t < 3000L && !u.can(GroupType.ADMIN)) {
-            return ChatUtil.sendMessage((CommandSender)player, "&4Nie spamuj!");
+            return ChatUtil.sendMessage(player, "&4Nie spamuj!");
         }
-        final String message = TextFormat.colorize(ChatUtil.fixColor(StringUtils.join((Object[])args, " ", 1, args.length)));
+        final String message = TextFormat.colorize(ChatUtil.fixColor(StringUtils.join(args, " ", 1, args.length)));
         TellCommand.lastMsg.put(player.getUniqueId(), o.getUniqueId());
         TellCommand.lastMsg.put(o.getUniqueId(), player.getUniqueId());
         TellCommand.times.put(player.getUniqueId(), System.currentTimeMillis());
-        ChatUtil.sendMessage((CommandSender)player, "&eJa -> " + o.getName() + "&7: " + message);
-        return ChatUtil.sendMessage((CommandSender)o, "&e" + player.getName() + " -> Ja: &7" + message);
+        ChatUtil.sendMessage(player, "&eJa -> " + o.getName() + "&7: " + message);
+        return ChatUtil.sendMessage(o, "&e" + player.getName() + " -> Ja: &7" + message);
     }
     
     public static HashMap<UUID, UUID> getLastMsg() {
         return TellCommand.lastMsg;
     }
-    
-    public static HashMap<UUID, Long> getTimes() {
-        return TellCommand.times;
-    }
-    
+
     static {
         lastMsg = new HashMap<UUID, UUID>();
         times = new HashMap<UUID, Long>();

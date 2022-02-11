@@ -1,11 +1,6 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.user;
 
 import cn.nukkit.Player;
-import cn.nukkit.command.CommandSender;
 import pl.vertty.arivi.commands.builder.PlayerCommand;
 import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.managers.SprawdzManager;

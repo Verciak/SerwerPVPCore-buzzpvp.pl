@@ -1,14 +1,8 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.moderator;
 
 import pl.vertty.arivi.objects.Warp;
-import cn.nukkit.utils.Config;
 import pl.vertty.arivi.managers.WarpManager;
 import pl.vertty.arivi.utils.ChatUtil;
-import pl.vertty.arivi.Main;
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
 import pl.vertty.arivi.enums.GroupType;

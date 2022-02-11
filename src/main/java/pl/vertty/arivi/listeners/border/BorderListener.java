@@ -26,7 +26,7 @@ public class BorderListener implements Listener {
         final Config c = Main.getPlugin().getConfig();
         if (event.getTo().getFloorX() > MainConstants.BORDER || event.getTo().getFloorX() < -MainConstants.BORDER || event.getTo().getFloorZ() > MainConstants.BORDER || event.getTo().getFloorZ() < -MainConstants.BORDER) {
             event.setTo(event.getFrom());
-            player.sendMessage(ChatUtil.fixColor("&4Dotarles do granicy swiata! &8(&e%BORDER% kratek&8)").replace("%BORDER%", String.valueOf(c.getInt("border"))));
+            player.sendMessage(ChatUtil.fixColor("&4Dotarles do granicy swiata! &8(&e%BORDER% kratek&8)").replace("%BORDER%", String.valueOf(MainConstants.BORDER)));
         }
     }
 

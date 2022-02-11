@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.helper;
 
 import cn.nukkit.level.Location;
@@ -23,11 +19,11 @@ public class SprawdzCommand extends Command
     public boolean onExecute(final CommandSender sender, final String[] args) {
         final Player p = (Player)sender;
         if (SprawdzManager.getByAdmin(p) != null) {
-            ChatUtil.sendMessage((CommandSender)p, "&4Blad: &cSprawdzasz juz kogos!");
+            ChatUtil.sendMessage(p, "&4Blad: &cSprawdzasz juz kogos!");
             return false;
         }
         if (args.length < 2) {
-            ChatUtil.sendMessage((CommandSender)p, "&4Blad: &cPoprawne Uzycie: &7{USAGE}".replace("{USAGE}", this.getUsage()));
+            ChatUtil.sendMessage(p, "&4Blad: &cPoprawne Uzycie: &7{USAGE}".replace("{USAGE}", this.getUsage()));
             return false;
         }
         final StringBuilder reason = new StringBuilder();
@@ -36,16 +32,16 @@ public class SprawdzCommand extends Command
         }
         final Player tar = Server.getInstance().getPlayer(args[0]).getPlayer();
         if (tar == null) {
-            ChatUtil.sendMessage((CommandSender)p, "&4Blad: &cTen gracz jest offline!".replace("{USAGE}", this.getUsage()));
+            ChatUtil.sendMessage(p, "&4Blad: &cTen gracz jest offline!".replace("{USAGE}", this.getUsage()));
             return false;
         }
         if (SprawdzManager.getByPlayer(p) != null) {
-            ChatUtil.sendMessage((CommandSender)p, "&4Blad: &cTen gracz jest juz sprawdzany!");
+            ChatUtil.sendMessage(p, "&4Blad: &cTen gracz jest juz sprawdzany!");
             return false;
         }
         Server.getInstance().broadcastMessage(ChatUtil.fixColor("&7Gracz &9{USER}&7 jest sprawdzany przez: &9{ADMIN}!\n&8>> &7Powod: &9{REASON}").replace("{USER}", tar.getName()).replace("{ADMIN}", p.getName()).replace("{REASON}", reason.toString()));
         SprawdzManager.create(tar, p, reason.toString());
-        ChatUtil.sendMessage((CommandSender)tar, SprawdzManager.chat);
+        ChatUtil.sendMessage(tar, SprawdzManager.chat);
         tar.teleport(new Location(-41, 66.0, 44.0));
         return false;
     }

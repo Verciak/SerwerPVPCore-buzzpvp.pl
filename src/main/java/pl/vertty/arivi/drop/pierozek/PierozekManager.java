@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.drop.pierozek;
 
 import cn.nukkit.Player;
@@ -68,7 +64,7 @@ public class PierozekManager
     }
     
     static {
-        PierozekManager.drop = new ArrayList<Item>();
+        PierozekManager.drop = new ArrayList<>();
         final Item helm = new Item(306, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("Zelazny Helm 3/2"));
         helm.addEnchantment(new Enchantment[] { Enchantment.get(0).setLevel(3, true) });
         helm.addEnchantment(new Enchantment[] { Enchantment.get(17).setLevel(2, true) });

@@ -1,12 +1,7 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.headadmin;
 
 import pl.vertty.arivi.guilds.data.Combat;
 import pl.vertty.arivi.guilds.data.User;
-import java.util.Iterator;
 import pl.vertty.arivi.utils.ChatUtil;
 import pl.vertty.arivi.guilds.managers.CombatManager;
 import pl.vertty.arivi.guilds.managers.UserManager;

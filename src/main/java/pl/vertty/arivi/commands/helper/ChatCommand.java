@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.helper;
 
 import cn.nukkit.utils.Config;
@@ -22,15 +18,12 @@ public class ChatCommand extends Command
     
     @Override
     public boolean onExecute(final CommandSender sender, final String[] args) {
-        final Player p = (Player)sender;
         final Config c = Main.getPlugin().getConfig();
         if (args.length < 1) {
             return ChatUtil.sendMessage(sender, this.getUsage());
         }
-        final String s3;
-        final String s4;
-        final String s2 = s4 = (s3 = args[0]);
-        switch (s4) {
+        final String s = args[0];
+        switch (s) {
             case "off": {
                 if (!ChatManager.enable) {
                     return ChatUtil.sendMessage(sender, "&cBlad: &7Chat jest wylaczony!");
@@ -56,7 +49,7 @@ public class ChatCommand extends Command
                 if (!ChatUtil.isInteger(args[1])) {
                     return ChatUtil.sendMessage(sender, "&cBlad: &7To nie jest liczba");
                 }
-                c.set("slowmode", (Object)Integer.parseInt(args[1]));
+                c.set("slowmode", Integer.parseInt(args[1]));
                 return ChatUtil.sendMessage(sender, "&cUstawiles slow chatu na &7" + Integer.parseInt(args[1]) + " &csekundy!");
             }
             case "cc": {

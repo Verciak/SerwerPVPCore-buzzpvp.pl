@@ -10,6 +10,7 @@ import cn.nukkit.utils.Config;
 import cn.nukkit.event.player.PlayerTeleportEvent;
 import cn.nukkit.level.Location;
 import cn.nukkit.math.Vector3;
+import pl.vertty.arivi.MainConstants;
 import pl.vertty.arivi.drop.utils.RandomUtils;
 import cn.nukkit.item.Item;
 import cn.nukkit.network.protocol.SetLocalPlayerAsInitializedPacket;
@@ -112,7 +113,6 @@ public class PlayerJoinListener implements Listener
     public void onDataPacket(final DataPacketReceiveEvent e) {
         final DataPacket data = e.getPacket();
         final Player p = e.getPlayer();
-        final Config c = Main.getPlugin().getConfig();
         Combat ca = CombatManager.getCombat(e.getPlayer());
         if (ca == null) {
             CombatManager.createCombat(p);
@@ -121,8 +121,8 @@ public class PlayerJoinListener implements Listener
             p.getInventory().addItem(new Item[] { Item.get(274, Integer.valueOf(0), 1) });
             p.getInventory().addItem(new Item[] { Item.get(320, Integer.valueOf(0), 64) });
             p.getInventory().addItem(new Item[] { Item.get(130, Integer.valueOf(0), 1) });
-            final int x = RandomUtils.getRandInt(-c.getInt("border"), c.getInt("border"));
-            final int z = RandomUtils.getRandInt(-c.getInt("border"), c.getInt("border"));
+            final int x = RandomUtils.getRandInt(-MainConstants.BORDER, MainConstants.BORDER);
+            final int z = RandomUtils.getRandInt(-MainConstants.BORDER, MainConstants.BORDER);
             final Location location = p.getLocation();
             final Block tele = p.getLocation().getLevel().getBlock(new Vector3(location.getX(), location.getY(), location.getZ()));
             final Location telep = tele.getLocation();

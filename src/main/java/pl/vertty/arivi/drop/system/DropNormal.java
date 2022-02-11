@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.drop.system;
 
 import cn.nukkit.Player;
@@ -31,7 +27,7 @@ public class DropNormal implements DropData
         else {
             final Location loc = block.getLocation();
             final Item blocka2 = Item.get(block.getId(), Integer.valueOf(0), 1);
-            loc.getLevel().dropItem((Vector3)loc, blocka2);
+            loc.getLevel().dropItem(loc, blocka2);
         }
         final Location c = block.getLocation();
         final Level l = Server.getInstance().getDefaultLevel();
@@ -42,12 +38,11 @@ public class DropNormal implements DropData
     }
     
     public List<Item> getDrops(final Player player, final Block block, final Item item, final User user) {
-        final List<Item> items = new ArrayList<Item>();
+        final List<Item> items = new ArrayList<>();
         final Config c = Main.getPlugin().getConfig();
         if (block.getId() == 49) {
             player.addExperience(user.isTurboExp() ? (c.getInt("exp.obsidian") + 15) : c.getInt("exp.obsidian"));
         }
-        final int amount = 1;
         if (block.getId() == 1 && !DropUtils.isCobble(player.getName())) {
             return items;
         }

@@ -1,10 +1,5 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.commands.moderator;
 
-import java.util.Iterator;
 import cn.nukkit.utils.Config;
 import org.apache.commons.lang3.StringUtils;
 import pl.vertty.arivi.utils.ChatUtil;
@@ -27,10 +22,8 @@ public class AutoMessageCommand extends Command
         if (args.length < 1) {
             return ChatUtil.sendMessage(p, this.getUsage());
         }
-        final String s5;
-        final String s7;
-        final String s4 = s7 = (s5 = args[0]);
-        switch (s7) {
+        final String s = args[0];
+        switch (s) {
             case "add": {
                 final String msg = StringUtils.join(args, " ", 1, args.length);
                 c.getStringList("automsg").add(msg);

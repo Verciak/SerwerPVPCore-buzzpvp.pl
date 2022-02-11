@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.drop.data;
 
 import pl.vertty.arivi.drop.base.User;
@@ -25,7 +21,7 @@ public class DatabaseExe implements DataExecutor
             new DatabaseUser(user).save(db);
             ++i;
         }
-        Util.sendInfo("Zapisano " + Integer.toString(i) + " graczy");
+        Util.sendInfo("Zapisano " + i + " graczy");
     }
     
     @Override
@@ -43,7 +39,7 @@ public class DatabaseExe implements DataExecutor
         catch (SQLException e) {
             e.printStackTrace();
         }
-        Util.sendInfo("Zaladowano " + Integer.toString(i) + " graczy");
+        Util.sendInfo("Zaladowano " + i + " graczy");
     }
     
     @Override

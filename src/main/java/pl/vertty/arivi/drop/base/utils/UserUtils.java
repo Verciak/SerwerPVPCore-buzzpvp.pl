@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.drop.base.utils;
 
 import pl.vertty.arivi.drop.base.User;
@@ -10,8 +6,8 @@ import java.util.*;
 
 public class UserUtils
 {
-    private static Map<String, User> users = new HashMap<String, User>();
-    private static List<User> top = new ArrayList<User>();
+    private static final Map<String, User> users = new HashMap<>();
+    private static final List<User> top = new ArrayList<>();
     
     public static void add(final User user) {
         UserUtils.users.put(user.getName().toLowerCase(), user);
@@ -30,11 +26,11 @@ public class UserUtils
     }
     
     public static List<String> getNames() {
-        return new ArrayList<String>(UserUtils.users.keySet());
+        return new ArrayList<>(UserUtils.users.keySet());
     }
     
     public static List<User> getUsers() {
-        return new ArrayList<User>(UserUtils.users.values());
+        return new ArrayList<>(UserUtils.users.values());
     }
     
     public static void clearUsers() {
@@ -49,26 +45,10 @@ public class UserUtils
         Collections.sort(UserUtils.top);
     }
     
-    public static int getPosition(final User user) {
-        int i = 1;
-        for (final User u : UserUtils.top) {
-            if (u.getName().equalsIgnoreCase(user.getName())) {
-                return i;
-            }
-            ++i;
-        }
-        return 0;
-    }
-    
     public static User getUser(final int i) {
         if (UserUtils.top.size() < i) {
             return null;
         }
         return UserUtils.top.get(i - 1);
     }
-    
-    public static List<User> getTops() {
-        return new ArrayList<User>(UserUtils.top);
-    }
-
 }

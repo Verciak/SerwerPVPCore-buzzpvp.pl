@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package pl.vertty.arivi.drop.utils;
 
 import java.util.HashMap;
@@ -28,7 +24,7 @@ public class StringUtils
         increase *= ((max > 64) ? 64 : ((max < 0) ? 16 : max));
         final StringBuilder sb = new StringBuilder(text.length() + increase);
         while (end != -1) {
-            sb.append(text.substring(start, end)).append(replacement);
+            sb.append(text, start, end).append(replacement);
             start = end + replLength;
             if (--max == 0) {
                 break;
@@ -45,13 +41,13 @@ public class StringUtils
         }
         final StringBuilder sb = new StringBuilder();
         for (final Map.Entry<String, Integer> e : map.entrySet()) {
-            sb.append(String.valueOf(e.getKey()) + ":" + e.getValue() + ",");
+            sb.append(e.getKey() + ":" + e.getValue() + ",");
         }
         return sb.toString();
     }
     
     public static Map<String, Integer> fromStringMap(final String s) {
-        final Map<String, Integer> map = new HashMap<String, Integer>();
+        final Map<String, Integer> map = new HashMap<>();
         if (s == null || s.isEmpty()) {
             return map;
         }
