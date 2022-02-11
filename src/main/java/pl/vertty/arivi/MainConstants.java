@@ -29,6 +29,10 @@ public class MainConstants {
     public static Item ANTI_LEGS_GUI_ITEM;
     public static Item ANTI_LEGS;
 
+    //ADMINPANEL COMMAND GUI
+    public static Item PANDORA_ITEM_ADMINPANEL;
+    public static Item KITS_ADMINPANEL;
+
     static {
         //WCZYTYWANIE CFG
         Config config = Main.getPlugin().getConfig();
@@ -70,18 +74,26 @@ public class MainConstants {
         STONIARKA_GUI_ITEM.setLore(ChatUtil.fixColor("&9Kliknij, aby stworzyc STONIARKA"));
         STONIARKA = new Item(130, 0, 1);
         STONIARKA.setCustomName(ChatUtil.fixColor("&9STONIARKA"));
-        STONIARKA.setLore(new String[] { ChatUtil.fixColor(""), ChatUtil.fixColor("&7Kliknij, PPM aby postawic STONIARKA") });
+        STONIARKA.setLore(ChatUtil.fixColor(""), ChatUtil.fixColor("&7Kliknij, PPM aby postawic STONIARKA"));
         RZUCAK_GUI_ITEM = new Item(58, 0, 1);
         RZUCAK_GUI_ITEM.setLore(ChatUtil.fixColor("&9Kliknij, aby stworzyc RZUCAK"));
         RZUCAK = new Item(46, 0, 1);
         RZUCAK.setCustomName(ChatUtil.fixColor("&9RZUCANETNT"));
-        RZUCAK.setLore(new String[] { ChatUtil.fixColor(""), ChatUtil.fixColor("&7Kliknij, PPM aby postawic RZUCANETNT") });
+        RZUCAK.setLore(ChatUtil.fixColor(""), ChatUtil.fixColor("&7Kliknij, PPM aby postawic RZUCANETNT"));
         ANTI_LEGS_GUI_ITEM = new Item(58, 0, 1);
         ANTI_LEGS_GUI_ITEM.setLore(ChatUtil.fixColor("&9Kliknij, aby stworzyc ANTY-NOGI"));
         ANTI_LEGS = new Item(317, 0, 1);
         ANTI_LEGS.setCustomName(ChatUtil.fixColor("&9ANTY-NOGI"));
-        ANTI_LEGS.setLore(new String[] { ChatUtil.fixColor(""), ChatUtil.fixColor("&7Kliknij, PPM aby postawic ANTY-NOG") });
+        ANTI_LEGS.setLore(ChatUtil.fixColor(""), ChatUtil.fixColor("&7Kliknij, PPM aby postawic ANTY-NOG"));
 
+        //ADMINPANEL COMMAND GUI
+        PANDORA_ITEM_ADMINPANEL = new Item(122, 0, 1);
+        PANDORA_ITEM_ADMINPANEL.setCustomName(ChatUtil.fixColor("&5Pandora"));
+        PANDORA_ITEM_ADMINPANEL.setLore(ChatUtil.fixColor("&8» &7Aktualny status: " + (config.getBoolean("enable.pandora.status") ? "&a✔" : "&c✖")));
+
+        KITS_ADMINPANEL = new Item(368, 0, 1);
+        KITS_ADMINPANEL.setCustomName(ChatUtil.fixColor("&5Kity"));
+        KITS_ADMINPANEL.setLore(ChatUtil.fixColor("&8» &7Aktualny status: " + (config.getBoolean("enable.kits.status") ? "&a✔" : "&c✖")));
 
 
     }

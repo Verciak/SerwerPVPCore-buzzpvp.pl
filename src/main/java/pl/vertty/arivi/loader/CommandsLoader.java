@@ -30,6 +30,7 @@ import pl.vertty.arivi.commands.builder.Command;
 public class CommandsLoader
 {
     public static void onCommandsLoad() {
+        registerCommand(new ReloadConfigCommand());
         registerCommand(new PomocCommand());
         registerCommand(new VIPCommand());
         registerCommand(new sVIPCommand());
