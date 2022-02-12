@@ -101,7 +101,7 @@ public class WingsManager
                 skin.setGeometryData(wings.getGeometryData());
                 BufferedImage bufferedImage = null;
                 try {
-                    bufferedImage = ImageIO.read(new File(Main.getPlugin().getDataFolder() + "/wings/" + wings.getName() + "/skin.png"));
+                    bufferedImage = ImageIO.read(new File(Main.getPlugin().getDataFolder() + "/wings/" + wings.getName() + wings.getName() + ".png"));
                 }
                 catch (IOException e2) {
                     e2.printStackTrace();

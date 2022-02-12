@@ -6,7 +6,6 @@ import cn.nukkit.command.CommandSender;
 import pl.vertty.arivi.Main;
 import pl.vertty.arivi.commands.builder.Command;
 import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.managers.RestartManager;
 import pl.vertty.arivi.utils.ChatUtil;
 
 import java.util.Timer;
@@ -22,8 +21,6 @@ public class StopCommand extends Command
     public boolean onExecute(final CommandSender p, final String[] args) {
         Timer timer = new Timer();
         timer.schedule(new App(), 0, 1000);
-        RestartManager.deleteWhitelistStatus(0);
-        RestartManager.addWhiteListStatus(1);
         return true;
     }
 }

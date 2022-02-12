@@ -20,13 +20,13 @@ public class Wings
         this.name = name;
         this.geometryName = "geometry." + name;
         this.path = path;
-        final File geo = new File(this.path + "/geometry.json");
-        final File skin = new File(this.path + "/skin.png");
+        final File geo = new File(this.path + "/"+name+".json");
+        final File skin = new File(this.path + "/"+name+".png");
         if (!geo.isFile()) {
-            System.out.println("nie znaleziono pliku: geometry.json");
+            System.out.println("nie znaleziono pliku: "+name+".json");
         }
         if (!skin.isFile()) {
-            System.out.println("nie znaleziono pliku: skin.png");
+            System.out.println("nie znaleziono pliku: "+name+".png");
         }
         try {
             this.geometryData = new String(Files.readAllBytes(geo.toPath()), StandardCharsets.UTF_8);

@@ -25,11 +25,12 @@ public class AdminPanelGui
                 if(c.getBoolean("enable.pandora.status") == true){
                     c.set("enable.pandora.status", false);
                     c.save();
-
+                    MainConstants.set();
                     open(player);
                 }else{
                     c.set("enable.pandora.status", true);
                     c.save();
+                    MainConstants.set();
                     open(player);
                 }
             }
@@ -40,11 +41,12 @@ public class AdminPanelGui
                 if(c.getBoolean("enable.kits.status") == true){
                     c.set("enable.kits.status", false);
                     c.save();
-
+                    MainConstants.set();
                     open(player);
                 }else{
                     c.set("enable.kits.status", true);
                     c.save();
+                    MainConstants.set();
                     open(player);
                 }
             }

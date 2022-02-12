@@ -34,7 +34,6 @@ public class DatabaseUser
                 "%blocks%," +
                 "%blockstonext%," +
                 "'%drops%'," +
-                "'%plecak%'," +
                 "%cobble%," +
                 "%dirt%" +
                 ") ON DUPLICATE KEY UPDATE " +

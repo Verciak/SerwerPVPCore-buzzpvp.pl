@@ -11,7 +11,6 @@ import cn.nukkit.Player;
 import pl.vertty.arivi.guilds.data.guild.Guild;
 import cn.nukkit.inventory.Inventory;
 import pl.vertty.arivi.utils.SeralizerUtil;
-import pl.vertty.arivi.guilds.data.User;
 import java.util.*;
 import cn.nukkit.level.Level;
 import pl.vertty.arivi.task.SprawdzMessageTimer;
@@ -35,8 +34,6 @@ import pl.vertty.arivi.guilds.managers.UserManager;
 import pl.vertty.arivi.loader.DatabaseLoader;
 import pl.vertty.arivi.loader.TimeLoader;
 import pl.vertty.arivi.loader.ConfigLoader;
-import cn.nukkit.plugin.Plugin;
-import cn.nukkit.event.Listener;
 import pl.vertty.arivi.inventory.trade.TradeMenuHandler;
 import pl.vertty.arivi.inventory.InventoryMenuHandler;
 import cn.nukkit.plugin.PluginBase;
@@ -48,6 +45,7 @@ public class Main extends PluginBase
     
     @SneakyThrows
     public void onEnable() {
+
         Main.startUpTime = System.currentTimeMillis();
         Main.plugin = this;
         final InventoryMenuHandler handler = new InventoryMenuHandler();
@@ -70,7 +68,6 @@ public class Main extends PluginBase
         CraftingLoader.onCraftingLoad();
         MotdLoader.onLoad();
         EntityManager.init();
-        RestartManager.loadRestart();
         WhitelistManager.loadWhiteList();
         WhitelistManager.loadWhiteListReason();
         WhitelistManager.loadWhiteListStatus();
@@ -99,11 +96,12 @@ public class Main extends PluginBase
             }
             return;
         }
+        MainConstants.set();
     }
     
     public void onDisable() {
         for (final Guild user2 : GuildManager.getGuilds().values()) {
-            user2.setSkrzynka1(SeralizerUtil.serializeInventory((Inventory) user2.getSkrzynka()));
+            user2.setSkrzynka1(SeralizerUtil.serializeInventory(user2.getSkrzynka()));
         }
         DropsLoader.onDataSaved();
         for (Player p : Server.getInstance().getOnlinePlayers().values()){

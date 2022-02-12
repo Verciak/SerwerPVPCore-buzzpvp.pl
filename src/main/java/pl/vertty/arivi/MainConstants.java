@@ -8,6 +8,9 @@ public class MainConstants {
     //BORDER MAPY
     public static int BORDER;
 
+    //GLASS GUI
+    public static Item BLACK_GLASS;
+
     //CRAFTINGI
     public static Item ANTI_LEGS_ITEM;
     public static Item RZUCAK_ITEM;
@@ -29,15 +32,27 @@ public class MainConstants {
     public static Item ANTI_LEGS_GUI_ITEM;
     public static Item ANTI_LEGS;
 
-    //ADMINPANEL COMMAND GUI
+    //EFFECTS GUI
+    public static Item HIGH_JUMP;
+    public static Item SPEED;
+    public static Item FIRE;
+    public static Item HASTE_1;
+    public static Item HASTE_2;
+    public static Item HASTE_3;
+
+
+    //ADMINPANEL COMMAND GUI STATUS
     public static Item PANDORA_ITEM_ADMINPANEL;
     public static Item KITS_ADMINPANEL;
 
-    static {
+    public static void set() {
         //WCZYTYWANIE CFG
         Config config = Main.getPlugin().getConfig();
         //BORDER MAPY
         BORDER = config.getInt("border");
+
+        //GLASS GUI
+        BLACK_GLASS = new Item(160, 15, 1);
 
         //CRAFTINGI
         ANTI_LEGS_ITEM = new Item(317, 0, 1);
@@ -85,6 +100,32 @@ public class MainConstants {
         ANTI_LEGS = new Item(317, 0, 1);
         ANTI_LEGS.setCustomName(ChatUtil.fixColor("&9ANTY-NOGI"));
         ANTI_LEGS.setLore(ChatUtil.fixColor(""), ChatUtil.fixColor("&7Kliknij, PPM aby postawic ANTY-NOG"));
+
+
+        //EFFECTS GUI
+        HIGH_JUMP = new Item(Item.IRON_BOOTS, 0, 1);
+        HIGH_JUMP.setCustomName(ChatUtil.fixColor("&9WYSOKIE SKAKANIE II"));
+        HIGH_JUMP.setLore(ChatUtil.fixColor("&8» &7Czas trwania: &32 minuty"), ChatUtil.fixColor("&7&8» &7Koszt: &332 emeraldy"), ChatUtil.fixColor(""), ChatUtil.fixColor("&8» &7Kliknij, aby zakupic!"));
+
+        SPEED = new Item(Item.SUGAR, 0, 1);
+        SPEED.setCustomName(ChatUtil.fixColor("&9SPEED I"));
+        SPEED.setLore(ChatUtil.fixColor("&8» &7Czas trwania: &32 minuty"), ChatUtil.fixColor("&7&8» &7Koszt: &364 emeraldy"), ChatUtil.fixColor(""), ChatUtil.fixColor("&8» &7Kliknij, aby zakupic!"));
+
+        FIRE = new Item(Item.BLAZE_POWDER, 0, 1);
+        FIRE.setCustomName(ChatUtil.fixColor("&9OCHRONA PRZED OGNIEM"));
+        FIRE.setLore(ChatUtil.fixColor("&8» &7Czas trwania: &32 minuty"), ChatUtil.fixColor("&7&8» &7Koszt: &364 emeraldy"), ChatUtil.fixColor(""), ChatUtil.fixColor("&8» &7Kliknij, aby zakupic!"));
+
+        HASTE_1 = new Item(Item.END_CRYSTAL, 0, 1);
+        HASTE_1.setCustomName(ChatUtil.fixColor("&9HASTE I"));
+        HASTE_1.setLore(ChatUtil.fixColor("&8» &7Czas trwania: &32 minuty"), ChatUtil.fixColor("&7&8» &7Koszt: &332 emeraldy"), ChatUtil.fixColor(""), ChatUtil.fixColor("&8» &7Kliknij, aby zakupic!"));
+
+        HASTE_2 = new Item(Item.END_CRYSTAL, 0, 1);
+        HASTE_2.setCustomName(ChatUtil.fixColor("&9HASTE II"));
+        HASTE_2.setLore(ChatUtil.fixColor("&8» &7Czas trwania: &32 minuty"), ChatUtil.fixColor("&7&8» &7Koszt: &364 emeraldy"), ChatUtil.fixColor(""), ChatUtil.fixColor("&8» &7Kliknij, aby zakupic!"));
+
+        HASTE_3 = new Item(Item.END_CRYSTAL, 0, 1);
+        HASTE_3.setCustomName(ChatUtil.fixColor("&9HASTE III"));
+        HASTE_3.setLore(ChatUtil.fixColor("&8» &7Czas trwania: &32 minuty"), ChatUtil.fixColor("&7&8» &7Koszt: &3128 emeraldy"), ChatUtil.fixColor(""), ChatUtil.fixColor("&8» &7Kliknij, aby zakupic!"));
 
         //ADMINPANEL COMMAND GUI
         PANDORA_ITEM_ADMINPANEL = new Item(122, 0, 1);

@@ -42,7 +42,7 @@ public class WhitelistManager {
 
     public static void deleteWhitelist(String name) {
         wl.remove(name);
-        Main.getStore().asyncUpdate("DELETE FROM `whitelist` WHERE `name` ='" + name + "';");
+//        Main.getStore().asyncUpdate("DELETE FROM `whitelist` WHERE `name` ='" + name + "';");
     }
 
     public static void addWhiteListStatus(Integer name) {
@@ -51,53 +51,53 @@ public class WhitelistManager {
 
     public static void deleteWhitelistStatus(Integer name) {
         wl_status.remove(name);
-        Main.getStore().asyncUpdate("DELETE FROM `whitelist-status` WHERE `name` ='" + name + "';");
+//        Main.getStore().asyncUpdate("DELETE FROM `whitelist-status` WHERE `name` ='" + name + "';");
     }
 
 
     public static void loadWhiteList() {
-        try {
-            ResultSet rs = Main.getStore().query("SELECT * FROM `whitelist`");
-            while (rs.next()) {
-                WhiteList w = new WhiteList(rs);
-                wl.put(w.getName(), w);
-            }
-            rs.close();
-            System.out.println("Loaded " + wl.size() + " whitelist" );
-        } catch (SQLException var2) {
-            System.out.println("Can not load whitelist Error " + var2.getMessage());
-            var2.printStackTrace();
-        }
+//        try {
+//            ResultSet rs = Main.getStore().query("SELECT * FROM `whitelist`");
+//            while (rs.next()) {
+//                WhiteList w = new WhiteList(rs);
+//                wl.put(w.getName(), w);
+//            }
+//            rs.close();
+//            System.out.println("Loaded " + wl.size() + " whitelist" );
+//        } catch (SQLException var2) {
+//            System.out.println("Can not load whitelist Error " + var2.getMessage());
+//            var2.printStackTrace();
+//        }
     }
 
     public static void loadWhiteListReason() {
-        try {
-            ResultSet rs = Main.getStore().query("SELECT * FROM `whitelist-reason`");
-            while (rs.next()) {
-                WhiteListReason w = new WhiteListReason(rs);
-                wl_reason.put(w.getName(), w);
-            }
-            rs.close();
-            System.out.println("Loaded " + wl_reason.size() + " whitelist-reason" );
-        } catch (SQLException var2) {
-            System.out.println("Can not load whitelist-reason Error " + var2.getMessage());
-            var2.printStackTrace();
-        }
+//        try {
+//            ResultSet rs = Main.getStore().query("SELECT * FROM `whitelist-reason`");
+//            while (rs.next()) {
+//                WhiteListReason w = new WhiteListReason(rs);
+//                wl_reason.put(w.getName(), w);
+//            }
+//            rs.close();
+//            System.out.println("Loaded " + wl_reason.size() + " whitelist-reason" );
+//        } catch (SQLException var2) {
+//            System.out.println("Can not load whitelist-reason Error " + var2.getMessage());
+//            var2.printStackTrace();
+//        }
     }
 
     public static void loadWhiteListStatus() {
-        try {
-            ResultSet rs = Main.getStore().query("SELECT * FROM `whitelist-status`");
-            while (rs.next()) {
-                WhiteListStatus w = new WhiteListStatus(rs);
-                wl_status.put(w.getName(), w);
-            }
-            rs.close();
-            System.out.println("Loaded " + wl_status.size() + " whitelist-status" );
-        } catch (SQLException var2) {
-            System.out.println("Can not load whitelist-status Error " + var2.getMessage());
-            var2.printStackTrace();
-        }
+//        try {
+//            ResultSet rs = Main.getStore().query("SELECT * FROM `whitelist-status`");
+//            while (rs.next()) {
+//                WhiteListStatus w = new WhiteListStatus(rs);
+//                wl_status.put(w.getName(), w);
+//            }
+//            rs.close();
+//            System.out.println("Loaded " + wl_status.size() + " whitelist-status" );
+//        } catch (SQLException var2) {
+//            System.out.println("Can not load whitelist-status Error " + var2.getMessage());
+//            var2.printStackTrace();
+//        }
     }
 
     public static ConcurrentHashMap<String, WhiteList> getWhiteLists() {
@@ -107,7 +107,7 @@ public class WhitelistManager {
     public static void setWl_reason(String name, int numer) {
         wl_reason.clear();
         wl_reason.put(name, new WhiteListReason(name, numer));
-        Main.getStore().asyncUpdate("UPDATE `whitelist-reason` SET `name`='" + name + "' WHERE `numer`='" + numer + "'");
+//        Main.getStore().asyncUpdate("UPDATE `whitelist-reason` SET `name`='" + name + "' WHERE `numer`='" + numer + "'");
     }
 
     public static ConcurrentHashMap<String, WhiteList> wl = new ConcurrentHashMap<>();
