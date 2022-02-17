@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 public class SkinUtils {
-    public static void saveImage(final int width, final int height, final byte[] bytes, final String name) {
+    public static void saveImage(Main plugin, final int width, final int height, final byte[] bytes, final String name) {
         final BufferedImage image = new BufferedImage(width, height, 6);
         final ByteArrayInputStream data = new ByteArrayInputStream(bytes);
         for (int y = 0; y < image.getHeight(); ++y) {

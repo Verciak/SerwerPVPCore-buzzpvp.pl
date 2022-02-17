@@ -62,7 +62,7 @@ public class ItemStackUtil
             final int data = is.getDamage();
             final int amount = is.getCount();
             final int ii = getItemAmount(is, p, (short)data);
-            ChatUtil.sendMessage((CommandSender)p, color(ii, amount) + " - " + is.getCustomName() + " " + ii + "/" + amount + " - " + ii / (double)amount * 100.0 + "%\n");
+            ChatUtil.sendMessage(p, " &8>> &f" + is.getCustomName() + " &7" + ii + "/" + amount +"\n");
         }
         return null;
     }

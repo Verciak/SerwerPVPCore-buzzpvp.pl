@@ -2,6 +2,7 @@
 package pl.vertty.arivi.inventory;
 
 import lombok.NonNull;
+import pl.vertty.arivi.MainConstants;
 import pl.vertty.arivi.inventory.item.ItemClick;
 import pl.vertty.arivi.inventory.item.ItemData;
 import java.util.HashMap;
@@ -17,6 +18,49 @@ public class InventoryCategory
         this.menu = null;
         this.itemData = new HashMap<Integer, ItemData>();
         this.itemClick = new HashMap<Integer, ItemClick>();
+    }
+
+    public void setDoubleCraftingiServerGui() {
+        int[] black = {
+                1, 2, 3,4, 5, 6, 7,9,18,27,36,17,26,35,44, 47,51};
+        int[] blue = { 0, 8, 45, 53 };
+        for (int b : black)
+            addElement(b, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        for (int b : blue)
+            addElement(b, ItemData.fromItem(MainConstants.BLUE_GLASS));
+    }
+
+    public void setDoubleKitServerGui() {
+        int[] black = {
+                1, 2, 3,4, 5, 6, 7,47,48,49,50,51 };
+        int[] blue = { 0, 8, 45, 53 };
+        for (int b : black)
+            addElement(b, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        for (int b : blue)
+            addElement(b, ItemData.fromItem(MainConstants.BLUE_GLASS));
+    }
+
+    public void setSmallSchowekServerGui() {
+        int[] black = {
+                1, 2, 3,4, 5, 6, 7, 9, 17, 19,
+                20, 21, 23, 24, 25 };
+        int[] blue = { 0, 8, 18, 26 };
+        for (int b : black)
+            addElement(b, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        for (int b : blue)
+            addElement(b, ItemData.fromItem(MainConstants.BLUE_GLASS));
+    }
+
+
+    public void setSmallServerGui() {
+        int[] black = {
+                1, 2, 3,4, 5, 6, 7, 9, 17, 19,
+                20, 21,22, 23, 24, 25 };
+        int[] blue = { 0, 8, 18, 26 };
+        for (int b : black)
+            addElement(b, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        for (int b : blue)
+            addElement(b, ItemData.fromItem(MainConstants.BLUE_GLASS));
     }
     
     public HashMap<Integer, ItemData> itemDataMap() {
@@ -70,6 +114,7 @@ public class InventoryCategory
         }
         this.addElement(position, item, null);
     }
+
     
     public void addElement(final int position, @NonNull final ItemData item, final ItemClick click) {
         if (item == null) {

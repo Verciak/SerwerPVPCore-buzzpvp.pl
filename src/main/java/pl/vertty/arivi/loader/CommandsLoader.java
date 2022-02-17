@@ -1,5 +1,6 @@
 package pl.vertty.arivi.loader;
 
+import pl.vertty.arivi.commands.admin.*;
 import pl.vertty.arivi.commands.helper.*;
 import pl.vertty.arivi.commands.root.*;
 import pl.vertty.arivi.commands.user.*;
@@ -9,27 +10,18 @@ import pl.vertty.arivi.guilds.commands.user.IncognitoCommand;
 import pl.vertty.arivi.guilds.commands.GuildAdminCommand;
 import pl.vertty.arivi.guilds.utils.command.ConsoleCommand;
 import pl.vertty.arivi.guilds.commands.GuildCommand;
-import pl.vertty.arivi.commands.admin.SkrzydlaCommand;
-import pl.vertty.arivi.commands.admin.EntityClearCommand;
-import pl.vertty.arivi.commands.admin.MotdCommand;
-import pl.vertty.arivi.commands.admin.StatsCommand;
-import pl.vertty.arivi.commands.admin.SetWarpCommand;
-import pl.vertty.arivi.commands.admin.SetSpawnCommand;
 import pl.vertty.arivi.commands.moderator.OpenCommand;
 import pl.vertty.arivi.commands.headadmin.KickAllCommand;
 import pl.vertty.arivi.commands.moderator.ClearItemsCommand;
-import pl.vertty.arivi.commands.admin.PerformanceCommand;
-import pl.vertty.arivi.commands.admin.GamemodeCommand;
 import pl.vertty.arivi.commands.moderator.DelWarpCommand;
 import pl.vertty.arivi.commands.moderator.BroadcastCommand;
 import pl.vertty.arivi.commands.moderator.AutoMessageCommand;
-import pl.vertty.arivi.commands.admin.GroupCommand;
-import pl.vertty.arivi.commands.admin.BackupCommand;
 import pl.vertty.arivi.commands.builder.Command;
 
 public class CommandsLoader
 {
     public static void onCommandsLoad() {
+        registerCommand(new TestCommand());
         registerCommand(new ReloadConfigCommand());
         registerCommand(new PomocCommand());
         registerCommand(new VIPCommand());

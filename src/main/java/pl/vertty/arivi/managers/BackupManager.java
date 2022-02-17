@@ -65,7 +65,7 @@ public class BackupManager
             category.addElement(slot.getAndIncrement(), ItemData.fromItem(item), new ItemClick() {
                 
                 @Override
-                public void onClick(final Player player, final Item item) throws SkinChangeException {
+                public void onClick(final Player player, final Item item) {
                     if (p == null) {
                         ChatUtil.sendMessage(player, "&4Blad: &cGracz jest offline!");
                         return;

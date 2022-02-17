@@ -51,7 +51,7 @@ public class ItemData
         this.damage = damage;
         this.count = count;
         this.customName = ChatUtil.fixColor(customName);
-        this.lores = lores;
+        this.lores = ChatUtil.fixColor(lores);
     }
     
     public ItemData(final int id, final int damage, final int count, final String customName, final String[] lores, final Enchantment[] enchantment1) {

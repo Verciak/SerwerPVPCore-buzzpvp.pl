@@ -2,6 +2,8 @@
 package pl.vertty.arivi.inventory;
 
 import java.util.Iterator;
+
+import pl.vertty.arivi.MainConstants;
 import pl.vertty.arivi.inventory.item.ItemData;
 import java.util.Map;
 import cn.nukkit.network.protocol.ContainerClosePacket;
@@ -73,7 +75,7 @@ public class InventoryMenu
     }
     
     protected Vector3 createInventory(final Player player) {
-        final Vector3 pos = new Vector3((double)(int)player.getX(), (double)((int)player.getY() - 2), (double)(int)player.getZ());
+        final Vector3 pos = new Vector3((double)(int)player.getX(), (double)((int)player.getY() + 2), (double)(int)player.getZ());
         this.spawnChest(player, pos);
         if (this.isDoubleChest()) {
             final Vector3 pos2 = pos.clone().add(1.0, 0.0, 0.0);
@@ -81,7 +83,7 @@ public class InventoryMenu
             this.pairChests(player, pos, pos2);
             this.pairChests(player, pos2, pos);
         }
-        return new Vector3(player.x, player.y - 2.0, player.z);
+        return new Vector3(player.x, player.y + 2.0, player.z);
     }
     
     private void pairChests(final Player player, final Vector3 pos1, final Vector3 pos2) {
@@ -136,7 +138,7 @@ public class InventoryMenu
         }
         this.inventories.remove(player.getUniqueId());
         InventoryMenuHandler.pmenus.remove(player.getUniqueId());
-        final Vector3 vec = new Vector3(player.x, player.y - 2.0, player.z);
+        final Vector3 vec = new Vector3(player.x, player.y + 2.0, player.z);
         if (this.isDoubleChest()) {
             final Vector3 vec2 = vec.add(1.0, 0.0, 0.0);
             player.level.sendBlocks(new Player[] { player }, new Vector3[] { vec, vec2 });

@@ -3,7 +3,6 @@ package pl.vertty.arivi.guilds.data.guild;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
-import cn.nukkit.inventory.Inventory;
 import cn.nukkit.level.Location;
 import pl.vertty.arivi.Main;
 import pl.vertty.arivi.guilds.data.block.BlockRegeneration;
@@ -26,12 +25,12 @@ public class Guild
     private int head;
     private String owner;
     private final String name;
-    private int limitSize;
+    private final int limitSize;
     private final Set<String> ally;
-    private Set<Guild> allyInvites;
+    private final Set<Guild> allyInvites;
     private final Region region;
-    private long createTime;
-    private List<BlockRegeneration> blocks;
+    private final long createTime;
+    private final List<BlockRegeneration> blocks;
     private boolean pvp;
     private long prolong;
     private long lastExplodeTime;
@@ -77,28 +76,15 @@ public class Guild
     
     public void setOwner(final String owner) {
         this.owner = owner;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `owner` = '").append(this.getOwner()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `owner` = '" + this.getOwner() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public void removePoints(final int n) {
         this.setPoints(this.getPoints() - n);
     }
     
-    public double getKd() {
-        if (this.getKills() == 0 && this.getDeaths() == 0) {
-            return 0.0;
-        }
-        if (this.getKills() > 0 && this.getDeaths() == 0) {
-            return this.getKills();
-        }
-        if (this.getDeaths() > 0 && this.getKills() == 0) {
-            return -this.getDeaths();
-        }
-        return ChatUtil.round(this.getKills() / this.getDeaths(), 2);
-    }
-    
     public void insert() {
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("INSERT INTO `pCGuilds_guilds`(`id`, `tag`, `name`, `owner`, `hp`, `leader`, `cuboidX`, `cuboidZ`, `cuboidSize`, `life`, `lifeLastAttack`, `prolong`, `pvp`, `createTime`, `homeX`, `homeY`, `homeZ`, `ally`, `points`, `kills`, `deaths`, `sojusz`, `pvpAlly`, `limitSize`, `tntKaraTime`, `head`, `limitMembers`, `skarbiec`, `skrzynka1`) VALUES (NULL, '").append(this.getTag()).append("','").append(this.getName()).append("','").append(this.getOwner()).append("','").append(this.getHp()).append("','").append(this.getLeader()).append("','").append(this.getRegion().getX()).append("','").append(this.getRegion().getZ()).append("','").append(this.getRegion().getSize()).append("','").append(this.getLife()).append("','").append(this.getLifeLastAttack()).append("','").append(this.getProlong()).append("','").append(this.isPvp() ? 1 : 0).append("','").append(this.getCreateTime()).append("','").append(this.getHome().getX()).append("','").append(this.getHome().getY()).append("','").append(this.getHome().getZ()).append("','").append(this.ally.toString().replace("[", "").replace("]", "")).append("','").append(this.getPoints()).append("','").append(this.getKills()).append("','").append(this.getDeaths()).append("','").append(this.getSojusz()).append("','").append(this.isPvpAlly() ? 1 : 0).append("', '").append(this.getLimitSize()).append("','").append(this.getTntKaraTime()).append("','").append(this.getHead()).append("','").append(this.getLimitMembers()).append("','").append(this.getSkarbiec()).append("','").append(this.getSkrzynka1()).append("');")));
+        Main.getStore().update(false, "INSERT INTO `pCGuilds_guilds`(`id`, `tag`, `name`, `owner`, `hp`, `leader`, `cuboidX`, `cuboidZ`, `cuboidSize`, `life`, `lifeLastAttack`, `prolong`, `pvp`, `createTime`, `homeX`, `homeY`, `homeZ`, `ally`, `points`, `kills`, `deaths`, `sojusz`, `pvpAlly`, `limitSize`, `tntKaraTime`, `head`, `limitMembers`, `skarbiec`, `skrzynka1`) VALUES (NULL, '" + this.getTag() + "','" + this.getName() + "','" + this.getOwner() + "','" + this.getHp() + "','" + this.getLeader() + "','" + this.getRegion().getX() + "','" + this.getRegion().getZ() + "','" + this.getRegion().getSize() + "','" + this.getLife() + "','" + this.getLifeLastAttack() + "','" + this.getProlong() + "','" + (this.isPvp() ? 1 : 0) + "','" + this.getCreateTime() + "','" + this.getHome().getX() + "','" + this.getHome().getY() + "','" + this.getHome().getZ() + "','" + this.ally.toString().replace("[", "").replace("]", "") + "','" + this.getPoints() + "','" + this.getKills() + "','" + this.getDeaths() + "','" + this.getSojusz() + "','" + (this.isPvpAlly() ? 1 : 0) + "', '" + this.getLimitSize() + "','" + this.getTntKaraTime() + "','" + this.getHead() + "','" + this.getLimitMembers() + "','" + this.getSkarbiec() + "','" + this.getSkrzynka1() + "');");
     }
     
     public int getPoints() {
@@ -111,7 +97,7 @@ public class Guild
     
     public void setSize(final int size) {
         this.getRegion().setSize(size);
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE pCGuilds_guilds` SET `cuboidSize` = '").append(this.getRegion().getSize()).append("' WHERE tag = '").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE pCGuilds_guilds` SET `cuboidSize` = '" + this.getRegion().getSize() + "' WHERE tag = '" + this.getTag() + "';");
     }
     
     public void setRegeneration(final boolean regeneration) {
@@ -124,7 +110,7 @@ public class Guild
     
     public void setTntKaraTime(final long tntKaraTime) {
         this.tntKaraTime = tntKaraTime;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `tntKaraTime` = '").append(this.getTntKaraTime()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `tntKaraTime` = '" + this.getTntKaraTime() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public boolean isMember(final String s) {
@@ -133,7 +119,7 @@ public class Guild
     
     public void addMember(final Player player) {
         this.members.add(player.getName());
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("INSERT INTO `pCGuilds_members` (`id`,`name`,`tag`) VALUES(NULL, '").append(player.getName()).append("', '").append(this.getTag()).append("');")));
+        Main.getStore().update(false, "INSERT INTO `pCGuilds_members` (`id`,`name`,`tag`) VALUES(NULL, '" + player.getName() + "', '" + this.getTag() + "');");
     }
     
     public List<BlockRegeneration> getBlocks() {
@@ -154,13 +140,9 @@ public class Guild
     
     public void removeAlly(final String s) {
         this.ally.remove(s);
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `ally` ='").append(this.getAlly().toString().replace("[", "").replace("]", "")).append("' WHERE `tag` ='").append(this.getTag()).append("'")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `ally` ='" + this.getAlly().toString().replace("[", "").replace("]", "") + "' WHERE `tag` ='" + this.getTag() + "'");
     }
-    
-    public void setBlocks(final List<BlockRegeneration> blocks) {
-        this.blocks = blocks;
-    }
-    
+
     public Region getRegion() {
         return this.region;
     }
@@ -175,7 +157,7 @@ public class Guild
     
     public void setSojusz(final int sojusz) {
         this.sojusz = sojusz;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `sojusz` = '").append(this.getSojusz()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `sojusz` = '" + this.getSojusz() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public String getName() {
@@ -193,20 +175,16 @@ public class Guild
     public int getDeaths() {
         return this.deaths;
     }
-    
-    public void addLimitSize(final int limitSize) {
-        this.limitSize = limitSize;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `limitSize` = '").append(this.getLimitSize()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
-    }
+
     
     public void removeMember(final String str) {
         this.members.remove(str);
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("DELETE FROM `pCGuilds_members` WHERE `name` = '").append(str).append("' AND `tag` = '").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "DELETE FROM `pCGuilds_members` WHERE `name` = '" + str + "' AND `tag` = '" + this.getTag() + "';");
     }
     
     public void addSize(final int n) {
         this.getRegion().addSize(n);
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `cuboidSize` = '").append(this.getRegion().getSize()).append("' WHERE tag = '").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `cuboidSize` = '" + this.getRegion().getSize() + "' WHERE tag = '" + this.getTag() + "';");
     }
     
     public void setLastExplodeTime(final long lastExplodeTime) {
@@ -219,7 +197,7 @@ public class Guild
     
     public void setHead(final int head) {
         this.head = head;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `head` = '").append(this.getHead()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `head` = '" + this.getHead() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public Set<Player> getInvites() {
@@ -232,38 +210,30 @@ public class Guild
     
     public void setHp(final int hp) {
         this.hp = hp;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `hp` = '").append(this.getHp()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `hp` = '" + this.getHp() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public void setLife(final int life) {
         this.life = life;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `life` = '").append(this.getLife()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `life` = '" + this.getLife() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public void setLifeLastAttack(final long lifeLastAttack) {
         this.lifeLastAttack = lifeLastAttack;
-        Main.getStore().update(String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `lifeLastAttack` = '").append(this.getLifeLastAttack()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update("UPDATE `pCGuilds_guilds` SET `lifeLastAttack` = '" + this.getLifeLastAttack() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public void setLimitMembers(final int limitMembers) {
         this.limitMembers = limitMembers;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `limitMembers` = '").append(this.getLimitMembers()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `limitMembers` = '" + this.getLimitMembers() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
-    
-    public void setCreateTime(final long createTime) {
-        this.createTime = createTime;
-    }
-    
+
     public boolean isMember(final Player player) {
         return this.getMembers().contains(player.getName());
     }
     
     public int getLimitSize() {
         return this.limitSize;
-    }
-    
-    public boolean isProtected() {
-        return this.getCreateTime() + TimeUtil.HOUR.getTime(24) > System.currentTimeMillis();
     }
     
     public boolean isRegeneration() {
@@ -275,7 +245,7 @@ public class Guild
     }
     
     public Set<Player> getOnlineMembers() {
-        final Set<Player> online = new HashSet<Player>();
+        final Set<Player> online = new HashSet<>();
         for (final String u : this.members) {
             final Player op = Server.getInstance().getPlayer(u);
             if (op != null && op.isOnline()) {
@@ -287,7 +257,7 @@ public class Guild
     
     public void setDeaths(final int deaths) {
         this.deaths = deaths;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `deaths` = '").append(this.getDeaths()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `deaths` = '" + this.getDeaths() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public boolean isPreDeleted() {
@@ -296,12 +266,12 @@ public class Guild
     
     public void setPvpAlly(final boolean pvpAlly) {
         this.pvpAlly = pvpAlly;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `pvpAlly` = '").append(this.isPvpAlly() ? 1 : 0).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `pvpAlly` = '" + (this.isPvpAlly() ? 1 : 0) + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public void setLeader(final String leader) {
         this.leader = leader;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `leader` = '").append(this.getLeader()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `leader` = '" + this.getLeader() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public boolean isOwner(final String anotherString) {
@@ -314,11 +284,11 @@ public class Guild
     
     public Guild(final String tag, final String name, final Player player, final Location home) {
         this.skrzynka = new SimpleInventoryMenu(true, pl.vertty.arivi.utils.ChatUtil.fixColor("&r&9SKRZYNKA GILDYJNA"));
-        this.members = new HashSet<String>();
-        this.invites = new HashSet<Player>();
-        this.ally = new HashSet<String>();
-        this.allyInvites = new HashSet<Guild>();
-        this.blocks = new ArrayList<BlockRegeneration>();
+        this.members = new HashSet<>();
+        this.invites = new HashSet<>();
+        this.ally = new HashSet<>();
+        this.allyInvites = new HashSet<>();
+        this.blocks = new ArrayList<>();
         this.lastExplodeTime = 0L;
         this.tag = tag;
         this.name = name;
@@ -374,28 +344,20 @@ public class Guild
     public Location getHome() {
         return this.home;
     }
-    
-    public void removeDeaths(final int n) {
-        this.setDeaths(this.getDeaths() + n);
-    }
-    
-    public boolean isLeader(final Player player) {
-        return this.getLeader().equalsIgnoreCase(player.getName());
-    }
-    
+
     public void setPoints(final int points) {
         this.points = points;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `points` = '").append(this.getPoints()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `points` = '" + this.getPoints() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public void setProlong(final long prolong) {
         this.prolong = prolong;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `prolong` = '").append(this.getProlong()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `prolong` = '" + this.getProlong() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public void setSkrzynka1(final String skrzynka1) {
         this.skrzynka1 = skrzynka1;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `skrzynka1` = '").append(SeralizerUtil.serializeInventory((Inventory)this.getSkrzynka())).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `skrzynka1` = '" + SeralizerUtil.serializeInventory(this.getSkrzynka()) + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public void addDeaths(final int n) {
@@ -408,12 +370,12 @@ public class Guild
     
     public void setKills(final int kills) {
         this.kills = kills;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `kills` = '").append(this.getKills()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `kills` = '" + this.getKills() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public void setSkarbiec(final int skarbiec) {
         this.skarbiec = skarbiec;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `skarbiec` = '").append(this.getSkarbiec()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `skarbiec` = '" + this.getSkarbiec() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public boolean isOwner(final Player player) {
@@ -426,24 +388,20 @@ public class Guild
     
     public void removeMember(final Player player) {
         this.members.remove(player.getName());
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("DELETE FROM `pCGuilds_members` WHERE `name` = '").append(player.getName()).append("' AND `tag` = '").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "DELETE FROM `pCGuilds_members` WHERE `name` = '" + player.getName() + "' AND `tag` = '" + this.getTag() + "';");
     }
-    
-    public void removeKills(final int n) {
-        this.setKills(this.getKills() - n);
-    }
-    
+
     public int getLife() {
         return this.life;
     }
     
     public Guild(final ResultSet set) throws SQLException {
         this.skrzynka = new SimpleInventoryMenu(true, pl.vertty.arivi.utils.ChatUtil.fixColor("&r&9SKRZYNKA GILDYJNA"));
-        this.members = new HashSet<String>();
-        this.invites = new HashSet<Player>();
-        this.ally = new HashSet<String>();
-        this.allyInvites = new HashSet<Guild>();
-        this.blocks = new ArrayList<BlockRegeneration>();
+        this.members = new HashSet<>();
+        this.invites = new HashSet<>();
+        this.ally = new HashSet<>();
+        this.allyInvites = new HashSet<>();
+        this.blocks = new ArrayList<>();
         this.lastExplodeTime = 0L;
         this.tag = set.getString("tag");
         this.name = set.getString("name");
@@ -472,9 +430,9 @@ public class Guild
         this.skarbiec = set.getInt("skarbiec");
         this.skrzynka1 = set.getString("skrzynka1");
         if (!this.skrzynka1.isEmpty()) {
-            this.skrzynka.setContents((Map)InventoryUtil.itemArrayToInventoryContents(SeralizerUtil.deserializeItemArray(this.skrzynka1)));
+            this.skrzynka.setContents(InventoryUtil.itemArrayToInventoryContents(SeralizerUtil.deserializeItemArray(this.skrzynka1)));
         }
-        final ResultSet query = Main.getStore().query(String.valueOf(new StringBuilder().append("SELECT * FROM `pCGuilds_members` WHERE `tag` = '").append(this.tag).append("';")));
+        final ResultSet query = Main.getStore().query("SELECT * FROM `pCGuilds_members` WHERE `tag` = '" + this.tag + "';");
         while (query.next()) {
             this.members.add(query.getString("name"));
         }
@@ -489,45 +447,29 @@ public class Guild
         return this.skrzynka;
     }
     
-    public void actionbar(final String s) {
-        final Iterator<Player> iterator = this.getOnlineMembers().iterator();
-        while (iterator.hasNext()) {
-            ChatUtil.sendActionbar(iterator.next(), ChatUtil.fixColor(s));
-        }
-    }
-    
     public void addKills(final int n) {
         this.setKills(this.getKills() + n);
     }
-    
-    public boolean isExits() {
-        return this.getProlong() > System.currentTimeMillis();
-    }
-    
+
     public int getKills() {
         return this.kills;
     }
     
     public void message(final String s) {
-        final Iterator<Player> iterator = this.getOnlineMembers().iterator();
-        while (iterator.hasNext()) {
-            iterator.next().sendMessage(ChatUtil.fixColor(s));
+        for (Player player : this.getOnlineMembers()) {
+            player.sendMessage(ChatUtil.fixColor(s));
         }
     }
     
     public void setPvp(final boolean pvp) {
         this.pvp = pvp;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `pvp` = '").append(this.isPvp() ? 1 : 0).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `pvp` = '" + (this.isPvp() ? 1 : 0) + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public int getHead() {
         return this.head;
     }
-    
-    public boolean isLastAtack() {
-        return this.getLifeLastAttack() > System.currentTimeMillis();
-    }
-    
+
     public void title(final String s, final String s2) {
         for (final Player player : this.getOnlineMembers()) {
             ChatUtil.sendTitle(player, ChatUtil.fixColor(s));
@@ -537,12 +479,12 @@ public class Guild
     
     public void setHome(final Location home) {
         this.home = home;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `homeX` = '").append(this.getHome().getX()).append("', `homeY` ='").append(this.getHome().getY()).append("', `homeZ` ='").append(this.getHome().getZ()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_guilds` SET `homeX` = '" + this.getHome().getX() + "', `homeY` ='" + this.getHome().getY() + "', `homeZ` ='" + this.getHome().getZ() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public void addAlly(final String s) {
         this.ally.add(s);
-        Main.getStore().update(String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_guilds` SET `ally` ='").append(this.getAlly().toString().replace("[", "").replace("]", "")).append("' WHERE `tag` ='").append(this.getTag()).append("'")));
+        Main.getStore().update("UPDATE `pCGuilds_guilds` SET `ally` ='" + this.getAlly().toString().replace("[", "").replace("]", "") + "' WHERE `tag` ='" + this.getTag() + "'");
     }
     
     public int getHp() {

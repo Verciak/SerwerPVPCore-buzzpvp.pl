@@ -29,7 +29,7 @@ public class WorkbenchInventoryMenu extends ContainerInventory
     
     public void onClose(final Player who) {
         super.onClose(who);
-        final Vector3 vec = new Vector3(who.x, who.y - 2.0, who.z);
+        final Vector3 vec = new Vector3(who.x, who.y + 2.0, who.z);
         who.level.sendBlocks(new Player[] { who }, new Vector3[] { vec });
     }
     
@@ -43,9 +43,9 @@ public class WorkbenchInventoryMenu extends ContainerInventory
     }
     
     protected Vector3 createInventory(final Player player) {
-        final Vector3 pos = new Vector3((double)(int)player.getX(), (double)((int)player.getY() - 2), (double)(int)player.getZ());
+        final Vector3 pos = new Vector3((double)(int)player.getX(), (double)((int)player.getY() + 2), (double)(int)player.getZ());
         this.spawnChest(player, pos);
-        return new Vector3(player.x, player.y - 2.0, player.z);
+        return new Vector3(player.x, player.y + 2.0, player.z);
     }
     
     private void spawnChest(final Player player, final Vector3 pos) {

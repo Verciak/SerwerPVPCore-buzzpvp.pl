@@ -15,6 +15,79 @@ public class SchowekAction
     public SchowekAction() {
     }
 
+    public static void checkTNT(final Player p, final boolean msg) {
+        final User u = UserManager.getUser(p);
+        final int maxKoxy = SchowekAction.c.getInt("limit.tnt");
+        assert u != null;
+        if (u.getTnt() <= 0) {
+            if (msg) {
+                ChatUtil.sendMessage(p, "&cAktualnie nie masz do wyplacenia tego itemu!");
+            }
+            return;
+        }
+        int koxy = 0;
+        for (final Item i : p.getInventory().getContents().values()) {
+            if(i.getCustomName().contains(ChatUtil.fixColor("&9RZUCANETNT"))) {
+                if (i.getId() == Item.TNT) {
+                    koxy += i.getCount();
+                }
+            }
+        }
+        if (koxy >= maxKoxy) {
+            if (msg) {
+                ChatUtil.sendMessage(p, "&cPosiadasz juz limit tego przedmiotu!");
+            }
+            return;
+        }
+        int j = maxKoxy - koxy;
+        if (j > u.getTnt()) {
+            j = u.getTnt();
+        }
+        u.removeTnt(j);
+        final Item xd = Item.get(Item.TNT, 0, j);
+        xd.setCustomName(ChatUtil.fixColor("&9RZUCANETNT"));
+        xd.setLore(ChatUtil.fixColor(new String[] { "", "&7Kliknij, PPM aby postawic RZUCANETNT" }));
+
+        p.getInventory().addItem(xd);
+        if (msg) {
+            ChatUtil.sendMessage(p, "&7Zwrocono: &6{ITEM} &7rzucakow".replace("{ITEM}", String.valueOf(j)));
+        }
+    }
+
+    public static void checkArrow(final Player p, final boolean msg) {
+        final User u = UserManager.getUser(p);
+        final int maxKoxy = SchowekAction.c.getInt("limit.arrow");
+        assert u != null;
+        if (u.getArrow() <= 0) {
+            if (msg) {
+                ChatUtil.sendMessage(p, "&cAktualnie nie masz do wyplacenia tego itemu!");
+            }
+            return;
+        }
+        int koxy = 0;
+        for (final Item i : p.getInventory().getContents().values()) {
+            if (i.getId() == Item.ARROW) {
+                koxy += i.getCount();
+            }
+        }
+        if (koxy >= maxKoxy) {
+            if (msg) {
+                ChatUtil.sendMessage(p, "&cPosiadasz juz limit tego przedmiotu!");
+            }
+            return;
+        }
+        int j = maxKoxy - koxy;
+        if (j > u.getArrow()) {
+            j = u.getArrow();
+        }
+        u.removeSniezki(j);
+        final Item xd = Item.get(Item.ARROW, 0, j);
+        p.getInventory().addItem(xd);
+        if (msg) {
+            ChatUtil.sendMessage(p, "&7Zwrocono: &6{ITEM} &7strzal".replace("{ITEM}", String.valueOf(j)));
+        }
+    }
+
 
     public static void checkSniezki(final Player p, final boolean msg) {
         final User u = UserManager.getUser(p);

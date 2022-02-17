@@ -18,7 +18,7 @@ public class War
     private String tag;
     
     private void insert() {
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("INSERT INTO `pCGuilds_wars`(`id`, `tag`, `tag2`, `name`, `kills`, `deaths`, `time`) VALUES (NULL, '").append(this.getTag()).append("','").append(this.getTag2()).append("','").append(this.getName()).append("','").append(this.getKills()).append("','").append(this.getDeaths()).append("','").append(this.getTime()).append("')")));
+        Main.getStore().update(false, "INSERT INTO `pCGuilds_wars`(`id`, `tag`, `tag2`, `name`, `kills`, `deaths`, `time`) VALUES (NULL, '" + this.getTag() + "','" + this.getTag2() + "','" + this.getName() + "','" + this.getKills() + "','" + this.getDeaths() + "','" + this.getTime() + "')");
     }
     
     public War(final String s, final String tag2, final String name) {
@@ -32,14 +32,9 @@ public class War
         WarManager.getWars().put(s, this);
     }
     
-    public void setTag2(final String tag2) {
-        this.tag2 = tag2;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_wars` SET `tag2` = '").append(this.getTag2()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
-    }
-    
     public void setName(final String name) {
         this.name = name;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_wars` SET `name` = '").append(this.getName()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_wars` SET `name` = '" + this.getName() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public War(final ResultSet set) throws SQLException {
@@ -57,22 +52,22 @@ public class War
     
     public void setDeaths(final int deaths) {
         this.deaths = deaths;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_wars` SET `deaths` = '").append(this.getDeaths()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_wars` SET `deaths` = '" + this.getDeaths() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public void setKills(final int kills) {
         this.kills = kills;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_wars` SET `kills` = '").append(this.getKills()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_wars` SET `kills` = '" + this.getKills() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public void setTime(final long time) {
         this.time = time;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_wars` SET `time` = '").append(this.getTime()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_wars` SET `time` = '" + this.getTime() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public void setTag(final String tag) {
         this.tag = tag;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_wars` SET `tag` = '").append(this.getTag()).append("' WHERE `tag` ='").append(this.getTag()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_wars` SET `tag` = '" + this.getTag() + "' WHERE `tag` ='" + this.getTag() + "';");
     }
     
     public String getName() {

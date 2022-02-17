@@ -25,7 +25,7 @@ public class Role
     
     public void setUpr_Chest(final boolean upr_Chest) {
         this.upr_Chest = upr_Chest;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_roles` SET `upr_chest` = '").append(this.isUpr_Chest() ? 1 : 0).append("' WHERE `name` ='").append(this.getName()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_roles` SET `upr_chest` = '" + (this.isUpr_Chest() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
     }
     
     public boolean isUpr_Chest() {
@@ -38,7 +38,7 @@ public class Role
     
     public void setUpr_Lapis(final boolean upr_Lapis) {
         this.upr_Lapis = upr_Lapis;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_roles` SET `upr_lapis` = '").append(this.isUpr_Lapis() ? 1 : 0).append("' WHERE `name` ='").append(this.getName()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_roles` SET `upr_lapis` = '" + (this.isUpr_Lapis() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
     }
     
     public String getName() {
@@ -65,17 +65,17 @@ public class Role
     
     public void setUpr_Tnt(final boolean upr_Tnt) {
         this.upr_Tnt = upr_Tnt;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_roles` SET `upr_tnt` = '").append(this.isUpr_Tnt() ? 1 : 0).append("' WHERE `name` ='").append(this.getName()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_roles` SET `upr_tnt` = '" + (this.isUpr_Tnt() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
     }
     
     public void setUpr_Break_Obsidian(final boolean upr_Break_Obsidian) {
         this.upr_Break_Obsidian = upr_Break_Obsidian;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_roles` SET `upr_break_obsidian` = '").append(this.isUpr_Break_Obsidian() ? 1 : 0).append("' WHERE `name` ='").append(this.getName()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_roles` SET `upr_break_obsidian` = '" + (this.isUpr_Break_Obsidian() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
     }
     
     public void setUpr_Place_Obsidian(final boolean upr_Place_Obsidian) {
         this.upr_Place_Obsidian = upr_Place_Obsidian;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_roles` SET `upr_place_obsidian` = '").append(this.isUpr_Place_Obsidian() ? 1 : 0).append("' WHERE `name` ='").append(this.getName()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_roles` SET `upr_place_obsidian` = '" + (this.isUpr_Place_Obsidian() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
     }
     
     public boolean isUpr_Boyfarmer() {
@@ -83,13 +83,13 @@ public class Role
     }
     
     public void setName(final String s) {
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_roles` SET `name` = '").append(s).append("' WHERE `name` ='").append(this.getName()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_roles` SET `name` = '" + s + "' WHERE `name` ='" + this.getName() + "';");
         this.name = s;
     }
     
     public void setUpr_Boyfarmer(final boolean upr_Boyfarmer) {
         this.upr_Boyfarmer = upr_Boyfarmer;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_roles` SET `upr_boyfarmer` = '").append(this.isUpr_Boyfarmer() ? 1 : 0).append("' WHERE `name` ='").append(this.getName()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_roles` SET `upr_boyfarmer` = '" + (this.isUpr_Boyfarmer() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
     }
     
     public boolean isUpr_Place_Obsidian() {
@@ -102,17 +102,17 @@ public class Role
     
     public void setUpr_Water(final boolean upr_Water) {
         this.upr_Water = upr_Water;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_roles` SET `upr_water` = '").append(this.isUpr_Water() ? 1 : 0).append("' WHERE `name` ='").append(this.getName()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_roles` SET `upr_water` = '" + (this.isUpr_Water() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
     }
     
     public void setUpr_Break_Stone(final boolean upr_Break_Stone) {
         this.upr_Break_Stone = upr_Break_Stone;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_roles` SET `upr_break_stone` = '").append(this.isUpr_Break_Stone() ? 1 : 0).append("' WHERE `name` ='").append(this.getName()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_roles` SET `upr_break_stone` = '" + (this.isUpr_Break_Stone() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
     }
     
     public void setUpr_Place_Stone(final boolean upr_Place_Stone) {
         this.upr_Place_Stone = upr_Place_Stone;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_roles` SET `upr_place_stone` = '").append(this.isUpr_Place_Stone() ? 1 : 0).append("' WHERE `name` ='").append(this.getName()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_roles` SET `upr_place_stone` = '" + (this.isUpr_Place_Stone() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
     }
     
     public boolean isUpr_Break_Stone() {
@@ -146,7 +146,7 @@ public class Role
     
     public void setUpr_Logblock(final boolean upr_Logblock) {
         this.upr_Logblock = upr_Logblock;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_roles` SET `upr_logblock` = '").append(this.isUpr_Logblock() ? 1 : 0).append("' WHERE `name` ='").append(this.getName()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_roles` SET `upr_logblock` = '" + (this.isUpr_Logblock() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
     }
     
     public boolean isUpr_Logblock() {
@@ -154,12 +154,12 @@ public class Role
     }
     
     private void insert() {
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("INSERT INTO `pCGuilds_roles`(`id`, `tag`, `name`, `upr_lava`, `upr_water`, `upr_break_obsidian`, `upr_break_stone`, `upr_place_obsidian`, `upr_place_stone`, `upr_chest`, `upr_tnt`, `upr_boyfarmer`, `upr_lapis`, `upr_logblock`, `upr_furnace`) VALUES (NULL, '").append(this.getTag()).append("','").append(this.getName()).append("','").append(this.isUpr_Lava() ? 1 : 0).append("','").append(this.isUpr_Water() ? 1 : 0).append("','").append(this.isUpr_Break_Obsidian() ? 1 : 0).append("','").append(this.isUpr_Break_Stone() ? 1 : 0).append("','").append(this.isUpr_Place_Obsidian() ? 1 : 0).append("','").append(this.isUpr_Place_Stone() ? 1 : 0).append("','").append(this.isUpr_Chest() ? 1 : 0).append("','").append(this.isUpr_Tnt() ? 1 : 0).append("','").append(this.isUpr_Boyfarmer() ? 1 : 0).append("','").append(this.isUpr_Lapis() ? 1 : 0).append("','").append(this.isUpr_Logblock() ? 1 : 0).append("','").append(this.isUpr_Furnace() ? 1 : 0).append("')")));
+        Main.getStore().update(false, "INSERT INTO `pCGuilds_roles`(`id`, `tag`, `name`, `upr_lava`, `upr_water`, `upr_break_obsidian`, `upr_break_stone`, `upr_place_obsidian`, `upr_place_stone`, `upr_chest`, `upr_tnt`, `upr_boyfarmer`, `upr_lapis`, `upr_logblock`, `upr_furnace`) VALUES (NULL, '" + this.getTag() + "','" + this.getName() + "','" + (this.isUpr_Lava() ? 1 : 0) + "','" + (this.isUpr_Water() ? 1 : 0) + "','" + (this.isUpr_Break_Obsidian() ? 1 : 0) + "','" + (this.isUpr_Break_Stone() ? 1 : 0) + "','" + (this.isUpr_Place_Obsidian() ? 1 : 0) + "','" + (this.isUpr_Place_Stone() ? 1 : 0) + "','" + (this.isUpr_Chest() ? 1 : 0) + "','" + (this.isUpr_Tnt() ? 1 : 0) + "','" + (this.isUpr_Boyfarmer() ? 1 : 0) + "','" + (this.isUpr_Lapis() ? 1 : 0) + "','" + (this.isUpr_Logblock() ? 1 : 0) + "','" + (this.isUpr_Furnace() ? 1 : 0) + "')");
     }
     
     public void setUpr_Furnace(final boolean upr_Furnace) {
         this.upr_Furnace = upr_Furnace;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_roles` SET `upr_furnace` = '").append(this.isUpr_Furnace() ? 1 : 0).append("' WHERE `name` ='").append(this.getName()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_roles` SET `upr_furnace` = '" + (this.isUpr_Furnace() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
     }
     
     public boolean isUpr_Furnace() {
@@ -184,6 +184,6 @@ public class Role
     
     public void setUpr_Lava(final boolean upr_Lava) {
         this.upr_Lava = upr_Lava;
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("UPDATE `pCGuilds_roles` SET `upr_lava` = '").append(this.isUpr_Lava() ? 1 : 0).append("' WHERE `name` ='").append(this.getName()).append("';")));
+        Main.getStore().update(false, "UPDATE `pCGuilds_roles` SET `upr_lava` = '" + (this.isUpr_Lava() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
     }
 }

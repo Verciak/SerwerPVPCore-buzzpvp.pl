@@ -37,7 +37,7 @@ public class TradeInventory extends BaseInventory
         aep.entityRuntimeId = eid;
         aep.entityUniqueId = eid;
         aep.x = (float)player.getX();
-        aep.y = (float)(player.getY() - 2.0);
+        aep.y = (float)(player.getY() + 2.0);
         aep.z = (float)player.getZ();
         aep.yaw = 0.0f;
         aep.pitch = 0.0f;

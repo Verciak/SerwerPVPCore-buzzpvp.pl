@@ -8,6 +8,7 @@ import pl.vertty.arivi.MainConstants;
 import pl.vertty.arivi.guilds.data.User;
 import pl.vertty.arivi.guilds.rank.RankingManager;
 import pl.vertty.arivi.guilds.utils.Logger;
+import pl.vertty.arivi.managers.ranking.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,6 +33,12 @@ public class UserManager
                 final User value = new User(query);
                 UserManager.users.put(value.getName(), value);
                 RankingManager.addRanking(value);
+                KillManager.addKill(value);
+                DeathManager.addDeath(value);
+                KoxManager.addKox(value);
+                RefilManager.addRefil(value);
+                PerlyManager.addPerly(value);
+                KamienManager.addKamien(value);
             }
             query.close();
 //            Logger.info(String.valueOf(new StringBuilder().append("Loaded ").append(UserManager.users.size()).append(" players from pCGuilds_users")));
@@ -48,12 +55,24 @@ public class UserManager
 //        Main.getStore().update(false, String.valueOf(new StringBuilder().append("DELETE FROM `pCGuilds_users` WHERE `name` = '").append(user.getName()).append("'")));
         Main.getStore().asyncUpdate("DELETE FROM `pCGuilds_users` WHERE `name` = '" + user.getName() + "'");
         RankingManager.removeRanking(user);
+        KillManager.removeKill(user);
+        DeathManager.removeDeath(user);
+        KoxManager.removeKox(user);
+        RefilManager.removeRefil(user);
+        PerlyManager.removePerly(user);
+        KamienManager.removeKamien(user);
     }
     
     public static void createrUser(final Player player) {
         final User value = new User(player);
         UserManager.users.put(player.getName(), value);
         RankingManager.addRanking(value);
+        KillManager.addKill(value);
+        DeathManager.addDeath(value);
+        KoxManager.addKox(value);
+        RefilManager.addRefil(value);
+        PerlyManager.addPerly(value);
+        KamienManager.addKamien(value);
     }
     
     public static User getUser(final Player player) {

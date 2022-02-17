@@ -3,6 +3,7 @@ package pl.vertty.arivi.listeners.consume;
 import cn.nukkit.Player;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
+import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.player.PlayerItemConsumeEvent;
 import cn.nukkit.item.Item;
 import cn.nukkit.potion.Effect;
@@ -10,6 +11,17 @@ import pl.vertty.arivi.guilds.data.User;
 import pl.vertty.arivi.guilds.managers.UserManager;
 
 public class ItemConsumeListener implements Listener {
+
+
+    @EventHandler
+    public void onClickPearl(PlayerInteractEvent e) {
+        Player p = e.getPlayer();
+        User u = UserManager.getUser(p);
+        if ((p.getInventory().getItemInHand().getId() == Item.ENDER_PEARL && e.getAction() == PlayerInteractEvent.Action.RIGHT_CLICK_AIR || e.getAction() == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK)) {
+            u.serperla(u.getperla() + 1);
+            return;
+        }
+    }
 
     @EventHandler
     public void kox(PlayerItemConsumeEvent e) {

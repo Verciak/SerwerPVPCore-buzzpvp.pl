@@ -36,7 +36,6 @@ public class ActionBarTask extends NukkitRunnable
             }
             final Combat combat = CombatManager.getCombat(player);
             final Guild guild = GuildManager.getGuild(player);
-            final User user = UserManager.getUser(player);
             if (combat != null && combat.wasFight() && !combat.hasFight()) {
                 player.sendMessage(pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(Config.ANTYLOGAUT_END));
                 combat.setLastAttactkPlayer(null);
@@ -45,25 +44,25 @@ public class ActionBarTask extends NukkitRunnable
             final Guild guild2 = GuildManager.getGuild(player.getLocation());
             if (guild2 != null) {
                 if (!s.equals("")) {
-                    s = String.valueOf(new StringBuilder().append(s).append(" &8| "));
+                    s = s + " &8| ";
                 }
                 if (guild2 != guild) {
                     if (guild != null && guild.getAlly().contains(guild2.getTag())) {
-                        s = String.valueOf(new StringBuilder().append(s).append("&6Jestes na terytorium sojuszniczej gildii &8[&6").append(guild2.getTag()).append("&8]"));
+                        s = s + "&6Jestes na terytorium sojuszniczej gildii &8[&6" + guild2.getTag() + "&8]";
                     }
                     else {
-                        s = String.valueOf(new StringBuilder().append(s).append("&cJestes na terytorium wrogiej gildii &8[&c").append(guild2.getTag()).append("&8]"));
+                        s = s + "&cJestes na terytorium wrogiej gildii &8[&c" + guild2.getTag() + "&8]";
                     }
                 }
                 else {
-                    s = String.valueOf(new StringBuilder().append(s).append("&aJestes na terytorium swojej gildi &8[&a").append(guild2.getTag()).append("&8]"));
+                    s = s + "&aJestes na terytorium swojej gildi &8[&a" + guild2.getTag() + "&8]";
                 }
             }
             if (guild != null && guild.isRegeneration()) {
                 if (!s.equals("")) {
-                    s = String.valueOf(new StringBuilder().append(s).append(" &8| "));
+                    s = s + " &8| ";
                 }
-                s = String.valueOf(new StringBuilder().append(s).append("&6Trwa Regeneracja terenu &8(&6").append(pl.vertty.arivi.guilds.utils.DataUtil.secondsToString(System.currentTimeMillis() + guild.getBlocks().size() * 110L)).append(" &7- &6").append(guild.getBlocks().size()).append(" blokow&8)"));
+                s = s + "&6Trwa Regeneracja terenu &8(&6" + pl.vertty.arivi.guilds.utils.DataUtil.secondsToString(System.currentTimeMillis() + guild.getBlocks().size() * 110L) + " &7- &6" + guild.getBlocks().size() + " blokow&8)";
             }
             if (s.equals("")) {
                 return;

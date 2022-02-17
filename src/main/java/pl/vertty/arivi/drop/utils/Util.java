@@ -20,10 +20,36 @@ import pl.vertty.arivi.inventory.item.ItemData;
 import pl.vertty.arivi.utils.ChatUtil;
 import pl.vertty.arivi.utils.ItemUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Util
 {
     public static long turbo;
     public static long turbo_exp;
+
+    public static void giveItemOnDeath(Player killer, Player p, Item... t) {
+        Item[] returns = killer.getInventory().addItem(t.clone());
+        List<Item> drops = new ArrayList<>();
+        for (Item returned : returns) {
+            int maxStackSize = returned.getMaxStackSize();
+            if (returned.getCount() <= maxStackSize) {
+                drops.add(returned);
+            } else {
+                while (returned.getCount() > maxStackSize) {
+                    Item drop = returned.clone();
+                    int toDrop = Math.min(returned.getCount(), maxStackSize);
+                    drop.setCount(toDrop);
+                    returned.setCount(returned.getCount() - toDrop);
+                    drops.add(drop);
+                }
+                if (!returned.isNull())
+                    drops.add(returned);
+            }
+        }
+        for (Item drop : drops)
+            p.dropItem(drop);
+    }
 
     public static boolean isTurbo() {
         return Util.turbo > System.currentTimeMillis() || Util.turbo == -1L;

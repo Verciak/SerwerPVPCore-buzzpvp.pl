@@ -16,6 +16,7 @@ public class CraftingiGui
     public static void openEnderchest(final Player player) {
         final InventoryMenu menu = new InventoryMenu();
         final InventoryCategory category = new InventoryCategory();
+        category.setDoubleCraftingiServerGui();
         category.addElement(10, ItemData.fromItem(MainConstants.OBSYDIAN));
         category.addElement(11, ItemData.fromItem(MainConstants.OBSYDIAN));
         category.addElement(12, ItemData.fromItem(MainConstants.OBSYDIAN));
@@ -50,13 +51,14 @@ public class CraftingiGui
                 CraftingiGui.openEnderchest(player);
             }
         });
-        category.addElement(53, ItemData.fromItem(MainConstants.ENDERCHEST_GUI_ITEM), new ItemClick() {
+        category.addElement(52, ItemData.fromItem(MainConstants.ENDERCHEST_GUI_ITEM), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item) {
                 final Item boy2 = new Item(130, 0, 1);
                 final String items = "49:0-8:Obsydian;368:0-1:Perla;";
                 if (!ItemUtil.checkItems(player, items, 1)) {
                     ItemUtil.getItem(player, items, 1);
+                    menu.forceDestroy(player);
                     return;
                 }
                 ItemUtil.removeItems(player, items, 1);
@@ -76,6 +78,8 @@ public class CraftingiGui
     public static void openStoniarka(final Player player) {
         final InventoryMenu menu = new InventoryMenu();
         final InventoryCategory category = new InventoryCategory();
+        category.setDoubleCraftingiServerGui();
+
         category.addElement(10, ItemData.fromItem(MainConstants.COBBLESTONE));
         category.addElement(11, ItemData.fromItem(MainConstants.COBBLESTONE));
         category.addElement(12, ItemData.fromItem(MainConstants.COBBLESTONE));
@@ -110,7 +114,7 @@ public class CraftingiGui
                 CraftingiGui.openEnderchest(player);
             }
         });
-        category.addElement(53, ItemData.fromItem(MainConstants.STONIARKA_GUI_ITEM), new ItemClick() {
+        category.addElement(52, ItemData.fromItem(MainConstants.STONIARKA_GUI_ITEM), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item) {
                 final Item boy2 = new Item(121, 0, 1);
@@ -119,6 +123,7 @@ public class CraftingiGui
                 final String items = "4:0-8:Cobblestone;264:0-1:Diament;";
                 if (!ItemUtil.checkItems(player, items, 1)) {
                     ItemUtil.getItem(player, items, 1);
+                    menu.forceDestroy(player);
                     return;
                 }
                 ItemUtil.removeItems(player, items, 1);
@@ -138,6 +143,7 @@ public class CraftingiGui
     public static void openRzucak(final Player player) {
         final InventoryMenu menu = new InventoryMenu();
         final InventoryCategory category = new InventoryCategory();
+        category.setDoubleCraftingiServerGui();
         category.addElement(10, ItemData.fromItem(MainConstants.TNT));
         category.addElement(11, ItemData.fromItem(MainConstants.TNT));
         category.addElement(12, ItemData.fromItem(MainConstants.TNT));
@@ -172,7 +178,7 @@ public class CraftingiGui
                 CraftingiGui.openEnderchest(player);
             }
         });
-        category.addElement(53, ItemData.fromItem(MainConstants.RZUCAK_GUI_ITEM), new ItemClick() {
+        category.addElement(52, ItemData.fromItem(MainConstants.RZUCAK_GUI_ITEM), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item) {
                 final Item boy2 = new Item(46, 0, 1);
@@ -181,6 +187,7 @@ public class CraftingiGui
                 final String items = "46:0-576:TNT;";
                 if (!ItemUtil.checkItems(player, items, 1)) {
                     ItemUtil.getItem(player, items, 1);
+                    menu.forceDestroy(player);
                     return;
                 }
                 ItemUtil.removeItems(player, items, 1);
@@ -200,6 +207,7 @@ public class CraftingiGui
     public static void openAntyNogi(final Player player) {
         final InventoryMenu menu = new InventoryMenu();
         final InventoryCategory category = new InventoryCategory();
+        category.setDoubleCraftingiServerGui();
         category.addElement(10, ItemData.fromItem(MainConstants.GOLD_BLOCK));
         category.addElement(11, ItemData.fromItem(MainConstants.GOLD_BLOCK));
         category.addElement(12, ItemData.fromItem(MainConstants.GOLD_BLOCK));
@@ -234,7 +242,7 @@ public class CraftingiGui
                 CraftingiGui.openEnderchest(player);
             }
         });
-        category.addElement(53, ItemData.fromItem(MainConstants.ANTI_LEGS_GUI_ITEM), new ItemClick() {
+        category.addElement(52, ItemData.fromItem(MainConstants.ANTI_LEGS_GUI_ITEM), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item) {
                 final Item boy2 = new Item(317, 0, 1);
@@ -243,6 +251,7 @@ public class CraftingiGui
                 final String items = "41:0-8:Bloki Zlota;317:0-1:Zlote Buty;";
                 if (!ItemUtil.checkItems(player, items, 1)) {
                     ItemUtil.getItem(player, items, 1);
+                    menu.forceDestroy(player);
                     return;
                 }
                 ItemUtil.removeItems(player, items, 1);

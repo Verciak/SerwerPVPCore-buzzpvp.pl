@@ -1,7 +1,12 @@
 
 package pl.vertty.arivi.guilds.commands.guild;
 
+import cn.nukkit.Server;
+import pl.vertty.arivi.MainConstants;
 import pl.vertty.arivi.enums.GroupType;
+import pl.vertty.arivi.gui.GuildBoyFarmerGui;
+import pl.vertty.arivi.gui.GuildKopaczFarmerGui;
+import pl.vertty.arivi.guilds.managers.UserManager;
 import pl.vertty.arivi.inventory.InventoryMenuHandler;
 import pl.vertty.arivi.guilds.utils.itemstack.ItemStackUtil;
 import cn.nukkit.plugin.Plugin;
@@ -48,22 +53,22 @@ public class GuildPanelCommand extends PlayerCommand
         final InventoryCategory category = new InventoryCategory();
         final Guild guild = GuildManager.getGuild(player);
         final Guild guild2 = GuildManager.getGuild(player);
-        category.addElement(0, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(1, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(2, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(3, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(4, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(5, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(6, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(7, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(8, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(9, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(10, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(11, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(12, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(13, ItemData.fromItem(new Item(373, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Efekty gilidyjne")).setLore(new String[] { ChatUtil.fixColor("&8» &7Koszt: &950 &7emeraldow"), ChatUtil.fixColor("&8» &7Kliknij aby wylosowac efekt dla gildi") })), new ItemClick() {
+        category.addElement(0, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(1, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(2, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(3, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(4, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(5, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(6, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(7, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(8, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(9, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(10, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(11, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(12, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(13, ItemData.fromItem(new Item(373, 1).setCustomName(ChatUtil.fixColor("&9Efekty gilidyjne")).setLore(ChatUtil.fixColor("&8» &7Koszt: &950 &7emeraldow"), ChatUtil.fixColor("&8» &7Kliknij aby wylosowac efekt dla gildi"))), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 if (guild2.getSkarbiec() < 50) {
                     ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_EFFECT_TITLE));
                     ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_EFFECT_SUBTITLE2.replace("{HEAD}", "50")));
@@ -79,16 +84,16 @@ public class GuildPanelCommand extends PlayerCommand
                 ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_EFFECT_SUBTITLE.replace("{EFFECT}", potionEffect.getName())));
             }
         });
-        category.addElement(14, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(15, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(16, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(17, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(18, ItemData.fromItem(new Item(323, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Informacje o gildii!")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Tag: &9").append(guild.getTag()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Nazwa: &9").append(guild.getName()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Glowy: &9").append(guild.getHead()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7HP: &9").append(guild.getHp()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Zycia: &9").append(guild.getLife()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Sojuszy: &9").append(guild.getSojusz()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Graczy: &9").append(guild.getLimitMembers()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Rozmiar: &9").append(guild.getRegion().getSize()).append("&7x&9").append(guild.getRegion().getSize()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Wygasa za: &9").append(DataUtil.secondsToString(guild.getProlong())))) })));
-        category.addElement(19, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(20, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(21, ItemData.fromItem(new Item(122, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Odnow zycie gildii")).setLore(new String[] { ChatUtil.fixColor("&8» &7Koszt: &930 &7emeraldow"), ChatUtil.fixColor("&8» &7Kliknij aby odnowic zycie jajka") })), new ItemClick() {
+        category.addElement(14, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(15, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(16, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(17, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(18, ItemData.fromItem(new Item(323, 1).setCustomName(ChatUtil.fixColor("&9Informacje o gildii!")).setLore(ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Tag: &9").append(guild.getTag()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Nazwa: &9").append(guild.getName()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Glowy: &9").append(guild.getHead()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7HP: &9").append(guild.getHp()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Zycia: &9").append(guild.getLife()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Sojuszy: &9").append(guild.getSojusz()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Graczy: &9").append(guild.getLimitMembers()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Rozmiar: &9").append(guild.getRegion().getSize()).append("&7x&9").append(guild.getRegion().getSize()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Wygasa za: &9").append(DataUtil.secondsToString(guild.getProlong())))))));
+        category.addElement(19, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(20, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(21, ItemData.fromItem(new Item(122, 1).setCustomName(ChatUtil.fixColor("&9Odnow zycie gildii")).setLore(ChatUtil.fixColor("&8» &7Koszt: &930 &7emeraldow"), ChatUtil.fixColor("&8» &7Kliknij aby odnowic zycie jajka"))), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 if (guild2.getSkarbiec() < 30) {
                     ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_LIFE_TITLE));
                     ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_EFFECT_SUBTITLE2.replace("{HEAD}", "30")));
@@ -105,10 +110,10 @@ public class GuildPanelCommand extends PlayerCommand
                 ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_LIFE_SUBTITLE));
             }
         });
-        category.addElement(22, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(23, ItemData.fromItem(new Item(38, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("&9Odnow hp gildii")).setLore(new String[] { ChatUtil.fixColor("&8» &7Koszt: &930 &7emeraldow"), ChatUtil.fixColor("&8» &7Kliknij aby odnowic hp jajka") })), new ItemClick() {
+        category.addElement(22, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(23, ItemData.fromItem(new Item(38, 0, 1).setCustomName(ChatUtil.fixColor("&9Odnow hp gildii")).setLore(ChatUtil.fixColor("&8» &7Koszt: &930 &7emeraldow"), ChatUtil.fixColor("&8» &7Kliknij aby odnowic hp jajka"))), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 if (guild2.getSkarbiec() < 30) {
                     ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_HP_TITLE));
                     ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_EFFECT_SUBTITLE2.replace("{HEAD}", "30")));
@@ -125,14 +130,14 @@ public class GuildPanelCommand extends PlayerCommand
                 ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_HP_SUBTITLE));
             }
         });
-        category.addElement(24, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(25, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(26, ItemData.fromItem(new Item(323, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Informacje o gildii!")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Tag: &9").append(guild.getTag()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Nazwa: &9").append(guild.getName()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Glowy: &9").append(guild.getHead()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7HP: &9").append(guild.getHp()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Zycia: &9").append(guild.getLife()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Sojuszy: &9").append(guild.getSojusz()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Graczy: &9").append(guild.getLimitMembers()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Rozmiar: &9").append(guild.getRegion().getSize()).append("&7x&9").append(guild.getRegion().getSize()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Wygasa za: &9").append(DataUtil.secondsToString(guild.getProlong())))) })));
-        category.addElement(27, ItemData.fromItem(new Item(323, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Informacje o gildii!")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Tag: &9").append(guild.getTag()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Nazwa: &9").append(guild.getName()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Glowy: &9").append(guild.getHead()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7HP: &9").append(guild.getHp()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Zycia: &9").append(guild.getLife()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Sojuszy: &9").append(guild.getSojusz()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Graczy: &9").append(guild.getLimitMembers()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Rozmiar: &9").append(guild.getRegion().getSize()).append("&7x&9").append(guild.getRegion().getSize()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Wygasa za: &9").append(DataUtil.secondsToString(guild.getProlong())))) })));
-        category.addElement(28, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(29, ItemData.fromItem(new Item(283).setCustomName(ChatUtil.fixColor("&9Powieksz limit sojuszy")).setLore(new String[] { ChatUtil.fixColor("&8» &7Koszt: &930 &7emeraldow"), ChatUtil.fixColor("&8» &7Kliknij aby powiekszyc limit sojuszy o &91") })), new ItemClick() {
+        category.addElement(24, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(25, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(26, ItemData.fromItem(new Item(323, 1).setCustomName(ChatUtil.fixColor("&9Informacje o gildii!")).setLore(ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Tag: &9").append(guild.getTag()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Nazwa: &9").append(guild.getName()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Glowy: &9").append(guild.getHead()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7HP: &9").append(guild.getHp()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Zycia: &9").append(guild.getLife()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Sojuszy: &9").append(guild.getSojusz()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Graczy: &9").append(guild.getLimitMembers()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Rozmiar: &9").append(guild.getRegion().getSize()).append("&7x&9").append(guild.getRegion().getSize()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Wygasa za: &9").append(DataUtil.secondsToString(guild.getProlong())))))));
+        category.addElement(27, ItemData.fromItem(new Item(323, 1).setCustomName(ChatUtil.fixColor("&9Informacje o gildii!")).setLore(ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Tag: &9").append(guild.getTag()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Nazwa: &9").append(guild.getName()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Glowy: &9").append(guild.getHead()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7HP: &9").append(guild.getHp()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Zycia: &9").append(guild.getLife()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Sojuszy: &9").append(guild.getSojusz()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Graczy: &9").append(guild.getLimitMembers()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Rozmiar: &9").append(guild.getRegion().getSize()).append("&7x&9").append(guild.getRegion().getSize()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Wygasa za: &9").append(DataUtil.secondsToString(guild.getProlong())))))));
+        category.addElement(28, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(29, ItemData.fromItem(new Item(283).setCustomName(ChatUtil.fixColor("&9Powieksz limit sojuszy")).setLore(ChatUtil.fixColor("&8» &7Koszt: &930 &7emeraldow"), ChatUtil.fixColor("&8» &7Kliknij aby powiekszyc limit sojuszy o &91"))), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 if (guild2.getSkarbiec() < 30) {
                     ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_SOJUSZ_TITLE));
                     ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_EFFECT_SUBTITLE2.replace("{HEAD}", "30")));
@@ -149,10 +154,10 @@ public class GuildPanelCommand extends PlayerCommand
                 ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_SOJUSZ_SUBTITLE));
             }
         });
-        category.addElement(30, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(31, ItemData.fromItem(new Item(46, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Regeneracja terenu")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Do zregenerowania: &9").append(guild.getBlocks().size()).append(" &7blokow"))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Koszt regeneracji: &9").append(guild.getBlocks().size() / 2).append(" &7emeraldow"))), ChatUtil.fixColor(" "), ChatUtil.fixColor("&8» &7Regeneracja nie dziala na: "), ChatUtil.fixColor("  &8- &9Tnt"), ChatUtil.fixColor("  &8- &9Dzwignie"), ChatUtil.fixColor("  &8- &9Wagoniki"), ChatUtil.fixColor("  &8- &9Pistony"), ChatUtil.fixColor("  &8- &9Repetery"), ChatUtil.fixColor(" "), ChatUtil.fixColor("&8» &7Kliknij aby zregenerowac!") })), new ItemClick() {
+        category.addElement(30, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(31, ItemData.fromItem(new Item(46, 1).setCustomName(ChatUtil.fixColor("&9Regeneracja terenu")).setLore(ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Do zregenerowania: &9").append(guild.getBlocks().size()).append(" &7blokow"))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Koszt regeneracji: &9").append(guild.getBlocks().size() / 2).append(" &7emeraldow"))), ChatUtil.fixColor(" "), ChatUtil.fixColor("&8» &7Regeneracja nie dziala na: "), ChatUtil.fixColor("  &8- &9Tnt"), ChatUtil.fixColor("  &8- &9Dzwignie"), ChatUtil.fixColor("  &8- &9Wagoniki"), ChatUtil.fixColor("  &8- &9Pistony"), ChatUtil.fixColor("  &8- &9Repetery"), ChatUtil.fixColor(" "), ChatUtil.fixColor("&8» &7Kliknij aby zregenerowac!"))), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 if (!TimeUtil.isTnt()) {
                     ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_COMMAND_REGENERATION_TITLE));
                     ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_COMMAND_REGENERATION_SUBTITLE1));
@@ -181,10 +186,10 @@ public class GuildPanelCommand extends PlayerCommand
                 ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_COMMAND_REGENERATION_SUBTITLE5));
             }
         });
-        category.addElement(32, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(33, ItemData.fromItem(new Item(421, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Powieksz limit czlonkow")).setLore(new String[] { ChatUtil.fixColor("&8» &7Koszt: &930 &7emeraldow"), ChatUtil.fixColor("&8» &7Kliknij aby powiekszyc limit czlonkow o &910") })), new ItemClick() {
+        category.addElement(32, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(33, ItemData.fromItem(new Item(421, 1).setCustomName(ChatUtil.fixColor("&9Powieksz limit czlonkow")).setLore(ChatUtil.fixColor("&8» &7Koszt: &930 &7emeraldow"), ChatUtil.fixColor("&8» &7Kliknij aby powiekszyc limit czlonkow o &910"))), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 if (guild2.getSkarbiec() < 30) {
                     ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_MEMBER_TITLE));
                     ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_EFFECT_SUBTITLE2.replace("{HEAD}", "30")));
@@ -201,14 +206,14 @@ public class GuildPanelCommand extends PlayerCommand
                 ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_MEMBER_SUBTITLE));
             }
         });
-        category.addElement(34, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(35, ItemData.fromItem(new Item(323, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Informacje o gildii!")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Tag: &9").append(guild.getTag()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Nazwa: &9").append(guild.getName()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Glowy: &9").append(guild.getHead()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7HP: &9").append(guild.getHp()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Zycia: &9").append(guild.getLife()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Sojuszy: &9").append(guild.getSojusz()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Graczy: &9").append(guild.getLimitMembers()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Rozmiar: &9").append(guild.getRegion().getSize()).append("&7x&9").append(guild.getRegion().getSize()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Wygasa za: &9").append(DataUtil.secondsToString(guild.getProlong())))) })));
-        category.addElement(36, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(37, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(38, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(39, ItemData.fromItem(new Item(345, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Powieksz teren gildi")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Koszt: &9").append(ItemStackUtil.getItem(Config.COST_ENLARGE_NORMAL, 1)))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Kliknij aby powiekszyc teren o &9").append(Config.CUBOID_SIZE_ADD).append(" &7kratek"))) })), new ItemClick() {
+        category.addElement(34, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(35, ItemData.fromItem(new Item(323, 1).setCustomName(ChatUtil.fixColor("&9Informacje o gildii!")).setLore(ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Tag: &9").append(guild.getTag()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Nazwa: &9").append(guild.getName()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Glowy: &9").append(guild.getHead()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7HP: &9").append(guild.getHp()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Zycia: &9").append(guild.getLife()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Sojuszy: &9").append(guild.getSojusz()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Limit Graczy: &9").append(guild.getLimitMembers()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Rozmiar: &9").append(guild.getRegion().getSize()).append("&7x&9").append(guild.getRegion().getSize()))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Wygasa za: &9").append(DataUtil.secondsToString(guild.getProlong())))))));
+        category.addElement(36, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(37, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(38, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(39, ItemData.fromItem(new Item(345, 1).setCustomName(ChatUtil.fixColor("&9Powieksz teren gildi")).setLore(ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Koszt: &9").append(ItemStackUtil.getItem(Config.COST_ENLARGE_NORMAL, 1)))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Kliknij aby powiekszyc teren o &9").append(Config.CUBOID_SIZE_ADD).append(" &7kratek"))))), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 if (guild2.getRegion().getSize() >= Config.CUBOID_SIZE_MAX) {
                     ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_ENLARGE_TITLE));
                     ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_ENLARGE_SUBTITLE2));
@@ -227,10 +232,10 @@ public class GuildPanelCommand extends PlayerCommand
                 ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_ENLARGE_SUBTITLE.replace("{SIZE}", Integer.toString(i))));
             }
         });
-        category.addElement(40, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(41, ItemData.fromItem(Item.get(347).setCustomName(ChatUtil.fixColor("&9Oplac gildie")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Koszt: &9").append(ItemStackUtil.getItem(Config.COST_PROLONG_NORMAL, 1)))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Kliknij aby oplacic gildie o &9").append(Config.PROLONG_ADD).append(" &7dni"))) })), new ItemClick() {
+        category.addElement(40, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(41, ItemData.fromItem(Item.get(347).setCustomName(ChatUtil.fixColor("&9Oplac gildie")).setLore(ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Koszt: &9").append(ItemStackUtil.getItem(Config.COST_PROLONG_NORMAL, 1)))), ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Kliknij aby oplacic gildie o &9").append(Config.PROLONG_ADD).append(" &7dni"))))), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 if (guild2.getProlong() > System.currentTimeMillis() + TimeUtil.DAY.getTime(Config.PROLONG_MAX)) {
                     ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_PROLONG_TITLE));
                     ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_PROLONG_SUBTITLE2));
@@ -247,18 +252,52 @@ public class GuildPanelCommand extends PlayerCommand
                 ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_PANEL_PROLONG_SUBTITLE.replace("{PROLONG}", Integer.toString(Config.PROLONG_ADD))));
             }
         });
-        category.addElement(42, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(43, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(44, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(45, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(46, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(47, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(48, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(49, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(50, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(51, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
-        category.addElement(52, ItemData.fromItem(new Item(160, Integer.valueOf(11), 1)));
-        category.addElement(53, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
+        category.addElement(42, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(43, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(44, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(45, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(46, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(47, ItemData.fromItem(MainConstants.BLACK_GLASS));
+
+        category.addElement(48, ItemData.fromItem(new Item(49, 0, 1).setCustomName(ChatUtil.fixColor("&9Zarzadanie BoyFarmerami")).setLore(ChatUtil.fixColor("&8» &7Funkcja ktora pozwala zarzadzac &ffarmerami!"), ChatUtil.fixColor("&8» &7Kliknij aby otworzyc &fpanel BoyFarmerow!"))), new ItemClick() {
+            @Override
+            public void onClick(final Player player, final Item item) {
+                if(!UserManager.getUser(player).upr_Boyfarmer){
+                    ChatUtil.sendMessage(player, "&4Nie posiadasz pozwolen do &czarzadnia farmerami");
+                    menu.forceDestroy(player);
+                    return;
+                }
+                menu.forceDestroy(player);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> GuildBoyFarmerGui.openTopki(player), 15);
+            }
+        });
+        category.addElement(49, ItemData.fromItem(new Item(1, 0, 1).setCustomName(ChatUtil.fixColor("&9Zarzadanie Kopaczami")).setLore(ChatUtil.fixColor("&8» &7Funkcja ktora pozwala zarzadzac &ffarmerami!"), ChatUtil.fixColor("&8» &7Kliknij aby otworzyc &fpanel Kopaczy!"))), new ItemClick() {
+            @Override
+            public void onClick(final Player player, final Item item) {
+                if(!UserManager.getUser(player).upr_Boyfarmer){
+                    ChatUtil.sendMessage(player, "&4Nie posiadasz pozwolen do &czarzadnia farmerami");
+                    menu.forceDestroy(player);
+                    return;
+                }
+                menu.forceDestroy(player);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> GuildKopaczFarmerGui.openTopki(player), 15);
+            }
+        });
+        category.addElement(50, ItemData.fromItem(new Item(12, 0, 1).setCustomName(ChatUtil.fixColor("&9Zarzadanie SandFarmerami")).setLore(ChatUtil.fixColor("&8» &7Funkcja ktora pozwala zarzadzac &ffarmerami!"), ChatUtil.fixColor("&8» &7Kliknij aby otworzyc &fpanel SandFarmerow!"))), new ItemClick() {
+            @Override
+            public void onClick(final Player player, final Item item) {
+                if(!UserManager.getUser(player).upr_Boyfarmer){
+                    ChatUtil.sendMessage(player, "&4Nie posiadasz pozwolen do &czarzadnia farmerami");
+                    menu.forceDestroy(player);
+                    return;
+                }
+                menu.forceDestroy(player);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> GuildBoyFarmerGui.openTopki(player), 15);
+            }
+        });
+        category.addElement(51, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(52, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        category.addElement(53, ItemData.fromItem(MainConstants.BLACK_GLASS));
         menu.setDoubleChest();
         menu.setMainCategory(category);
         menu.addCategory("gpanel" + player.getName(), category);
@@ -269,6 +308,6 @@ public class GuildPanelCommand extends PlayerCommand
     }
     
     public GuildPanelCommand() {
-        super("panel", "/g panel", GroupType.PLAYER, new String[0]);
+        super("panel", "/g panel", GroupType.PLAYER);
     }
 }

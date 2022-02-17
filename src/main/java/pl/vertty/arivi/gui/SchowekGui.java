@@ -5,6 +5,7 @@ import cn.nukkit.Player;
 import cn.nukkit.item.Item;
 import cn.nukkit.utils.Config;
 import pl.vertty.arivi.Main;
+import pl.vertty.arivi.MainConstants;
 import pl.vertty.arivi.gui.action.SchowekAction;
 import pl.vertty.arivi.guilds.data.User;
 import pl.vertty.arivi.guilds.managers.UserManager;
@@ -22,46 +23,58 @@ public class SchowekGui
         final Config c = Main.getPlugin().getConfig();
         final InventoryMenu menu = new InventoryMenu();
         final InventoryCategory category = new InventoryCategory();
-        category.addElement(2, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(6, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(10, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(12, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(14, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(16, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(20, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(24, new ItemData(160, 11, 1, "&8*"));
 
-        category.addElement(4, new ItemData(Item.SNOWBALL, 0, 1, "&9SNIEZKI", new String[] { ChatUtil.fixColor("&8» &7Posiadasz: &e" + u.getSniezki()), ChatUtil.fixColor("&8» &7Obecny limit: &e" + c.getInt("limit.sniezki")), "", ChatUtil.fixColor("&8» &7Kliknij, aby wyplacic!") }), new ItemClick() {
+        category.setSmallSchowekServerGui();
+        category.addElement(16, new ItemData(Item.TNT, 0, 1, "&r&9RZUCANE TNT", new String[] { ChatUtil.fixColor("&r&8» &7Posiadasz: &e" + u.getTnt()), ChatUtil.fixColor("&r&8» &7Obecny limit: &e" + c.getInt("limit.tnt")), "", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyplacic!") }), new ItemClick() {
+            @Override
+            public void onClick(final Player p, final Item item) {
+                SchowekAction.checkTNT(p, true);
+            }
+        });
+
+
+        category.addElement(15, ItemData.fromItem(MainConstants.BLACK_GLASS));
+
+        category.addElement(14, new ItemData(Item.ARROW, 0, 1, "&r&9STRZALY", new String[] { ChatUtil.fixColor("&r&8» &7Posiadasz: &e" + u.getArrow()), ChatUtil.fixColor("&r&8» &7Obecny limit: &e" + c.getInt("limit.arrow")), "", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyplacic!") }), new ItemClick() {
+            @Override
+            public void onClick(final Player p, final Item item) {
+                SchowekAction.checkArrow(p, true);
+            }
+        });
+
+        category.addElement(13, new ItemData(Item.SNOWBALL, 0, 1, "&r&9SNIEZKI", new String[] { ChatUtil.fixColor("&r&8» &7Posiadasz: &e" + u.getSniezki()), ChatUtil.fixColor("&r&8» &7Obecny limit: &e" + c.getInt("limit.sniezki")), "", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyplacic!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
                 SchowekAction.checkSniezki(p, true);
             }
         });
-        category.addElement(11, new ItemData(466, 0, 1, "&9KOXY", new String[] { ChatUtil.fixColor("&8» &7Posiadasz: &e" + u.getKox()), ChatUtil.fixColor("&8» &7Obecny limit: &e" + c.getInt("limit.kox")), "", ChatUtil.fixColor("&8» &7Kliknij, aby wyplacic!") }), new ItemClick() {
+        category.addElement(10, new ItemData(466, 0, 1, "&r&9KOXY", new String[] { ChatUtil.fixColor("&r&8» &7Posiadasz: &e" + u.getKox()), ChatUtil.fixColor("&r&8» &7Obecny limit: &e" + c.getInt("limit.kox")), "", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyplacic!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
                 SchowekAction.checkKoxy(p, true);
             }
         });
-        category.addElement(13, new ItemData(368, 0, 1, "&9PERLY", new String[] { ChatUtil.fixColor("&8» &7Posiadasz: &e" + u.getPerly()), ChatUtil.fixColor("&8» &7Obecny limit: &e" + c.getInt("limit.perly")), "", ChatUtil.fixColor("&8» &7Kliknij, aby wyplacic!") }), new ItemClick() {
+        category.addElement(12, new ItemData(368, 0, 1, "&r&9PERLY", new String[] { ChatUtil.fixColor("&r&8» &7Posiadasz: &e" + u.getPerly()), ChatUtil.fixColor("&r&8» &7Obecny limit: &e" + c.getInt("limit.perly")), "", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyplacic!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
                 SchowekAction.checkPerly(p, true);
             }
         });
-        category.addElement(15, new ItemData(322, 0, 1, "&9REFY", new String[] { ChatUtil.fixColor("&8» &7Posiadasz: &e" + u.getRefy()), ChatUtil.fixColor("&8» &7Obecny limit: &e" + c.getInt("limit.refy")), "", ChatUtil.fixColor("&8» &7Kliknij, aby wyplacic!") }), new ItemClick() {
+        category.addElement(11, new ItemData(322, 0, 1, "&r&9REFY", new String[] { ChatUtil.fixColor("&r&8» &7Posiadasz: &e" + u.getRefy()), ChatUtil.fixColor("&r&8» &7Obecny limit: &e" + c.getInt("limit.refy")), "", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyplacic!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
                 SchowekAction.checkRefile(p, true);
             }
         });
-        category.addElement(22, new ItemData(410, 0, 1, "&9WYPLAC WSZYSTKO", new String[] { ChatUtil.fixColor("&8» &7Kliknij, aby wyplacic"), ChatUtil.fixColor("&8» &7wszystko do limitu") }), new ItemClick() {
+        category.addElement(22, new ItemData(410, 0, 1, "&r&9WYPLAC WSZYSTKO", new String[] { ChatUtil.fixColor("&r&8» &7Kliknij, aby wyplacic"), ChatUtil.fixColor("&r&8» &7wszystko do limitu") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
                 SchowekAction.checkKoxy(p, true);
                 SchowekAction.checkRefile(p, true);
                 SchowekAction.checkPerly(p, true);
                 SchowekAction.checkSniezki(p, true);
+                SchowekAction.checkArrow(p, true);
+                SchowekAction.checkTNT(p, true);
             }
         });
         menu.setMainCategory(category);

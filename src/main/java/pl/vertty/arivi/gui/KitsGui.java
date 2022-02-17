@@ -2,11 +2,14 @@
 package pl.vertty.arivi.gui;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemID;
 import cn.nukkit.item.enchantment.Enchantment;
 import cn.nukkit.utils.Config;
 import pl.vertty.arivi.Main;
+import pl.vertty.arivi.MainConstants;
+import pl.vertty.arivi.drop.pierozek.PierozekManager;
 import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.enums.TimeUtil;
 import pl.vertty.arivi.guilds.data.User;
@@ -26,78 +29,67 @@ public class KitsGui
     }
     
     public static void openKits(final Player player) {
-        final User u = UserManager.getUser(player);
-        final Config c = Main.getPlugin().getConfig();
         final InventoryMenu menu = new InventoryMenu();
         final InventoryCategory category = new InventoryCategory();
-        category.addElement(2, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(4, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(6, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(10, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(12, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(14, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(16, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(20, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(24, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(44, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(28, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(38, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(46, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(34, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(42, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(36, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(52, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(13, new ItemData(263, 0, 1, "&9GRACZ", new String[] { ChatUtil.fixColor("&8» &7Dostepny dla rangi: &ePLAYER"), ChatUtil.fixColor("&8» &7Czas: &e3 minut"), "", ChatUtil.fixColor("&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
+
+        category.setSmallServerGui();
+
+        category.addElement(10, new ItemData(320, 0, 1, "&r&9MIESO", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &ePLAYER"), ChatUtil.fixColor("&r&8» &7Czas: &f1 minute"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                KitsGui.openPlayerKit(p);
+                menu.forceDestroy(player);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openMiesoKit(player), 13);
+
             }
         });
-        category.addElement(43, new ItemData(46, 0, 1, "&9TNT", new String[] { ChatUtil.fixColor("&8» &7Dostepny dla rangi: &eSPONSOR"), ChatUtil.fixColor("&8» &7Czas: &e12 godzin"), "", ChatUtil.fixColor("&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
+
+        category.addElement(11, new ItemData(299, 0, 1, "&9GRACZ", new String[] { ChatUtil.fixColor("&8» &7Dostepny dla rangi: &ePLAYER"), ChatUtil.fixColor("&8» &7Czas: &f3 minuty"), "", ChatUtil.fixColor("&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                KitsGui.openTNT(p);
+                menu.forceDestroy(player);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openPlayerKit(player), 13);
             }
         });
-        category.addElement(11, new ItemData(265, 0, 1, "&9VIP", new String[] { ChatUtil.fixColor("&8» &7Dostepny dla rangi: &eVIP"), ChatUtil.fixColor("&8» &7Czas: &e6 godzin"), "", ChatUtil.fixColor("&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
+
+
+        category.addElement(12, ItemData.fromItem(MainConstants.BLACK_GLASS));
+
+        category.addElement(13, new ItemData(315, 0, 1, "&r&9VIP", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &eVIP"), ChatUtil.fixColor("&r&8» &7Czas: &f12 godzin"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                KitsGui.openVipKit(p);
+                menu.forceDestroy(player);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openVipKit(player), 13);
+
             }
         });
-        category.addElement(15, new ItemData(266, 0, 1, "&9SVIP", new String[] { ChatUtil.fixColor("&8» &7Dostepny dla rangi: &eSVIP | YOUTUBE"), ChatUtil.fixColor("&8» &7Czas: &e6 godzin"), "", ChatUtil.fixColor("&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
+
+        category.addElement(14, new ItemData(307, 0, 1, "&r&9SVIP", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &eSVIP"), ChatUtil.fixColor("&r&8» &7Czas: &f12 godzin"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                KitsGui.openSvipKit(p);
+                menu.forceDestroy(player);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openSvipKit(player), 13);
+
             }
         });
-        category.addElement(37, new ItemData(264, 0, 1, "&9SPONSOR", new String[] { ChatUtil.fixColor("&8» &7Dostepny dla rangi: &eSPONSOR"), ChatUtil.fixColor("&8» &7Czas: &e6 godzin"), "", ChatUtil.fixColor("&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
+
+        category.addElement(15, new ItemData(311, 0, 1, "&r&9SPONSOR", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &eSPONSOR"), ChatUtil.fixColor("&r&8» &7Czas: &f12 godzin"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                KitsGui.openSponsor(p);
+                menu.forceDestroy(player);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openSponsor(player), 13);
+
             }
         });
-        category.addElement(2, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(4, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(6, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(10, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(12, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(14, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(16, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(20, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(22, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(24, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(31, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(39, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(40, new ItemData(364, 0, 1, "&9MIESO", new String[] { ChatUtil.fixColor("&8» &7Dostepny dla rangi: &ePLAYER"), ChatUtil.fixColor("&8» &7Czas: &e1 minuty"), "", ChatUtil.fixColor("&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
+
+        category.addElement(16, new ItemData(46, 0, 1, "&r&9TNT", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &eSPONSOR"), ChatUtil.fixColor("&r&8» &7Czas: &f24 godziny"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                KitsGui.openMiesoKit(p);
+                menu.forceDestroy(player);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openTNT(player), 13);
+
             }
         });
-        category.addElement(41, new ItemData(160, 11, 1, "&8*"));
-        category.addElement(49, new ItemData(160, 11, 1, "&8*"));
-        menu.setDoubleChest();
+
         menu.setMainCategory(category);
         menu.addCategory("kitsGui", category);
         menu.setName(ChatUtil.fixColor("&9KITY"));
@@ -110,55 +102,104 @@ public class KitsGui
         final Config c = Main.getPlugin().getConfig();
         final InventoryMenu menu = new InventoryMenu();
         final InventoryCategory category = new InventoryCategory();
-        final ItemData i = new ItemData(160, 11, 1, "&8#");
         final User u = UserManager.getUser(player);
-        for (int ia = 0; ia < 9; ++ia) {
-            category.addElement(ia, i);
-        }
+
+        category.setDoubleKitServerGui();
         final ItemData tnt = new ItemData(46, 0, 64);
+        final Item rzucak = new Item(46, 0, 3);
+        rzucak.addEnchantment(Enchantment.get(Enchantment.ID_DURABILITY));
+        rzucak.setCustomName(ChatUtil.fixColor("&r&9RZUCANETNT"));
+
         category.addElement(9, tnt);
         category.addElement(10, tnt);
         category.addElement(11, tnt);
         category.addElement(12, tnt);
-        category.addElement(13, tnt);
-        for (int ia2 = 36; ia2 < 52; ++ia2) {
-            category.addElement(ia2, i);
-        }
-        category.addElement(52, new ItemData(351, 1, 1, "&4Powrot"), new ItemClick() {
+        category.addElement(13, ItemData.fromItem(rzucak));
+
+        category.addElement(46, new ItemData(351, 1, 1, "&r&4POWROT"), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                KitsGui.openKits(p);
+                menu.forceDestroy(player);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 13);
             }
         });
-        if (isActive(u.getKit_tnt())) {
-            category.addElement(53, new ItemData(351, 8, 1, "&cZestaw niedostepny czasowo"));
-        }
-        else {
-            category.addElement(53, new ItemData(351, 10, 1, "&aOdbierz zestaw"), new ItemClick() {
+
+
+        if(u.can(GroupType.ROOT)){
+            category.addElement(52, new ItemData(351, 10, 1, "&r&aODBIERZ ZESTAW"), new ItemClick() {
                 @Override
                 public void onClick(final Player p, final Item item) {
                     if (!c.getBoolean("enable.kits.status")) {
                         ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor(c.getString("enable.kits.message")));
+                        menu.forceDestroy(player);
                         return;
                     }
                     if (!u.can(GroupType.SPONSOR)) {
                         ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&cWymagana ranga: &3SPONSOR"));
+                        menu.forceDestroy(player);
                         return;
                     }
                     if (isActive(u.getKit_tnt()) && !u.can(GroupType.ADMIN)) {
                         p.sendMessage(ChatUtil.fixColor(" &8>> &cKit TNT mozesz odebrac dopiero za: &3" + DataUtil.parseLong(u.getKit_tnt() - System.currentTimeMillis(), false)));
+                        menu.forceDestroy(player);
                         return;
                     }
-                    final Item tnt = Item.get(46, Integer.valueOf(0), 64);
+                    final Item tnt = Item.get(46, 0, 64);
                     ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&7Odebrales zestaw &6TNT"));
-                    p.getInventory().addItem(new Item[] { tnt });
-                    p.getInventory().addItem(new Item[] { tnt });
-                    p.getInventory().addItem(new Item[] { tnt });
-                    p.getInventory().addItem(new Item[] { tnt });
-                    p.getInventory().addItem(new Item[] { tnt });
-                    u.setKit_tnt(System.currentTimeMillis() + TimeUtil.HOUR.getTime(12));
+
+                    final Item rzucak = new Item(46, 0, 3);
+                    rzucak.addEnchantment(Enchantment.get(Enchantment.ID_DURABILITY));
+                    rzucak.setCustomName(ChatUtil.fixColor("&r&9RZUCANETNT"));
+
+                    p.getInventory().addItem(tnt);
+                    p.getInventory().addItem(tnt);
+                    p.getInventory().addItem(tnt);
+                    p.getInventory().addItem(tnt);
+                    p.getInventory().addItem(rzucak);
+                    u.setKit_tnt(System.currentTimeMillis() + TimeUtil.HOUR.getTime(24));
+                    menu.forceDestroy(player);
                 }
             });
+        }else {
+            if (isActive(u.getKit_tnt())) {
+                category.addElement(52, new ItemData(351, 8, 1, "&r&cZESTAW NIEDOSTEPNY CZASOWO"));
+            }
+            else {
+                category.addElement(52, new ItemData(351, 10, 1, "&r&aODBIERZ ZESTAW"), new ItemClick() {
+                    @Override
+                    public void onClick(final Player p, final Item item) {
+                        if (!c.getBoolean("enable.kits.status")) {
+                            ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor(c.getString("enable.kits.message")));
+                            menu.forceDestroy(player);
+                            return;
+                        }
+                        if (!u.can(GroupType.SPONSOR)) {
+                            ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&cWymagana ranga: &3SPONSOR"));
+                            menu.forceDestroy(player);
+                            return;
+                        }
+                        if (isActive(u.getKit_tnt()) && !u.can(GroupType.ADMIN)) {
+                            p.sendMessage(ChatUtil.fixColor(" &8>> &cKit TNT mozesz odebrac dopiero za: &3" + DataUtil.parseLong(u.getKit_tnt() - System.currentTimeMillis(), false)));
+                            menu.forceDestroy(player);
+                            return;
+                        }
+                        final Item tnt = Item.get(46, 0, 64);
+                        ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&7Odebrales zestaw &6TNT"));
+
+                        final Item rzucak = new Item(46, 0, 3);
+                        rzucak.addEnchantment(Enchantment.get(Enchantment.ID_DURABILITY));
+                        rzucak.setCustomName(ChatUtil.fixColor("&r&9RZUCANETNT"));
+
+                        p.getInventory().addItem(tnt);
+                        p.getInventory().addItem(tnt);
+                        p.getInventory().addItem(tnt);
+                        p.getInventory().addItem(tnt);
+                        p.getInventory().addItem(rzucak);
+                        u.setKit_tnt(System.currentTimeMillis() + TimeUtil.HOUR.getTime(24));
+                        menu.forceDestroy(player);
+                    }
+                });
+            }
         }
         menu.setDoubleChest();
         menu.setMainCategory(category);
@@ -168,582 +209,785 @@ public class KitsGui
         menu.show(player);
         InventoryMenuHandler.registerNewMenu("kittntKit", menu);
     }
-    
-    public static void openMiesoKit(final Player player) {
-        final Config c = Main.getPlugin().getConfig();
-        final InventoryMenu menu = new InventoryMenu();
-        final InventoryCategory category = new InventoryCategory();
-        final ItemData i = new ItemData(160, 11, 1, "&8#");
-        final User u = UserManager.getUser(player);
-        for (int ia = 0; ia < 9; ++ia) {
-            category.addElement(ia, i);
-        }
-        final ItemData jedzenie = new ItemData(320, 0, 64);
-        category.addElement(9, jedzenie);
-        for (int ia2 = 36; ia2 < 52; ++ia2) {
-            category.addElement(ia2, i);
-        }
-        category.addElement(52, new ItemData(351, 1, 1, "&4Powrot"), new ItemClick() {
-            @Override
-            public void onClick(final Player p, final Item item) {
-                KitsGui.openKits(p);
-            }
-        });
-        if (isActive(u.getKit_mieso())) {
-            category.addElement(53, new ItemData(351, 8, 1, "&cZestaw niedostepny czasowo"));
-        }
-        else {
-            category.addElement(53, new ItemData(351, 10, 1, "&aOdbierz zestaw"), new ItemClick() {
-                @Override
-                public void onClick(final Player p, final Item item) {
-                    if (isActive(u.getKit_mieso()) && !u.can(GroupType.ADMIN)) {
-                        p.sendMessage(ChatUtil.fixColor(" &8>> &cKit MIESO mozesz odebrac dopiero za: &3" + DataUtil.parseLong(u.getKit_mieso() - System.currentTimeMillis(), false)));
-                        return;
-                    }
-                    final Item mieso = Item.get(320, Integer.valueOf(0), 64);
-                    ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&7Odebrales zestaw &6MIESO"));
-                    p.getInventory().addItem(new Item[] { mieso });
-                    u.setKit_mieso(System.currentTimeMillis() + TimeUtil.MINUTE.getTime(1));
-                }
-            });
-        }
-        menu.setDoubleChest();
-        menu.setMainCategory(category);
-        menu.addCategory("kitMiesoKit", category);
-        menu.setName(ChatUtil.fixColor("&9KIT MIESO"));
-        menu.setOnlyRead(true);
-        menu.show(player);
-        InventoryMenuHandler.registerNewMenu("kitMiesoKit", menu);
-    }
-    
-    public static void openPlayerKit(final Player player) {
-        final Config c = Main.getPlugin().getConfig();
-        final InventoryMenu menu = new InventoryMenu();
-        final InventoryCategory category = new InventoryCategory();
-        final ItemData i = new ItemData(160, 11, 1, "&8#");
-        final User u = UserManager.getUser(player);
-        for (int ia = 0; ia < 9; ++ia) {
-            category.addElement(ia, i);
-        }
-        final Item kilof = new Item(274, 0, 1);
-        kilof.addEnchantment(Enchantment.get(Enchantment.ID_DURABILITY).setLevel(3));
-        final ItemData jedzenie = new ItemData(320, 0, 64);
-        final ItemData ender = new ItemData(130, 0, 1);
-        final ItemData drewno = new ItemData(Item.WOOD, 0, 32);
-        final ItemData woda = new ItemData(ItemID.BUCKET, 8, 1);
-        category.addElement(9, ItemData.fromItem(kilof));
-        category.addElement(10, jedzenie);
-        category.addElement(11, ender);
-        category.addElement(12, drewno);
-        category.addElement(13, woda);
-        for (int ia2 = 36; ia2 < 52; ++ia2) {
-            category.addElement(ia2, i);
-        }
-        category.addElement(52, new ItemData(351, 1, 1, "&4Powrot"), new ItemClick() {
-            @Override
-            public void onClick(final Player p, final Item item) {
-                KitsGui.openKits(p);
-            }
-        });
-        if (isActive(u.getKit_start())) {
-            category.addElement(53, new ItemData(351, 8, 1, "&cZestaw niedostepny czasowo"));
-        }
-        else {
-            category.addElement(53, new ItemData(351, 10, 1, "&aOdbierz zestaw"), new ItemClick() {
-                @Override
-                public void onClick(final Player p, final Item item) {
-                    if (isActive(u.getKit_start()) && !u.can(GroupType.ADMIN)) {
-                        p.sendMessage(ChatUtil.fixColor(" &8>> &cKit GRACZ mozesz odebrac dopiero za: &3" + DataUtil.parseLong(u.getKit_start() - System.currentTimeMillis(), false)));
-                        return;
-                    }
-                    final Item pickaxe = Item.get(274, Integer.valueOf(0), 1);
-                    pickaxe.addEnchantment(Enchantment.get(Enchantment.ID_DURABILITY).setLevel(3));
-                    final Item ec = Item.get(130, Integer.valueOf(0), 1);
-                    final Item mieso = Item.get(320, Integer.valueOf(0), 64);
-                    final Item drewno = Item.get(Item.WOOD, 0, 32);
 
-                    final Item woda = Item.get(ItemID.BUCKET, 8, 1);
-                    ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&7Odebrales zestaw &6GRACZ"));
-                    p.getInventory().addItem(new Item[] { pickaxe });
-                    p.getInventory().addItem(new Item[] { mieso });
-                    p.getInventory().addItem(new Item[] { ec });
-                    p.getInventory().addItem(new Item[] { drewno });
-                    p.getInventory().addItem(new Item[] { woda });
-                    u.setKit_start(System.currentTimeMillis() + TimeUtil.MINUTE.getTime(3));
-                }
-            });
-        }
-        menu.setDoubleChest();
-        menu.setMainCategory(category);
-        menu.addCategory("kitPlayerKit", category);
-        menu.setName(ChatUtil.fixColor("&9KIT GRACZ"));
-        menu.setOnlyRead(true);
-        menu.show(player);
-        InventoryMenuHandler.registerNewMenu("kitPlayerKit", menu);
-    }
-    
     public static void openVipKit(final Player player) {
         final Config c = Main.getPlugin().getConfig();
         final InventoryMenu menu = new InventoryMenu();
         final InventoryCategory category = new InventoryCategory();
-        final ItemData i = new ItemData(160, 11, 1, "&8#");
         final User u = UserManager.getUser(player);
-        for (int ia = 0; ia < 9; ++ia) {
-            category.addElement(ia, i);
-        }
-        final Item punch = Item.get(261, Integer.valueOf(0), 1);
-        punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(21).setLevel(1) });
-        punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-        final Item arrow = Item.get(262, Integer.valueOf(0), 64);
-        final Item miecz32 = Item.get(267, Integer.valueOf(0), 1);
-        miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(9).setLevel(3) });
-        miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(12).setLevel(2) });
-        miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-        final Item miecz33 = Item.get(267, Integer.valueOf(0), 1);
-        miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(9).setLevel(3) });
-        miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(13).setLevel(2) });
-        miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-        final Item buty = Item.get(309, Integer.valueOf(0), 1);
-        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-        final Item klata = Item.get(307, Integer.valueOf(0), 1);
-        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-        final Item bania = Item.get(306, Integer.valueOf(0), 1);
-        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-        final Item spodnie = Item.get(308, Integer.valueOf(0), 1);
-        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-        final Item kilof = Item.get(278, Integer.valueOf(0), 1);
-        kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(15).setLevel(5) });
-        kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-        kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(18).setLevel(3) });
-        final Item kox = Item.get(466, Integer.valueOf(0), 1);
-        final Item refile = Item.get(322, Integer.valueOf(0), 8);
-        final Item pa = Item.get(368, Integer.valueOf(0), 3);
-        category.addElement(9, ItemData.fromItem(bania));
-        category.addElement(10, ItemData.fromItem(klata));
-        category.addElement(11, ItemData.fromItem(spodnie));
-        category.addElement(12, ItemData.fromItem(buty));
-        category.addElement(13, ItemData.fromItem(miecz32));
-        category.addElement(14, ItemData.fromItem(kox));
-        category.addElement(15, ItemData.fromItem(refile));
-        category.addElement(16, ItemData.fromItem(pa));
-        category.addElement(17, ItemData.fromItem(miecz33));
-        category.addElement(18, ItemData.fromItem(kilof));
-        category.addElement(19, ItemData.fromItem(punch));
-        category.addElement(20, ItemData.fromItem(arrow));
-        for (int ia2 = 36; ia2 < 52; ++ia2) {
-            category.addElement(ia2, i);
-        }
-        category.addElement(52, new ItemData(351, 1, 1, "&4Powrot"), new ItemClick() {
+
+        category.setDoubleKitServerGui();
+        final Item punch = Item.get(261, 0, 1);
+        punch.addEnchantment(Enchantment.getEnchantment(21).setLevel(1));
+        punch.addEnchantment(Enchantment.getEnchantment(17).setLevel(3));
+
+        final Item arrow = Item.get(262, 0, 64);
+
+        final Item knock = Item.get(267, 0, 1);
+        knock.addEnchantment(Enchantment.getEnchantment(9).setLevel(3));
+        knock.addEnchantment(Enchantment.getEnchantment(12).setLevel(2));
+        knock.addEnchantment(Enchantment.getEnchantment(17).setLevel(3));
+
+        final Item sharp = Item.get(267, 0, 1);
+        sharp.addEnchantment(Enchantment.getEnchantment(9).setLevel(3));
+        sharp.addEnchantment(Enchantment.getEnchantment(13).setLevel(2));
+        sharp.addEnchantment(Enchantment.getEnchantment(17).setLevel(3));
+
+        final Item buty = Item.get(309, 0, 1);
+        buty.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        buty.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
+
+        final Item klata = Item.get(307, 0, 1);
+        klata.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        klata.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
+
+        final Item bania = Item.get(306, 0, 1);
+        bania.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        bania.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
+
+        final Item spodnie = Item.get(308, 0, 1);
+        spodnie.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        spodnie.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
+
+        final Item kilof = Item.get(278, 0, 1);
+        kilof.addEnchantment(Enchantment.getEnchantment(15).setLevel(5));
+        kilof.addEnchantment(Enchantment.getEnchantment(17).setLevel(3));
+        kilof.addEnchantment(Enchantment.getEnchantment(18).setLevel(3));
+
+        final Item kox = Item.get(466, 0, 2);
+        final Item refile = Item.get(322, 0, 16);
+        final Item perly = Item.get(368, 0, 4);
+        final Item sniezki = Item.get(332, 0, 16);
+
+        final Item pandora = PierozekManager.getPandoreItem();
+        pandora.setCount(1);
+        category.addElement(9, ItemData.fromItem(sharp));
+        category.addElement(10, ItemData.fromItem(bania));
+        category.addElement(11, ItemData.fromItem(klata));
+        category.addElement(12, ItemData.fromItem(spodnie));
+        category.addElement(13, ItemData.fromItem(buty));
+        category.addElement(14, ItemData.fromItem(knock));
+        category.addElement(15, ItemData.fromItem(kilof));
+        category.addElement(16, ItemData.fromItem(punch));
+        category.addElement(17, ItemData.fromItem(arrow));
+        category.addElement(18, ItemData.fromItem(kox));
+        category.addElement(19, ItemData.fromItem(refile));
+        category.addElement(20, ItemData.fromItem(sniezki));
+        category.addElement(21, ItemData.fromItem(perly));
+        category.addElement(26, ItemData.fromItem(pandora));
+
+        category.addElement(46, new ItemData(351, 1, 1, "&r&4POWROT"), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                KitsGui.openKits(p);
+                menu.forceDestroy(player);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 13);
             }
         });
-        if (isActive(u.getKit_vip())) {
-            category.addElement(53, new ItemData(351, 8, 1, "&cZestaw niedostepny czasowo"));
-        }
-        else {
-            category.addElement(53, new ItemData(351, 10, 1, "&aOdbierz zestaw"), new ItemClick() {
+
+        if(u.can(GroupType.ROOT)){
+            category.addElement(52, new ItemData(351, 10, 1, "&r&aODBIERZ ZESTAW"), new ItemClick() {
                 @Override
                 public void onClick(final Player p, final Item item) {
                     if (!c.getBoolean("enable.kits.status")) {
                         ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor(c.getString("enable.kits.message")));
+                        menu.forceDestroy(player);
                         return;
                     }
                     if (!u.can(GroupType.VIP)) {
                         ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&cWymagana ranga: &3VIP"));
+                        menu.forceDestroy(player);
                         return;
                     }
                     if (isActive(u.getKit_vip()) && !u.can(GroupType.ADMIN)) {
                         p.sendMessage(ChatUtil.fixColor(" &8>> &cKit VIP mozesz odebrac dopiero za: &3" + DataUtil.parseLong(u.getKit_vip() - System.currentTimeMillis(), false)));
+                        menu.forceDestroy(player);
                         return;
                     }
                     ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&7Odebrales zestaw &6VIP"));
-                    final Item miecz32 = Item.get(267, Integer.valueOf(0), 1);
-                    miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(9).setLevel(3) });
-                    miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(12).setLevel(2) });
-                    miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-                    final Item miecz33 = Item.get(267, Integer.valueOf(0), 1);
-                    miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(9).setLevel(3) });
-                    miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(13).setLevel(2) });
-                    miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-                    final Item buty = Item.get(309, Integer.valueOf(0), 1);
-                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-                    final Item klata = Item.get(307, Integer.valueOf(0), 1);
-                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-                    final Item bania = Item.get(306, Integer.valueOf(0), 1);
-                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-                    final Item spodnie = Item.get(308, Integer.valueOf(0), 1);
-                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-                    final Item kilof = Item.get(278, Integer.valueOf(0), 1);
-                    kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(15).setLevel(5) });
-                    kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-                    kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(18).setLevel(3) });
-                    final Item kox = Item.get(466, Integer.valueOf(0), 1);
-                    final Item refile = Item.get(322, Integer.valueOf(0), 8);
-                    final Item pa = Item.get(368, Integer.valueOf(0), 3);
-                    final Item punch = Item.get(261, Integer.valueOf(0), 1);
-                    punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(21).setLevel(1) });
-                    punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-                    final Item arrow = Item.get(262, Integer.valueOf(0), 64);
-                    p.getInventory().addItem(new Item[] { miecz33 });
-                    p.getInventory().addItem(new Item[] { miecz32 });
-                    p.getInventory().addItem(new Item[] { bania });
-                    p.getInventory().addItem(new Item[] { klata });
-                    p.getInventory().addItem(new Item[] { spodnie });
-                    p.getInventory().addItem(new Item[] { buty });
-                    p.getInventory().addItem(new Item[] { kox });
-                    p.getInventory().addItem(new Item[] { refile });
-                    p.getInventory().addItem(new Item[] { pa });
-                    p.getInventory().addItem(new Item[] { kilof });
-                    p.getInventory().addItem(new Item[] { punch });
-                    p.getInventory().addItem(new Item[] { arrow });
-                    u.setKit_vip(System.currentTimeMillis() + TimeUtil.HOUR.getTime(6));
+
+                    p.getInventory().addItem(sharp);
+                    p.getInventory().addItem(bania);
+                    p.getInventory().addItem(klata);
+                    p.getInventory().addItem(spodnie);
+                    p.getInventory().addItem(buty);
+                    p.getInventory().addItem(knock);
+                    p.getInventory().addItem(kilof);
+                    p.getInventory().addItem(punch);
+                    p.getInventory().addItem(arrow);
+                    p.getInventory().addItem(kox);
+                    p.getInventory().addItem(refile);
+                    p.getInventory().addItem(sniezki);
+                    p.getInventory().addItem(perly);
+                    p.getInventory().addItem(pandora);
+                    u.setKit_vip(System.currentTimeMillis() + TimeUtil.HOUR.getTime(12));
+                    menu.forceDestroy(player);
                 }
             });
+        }else {
+            if (isActive(u.getKit_vip())) {
+                category.addElement(52, new ItemData(351, 8, 1, "&r&cZESTAW NIEDOSTEPNY CZASOWO"));
+            }
+            else {
+                category.addElement(52, new ItemData(351, 10, 1, "&r&aODBIERZ ZESTAW"), new ItemClick() {
+                    @Override
+                    public void onClick(final Player p, final Item item) {
+                        if (!c.getBoolean("enable.kits.status")) {
+                            ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor(c.getString("enable.kits.message")));
+                            menu.forceDestroy(player);
+                            return;
+                        }
+                        if (!u.can(GroupType.VIP)) {
+                            ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&cWymagana ranga: &3VIP"));
+                            menu.forceDestroy(player);
+                            return;
+                        }
+                        if (isActive(u.getKit_vip()) && !u.can(GroupType.ADMIN)) {
+                            p.sendMessage(ChatUtil.fixColor(" &8>> &cKit VIP mozesz odebrac dopiero za: &3" + DataUtil.parseLong(u.getKit_vip() - System.currentTimeMillis(), false)));
+                            menu.forceDestroy(player);
+                            return;
+                        }
+                        ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&7Odebrales zestaw &6VIP"));
+
+                        p.getInventory().addItem(sharp);
+                        p.getInventory().addItem(bania);
+                        p.getInventory().addItem(klata);
+                        p.getInventory().addItem(spodnie);
+                        p.getInventory().addItem(buty);
+                        p.getInventory().addItem(knock);
+                        p.getInventory().addItem(kilof);
+                        p.getInventory().addItem(punch);
+                        p.getInventory().addItem(arrow);
+                        p.getInventory().addItem(kox);
+                        p.getInventory().addItem(refile);
+                        p.getInventory().addItem(sniezki);
+                        p.getInventory().addItem(perly);
+                        p.getInventory().addItem(pandora);
+                        u.setKit_vip(System.currentTimeMillis() + TimeUtil.HOUR.getTime(12));
+                        menu.forceDestroy(player);
+                    }
+                });
+            }
         }
         menu.setDoubleChest();
         menu.setMainCategory(category);
-        menu.addCategory("kitVIPKit", category);
+        menu.addCategory("kitvipKit", category);
         menu.setName(ChatUtil.fixColor("&9KIT VIP"));
         menu.setOnlyRead(true);
         menu.show(player);
-        InventoryMenuHandler.registerNewMenu("kitVIPKit", menu);
+        InventoryMenuHandler.registerNewMenu("kitvipKit", menu);
     }
-    
+
+
+
     public static void openSvipKit(final Player player) {
         final Config c = Main.getPlugin().getConfig();
         final InventoryMenu menu = new InventoryMenu();
         final InventoryCategory category = new InventoryCategory();
-        final ItemData i = new ItemData(160, 11, 1, "&8#");
         final User u = UserManager.getUser(player);
-        for (int ia = 0; ia < 9; ++ia) {
-            category.addElement(ia, i);
-        }
-        final Item miecz32 = Item.get(267, Integer.valueOf(0), 1);
-        miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(9).setLevel(3) });
-        miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(12).setLevel(2) });
-        miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-        final Item miecz33 = Item.get(267, Integer.valueOf(0), 1);
-        miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(9).setLevel(3) });
-        miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(13).setLevel(2) });
-        miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-        final Item buty = Item.get(309, Integer.valueOf(0), 1);
-        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-        final Item klata = Item.get(307, Integer.valueOf(0), 1);
-        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-        final Item bania = Item.get(306, Integer.valueOf(0), 1);
-        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-        final Item spodnie = Item.get(308, Integer.valueOf(0), 1);
-        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-        final Item kilof = Item.get(278, Integer.valueOf(0), 1);
-        kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(15).setLevel(5) });
-        kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-        kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(18).setLevel(3) });
-        final Item kox = Item.get(466, Integer.valueOf(0), 2);
-        final Item refile = Item.get(322, Integer.valueOf(0), 16);
-        final Item pa = Item.get(368, Integer.valueOf(0), 6);
-        final Item punch = Item.get(261, Integer.valueOf(0), 1);
-        punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(21).setLevel(1) });
-        punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-        final Item arrow = Item.get(262, Integer.valueOf(0), 64);
-        category.addElement(9, ItemData.fromItem(miecz33));
+
+        category.setDoubleKitServerGui();
+        final Item punch = Item.get(261, 0, 1);
+        punch.addEnchantment(Enchantment.getEnchantment(21).setLevel(1));
+        punch.addEnchantment(Enchantment.getEnchantment(17).setLevel(3));
+
+        final Item arrow = Item.get(262, 0, 64);
+
+        final Item knock = Item.get(267, 0, 1);
+        knock.addEnchantment(Enchantment.getEnchantment(9).setLevel(3));
+        knock.addEnchantment(Enchantment.getEnchantment(12).setLevel(2));
+        knock.addEnchantment(Enchantment.getEnchantment(17).setLevel(3));
+
+        final Item sharp = Item.get(267, 0, 1);
+        sharp.addEnchantment(Enchantment.getEnchantment(9).setLevel(3));
+        sharp.addEnchantment(Enchantment.getEnchantment(13).setLevel(2));
+        sharp.addEnchantment(Enchantment.getEnchantment(17).setLevel(3));
+
+        final Item buty = Item.get(309, 0, 1);
+        buty.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        buty.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
+
+        final Item klata = Item.get(307, 0, 1);
+        klata.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        klata.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
+
+        final Item bania = Item.get(306, 0, 1);
+        bania.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        bania.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
+
+        final Item spodnie = Item.get(308, 0, 1);
+        spodnie.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        spodnie.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
+
+        final Item kilof = Item.get(278, 0, 1);
+        kilof.addEnchantment(Enchantment.getEnchantment(15).setLevel(5));
+        kilof.addEnchantment(Enchantment.getEnchantment(17).setLevel(3));
+        kilof.addEnchantment(Enchantment.getEnchantment(18).setLevel(3));
+
+        final Item kox = Item.get(466, 0, 3);
+        final Item refile = Item.get(322, 0, 24);
+        final Item perly = Item.get(368, 0, 8);
+        final Item sniezki = Item.get(332, 0, 16);
+
+        final Item pandora = PierozekManager.getPandoreItem();
+        pandora.setCount(3);
+        category.addElement(9, ItemData.fromItem(sharp));
         category.addElement(10, ItemData.fromItem(bania));
         category.addElement(11, ItemData.fromItem(klata));
         category.addElement(12, ItemData.fromItem(spodnie));
         category.addElement(13, ItemData.fromItem(buty));
-        category.addElement(14, ItemData.fromItem(miecz32));
-        category.addElement(15, ItemData.fromItem(kox));
-        category.addElement(16, ItemData.fromItem(refile));
-        category.addElement(17, ItemData.fromItem(pa));
-        category.addElement(18, ItemData.fromItem(miecz33));
+        category.addElement(14, ItemData.fromItem(knock));
+        category.addElement(15, ItemData.fromItem(kilof));
+        category.addElement(16, ItemData.fromItem(punch));
+        category.addElement(17, ItemData.fromItem(arrow));
+        category.addElement(18, ItemData.fromItem(sharp));
         category.addElement(19, ItemData.fromItem(bania));
         category.addElement(20, ItemData.fromItem(klata));
         category.addElement(21, ItemData.fromItem(spodnie));
         category.addElement(22, ItemData.fromItem(buty));
-        category.addElement(23, ItemData.fromItem(miecz32));
+        category.addElement(23, ItemData.fromItem(knock));
         category.addElement(24, ItemData.fromItem(kilof));
-        category.addElement(25, ItemData.fromItem(kilof));
-        category.addElement(26, ItemData.fromItem(punch));
-        category.addElement(27, ItemData.fromItem(punch));
-        category.addElement(28, ItemData.fromItem(arrow));
-        category.addElement(29, ItemData.fromItem(arrow));
-        for (int ia2 = 36; ia2 < 52; ++ia2) {
-            category.addElement(ia2, i);
-        }
-        category.addElement(52, new ItemData(351, 1, 1, "&4Powrot"), new ItemClick() {
+        category.addElement(25, ItemData.fromItem(punch));
+        category.addElement(26, ItemData.fromItem(arrow));
+
+
+        category.addElement(27, ItemData.fromItem(kox));
+        category.addElement(28, ItemData.fromItem(refile));
+        category.addElement(29, ItemData.fromItem(perly));
+        category.addElement(30, ItemData.fromItem(sniezki));
+        category.addElement(31, ItemData.fromItem(sniezki));
+        category.addElement(35, ItemData.fromItem(pandora));
+
+
+
+        category.addElement(46, new ItemData(351, 1, 1, "&r&4POWROT"), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                KitsGui.openKits(p);
+                menu.forceDestroy(player);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 13);
             }
         });
-        if (isActive(u.getKit_svip())) {
-            category.addElement(53, new ItemData(351, 8, 1, "&cZestaw niedostepny czasowo"));
-        }
-        else {
-            category.addElement(53, new ItemData(351, 10, 1, "&aOdbierz zestaw"), new ItemClick() {
+
+
+        if(u.can(GroupType.ROOT)){
+            category.addElement(52, new ItemData(351, 10, 1, "&r&aODBIERZ ZESTAW"), new ItemClick() {
                 @Override
                 public void onClick(final Player p, final Item item) {
                     if (!c.getBoolean("enable.kits.status")) {
                         ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor(c.getString("enable.kits.message")));
+                        menu.forceDestroy(player);
                         return;
                     }
                     if (!u.can(GroupType.SVIP)) {
-                        ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&cWymagana ranga: &3SVIP &8| &3YOUTUBE"));
+                        ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&cWymagana ranga: &3SVIP"));
+                        menu.forceDestroy(player);
                         return;
                     }
                     if (isActive(u.getKit_svip()) && !u.can(GroupType.ADMIN)) {
                         p.sendMessage(ChatUtil.fixColor(" &8>> &cKit SVIP mozesz odebrac dopiero za: &3" + DataUtil.parseLong(u.getKit_svip() - System.currentTimeMillis(), false)));
+                        menu.forceDestroy(player);
                         return;
                     }
                     ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&7Odebrales zestaw &6SVIP"));
-                    final Item miecz32 = Item.get(267, Integer.valueOf(0), 1);
-                    miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(9).setLevel(3) });
-                    miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(12).setLevel(2) });
-                    miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-                    final Item miecz33 = Item.get(267, Integer.valueOf(0), 1);
-                    miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(9).setLevel(3) });
-                    miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(13).setLevel(2) });
-                    miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-                    final Item buty = Item.get(309, Integer.valueOf(0), 1);
-                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-                    final Item klata = Item.get(307, Integer.valueOf(0), 1);
-                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-                    final Item bania = Item.get(306, Integer.valueOf(0), 1);
-                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-                    final Item spodnie = Item.get(308, Integer.valueOf(0), 1);
-                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-                    final Item kilof = Item.get(278, Integer.valueOf(0), 1);
-                    kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(15).setLevel(5) });
-                    kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-                    kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(18).setLevel(3) });
-                    final Item kox = Item.get(466, Integer.valueOf(0), 2);
-                    final Item refile = Item.get(322, Integer.valueOf(0), 16);
-                    final Item pa = Item.get(368, Integer.valueOf(0), 6);
-                    final Item punch = Item.get(261, Integer.valueOf(0), 1);
-                    punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(21).setLevel(1) });
-                    punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-                    final Item arrow = Item.get(262, Integer.valueOf(0), 64);
-                    p.getInventory().addItem(new Item[] { punch });
-                    p.getInventory().addItem(new Item[] { punch });
-                    p.getInventory().addItem(new Item[] { arrow });
-                    p.getInventory().addItem(new Item[] { arrow });
-                    p.getInventory().addItem(new Item[] { miecz33 });
-                    p.getInventory().addItem(new Item[] { miecz32 });
-                    p.getInventory().addItem(new Item[] { bania });
-                    p.getInventory().addItem(new Item[] { klata });
-                    p.getInventory().addItem(new Item[] { spodnie });
-                    p.getInventory().addItem(new Item[] { buty });
-                    p.getInventory().addItem(new Item[] { miecz33 });
-                    p.getInventory().addItem(new Item[] { miecz32 });
-                    p.getInventory().addItem(new Item[] { bania });
-                    p.getInventory().addItem(new Item[] { klata });
-                    p.getInventory().addItem(new Item[] { spodnie });
-                    p.getInventory().addItem(new Item[] { buty });
-                    p.getInventory().addItem(new Item[] { kox });
-                    p.getInventory().addItem(new Item[] { refile });
-                    p.getInventory().addItem(new Item[] { pa });
-                    p.getInventory().addItem(new Item[] { kilof });
-                    p.getInventory().addItem(new Item[] { kilof });
-                    u.setKit_svip(System.currentTimeMillis() + TimeUtil.HOUR.getTime(6));
+
+                    p.getInventory().addItem(sharp);
+                    p.getInventory().addItem(bania);
+                    p.getInventory().addItem(klata);
+                    p.getInventory().addItem(spodnie);
+                    p.getInventory().addItem(buty);
+                    p.getInventory().addItem(knock);
+                    p.getInventory().addItem(kilof);
+                    p.getInventory().addItem(punch);
+                    p.getInventory().addItem(arrow);
+                    p.getInventory().addItem(sharp);
+                    p.getInventory().addItem(bania);
+                    p.getInventory().addItem(klata);
+                    p.getInventory().addItem(spodnie);
+                    p.getInventory().addItem(buty);
+                    p.getInventory().addItem(knock);
+                    p.getInventory().addItem(kilof);
+                    p.getInventory().addItem(punch);
+                    p.getInventory().addItem(arrow);
+                    p.getInventory().addItem(kox);
+                    p.getInventory().addItem(refile);
+                    p.getInventory().addItem(sniezki);
+                    p.getInventory().addItem(sniezki);
+                    p.getInventory().addItem(perly);
+                    p.getInventory().addItem(pandora);
+                    u.setKit_svip(System.currentTimeMillis() + TimeUtil.HOUR.getTime(12));
+                    menu.forceDestroy(player);
                 }
             });
+        }else {
+            if (isActive(u.getKit_svip())) {
+                category.addElement(52, new ItemData(351, 8, 1, "&r&cZESTAW NIEDOSTEPNY CZASOWO"));
+            }
+            else {
+                category.addElement(52, new ItemData(351, 10, 1, "&r&aODBIERZ ZESTAW"), new ItemClick() {
+                    @Override
+                    public void onClick(final Player p, final Item item) {
+                        if (!c.getBoolean("enable.kits.status")) {
+                            ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor(c.getString("enable.kits.message")));
+                            menu.forceDestroy(player);
+                            return;
+                        }
+                        if (!u.can(GroupType.SVIP)) {
+                            ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&cWymagana ranga: &3SVIP"));
+                            menu.forceDestroy(player);
+                            return;
+                        }
+                        if (isActive(u.getKit_svip()) && !u.can(GroupType.ADMIN)) {
+                            p.sendMessage(ChatUtil.fixColor(" &8>> &cKit SVIP mozesz odebrac dopiero za: &3" + DataUtil.parseLong(u.getKit_svip() - System.currentTimeMillis(), false)));
+                            menu.forceDestroy(player);
+                            return;
+                        }
+                        ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&7Odebrales zestaw &6SVIP"));
+
+                        p.getInventory().addItem(sharp);
+                        p.getInventory().addItem(bania);
+                        p.getInventory().addItem(klata);
+                        p.getInventory().addItem(spodnie);
+                        p.getInventory().addItem(buty);
+                        p.getInventory().addItem(knock);
+                        p.getInventory().addItem(kilof);
+                        p.getInventory().addItem(punch);
+                        p.getInventory().addItem(arrow);
+                        p.getInventory().addItem(sharp);
+                        p.getInventory().addItem(bania);
+                        p.getInventory().addItem(klata);
+                        p.getInventory().addItem(spodnie);
+                        p.getInventory().addItem(buty);
+                        p.getInventory().addItem(knock);
+                        p.getInventory().addItem(kilof);
+                        p.getInventory().addItem(punch);
+                        p.getInventory().addItem(arrow);
+                        p.getInventory().addItem(kox);
+                        p.getInventory().addItem(refile);
+                        p.getInventory().addItem(sniezki);
+                        p.getInventory().addItem(sniezki);
+                        p.getInventory().addItem(perly);
+                        p.getInventory().addItem(pandora);
+                        u.setKit_svip(System.currentTimeMillis() + TimeUtil.HOUR.getTime(12));
+                        menu.forceDestroy(player);
+                    }
+                });
+            }
         }
         menu.setDoubleChest();
         menu.setMainCategory(category);
-        menu.addCategory("kitSVIPKit", category);
+        menu.addCategory("kitsvipKit", category);
         menu.setName(ChatUtil.fixColor("&9KIT SVIP"));
         menu.setOnlyRead(true);
         menu.show(player);
-        InventoryMenuHandler.registerNewMenu("kitSVIPKit", menu);
+        InventoryMenuHandler.registerNewMenu("kitsvipKit", menu);
     }
-    
+
+
+
     public static void openSponsor(final Player player) {
         final Config c = Main.getPlugin().getConfig();
         final InventoryMenu menu = new InventoryMenu();
         final InventoryCategory category = new InventoryCategory();
-        final ItemData i = new ItemData(160, 11, 1, "&8#");
         final User u = UserManager.getUser(player);
-        for (int ia = 0; ia < 9; ++ia) {
-            category.addElement(ia, i);
-        }
-        final Item miecz32 = Item.get(267, Integer.valueOf(0), 1);
-        miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(9).setLevel(3) });
-        miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(12).setLevel(2) });
-        miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-        final Item miecz33 = Item.get(267, Integer.valueOf(0), 1);
-        miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(9).setLevel(3) });
-        miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(13).setLevel(2) });
-        miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-        final Item buty = Item.get(309, Integer.valueOf(0), 1);
-        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-        buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-        final Item klata = Item.get(307, Integer.valueOf(0), 1);
-        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-        klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-        final Item bania = Item.get(306, Integer.valueOf(0), 1);
-        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-        bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-        final Item spodnie = Item.get(308, Integer.valueOf(0), 1);
-        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-        spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-        final Item kilof = Item.get(278, Integer.valueOf(0), 1);
-        kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(15).setLevel(5) });
-        kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-        kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(18).setLevel(3) });
-        final Item kox = Item.get(466, Integer.valueOf(0), 8);
-        final Item refile = Item.get(322, Integer.valueOf(0), 64);
-        final Item pa = Item.get(368, Integer.valueOf(0), 6);
-        final Item punch = Item.get(261, Integer.valueOf(0), 1);
-        punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(21).setLevel(1) });
-        punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-        final Item arrow = Item.get(262, Integer.valueOf(0), 64);
-        category.addElement(9, ItemData.fromItem(miecz33));
+
+        category.setDoubleKitServerGui();
+        final Item punch = Item.get(261, 0, 1);
+        punch.addEnchantment(Enchantment.getEnchantment(21).setLevel(1));
+        punch.addEnchantment(Enchantment.getEnchantment(17).setLevel(3));
+
+        final Item arrow = Item.get(262, 0, 64);
+
+        final Item knock = Item.get(267, 0, 1);
+        knock.addEnchantment(Enchantment.getEnchantment(9).setLevel(3));
+        knock.addEnchantment(Enchantment.getEnchantment(12).setLevel(2));
+        knock.addEnchantment(Enchantment.getEnchantment(17).setLevel(3));
+
+        final Item sharp = Item.get(267, 0, 1);
+        sharp.addEnchantment(Enchantment.getEnchantment(9).setLevel(3));
+        sharp.addEnchantment(Enchantment.getEnchantment(13).setLevel(2));
+        sharp.addEnchantment(Enchantment.getEnchantment(17).setLevel(3));
+
+        final Item buty = Item.get(309, 0, 1);
+        buty.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        buty.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
+
+        final Item klata = Item.get(307, 0, 1);
+        klata.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        klata.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
+
+        final Item bania = Item.get(306, 0, 1);
+        bania.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        bania.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
+
+        final Item spodnie = Item.get(308, 0, 1);
+        spodnie.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        spodnie.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
+
+        final Item kilof = Item.get(278, 0, 1);
+        kilof.addEnchantment(Enchantment.getEnchantment(15).setLevel(5));
+        kilof.addEnchantment(Enchantment.getEnchantment(17).setLevel(3));
+        kilof.addEnchantment(Enchantment.getEnchantment(18).setLevel(3));
+
+        final Item kox = Item.get(466, 0, 6);
+        final Item refile = Item.get(322, 0, 32);
+        final Item perly = Item.get(368, 0, 14);
+        final Item sniezki = Item.get(332, 0, 16);
+
+        final Item pandora = PierozekManager.getPandoreItem();
+        pandora.setCount(5);
+        category.addElement(9, ItemData.fromItem(sharp));
         category.addElement(10, ItemData.fromItem(bania));
         category.addElement(11, ItemData.fromItem(klata));
         category.addElement(12, ItemData.fromItem(spodnie));
         category.addElement(13, ItemData.fromItem(buty));
-        category.addElement(14, ItemData.fromItem(miecz32));
-        category.addElement(15, ItemData.fromItem(kox));
-        category.addElement(16, ItemData.fromItem(refile));
-        category.addElement(17, ItemData.fromItem(pa));
-        category.addElement(18, ItemData.fromItem(miecz33));
+        category.addElement(14, ItemData.fromItem(knock));
+        category.addElement(15, ItemData.fromItem(kilof));
+        category.addElement(16, ItemData.fromItem(punch));
+        category.addElement(17, ItemData.fromItem(arrow));
+        category.addElement(18, ItemData.fromItem(sharp));
         category.addElement(19, ItemData.fromItem(bania));
         category.addElement(20, ItemData.fromItem(klata));
         category.addElement(21, ItemData.fromItem(spodnie));
         category.addElement(22, ItemData.fromItem(buty));
-        category.addElement(23, ItemData.fromItem(miecz32));
+        category.addElement(23, ItemData.fromItem(knock));
         category.addElement(24, ItemData.fromItem(kilof));
-        category.addElement(25, ItemData.fromItem(kilof));
-        category.addElement(26, ItemData.fromItem(kilof));
-        category.addElement(27, ItemData.fromItem(miecz33));
+        category.addElement(25, ItemData.fromItem(punch));
+        category.addElement(26, ItemData.fromItem(arrow));
+        category.addElement(27, ItemData.fromItem(sharp));
         category.addElement(28, ItemData.fromItem(bania));
         category.addElement(29, ItemData.fromItem(klata));
         category.addElement(30, ItemData.fromItem(spodnie));
         category.addElement(31, ItemData.fromItem(buty));
-        category.addElement(32, ItemData.fromItem(miecz32));
-        category.addElement(33, ItemData.fromItem(punch));
+        category.addElement(32, ItemData.fromItem(knock));
+        category.addElement(33, ItemData.fromItem(kilof));
         category.addElement(34, ItemData.fromItem(punch));
-        category.addElement(35, ItemData.fromItem(punch));
-        category.addElement(36, ItemData.fromItem(arrow));
-        category.addElement(37, ItemData.fromItem(arrow));
-        category.addElement(38, ItemData.fromItem(arrow));
-        for (int ia2 = 39; ia2 < 52; ++ia2) {
-            category.addElement(ia2, i);
-        }
-        category.addElement(52, new ItemData(351, 1, 1, "&4Powrot"), new ItemClick() {
+        category.addElement(35, ItemData.fromItem(arrow));
+
+
+        category.addElement(36, ItemData.fromItem(kox));
+        category.addElement(37, ItemData.fromItem(refile));
+        category.addElement(38, ItemData.fromItem(perly));
+        category.addElement(39, ItemData.fromItem(sniezki));
+        category.addElement(40, ItemData.fromItem(sniezki));
+        category.addElement(41, ItemData.fromItem(sniezki));
+        category.addElement(44, ItemData.fromItem(pandora));
+
+
+
+        category.addElement(46, new ItemData(351, 1, 1, "&r&4POWROT"), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                KitsGui.openKits(p);
+                menu.forceDestroy(player);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 13);
             }
         });
-        if (isActive(u.getKit_yt())) {
-            category.addElement(53, new ItemData(351, 8, 1, "&cZestaw niedostepny czasowo"));
-        }
-        else {
-            category.addElement(53, new ItemData(351, 10, 1, "&aOdbierz zestaw"), new ItemClick() {
+
+
+        if(u.can(GroupType.ROOT)){
+            category.addElement(52, new ItemData(351, 10, 1, "&r&aODBIERZ ZESTAW"), new ItemClick() {
                 @Override
                 public void onClick(final Player p, final Item item) {
                     if (!c.getBoolean("enable.kits.status")) {
                         ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor(c.getString("enable.kits.message")));
+                        menu.forceDestroy(player);
                         return;
                     }
                     if (!u.can(GroupType.SPONSOR)) {
                         ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&cWymagana ranga: &3SPONSOR"));
+                        menu.forceDestroy(player);
                         return;
                     }
                     if (isActive(u.getKit_yt()) && !u.can(GroupType.ADMIN)) {
                         p.sendMessage(ChatUtil.fixColor(" &8>> &cKit SPONSOR mozesz odebrac dopiero za: &3" + DataUtil.parseLong(u.getKit_yt() - System.currentTimeMillis(), false)));
+                        menu.forceDestroy(player);
                         return;
                     }
                     ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&7Odebrales zestaw &6SPONSOR"));
-                    final Item miecz32 = Item.get(267, Integer.valueOf(0), 1);
-                    miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(9).setLevel(3) });
-                    miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(12).setLevel(2) });
-                    miecz32.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-                    final Item miecz33 = Item.get(267, Integer.valueOf(0), 1);
-                    miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(9).setLevel(3) });
-                    miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(13).setLevel(2) });
-                    miecz33.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-                    final Item buty = Item.get(309, Integer.valueOf(0), 1);
-                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-                    buty.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-                    final Item klata = Item.get(307, Integer.valueOf(0), 1);
-                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-                    klata.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-                    final Item bania = Item.get(306, Integer.valueOf(0), 1);
-                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-                    bania.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-                    final Item spodnie = Item.get(308, Integer.valueOf(0), 1);
-                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(0).setLevel(3) });
-                    spodnie.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(2) });
-                    final Item kilof = Item.get(278, Integer.valueOf(0), 1);
-                    kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(15).setLevel(5) });
-                    kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-                    kilof.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(18).setLevel(3) });
-                    final Item kox = Item.get(466, Integer.valueOf(0), 8);
-                    final Item refile = Item.get(322, Integer.valueOf(0), 64);
-                    final Item pa = Item.get(368, Integer.valueOf(0), 6);
-                    final Item punch = Item.get(261, Integer.valueOf(0), 1);
-                    punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(21).setLevel(1) });
-                    punch.addEnchantment(new Enchantment[] { Enchantment.getEnchantment(17).setLevel(3) });
-                    final Item arrow = Item.get(262, Integer.valueOf(0), 64);
-                    p.getInventory().addItem(new Item[] { punch });
-                    p.getInventory().addItem(new Item[] { punch });
-                    p.getInventory().addItem(new Item[] { punch });
-                    p.getInventory().addItem(new Item[] { arrow });
-                    p.getInventory().addItem(new Item[] { arrow });
-                    p.getInventory().addItem(new Item[] { arrow });
-                    p.getInventory().addItem(new Item[] { miecz33 });
-                    p.getInventory().addItem(new Item[] { miecz32 });
-                    p.getInventory().addItem(new Item[] { bania });
-                    p.getInventory().addItem(new Item[] { klata });
-                    p.getInventory().addItem(new Item[] { spodnie });
-                    p.getInventory().addItem(new Item[] { buty });
-                    p.getInventory().addItem(new Item[] { miecz33 });
-                    p.getInventory().addItem(new Item[] { miecz32 });
-                    p.getInventory().addItem(new Item[] { bania });
-                    p.getInventory().addItem(new Item[] { klata });
-                    p.getInventory().addItem(new Item[] { spodnie });
-                    p.getInventory().addItem(new Item[] { buty });
-                    p.getInventory().addItem(new Item[] { miecz33 });
-                    p.getInventory().addItem(new Item[] { miecz32 });
-                    p.getInventory().addItem(new Item[] { bania });
-                    p.getInventory().addItem(new Item[] { klata });
-                    p.getInventory().addItem(new Item[] { spodnie });
-                    p.getInventory().addItem(new Item[] { buty });
-                    p.getInventory().addItem(new Item[] { kox });
-                    p.getInventory().addItem(new Item[] { refile });
-                    p.getInventory().addItem(new Item[] { pa });
-                    p.getInventory().addItem(new Item[] { kilof });
-                    p.getInventory().addItem(new Item[] { kilof });
-                    p.getInventory().addItem(new Item[] { kilof });
-                    u.setKit_yt(System.currentTimeMillis() + TimeUtil.HOUR.getTime(6));
+
+                    p.getInventory().addItem(sharp);
+                    p.getInventory().addItem(bania);
+                    p.getInventory().addItem(klata);
+                    p.getInventory().addItem(spodnie);
+                    p.getInventory().addItem(buty);
+                    p.getInventory().addItem(knock);
+                    p.getInventory().addItem(kilof);
+                    p.getInventory().addItem(punch);
+                    p.getInventory().addItem(arrow);
+                    p.getInventory().addItem(sharp);
+                    p.getInventory().addItem(bania);
+                    p.getInventory().addItem(klata);
+                    p.getInventory().addItem(spodnie);
+                    p.getInventory().addItem(buty);
+                    p.getInventory().addItem(knock);
+                    p.getInventory().addItem(kilof);
+                    p.getInventory().addItem(punch);
+                    p.getInventory().addItem(arrow);
+                    p.getInventory().addItem(sharp);
+                    p.getInventory().addItem(bania);
+                    p.getInventory().addItem(klata);
+                    p.getInventory().addItem(spodnie);
+                    p.getInventory().addItem(buty);
+                    p.getInventory().addItem(knock);
+                    p.getInventory().addItem(kilof);
+                    p.getInventory().addItem(punch);
+                    p.getInventory().addItem(arrow);
+                    p.getInventory().addItem(kox);
+                    p.getInventory().addItem(refile);
+                    p.getInventory().addItem(sniezki);
+                    p.getInventory().addItem(sniezki);
+                    p.getInventory().addItem(sniezki);
+                    p.getInventory().addItem(perly);
+                    p.getInventory().addItem(pandora);
+                    u.setKit_yt(System.currentTimeMillis() + TimeUtil.HOUR.getTime(12));
+                    menu.forceDestroy(player);
                 }
             });
+        }else {
+            if (isActive(u.getKit_yt())) {
+                category.addElement(52, new ItemData(351, 8, 1, "&r&cZESTAW NIEDOSTEPNY CZASOWO"));
+            }
+            else {
+                category.addElement(52, new ItemData(351, 10, 1, "&r&aODBIERZ ZESTAW"), new ItemClick() {
+                    @Override
+                    public void onClick(final Player p, final Item item) {
+                        if (!c.getBoolean("enable.kits.status")) {
+                            ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor(c.getString("enable.kits.message")));
+                            menu.forceDestroy(player);
+                            return;
+                        }
+                        if (!u.can(GroupType.SPONSOR)) {
+                            ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&cWymagana ranga: &3SPONSOR"));
+                            menu.forceDestroy(player);
+                            return;
+                        }
+                        if (isActive(u.getKit_yt()) && !u.can(GroupType.ADMIN)) {
+                            p.sendMessage(ChatUtil.fixColor(" &8>> &cKit SPONSOR mozesz odebrac dopiero za: &3" + DataUtil.parseLong(u.getKit_yt() - System.currentTimeMillis(), false)));
+                            menu.forceDestroy(player);
+                            return;
+                        }
+                        ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&7Odebrales zestaw &6SPONSOR"));
+
+                        p.getInventory().addItem(sharp);
+                        p.getInventory().addItem(bania);
+                        p.getInventory().addItem(klata);
+                        p.getInventory().addItem(spodnie);
+                        p.getInventory().addItem(buty);
+                        p.getInventory().addItem(knock);
+                        p.getInventory().addItem(kilof);
+                        p.getInventory().addItem(punch);
+                        p.getInventory().addItem(arrow);
+                        p.getInventory().addItem(sharp);
+                        p.getInventory().addItem(bania);
+                        p.getInventory().addItem(klata);
+                        p.getInventory().addItem(spodnie);
+                        p.getInventory().addItem(buty);
+                        p.getInventory().addItem(knock);
+                        p.getInventory().addItem(kilof);
+                        p.getInventory().addItem(punch);
+                        p.getInventory().addItem(arrow);
+                        p.getInventory().addItem(sharp);
+                        p.getInventory().addItem(bania);
+                        p.getInventory().addItem(klata);
+                        p.getInventory().addItem(spodnie);
+                        p.getInventory().addItem(buty);
+                        p.getInventory().addItem(knock);
+                        p.getInventory().addItem(kilof);
+                        p.getInventory().addItem(punch);
+                        p.getInventory().addItem(arrow);
+                        p.getInventory().addItem(kox);
+                        p.getInventory().addItem(refile);
+                        p.getInventory().addItem(sniezki);
+                        p.getInventory().addItem(sniezki);
+                        p.getInventory().addItem(sniezki);
+                        p.getInventory().addItem(perly);
+                        p.getInventory().addItem(pandora);
+                        u.setKit_yt(System.currentTimeMillis() + TimeUtil.HOUR.getTime(12));
+                        menu.forceDestroy(player);
+                    }
+                });
+            }
         }
         menu.setDoubleChest();
         menu.setMainCategory(category);
-        menu.addCategory("kitSPONSORkit", category);
+        menu.addCategory("kitsponsorKit", category);
         menu.setName(ChatUtil.fixColor("&9KIT SPONSOR"));
         menu.setOnlyRead(true);
         menu.show(player);
-        InventoryMenuHandler.registerNewMenu("kitSPONSORkit", menu);
+        InventoryMenuHandler.registerNewMenu("kitsponsorKit", menu);
+    }
+
+    public static void openMiesoKit(final Player player) {
+        final Config c = Main.getPlugin().getConfig();
+        final InventoryMenu menu = new InventoryMenu();
+        final InventoryCategory category = new InventoryCategory();
+        final User u = UserManager.getUser(player);
+
+        category.setDoubleKitServerGui();
+        final Item mieso = new Item(320, 0, 64);
+        category.addElement(9, ItemData.fromItem(mieso));
+
+        category.addElement(46, new ItemData(351, 1, 1, "&r&4POWROT"), new ItemClick() {
+            @Override
+            public void onClick(final Player p, final Item item) {
+                menu.forceDestroy(player);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 13);
+            }
+        });
+
+
+        if(u.can(GroupType.ROOT)){
+            category.addElement(52, new ItemData(351, 10, 1, "&r&aODBIERZ ZESTAW"), new ItemClick() {
+                @Override
+                public void onClick(final Player p, final Item item) {
+                    if (!c.getBoolean("enable.kits.status")) {
+                        ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor(c.getString("enable.kits.message")));
+                        menu.forceDestroy(player);
+                        return;
+                    }
+
+                    if (isActive(u.getKit_mieso()) && !u.can(GroupType.ADMIN)) {
+                        p.sendMessage(ChatUtil.fixColor(" &8>> &cKit MIESO mozesz odebrac dopiero za: &3" + DataUtil.parseLong(u.getKit_mieso() - System.currentTimeMillis(), false)));
+                        menu.forceDestroy(player);
+                        return;
+                    }
+                    ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&7Odebrales zestaw &6MIESO"));
+
+
+                    p.getInventory().addItem(mieso);
+                    u.setKit_mieso(System.currentTimeMillis() + TimeUtil.MINUTE.getTime(1));
+                    menu.forceDestroy(player);
+                }
+            });
+        }else {
+            if (isActive(u.getKit_mieso())) {
+                category.addElement(52, new ItemData(351, 8, 1, "&r&cZESTAW NIEDOSTEPNY CZASOWO"));
+            }
+            else {
+                category.addElement(52, new ItemData(351, 10, 1, "&r&aODBIERZ ZESTAW"), new ItemClick() {
+                    @Override
+                    public void onClick(final Player p, final Item item) {
+                        if (!c.getBoolean("enable.kits.status")) {
+                            ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor(c.getString("enable.kits.message")));
+                            menu.forceDestroy(player);
+                            return;
+                        }
+
+                        if (isActive(u.getKit_mieso()) && !u.can(GroupType.ADMIN)) {
+                            p.sendMessage(ChatUtil.fixColor(" &8>> &cKit MIESO mozesz odebrac dopiero za: &3" + DataUtil.parseLong(u.getKit_mieso() - System.currentTimeMillis(), false)));
+                            menu.forceDestroy(player);
+                            return;
+                        }
+                        ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&7Odebrales zestaw &6MIESO"));
+
+
+                        p.getInventory().addItem(mieso);
+                        u.setKit_mieso(System.currentTimeMillis() + TimeUtil.MINUTE.getTime(1));
+                        menu.forceDestroy(player);
+                    }
+                });
+            }
+        }
+        menu.setDoubleChest();
+        menu.setMainCategory(category);
+        menu.addCategory("kitmiesokit", category);
+        menu.setName(ChatUtil.fixColor("&9KIT MIESO"));
+        menu.setOnlyRead(true);
+        menu.show(player);
+        InventoryMenuHandler.registerNewMenu("kitmiesokit", menu);
+    }
+
+
+    public static void openPlayerKit(final Player player) {
+        final Config c = Main.getPlugin().getConfig();
+        final InventoryMenu menu = new InventoryMenu();
+        final InventoryCategory category = new InventoryCategory();
+        final User u = UserManager.getUser(player);
+
+        category.setDoubleKitServerGui();
+
+        final Item kilof = new Item(274, 0, 1);
+        kilof.addEnchantment(Enchantment.get(Enchantment.ID_DURABILITY).setLevel(3));
+        final Item ender = new Item(130, 0, 1);
+        final Item drewno = new Item(Item.WOOD, 0, 32);
+        final Item woda = new Item(ItemID.BUCKET, 8, 1);
+
+        category.addElement(9, ItemData.fromItem(kilof));
+        category.addElement(10, ItemData.fromItem(ender));
+        category.addElement(11, ItemData.fromItem(drewno));
+        category.addElement(12, ItemData.fromItem(woda));
+
+        category.addElement(46, new ItemData(351, 1, 1, "&r&4POWROT"), new ItemClick() {
+            @Override
+            public void onClick(final Player p, final Item item) {
+                menu.forceDestroy(player);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 13);
+            }
+        });
+
+
+        if(u.can(GroupType.ROOT)){
+            category.addElement(52, new ItemData(351, 10, 1, "&r&aODBIERZ ZESTAW"), new ItemClick() {
+                @Override
+                public void onClick(final Player p, final Item item) {
+                    if (!c.getBoolean("enable.kits.status")) {
+                        ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor(c.getString("enable.kits.message")));
+                        menu.forceDestroy(player);
+                        return;
+                    }
+
+                    if (isActive(u.getKit_start()) && !u.can(GroupType.ADMIN)) {
+                        p.sendMessage(ChatUtil.fixColor(" &8>> &cKit START mozesz odebrac dopiero za: &3" + DataUtil.parseLong(u.getKit_start() - System.currentTimeMillis(), false)));
+                        menu.forceDestroy(player);
+                        return;
+                    }
+                    ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&7Odebrales zestaw &6START"));
+
+
+                    p.getInventory().addItem(kilof);
+                    p.getInventory().addItem(ender);
+                    p.getInventory().addItem(drewno);
+                    p.getInventory().addItem(woda);
+                    u.setKit_start(System.currentTimeMillis() + TimeUtil.MINUTE.getTime(3));
+                    menu.forceDestroy(player);
+                }
+            });
+        }else {
+            if (isActive(u.getKit_start())) {
+                category.addElement(52, new ItemData(351, 8, 1, "&r&cZESTAW NIEDOSTEPNY CZASOWO"));
+            }
+            else {
+                category.addElement(52, new ItemData(351, 10, 1, "&r&aODBIERZ ZESTAW"), new ItemClick() {
+                    @Override
+                    public void onClick(final Player p, final Item item) {
+                        if (!c.getBoolean("enable.kits.status")) {
+                            ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor(c.getString("enable.kits.message")));
+                            menu.forceDestroy(player);
+                            return;
+                        }
+
+                        if (isActive(u.getKit_start()) && !u.can(GroupType.ADMIN)) {
+                            p.sendMessage(ChatUtil.fixColor(" &8>> &cKit START mozesz odebrac dopiero za: &3" + DataUtil.parseLong(u.getKit_start() - System.currentTimeMillis(), false)));
+                            menu.forceDestroy(player);
+                            return;
+                        }
+                        ChatUtil.sendTitle(p, "&9KITY", ChatUtil.fixColor("&7Odebrales zestaw &6START"));
+
+
+                        p.getInventory().addItem(kilof);
+                        p.getInventory().addItem(ender);
+                        p.getInventory().addItem(drewno);
+                        p.getInventory().addItem(woda);
+                        u.setKit_start(System.currentTimeMillis() + TimeUtil.MINUTE.getTime(3));
+                        menu.forceDestroy(player);
+                    }
+                });
+            }
+        }
+        menu.setDoubleChest();
+        menu.setMainCategory(category);
+        menu.addCategory("kitstartkit", category);
+        menu.setName(ChatUtil.fixColor("&9KIT GRACZ"));
+        menu.setOnlyRead(true);
+        menu.show(player);
+        InventoryMenuHandler.registerNewMenu("kitstartkit", menu);
     }
 }

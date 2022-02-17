@@ -57,9 +57,11 @@ public class GuildCreateCommand extends PlayerCommand
         if (ua.can(GroupType.VIP)) {
             s2 = Config.COST_CREATE_VIP;
         }
-        if (!ItemStackUtil.checkItems(player, s2, 1)) {
-            ItemStackUtil.getItem(player, s2, 1);
-            return false;
+        if(!ua.can(GroupType.ROOT)) {
+            if (!ItemStackUtil.checkItems(player, s2, 1)) {
+                ItemStackUtil.getItem(player, s2, 1);
+                return false;
+            }
         }
         ItemStackUtil.removeItems(player, s2, 1);
         final Guild guild = GuildManager.createGuild(upperCase.toUpperCase(), s, player, new Location(player.getLocation().getX(), player.getLevel().getHighestBlockAt(player.getLocation().getFloorX(), player.getLocation().getFloorZ()) + 1.5, player.getLocation().getZ()));

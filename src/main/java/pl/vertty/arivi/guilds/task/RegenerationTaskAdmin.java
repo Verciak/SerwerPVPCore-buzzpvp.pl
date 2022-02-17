@@ -14,8 +14,8 @@ import java.util.List;
 
 public class RegenerationTaskAdmin extends NukkitRunnable
 {
-    private Guild g;
-    private List<BlockRegeneration> blocks;
+    private final Guild g;
+    private final List<BlockRegeneration> blocks;
     
     public RegenerationTaskAdmin(final Guild g, final List<BlockRegeneration> blocks) {
         this.g = g;
@@ -27,7 +27,7 @@ public class RegenerationTaskAdmin extends NukkitRunnable
             final BlockRegeneration blockRegeneration = this.blocks.get(0);
             if (blockRegeneration != null) {
                 final Location location = blockRegeneration.getLocation();
-                location.getLevel().setBlock(new Vector3((double)location.getFloorX(), (double)location.getFloorY(), (double)location.getFloorZ()), Block.get(blockRegeneration.getIdBlock()));
+                location.getLevel().setBlock(new Vector3(location.getFloorX(), location.getFloorY(), location.getFloorZ()), Block.get(blockRegeneration.getIdBlock()));
             }
             this.blocks.remove(blockRegeneration);
             if (this.blocks.isEmpty()) {

@@ -30,7 +30,7 @@ public class Region
     }
     
     public Location getCenter() {
-        return new Location((double)this.x, 41.0, (double)this.z);
+        return new Location(this.x, 41.0, this.z);
     }
     
     public boolean isInCentrumFarmer(final Location location, final int n, final int n2, final int n3) {
@@ -42,9 +42,9 @@ public class Region
         final Location clone = this.getLocation().clone();
         return clone.getFloorY() - n2 <= location.getFloorY() && clone.getFloorY() + n >= location.getFloorY() && location.getFloorX() <= clone.getFloorX() + n3 && location.getFloorX() >= clone.getFloorX() - n3 && location.getFloorZ() <= clone.getFloorZ() + n3 && location.getFloorZ() >= clone.getFloorZ() - n3;
     }
-    
+
     public Location getLocationFarmer(final double n) {
-        return new Location((double)this.getX(), n, (double)this.getZ());
+        return new Location(this.getX(), n, this.getZ());
     }
     
     public int getZ() {
@@ -65,7 +65,7 @@ public class Region
     }
     
     public Location getLocation() {
-        return new Location((double)this.getX(), 40.0, (double)this.getZ());
+        return new Location(this.getX(), 40.0, this.getZ());
     }
     
     public void setZ(final int z) {

@@ -8,6 +8,22 @@ import java.util.List;
 
 public final class SpaceUtil
 {
+
+    public static List<Location> getVector(Location center, int radius, int addvector) {
+        List<Location> locs = new ArrayList<>();
+        int cX = center.getFloorX();
+        int cZ = center.getFloorZ();
+        int minX = Math.min(cX + radius, cX - radius);
+        int maxX = Math.max(cX + radius, cX - radius);
+        int minZ = Math.min(cZ + radius, cZ - radius);
+        int maxZ = Math.max(cZ + radius, cZ - radius);
+        locs.add(new Location(minX, center.getFloorY(),  minZ+addvector));
+        locs.add(new Location( maxX-addvector, center.getFloorY(), minZ));
+        locs.add(new Location( minX+addvector, center.getFloorY(), maxZ));
+        locs.add(new Location(maxX, center.getFloorY(),  maxZ - addvector));
+        return locs;
+    }
+    
     public static List<Location> getSquare(final Location center, final int radius) {
         final List<Location> locs = new ArrayList<Location>();
         final int cX = center.getFloorX();

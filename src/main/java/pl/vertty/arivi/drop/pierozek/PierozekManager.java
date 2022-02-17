@@ -116,6 +116,6 @@ public class PierozekManager
         PierozekManager.drop.add(new Item(388, Integer.valueOf(0), 32).setCustomName(ChatUtil.fixColor("Emerald")));
         PierozekManager.drop.add(new Item(145, Integer.valueOf(0), 3).setCustomName(ChatUtil.fixColor("Kowadlo")));
         PierozekManager.drop.add(new Item(Item.BEACON, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor("Beacon")));
-        (PierozekManager.pandoreItem = Item.get(122)).setCustomName(ChatUtil.fixColor("&5&lPandora"));
+        (PierozekManager.pandoreItem = Item.get(122)).setCustomName(ChatUtil.fixColor("&r&5&lPandora"));
     }
 }

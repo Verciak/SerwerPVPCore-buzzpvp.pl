@@ -31,7 +31,7 @@ public class SimpleInventoryMenu extends ContainerInventory
     
     public void onClose(final Player who) {
         super.onClose(who);
-        final Vector3 vec = new Vector3(who.x, who.y - 2.0, who.z);
+        final Vector3 vec = new Vector3(who.x, who.y + 2.0, who.z);
         if (this.isDouble) {
             final Vector3 vec2 = vec.add(1.0, 0.0, 0.0);
             who.level.sendBlocks(new Player[] { who }, new Vector3[] { vec, vec2 });
@@ -50,7 +50,7 @@ public class SimpleInventoryMenu extends ContainerInventory
     }
     
     protected Vector3 createInventory(final Player player) {
-        final Vector3 pos = new Vector3((double)(int)player.getX(), (double)((int)player.getY() - 2), (double)(int)player.getZ());
+        final Vector3 pos = new Vector3((double)(int)player.getX(), (double)((int)player.getY() + 2), (double)(int)player.getZ());
         this.spawnChest(player, pos);
         if (this.isDouble) {
             final Vector3 pos2 = pos.clone().add(1.0, 0.0, 0.0);
@@ -58,7 +58,7 @@ public class SimpleInventoryMenu extends ContainerInventory
             this.pairChests(player, pos, pos2);
             this.pairChests(player, pos2, pos);
         }
-        return new Vector3(player.x, player.y - 2.0, player.z);
+        return new Vector3(player.x, player.y + 2.0, player.z);
     }
     
     private void pairChests(final Player player, final Vector3 pos1, final Vector3 pos2) {

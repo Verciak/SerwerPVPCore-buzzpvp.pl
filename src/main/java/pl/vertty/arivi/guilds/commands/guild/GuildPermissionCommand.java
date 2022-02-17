@@ -81,7 +81,7 @@ public class GuildPermissionCommand extends PlayerCommand
         for (int i = 20; i < RoleManager.getRolesGuild(GuildManager.getGuild(player).getTag()).size() + 20; ++i) {
             category.addElement(i, ItemData.fromItem(new Item(323, Integer.valueOf(0), 1).setCustomName(ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&9&l").append(iterator.next().getName())))).setLore(new String[] { ChatUtil.fixColor("&8» &7Kliknij aby ustawic role!") })), new ItemClick() {
                 @Override
-                public void onClick(final Player player, final Item item) throws SkinChangeException {
+                public void onClick(final Player player, final Item item) {
                     final Guild guild = GuildManager.getGuild(player);
                     menu.forceDestroy(player);
                     final Role role2 = RoleManager.getRole(guild.getTag(), item.getCustomName().substring(4));
@@ -129,35 +129,35 @@ public class GuildPermissionCommand extends PlayerCommand
         category.addElement(10, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
         category.addElement(11, ItemData.fromItem(new Item(8).setCustomName(ChatUtil.fixColor("&9Uzywanie wody")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append(ChatUtil.fixColor("&8» &7Status: ")).append(role.isUpr_Water() ? "&aTak" : "&cNie"))), ChatUtil.fixColor("&8» &7Kliknij aby zmienic") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 role.setUpr_Water(!role.isUpr_Water());
                 GuildPermissionCommand.openInv(player, role);
             }
         });
         category.addElement(12, ItemData.fromItem(new Item(10).setCustomName(ChatUtil.fixColor("&9Uzywanie lawy")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append(ChatUtil.fixColor("&8» &7Status: ")).append(role.isUpr_Lava() ? "&aTak" : "&cNie"))), ChatUtil.fixColor("&8» &7Kliknij aby zmienic") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 role.setUpr_Lava(!role.isUpr_Lava());
                 GuildPermissionCommand.openInv(player, role);
             }
         });
         category.addElement(13, ItemData.fromItem(new Item(49).setCustomName(ChatUtil.fixColor("&9Stawianie Obsydianu")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append(ChatUtil.fixColor("&8» &7Status: ")).append(role.isUpr_Place_Obsidian() ? "&aTak" : "&cNie"))), ChatUtil.fixColor("&8» &7Kliknij aby zmienic") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 role.setUpr_Place_Obsidian(!role.isUpr_Place_Obsidian());
                 GuildPermissionCommand.openInv(player, role);
             }
         });
         category.addElement(14, ItemData.fromItem(new Item(1).setCustomName(ChatUtil.fixColor("&9Stawianie Kamienia")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append(ChatUtil.fixColor("&8» &7Status: ")).append(role.isUpr_Place_Stone() ? "&aTak" : "&cNie"))), ChatUtil.fixColor("&8» &7Kliknij aby zmienic") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 role.setUpr_Place_Stone(!role.isUpr_Place_Stone());
                 GuildPermissionCommand.openInv(player, role);
             }
         });
         category.addElement(15, ItemData.fromItem(new Item(46).setCustomName(ChatUtil.fixColor("&9Uzywanie tnt")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append(ChatUtil.fixColor("&8» &7Status: ")).append(role.isUpr_Tnt() ? "&aTak" : "&cNie"))), ChatUtil.fixColor("&8» &7Kliknij aby zmienic") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 role.setUpr_Tnt(!role.isUpr_Tnt());
                 GuildPermissionCommand.openInv(player, role);
             }
@@ -167,49 +167,49 @@ public class GuildPermissionCommand extends PlayerCommand
         category.addElement(18, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
         category.addElement(19, ItemData.fromItem(new Item(49).setCustomName(ChatUtil.fixColor("&9Niszczenie Obsidianu")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Status: ").append(role.isUpr_Break_Obsidian() ? "&aTak" : "&cNie"))), ChatUtil.fixColor("&8» &7Kliknij aby zmienic") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 role.setUpr_Break_Obsidian(!role.isUpr_Break_Obsidian());
                 GuildPermissionCommand.openInv(player, role);
             }
         });
         category.addElement(20, ItemData.fromItem(new Item(1).setCustomName(ChatUtil.fixColor("&9Niszczenie Kamienia")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Status: ").append(role.isUpr_Break_Stone() ? "&aTak" : "&cNie"))), ChatUtil.fixColor("&8» &7Kliknij aby zmienic") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 role.setUpr_Break_Stone(!role.isUpr_Break_Stone());
                 GuildPermissionCommand.openInv(player, role);
             }
         });
         category.addElement(21, ItemData.fromItem(new Item(54).setCustomName(ChatUtil.fixColor("&9Uzywanie skrzynek")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Status: ").append(role.isUpr_Chest() ? "&aTak" : "&cNie"))), ChatUtil.fixColor("&8» &7Kliknij aby zmienic") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 role.setUpr_Chest(!role.isUpr_Chest());
                 GuildPermissionCommand.openInv(player, role);
             }
         });
         category.addElement(22, ItemData.fromItem(new Item(120).setCustomName(ChatUtil.fixColor("&9Uzywanie boyfarmera")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Status: ").append(role.isUpr_Boyfarmer() ? "&aTak" : "&cNie"))), ChatUtil.fixColor("&8» &7Kliknij aby zmienic") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 role.setUpr_Boyfarmer(!role.isUpr_Boyfarmer());
                 GuildPermissionCommand.openInv(player, role);
             }
         });
         category.addElement(23, ItemData.fromItem(new Item(22).setCustomName(ChatUtil.fixColor("&9Dostep do lapisu")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Status: ").append(role.isUpr_Lapis() ? "&aTak" : "&cNie"))), ChatUtil.fixColor("&8» &7Kliknij aby zmienic") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 role.setUpr_Lapis(!role.isUpr_Lapis());
                 GuildPermissionCommand.openInv(player, role);
             }
         });
         category.addElement(24, ItemData.fromItem(new Item(270).setCustomName(ChatUtil.fixColor("&9Dostep do Logblocka")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Status: ").append(role.isUpr_Logblock() ? "&aTak" : "&cNie"))), ChatUtil.fixColor("&8» &7Kliknij aby zmienic") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 role.setUpr_Logblock(!role.isUpr_Logblock());
                 GuildPermissionCommand.openInv(player, role);
             }
         });
         category.addElement(25, ItemData.fromItem(new Item(61).setCustomName(ChatUtil.fixColor("&9Otwieranie piecy")).setLore(new String[] { ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&8» &7Status: ").append(role.isUpr_Furnace() ? "&aTak" : "&cNie"))), ChatUtil.fixColor("&8» &7Kliknij aby zmienic") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 role.setUpr_Furnace(!role.isUpr_Furnace());
                 GuildPermissionCommand.openInv(player, role);
             }
@@ -229,7 +229,7 @@ public class GuildPermissionCommand extends PlayerCommand
         category.addElement(38, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
         category.addElement(39, ItemData.fromItem(new Item(340).setCustomName(ChatUtil.fixColor("&9Wlacz wszystkie")).setLore(new String[] { ChatUtil.fixColor("&8» &7Kliknij aby wlaczyc uprawnienia!") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 role.setUpr_Furnace(true);
                 role.setUpr_Logblock(true);
                 role.setUpr_Lava(true);
@@ -247,7 +247,7 @@ public class GuildPermissionCommand extends PlayerCommand
         });
         category.addElement(40, ItemData.fromItem(new Item(339).setCustomName(ChatUtil.fixColor("&9Zmien nazwe")).setLore(new String[] { ChatUtil.fixColor("&8» &7Kliknij aby zmienic nazwe!") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 menu.forceDestroy(player);
                 GuildPermissionCommand.roler = role;
                 final User user = UserManager.getUser(player);
@@ -257,7 +257,7 @@ public class GuildPermissionCommand extends PlayerCommand
         });
         category.addElement(41, ItemData.fromItem(new Item(340).setCustomName(ChatUtil.fixColor("&9Wylacz wszystkie")).setLore(new String[] { ChatUtil.fixColor("&8» &7Kliknij aby wylaczyc uprawnienia!") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 role.setUpr_Furnace(false);
                 role.setUpr_Logblock(false);
                 role.setUpr_Lava(false);
@@ -282,7 +282,7 @@ public class GuildPermissionCommand extends PlayerCommand
         category.addElement(48, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
         category.addElement(49, ItemData.fromItem(new Item(331).setCustomName(ChatUtil.fixColor("&9Wroc")).setLore(new String[] { ChatUtil.fixColor("&8» &7Kliknij aby wrocic!") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 GuildPermissionCommand.openRoles(player, GuildManager.getGuild(player));
             }
         });
@@ -351,7 +351,7 @@ public class GuildPermissionCommand extends PlayerCommand
             for (int ia = 20; ia < RoleManager.getRolesGuild(GuildManager.getGuild(player).getTag()).size() + 20; ++ia) {
                 category.addElement(ia, ItemData.fromItem(new Item(323).setCustomName(ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&9&l").append(iterator.next().getName())))).setLore(new String[] { "&8» &7Kliknij aby zmodyfikowac role!" })), new ItemClick() {
                     @Override
-                    public void onClick(final Player player, final Item item) throws SkinChangeException {
+                    public void onClick(final Player player, final Item item) {
                         menu.forceDestroy(player);
                         final Role role2 = RoleManager.getRole(GuildManager.getGuild(player).getTag(), item.getCustomName().substring(4));
                         final User user = UserManager.getUser(str);
@@ -455,7 +455,7 @@ public class GuildPermissionCommand extends PlayerCommand
             final Item ib = new Item(397, Integer.valueOf(3), 1).setCustomName(ChatUtil.fixColor("&9" + member.getName())).setLore(new String[] { ChatUtil.fixColor("&8» &7Obecna rola: &9" + member.getRole()), ChatUtil.fixColor("&8» &7Nacisnij aby zarzadzac") });
             category.addElement(i + 19, ItemData.fromItem(ib), new ItemClick() {
                 @Override
-                public void onClick(final Player player, final Item item) throws SkinChangeException {
+                public void onClick(final Player player, final Item item) {
                     final Guild guild = GuildManager.getGuild(player);
                     for (int j = 0; j < guild.getMembers().size(); ++j) {
                         final List<String> list = new ArrayList<String>(guild.getMembers());
@@ -522,14 +522,14 @@ public class GuildPermissionCommand extends PlayerCommand
         category.addElement(38, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
         category.addElement(39, ItemData.fromItem(new Item(340, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Zarzadzanie czlonkow")).setLore(new String[] { ChatUtil.fixColor("&8» &7Kliknij aby przejsc dalej!") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 GuildPermissionCommand.openMembers(player);
             }
         });
         category.addElement(40, ItemData.fromItem(new Item(160, Integer.valueOf(7), 1)));
         category.addElement(41, ItemData.fromItem(new Item(386, Integer.valueOf(1)).setCustomName(ChatUtil.fixColor("&9Odswiez permissje")).setLore(new String[] { ChatUtil.fixColor("&8» &7Kliknij aby odswiezyc!") })), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 RoleManager.refreshRoleAll();
             }
         });
@@ -551,7 +551,7 @@ public class GuildPermissionCommand extends PlayerCommand
             for (int ia = 20; ia < RoleManager.getRolesGuild(guild.getTag()).size() + 20; ++ia) {
                 category.addElement(ia, ItemData.fromItem(new Item(323).setCustomName(ChatUtil.fixColor(String.valueOf(new StringBuilder().append("&9&l").append(iterator.next().getName())))).setLore(new String[] { ChatUtil.fixColor("&8» &7Kliknij aby zmodyfikowac role!") })), new ItemClick() {
                     @Override
-                    public void onClick(final Player player, final Item item) throws SkinChangeException {
+                    public void onClick(final Player player, final Item item) {
                         GuildPermissionCommand.openInv(player, RoleManager.getRole(guild.getTag(), item.getCustomName().substring(4)));
                     }
                 });

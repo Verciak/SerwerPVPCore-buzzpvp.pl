@@ -1,10 +1,10 @@
 mysql:
   prefix: core-
-  host: localhost
+  host: mysql.titanaxe.com
   port: 3306
-  user: root
-  pass: domiS2002_!
-  name: blazepe
+  user: srv207254
+  pass: 4d7Q4p88
+  name: srv207254
 check_allowed_commands:
   - wyslij
   - helpop
@@ -61,6 +61,8 @@ limit:
   refy: 8
   perly: 3
   sniezki: 8
+  arrow: 64
+  tnt: 3
 automsg:
   - '&7testowa'
   - '&ctestowa2'
@@ -242,8 +244,8 @@ format:
       prefix: '&4'
       suffix: '&6'
       fullname: ROOT
-pomoc: "TEST{N}TEST"
-vip: "TEST{N}TEST"
-svip: "TEST{N}TEST"
-sponsor: "TEST{N}TEST"
-yt: "TEST{N}TEST"
+pomoc: TEST{N}TEST
+vip: TEST{N}TEST
+svip: TEST{N}TEST
+sponsor: TEST{N}TEST
+yt: TEST{N}TEST

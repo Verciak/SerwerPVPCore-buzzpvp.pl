@@ -9,6 +9,6 @@ public class UserPointsComparator implements Comparator<User>
 {
     @Override
     public int compare(final User user, final User user2) {
-        return Integer.valueOf(user2.getPoints()).compareTo(user.getPoints());
+        return Integer.compare(user2.getPoints(), user.getPoints());
     }
 }

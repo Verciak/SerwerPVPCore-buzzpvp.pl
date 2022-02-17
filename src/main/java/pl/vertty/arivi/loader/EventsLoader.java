@@ -28,7 +28,6 @@ import pl.vertty.arivi.listeners.premium.PandoraListener;
 import pl.vertty.arivi.listeners.SprawdzListener;
 import pl.vertty.arivi.guilds.listeners.BlockOpenInventoriesListener;
 import pl.vertty.arivi.listeners.EnchantListener;
-import pl.vertty.arivi.guilds.listeners.ShadowBlockListener;
 import pl.vertty.arivi.guilds.listeners.region.PlayerBucketListener;
 import pl.vertty.arivi.guilds.listeners.permission.PermissionListener;
 import pl.vertty.arivi.guilds.listeners.PlayerDeathListener;
@@ -75,7 +74,6 @@ public class EventsLoader
         pluginManager.registerEvents(new PlayerDeathListener(), Main.getPlugin());
         pluginManager.registerEvents(new PermissionListener(), Main.getPlugin());
         pluginManager.registerEvents(new PlayerBucketListener(), Main.getPlugin());
-        pluginManager.registerEvents(new ShadowBlockListener(), Main.getPlugin());
     }
     
     public static void onEventsLoad() {

@@ -1,53 +1,36 @@
 
 package pl.vertty.arivi.guilds.listeners;
 
-import cn.nukkit.command.CommandSender;
-import cn.nukkit.event.EventPriority;
-import cn.nukkit.event.EventHandler;
-import cn.nukkit.event.player.PlayerRespawnEvent;
-import cn.nukkit.inventory.PlayerInventory;
-import pl.vertty.arivi.Main;
-import pl.vertty.arivi.enums.TimeUtil;
-import pl.vertty.arivi.guilds.data.guild.Guild;
-import pl.vertty.arivi.guilds.rank.RankingManager;
-import pl.vertty.arivi.guilds.data.Combat;
-import cn.nukkit.potion.Effect;
-import pl.vertty.arivi.guilds.utils.RandomUtil;
-import pl.vertty.arivi.utils.DeathUtil;
-import pl.vertty.arivi.utils.ItemUtil;
 import cn.nukkit.Player;
-import pl.vertty.arivi.managers.BackupManager;
 import cn.nukkit.Server;
-import pl.vertty.arivi.guilds.data.yml.Config;
-import pl.vertty.arivi.guilds.managers.guild.GuildManager;
-import cn.nukkit.math.Vector3;
-import cn.nukkit.item.Item;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
-import pl.vertty.arivi.guilds.managers.CombatManager;
-import pl.vertty.arivi.guilds.utils.ChatUtil;
-import cn.nukkit.event.entity.EntityDamageEvent;
-import pl.vertty.arivi.guilds.managers.UserManager;
-import cn.nukkit.event.player.PlayerDeathEvent;
-import java.util.HashMap;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.utils.Coooldown;
-import cn.nukkit.entity.data.Skin;
-import java.util.Map;
+import cn.nukkit.entity.Entity;
+import cn.nukkit.event.EventHandler;
+import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.Listener;
+import cn.nukkit.event.entity.EntityDamageByEntityEvent;
+import cn.nukkit.event.entity.EntityDamageEvent;
+import cn.nukkit.event.player.PlayerRespawnEvent;
+import cn.nukkit.item.Item;
+import cn.nukkit.potion.Effect;
+import pl.vertty.arivi.drop.utils.Util;
+import pl.vertty.arivi.guilds.data.Combat;
+import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.guilds.data.guild.Guild;
+import pl.vertty.arivi.guilds.managers.CombatManager;
+import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.guilds.managers.guild.GuildManager;
+import pl.vertty.arivi.guilds.rank.RankingManager;
+import pl.vertty.arivi.guilds.utils.ChatUtil;
+import pl.vertty.arivi.guilds.utils.RandomUtil;
+import pl.vertty.arivi.managers.BackupManager;
+import pl.vertty.arivi.utils.DeathUtil;
 
-public class PlayerDeathListener implements Listener
-{
-    private Map<String, Skin> skins;
-    private static final Coooldown<User> COOLDOWN;
-    
-    public PlayerDeathListener() {
-        this.skins = new HashMap<String, Skin>();
-    }
-    
-    public Map<String, Skin> getSkins() {
-        return this.skins;
-    }
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class PlayerDeathListener implements Listener {
+
 
     @EventHandler
     public void onRespawn(PlayerRespawnEvent e) {
@@ -58,139 +41,145 @@ public class PlayerDeathListener implements Listener
         pC.setLastAttactkPlayer(null);
     }
 
-    @EventHandler
-    public void onDeaths(PlayerDeathEvent e) {
-        e.setDeathMessage("");
-        Player p = e.getEntity();
-        Combat pC = CombatManager.getCombat(p);
-        User user = UserManager.getUser(p);
-        final PlayerInventory playerInventory = p.getInventory();
-        switch (p.getLastDamageCause().getCause()) {
-            case LAVA:
-                user.setDeaths(user.getDeaths() + 1);
-                e.getEntity().getInventory().clearAll();
-                e.setDeathMessage(ChatUtil.fixColor("&7Gracz &c" + p.getName() + " &7probowal plywac w lawie!"));
-                BackupManager.createBackup(p.getName(), "LAVA", p.getPing(), playerInventory, 0);
-            case DROWNING:
-                user.setDeaths(user.getDeaths() + 1);
-                e.getEntity().getInventory().clearAll();
-                e.setDeathMessage(ChatUtil.fixColor("&7Gracz &c" + p.getName() + " &7utopil sie!"));
-                BackupManager.createBackup(p.getName(), "UTOPIL SIE", p.getPing(), playerInventory, 0);
-            case SUICIDE:
-                user.setDeaths(user.getDeaths() + 1);
-                e.getEntity().getInventory().clearAll();
-                e.setDeathMessage(ChatUtil.fixColor("&7Gracz &c" + p.getName() + " &7postanowil popelnic samobojstwo!"));
-                BackupManager.createBackup(p.getName(), "STRZELIL SOBIE W KOLANO", p.getPing(), playerInventory, 0);
-            case FALL:
-                user.setDeaths(user.getDeaths() + 1);
-                e.getEntity().getInventory().clearAll();
-                e.setDeathMessage(ChatUtil.fixColor("&7Gracz &c" + p.getName() + " &7nie potrafi latac!"));
-                BackupManager.createBackup(p.getName(), "NIE MIAL SKRZYDEL", p.getPing(), playerInventory, 0);
-                break;
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = false)
+    public void onDamagee(EntityDamageEvent e) {
+        if (e.getDamage() < 0.0D) {
+            return;
         }
-        if(p.getKiller() instanceof Player) {
-            Player k = (Player) p.getKiller();
-            if (k == null && pC != null && pC.wasFight())
-                k = pC.getLastAttactkPlayer();
-            if (k != null) {
-                User kUser = UserManager.getUser(k);
-                if (kUser == null)
-                    return;
-                if (p.equals(k))
-                    return;
-                if (DeathUtil.isLastKill(kUser, p)) {
-                    ChatUtil.sendMessage((CommandSender) k, "&cZabiles tego samego gracza w ciagu 10m");
-                    if (DeathUtil.isAsyst(pC)) {
-                        assyst(pC, user);
+        if (!(e.getEntity() instanceof Player)) {
+            return;
+        }
+        final Player p = (Player) e.getEntity();
+        final User user = UserManager.getUser(p.getName());
+        final Guild g = GuildManager.getGuild(p);
+        final Combat combat = CombatManager.getCombat(p);
+
+        if (p.getHealth() - e.getFinalDamage() < 1.0F) {
+            Entity k = null;
+            Player kill = CombatManager.getCombat(p).getLastAttactkPlayer();
+            Combat pK = null;
+
+            switch (e.getCause()) {
+                case ENTITY_ATTACK:
+                case FALL:
+                case FIRE:
+                case FIRE_TICK:
+                case LAVA:
+                case PROJECTILE:
+                    if (e instanceof EntityDamageByEntityEvent) {
+                        Entity ent = ((EntityDamageByEntityEvent) e).getDamager();
+                        if (ent instanceof Player) {
+                            k = ent;
+                            break;
+                        }
+                        if (CombatManager.getCombat(p).getLastAttactkPlayer() != null) {
+                            Player pp = Server.getInstance().getPlayer(CombatManager.getCombat(p).getLastAttactkPlayer().getName());
+                            if (pp != null)
+                                kill = pp;
+                            pK = CombatManager.getCombat(pp);
+                        }
                     }
-                    for (Player po : Server.getInstance().getOnlinePlayers().values()) {
-                        User u = UserManager.getUser(po);
-                        ChatUtil.sendMessage((CommandSender) po, DeathUtil.deathsMessage(0, 0, p, k));
+                    break;
+                default:
+                    User u = UserManager.getUser(p.getName());
+                    if (u != null && CombatManager.getCombat(p).getLastAttactkPlayer() != null) {
+                        Player pp = Server.getInstance().getPlayerExact(CombatManager.getCombat(p).getLastAttactkPlayer().getName());
+                        if (pp != null)
+                            kill = pp;
+                    }
+                    break;
+            }
+
+
+            p.setHealth(p.getMaxHealth());
+            p.getFoodData().setLevel(p.getFoodData().getMaxLevel());
+            p.removeAllEffects();
+            p.extinguish();
+            List<Item> drops = new ArrayList<>();
+            if (p.getCursorInventory() != null) {
+                Item cursor = p.getCursorInventory().getItem(0);
+                if (!cursor.isNull())
+                    drops.add(cursor);
+            }
+            drops.addAll(Arrays.asList(p.getDrops()));
+
+            if (kill != null) {
+                for (Item i : drops) {
+                    Util.giveItemOnDeath(kill, kill, i);
+                }
+            } else {
+                for (Item item : drops)
+                    p.getLevel().dropItem(p, item, null, false, 30);
+            }
+
+
+            if (user != null) {
+                if (k == null && (combat == null || !combat.hasFight())) {
+                    user.setDeaths(user.getDeaths() + 1);
+                    BackupManager.createBackup(p.getName(), "COS", p.getPing(), p.getInventory(), 0);
+                    p.getInventory().clearAll();
+                    p.getCursorInventory().clearAll();
+                    p.setExperience(0, 0);
+                    e.getEntity().teleport(Server.getInstance().getDefaultLevel().getSpawnLocation());
+                    e.setCancelled(true);
+                    for (Player pxd : Server.getInstance().getOnlinePlayers().values()) {
+                        pxd.sendMessage(ChatUtil.fixColor("&7Gracz &3" + p.getName() + " &7popelnil samobojstwo!"));
                     }
                 } else {
-                    int add = (int) (94.0D + (kUser.getPoints() - ((user != null) ? user.getPoints() : 0)) * -0.25D);
-                    if (add <= 0) {
-                        add = RandomUtil.getRandInt(8, 15);
+                    if (k == null) {
+                        k = CombatManager.getCombat(p).getLastAttactkPlayer();
                     }
-                    int remove = add / 4 * 3;
-                    if (user != null) {
+                    final User kuser = UserManager.getUser(k.getName());
+                    final Guild kg = GuildManager.getGuild(k);
+                    if (kuser != null) {
+                        int add = (int) (45.0 + (kuser.getPoints() - user.getPoints()) * -0.2);
+                        if (add < 3) {
+                            add = 3;
+                        }
+                        if (add > 250) {
+                            add = 250;
+                        }
+                        int remove = add / 6 * 4;
+                        if (remove < 1) {
+                            remove = 1;
+                        }
+                        if (remove > 150) {
+                            remove = 150;
+                        }
+                        if (kg != null) {
+                            kg.setKills(kg.getKills() + 1);
+                        }
+                        if (g != null) {
+                            g.setDeaths(g.getDeaths() + 1);
+                        }
+                        user.setDeaths(user.getDeaths() + 1);
                         user.setPoints(user.getPoints() - remove);
-                    }
-                    kUser.setLastKillTime(System.currentTimeMillis() + TimeUtil.MINUTE.getTime(10));
-                    kUser.setLastKill(p.getName());
-                    kUser.setPoints(kUser.getPoints() + add);
-                    kUser.setKills(kUser.getKills() + 1);
-                    if (kUser != null) {
-                        kUser.getPlayer().addEffect(Effect.getEffect(12).setDuration(200).setAmplifier(0).setVisible(true));
-                    }
-                    BackupManager.createBackup(p.getName(), k.getName(), p.getPing(), playerInventory, remove);
+                        kuser.setKills(kuser.getKills() + 1);
+                        kuser.setPoints(kuser.getPoints() + add);
 
-                    for (Player po2 : Server.getInstance().getOnlinePlayers().values()) {
-                        User u2 = UserManager.getUser(po2);
-                        ChatUtil.sendMessage((CommandSender) po2, DeathUtil.deathsMessage(add, remove, p, k));
-                    }
-                    if (DeathUtil.isAsyst(pC))
-                        assyst(pC, user);
-                    Guild g = GuildManager.getGuild(k);
-                    if (g != null) {
-                        g.addPoints(GuildManager.addPoints(k, p));
-                        g.addKills(1);
-                    }
-                    Guild o = GuildManager.getGuild(p);
-                    if (o != null) {
-                        o.removePoints(GuildManager.removePoints(p, k));
-                        o.addDeaths(1);
-                    }
-                    RankingManager.sortGuildRankings();
-                }
-            } else if (user != null) {
-                user.setPoints(user.getPoints() - 5);
-            }
-            if (user != null) {
-                user.setDeaths(user.getDeaths() + 1);
-            }
-            if (k instanceof Player) {
-                ItemUtil.giveItems(k, e.getDrops());
-            }
-            e.setDrops(new Item[]{});
 
-            DeathUtil.remove(pC);
-            e.setDeathMessage("");
-            RankingManager.sortGuildRankings();
-            RankingManager.sortUserRankings();
+                        BackupManager.createBackup(p.getName(), k.getName(), p.getPing(), p.getInventory(), remove);
+                        p.getInventory().clearAll();
+                        p.getCursorInventory().clearAll();
+                        p.setExperience(0, 0);
+                        e.getEntity().teleport(Server.getInstance().getDefaultLevel().getSpawnLocation());
+                        e.setCancelled(true);
+                        if (kuser != null) {
+                            kuser.getPlayer().addEffect(Effect.getEffect(12).setDuration(200).setAmplifier(0).setVisible(true));
+                        }
+                        Combat pvp = CombatManager.getCombat(p);
+                        if (pvp != null || !pvp.hasFight()) {
+                            pvp.setLastAttactTime(0);
+                        }
 
-            Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), new Runnable() {
-                public void run() {
-                    if (e.getEntity() instanceof Player) {
-                        e.getEntity().getInventory().clearAll();
-                        e.getEntity().teleport(new Vector3(0, 80, 0));
+                        for (Player po2 : Server.getInstance().getOnlinePlayers().values()) {
+                            ChatUtil.sendMessage(po2, DeathUtil.deathsMessage(add, remove, p, (Player) k));
+                        }
+                        RankingManager.sortGuildRankings();
                     }
                 }
-            }, 15);
+            }
         }
     }
 
-    private void assyst(Combat pC, User pU) {
-        User asysta = UserManager.getUser(pC.getLastAsystPlayer());
-        int asyst = (int)((94.0D + (((asysta != null) ? asysta.getPoints() : 0) - pU.getPoints()) * -0.25D) / 3.0D);
-        if (asysta == asysta)
-            return;
-        if (asyst <= -1)
-            asyst = -1;
-        if (asysta != null) {
-            asysta.setPoints(asysta.getPoints() + asyst);
-        }
-        for (Player p : Server.getInstance().getOnlinePlayers().values()) {
-            User u = UserManager.getUser(p);
-            ChatUtil.sendMessage((CommandSender) p, DeathUtil.asystaMessage(asyst, pC.getLastAsystPlayer()));
-        }
-    }
-    
-    static {
-        COOLDOWN = new Coooldown<User>();
-    }
-
-    //killer.addEffect(Effect.getEffect(12).setDuration(200).setAmplifier(0).setVisible(true));
-    //final PlayerInventory playerInventory = entity.getInventory();
-    //BackupManager.createBackup(entity.getName(), killer.getName(), entity.getPing(), playerInventory, i)
 }

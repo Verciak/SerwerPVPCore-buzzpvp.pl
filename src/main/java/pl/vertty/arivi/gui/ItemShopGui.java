@@ -52,7 +52,7 @@ public class ItemShopGui
         }
         category.addElement(13, ItemData.fromItem(pandoreItem), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 if (user.getPandora() == 0) {
                     ChatUtil.sendMessage((CommandSender)player, "&4Blad: &cNie masz pandor w itemshopie!");
                     return;
@@ -70,7 +70,7 @@ public class ItemShopGui
 
         category.addElement(21, ItemData.fromItem(vip), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 ItemShop itemShop = ItemShopManager.getUser(player);
                 if (itemShop.getVip() == 0) {
                     ChatUtil.sendMessage((CommandSender)player, "&4Blad: &cNie masz do odebrania rangi VIP!");
@@ -82,7 +82,7 @@ public class ItemShopGui
         });
         category.addElement(22, ItemData.fromItem(svip), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 ItemShop itemShop = ItemShopManager.getUser(player);
                 if (itemShop.getSvip() == 0) {
                     ChatUtil.sendMessage((CommandSender)player, "&4Blad: &cNie masz do odebrania rangi SVIP!");
@@ -94,7 +94,7 @@ public class ItemShopGui
         });
         category.addElement(23, ItemData.fromItem(sponsor), new ItemClick() {
             @Override
-            public void onClick(final Player player, final Item item) throws SkinChangeException {
+            public void onClick(final Player player, final Item item) {
                 ItemShop itemShop = ItemShopManager.getUser(player);
                 if (itemShop.getSponsor() == 0) {
                     ChatUtil.sendMessage((CommandSender)player, "&4Blad: &cNie masz do odebrania rangi SPONSOR!");
