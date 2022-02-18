@@ -1,13 +1,18 @@
 
 package pl.vertty.arivi.listeners.drop;
 
+import cn.nukkit.block.BlockID;
 import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.EventHandler;
 import java.util.Iterator;
+
+import cn.nukkit.item.ItemID;
 import pl.vertty.arivi.drop.base.User;
 import cn.nukkit.utils.Config;
 import pl.vertty.arivi.drop.system.DropSystem;
 import cn.nukkit.command.CommandSender;
+import pl.vertty.arivi.drop.utils.Util;
+import pl.vertty.arivi.guilds.utils.RandomUtil;
 import pl.vertty.arivi.utils.ChatUtil;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
@@ -25,6 +30,16 @@ public class BreakDropListener implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
     public void onBreak(final BlockBreakEvent e) {
+        if(e.getBlock().getId() == BlockID.OBSIDIAN){
+            e.getPlayer().addExperience(4);
+            ItemUtil.giveItem(e.getPlayer(), new Item(Item.OBSIDIAN, 0, RandomUtil.getRandInt(1,3)));
+        }
+        if(e.getBlock().getId() == BlockID.LEAVES){
+            if(RandomUtil.getChance(50)){
+                e.getPlayer().addExperience(2);
+                ItemUtil.giveItem(e.getPlayer(), new Item(ItemID.APPLE, 0, RandomUtil.getRandInt(1,4)));
+            }
+        }
         if (e.getBlock().getId() == 1) {
             final Player player = e.getPlayer();
             final User user = UserUtils.get(player.getName());

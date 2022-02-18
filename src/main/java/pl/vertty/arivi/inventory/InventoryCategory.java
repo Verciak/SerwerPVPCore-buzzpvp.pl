@@ -20,6 +20,48 @@ public class InventoryCategory
         this.itemClick = new HashMap<Integer, ItemClick>();
     }
 
+    public void setDoubleCXPandoraServerGui() {
+        int[] black = {
+                1, 2, 3,4, 5, 6, 7,9,18,27,36,17,26,35,44,46,51,47,52,48,50};
+        int[] blue = { 0, 8, 45, 53 };
+        for (int b : black)
+            addElement(b, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        for (int b : blue)
+            addElement(b, ItemData.fromItem(MainConstants.BLUE_GLASS));
+    }
+
+    public void setDoubleLeavesServerGui() {
+        int[] black = {
+                1, 2, 3,4, 5, 6, 7,9,18,27,36,17,26,35,44,46,52,48,50};
+        int[] blue = { 0, 8, 45, 53 };
+        for (int b : black)
+            addElement(b, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        for (int b : blue)
+            addElement(b, ItemData.fromItem(MainConstants.BLUE_GLASS));
+    }
+
+    public void setDoubleStoneServerGui() {
+        int[] black = {
+                1, 2, 3,4, 5, 6, 7,9,18,27,36,17,26,35,44,48,50};
+        int[] blue = { 0, 8, 45, 53 };
+        for (int b : black)
+            addElement(b, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        for (int b : blue)
+            addElement(b, ItemData.fromItem(MainConstants.BLUE_GLASS));
+    }
+
+    public void setSmallMainDropGUI() {
+        int[] black = {
+                1, 2, 3,4, 5, 6, 7, 9, 17, 19,
+                20, 21, 22, 23, 24, 25 };
+        int[] blue = { 0, 8, 18, 26,10,16 };
+        for (int b : black)
+            addElement(b, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        for (int b : blue)
+            addElement(b, ItemData.fromItem(MainConstants.BLUE_GLASS));
+    }
+
+
     public void setDoubleCraftingiServerGui() {
         int[] black = {
                 1, 2, 3,4, 5, 6, 7,9,18,27,36,17,26,35,44, 47,51};
@@ -124,6 +166,28 @@ public class InventoryCategory
             this.itemData.put(position, item);
             if (click != null) {
                 this.itemClick.put(position, click);
+            }
+        }
+    }
+
+    public void addElementAir(@NonNull final ItemData item) {
+        if (item == null) {
+            throw new NullPointerException("item is marked non-null but is null");
+        }
+        this.addElementAir(item, null, 54);
+    }
+
+    public void addElementAir(@NonNull final ItemData item, final ItemClick click, int inventorySize) {
+        if (item == null) {
+            throw new NullPointerException("item is marked non-null but is null");
+        }
+        for(int i = 0; i < inventorySize; i++) {
+            if (!this.itemData.containsKey(i)) {
+                if (click != null) {
+                    itemClick.put(i, click);
+                }
+                itemData.put(i, item);
+                break;
             }
         }
     }

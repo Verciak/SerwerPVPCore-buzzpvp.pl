@@ -1,9 +1,11 @@
 package pl.vertty.arivi.commands.user;
 
 import cn.nukkit.Player;
+import cn.nukkit.block.BlockID;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.inventory.PlayerInventory;
 import cn.nukkit.item.Item;
+import cn.nukkit.item.ItemID;
 import cn.nukkit.item.enchantment.Enchantment;
 import cn.nukkit.math.Vector3;
 import pl.vertty.arivi.commands.builder.PlayerCommand;
@@ -64,24 +66,27 @@ public class CobblexCommand extends PlayerCommand
     }
     
     static {
-        (CobblexCommand.drops = new ArrayList<>()).add(Item.get(47, Integer.valueOf(0), 12));
-        CobblexCommand.drops.add(Item.get(Item.SNOWBALL, Integer.valueOf(0), 8));
-        CobblexCommand.drops.add(Item.get(266, Integer.valueOf(0), 7));
-        CobblexCommand.drops.add(Item.get(368, Integer.valueOf(0), 1));
-        CobblexCommand.drops.add(Item.get(265, Integer.valueOf(0), 9));
-        CobblexCommand.drops.add(Item.get(341, Integer.valueOf(0), 3));
-        CobblexCommand.drops.add(Item.get(260, Integer.valueOf(0), 3));
-        CobblexCommand.drops.add(Item.get(322, Integer.valueOf(0), 1));
-        CobblexCommand.drops.add(Item.get(121, Integer.valueOf(0), 5));
-        CobblexCommand.drops.add(Item.get(353, Integer.valueOf(0), 5));
-        CobblexCommand.drops.add(Item.get(264, Integer.valueOf(0), 10));
-        CobblexCommand.drops.add(Item.get(388, Integer.valueOf(0), 10));
-        CobblexCommand.drops.add(Item.get(266, Integer.valueOf(0), 10));
-        CobblexCommand.drops.add(Item.get(265, Integer.valueOf(0), 10));
-        CobblexCommand.drops.add(Item.get(331, Integer.valueOf(0), 10));
-        CobblexCommand.drops.add(Item.get(263, Integer.valueOf(0), 10));
-        CobblexCommand.drops.add(Item.get(287, Integer.valueOf(0), 3));
-        CobblexCommand.drops.add(Item.get(262, Integer.valueOf(0), 8));
-        CobblexCommand.drops.add(Item.get(262, Integer.valueOf(0), 16));
+        CobblexCommand.drops = new ArrayList<>();
+        CobblexCommand.drops.add(Item.get(ItemID.IRON_INGOT, 0, 10));
+        CobblexCommand.drops.add(Item.get(ItemID.IRON_INGOT, 0, 9));
+        CobblexCommand.drops.add(Item.get(ItemID.GOLD_INGOT, 0, 10));
+        CobblexCommand.drops.add(Item.get(ItemID.GOLD_INGOT, 0, 9));
+        CobblexCommand.drops.add(Item.get(ItemID.DIAMOND, 0, 10));
+        CobblexCommand.drops.add(Item.get(ItemID.DIAMOND, 0, 9));
+        CobblexCommand.drops.add(Item.get(ItemID.EMERALD, 0, 10));
+        CobblexCommand.drops.add(Item.get(ItemID.EMERALD, 0, 9));
+        CobblexCommand.drops.add(Item.get(ItemID.COAL, 0, 10));
+        CobblexCommand.drops.add(Item.get(ItemID.COAL, 0, 9));
+        CobblexCommand.drops.add(Item.get(ItemID.ARROW, 0, 32));
+        CobblexCommand.drops.add(Item.get(ItemID.ARROW, 0, 16));
+        CobblexCommand.drops.add(Item.get(ItemID.GOLDEN_APPLE, 0, 2));
+        CobblexCommand.drops.add(Item.get(ItemID.ENDER_PEARL, 0, 1));
+        CobblexCommand.drops.add(Item.get(ItemID.GOLDEN_APPLE_ENCHANTED, 0, 1));
+        CobblexCommand.drops.add(Item.get(BlockID.BOOKSHELF, 0, 8));
+        CobblexCommand.drops.add(Item.get(BlockID.BOOKSHELF, 0, 4));
+        CobblexCommand.drops.add(Item.get(ItemID.SNOWBALL, 0, 8));
+        CobblexCommand.drops.add(Item.get(ItemID.SNOWBALL, 0, 4));
+        CobblexCommand.drops.add(Item.get(ItemID.STRING, 0, 9));
+        CobblexCommand.drops.add(Item.get(ItemID.STRING, 0, 3));
     }
 }

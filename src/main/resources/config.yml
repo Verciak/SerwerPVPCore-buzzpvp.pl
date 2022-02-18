@@ -82,10 +82,10 @@ protection:
 inventory-from-stone: '&c&lDROP ZE STONE'
 bc-level: '&7Gracz {NICK} awansowal na {LVL} kopania!'
 drop:
-  name: '&2{NAME}'
-  lore: ' &8>> &6Szansa na drop: &7{CHANCE}%{N} &8>> &6Wypada pomiedzy: &6Y:&70 &6a
-    &7{HEIGHT} &6poziomem{N} &8>> &6Szczescie: &a{FORTUNE}{N} &8>> &6Drop: &a{ENABLE}{N}
-    &8>> &6Punkty: &7{LVL} &6pkt.{N} &8>> &6Wykopane: &7{WYKOPANE}'
+  name: '&9{NAME}'
+  lore: ' &8>> &7Szansa: &3{CHANCE}%{N} &8>> &7Wypada pomiedzy: &7Y:&30 &7a
+    &3{HEIGHT} &7poziomem{N} &8>> &7Szczescie: &3{FORTUNE}{N} &8>> &7Drop: &a{ENABLE}{N}
+    &8>> &7Punkty: &3{LVL} &7pkt.{N} &8>> &7Wykopane: &3{WYKOPANE}'
 turbo: 0
 turbo-exp: 0
 exp:
@@ -99,7 +99,7 @@ drops:
     chance: 2.7
     fortune: true
     lvl: 9
-    message: '&7Brawo trafiles na &6{AMOUNT} x Diament'
+    message: '&7Trafiles na &3x{AMOUNT} Diament'
   SZMARAGD:
     item: 388
     height: 35
@@ -107,7 +107,7 @@ drops:
     chance: 2.7
     fortune: true
     lvl: 9
-    message: '&7Brawo trafiles na &6{AMOUNT} x Emerald'
+    message: '&7Trafiles na &3x{AMOUNT} Emerald'
   SZTABKA ZLOTA:
     item: 266
     height: 50
@@ -115,7 +115,7 @@ drops:
     chance: 2.25
     fortune: true
     lvl: 6
-    message: '&7Brawo trafiles na &6{AMOUNT} x Zloto'
+    message: '&7Trafiles na &3x{AMOUNT} Zloto'
   SZTABKA ZELAZA:
     item: 265
     height: 64
@@ -123,7 +123,7 @@ drops:
     chance: 3.75
     fortune: false
     lvl: 5
-    message: '&7Brawo trafiles na &6{AMOUNT} x Zelazo'
+    message: '&7Trafiles na &3x{AMOUNT} Zelazo'
   OBSYDIAN:
     item: 49
     height: 35
@@ -131,7 +131,7 @@ drops:
     chance: 2.1
     fortune: true
     lvl: 9
-    message: '&7Brawo trafiles na &6{AMOUNT} x Obsydian'
+    message: '&7Trafiles na &3x{AMOUNT} Obsydian'
   WEGIEL:
     item: 263
     height: 100
@@ -139,7 +139,7 @@ drops:
     chance: 3.0
     fortune: true
     lvl: 1
-    message: '&7Brawo trafiles na &6{AMOUNT} x Wegiel'
+    message: '&7Trafiles na &3x{AMOUNT} Wegiel'
   REDSTONE:
     item: 331
     height: 35
@@ -147,7 +147,7 @@ drops:
     chance: 3.6
     fortune: true
     lvl: 3
-    message: '&7Brawo trafiles na &6{AMOUNT} x Redstone'
+    message: '&7Trafiles na &3x{AMOUNT} Redstone'
   KSIAZKA:
     item: 340
     height: 25
@@ -155,7 +155,7 @@ drops:
     chance: 2.0
     fortune: false
     lvl: 4
-    message: '&7Brawo trafiles na &6{AMOUNT} x Ksiazka'
+    message: '&7Trafiles na &3x{AMOUNT} Ksiazka'
   PROCH:
     item: 289
     height: 35
@@ -163,7 +163,7 @@ drops:
     chance: 2.25
     fortune: true
     lvl: 4
-    message: '&7Brawo trafiles na &6{AMOUNT} x Proch'
+    message: '&7Trafiles na &3x{AMOUNT} Proch'
   PIASEK:
     item: 12
     height: 35
@@ -171,7 +171,7 @@ drops:
     chance: 2.5
     fortune: false
     lvl: 1
-    message: '&7Brawo trafiles na &6{AMOUNT} x Piasek'
+    message: '&7Trafiles na &3x{AMOUNT} Piasek'
   PERLA:
     item: 368
     height: 35
@@ -179,7 +179,7 @@ drops:
     chance: 0.045
     fortune: true
     lvl: 10
-    message: '&7Brawo trafiles na &6{AMOUNT} x Perla'
+    message: '&7Trafiles na &3x{AMOUNT} Perla'
 gildia:
   tnt:
     protection_enable: true
