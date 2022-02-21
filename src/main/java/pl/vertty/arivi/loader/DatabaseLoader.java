@@ -32,8 +32,6 @@ public class DatabaseLoader
             DatabaseLoader.store.update(true, "CREATE TABLE IF NOT EXISTS `pCGuilds_lock` (`id` int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT, `tag` varchar(32) NOT NULL, `nick` varchar(255) NOT NULL, `location` varchar(255) NOT NULL);");
             DatabaseLoader.store.update(true, "CREATE TABLE IF NOT EXISTS `pCGuilds_wings` (`id` int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT, `name` varchar(32) NOT NULL, `wings` varchar(255) NOT NULL);");
             DatabaseLoader.store.update(true, "CREATE TABLE IF NOT EXISTS `pCGuilds_itemshop` (`id` int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT, `name` varchar(32) NOT NULL, `vip` int(100) NOT NULL, `svip` int(100) NOT NULL, `sponsor` int(100) NOT NULL);");
-
-
         }
     }
 }

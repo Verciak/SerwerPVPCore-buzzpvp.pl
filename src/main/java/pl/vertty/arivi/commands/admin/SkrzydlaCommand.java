@@ -1,5 +1,6 @@
 package pl.vertty.arivi.commands.admin;
 
+import java.io.IOException;
 import java.util.List;
 import pl.vertty.arivi.wings.mysql.UserWings;
 import pl.vertty.arivi.utils.SkinUtil;
@@ -49,7 +50,11 @@ public class SkrzydlaCommand extends Command
                 ChatUtil.sendMessage(p, "&4Blad: &cGracz jest offline!");
                 return false;
             }
-            WingsManager.setRatWings(o, WingsManager.getWings(args[2]));
+            try {
+                WingsManager.setRatWings(o, WingsManager.getWings(args[2]));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             ChatUtil.sendMessage(p, "&6Nadano skrzydla o nazwe: &c" + args[2]);
         }
         else {

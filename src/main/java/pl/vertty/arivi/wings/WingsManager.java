@@ -7,6 +7,7 @@ import cn.nukkit.entity.data.Skin;
 import cn.nukkit.network.protocol.DataPacket;
 import cn.nukkit.network.protocol.PlayerSkinPacket;
 import cn.nukkit.plugin.Plugin;
+import cn.nukkit.utils.SerializedImage;
 import pl.vertty.arivi.Main;
 import pl.vertty.arivi.utils.SkinUtil;
 import pl.vertty.arivi.wings.mysql.UserWings;
@@ -14,6 +15,7 @@ import pl.vertty.arivi.wings.mysql.UserWings;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -79,59 +81,105 @@ public class WingsManager
         return getCollectionWings().stream().map(Wings::getName).collect(Collectors.toList());
     }
 
-    public static void setRatWings(final Player player, final Wings wings) {
+    public static void setRatWings(final Player player, final Wings wings) throws IOException {
         if (UserWings.getUser(player) != null) {
             UserWings.deleteUser(player);
             SkinUtil.resetSkin(player);
         }
         UserWings.createrUser(player);
         UserWings.getUser(player).setWings(wings.getName());
-        final Skin playerSkin = player.getSkin();
-        SkinUtils.saveImage(Main.getPlugin(), playerSkin.getSkinData().width, playerSkin.getSkinData().height, playerSkin.getSkinData().data, player.getName());
-        Server.getInstance().getScheduler().scheduleDelayedTask((Plugin)Main.getPlugin(), (Runnable)new Runnable() {
-            @Override
-            public void run() {
-                final Path skinPath = Paths.get(Main.getPlugin().getDataFolder() + "/skins/" + player.getName() + ".png", new String[0]);
-                BufferedImage skinData = null;
-                try {
-                    skinData = ImageIO.read(skinPath.toFile());
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
-                final Skin skin = new Skin();
-                skin.setSkinId(playerSkin.getSkinId());
-                skin.setGeometryName(wings.getGeometryName());
-                skin.setGeometryData(wings.getGeometryData());
-                BufferedImage bufferedImage = null;
-                try {
-                    bufferedImage = ImageIO.read(new File(Main.getPlugin().getDataFolder() + "/wings/" + wings.getName() + "/"+wings.getName()+".png"));
-                }
-                catch (IOException e2) {
-                    e2.printStackTrace();
-                }
-                final BufferedImage bff = new BufferedImage(128, 128, 2);
-                final Graphics2D graphics2D = bff.createGraphics();
-                graphics2D.drawImage(skinData, 0, 0, null);
-                graphics2D.dispose();
-                final Graphics2D graphics2De = bff.createGraphics();
-                graphics2De.drawImage(bufferedImage, 0, 0, null);
-                graphics2De.dispose();
-                skin.setSkinData(bff);
-                skin.setTrusted(true);
-                player.setSkin(skin);
-                final PlayerSkinPacket packet = new PlayerSkinPacket();
-                packet.skin = skin;
-                packet.newSkinName = player.getName();
-                packet.oldSkinName = playerSkin.getSkinId();
-                packet.uuid = player.getUniqueId();
-                Server.broadcastPacket((Collection)Server.getInstance().getOnlinePlayers().values(), (DataPacket)packet);
-                final Collection<Player> viewer = player.getViewers().values();
-                for (final Player paa : viewer) {
-                    paa.batchDataPacket((DataPacket)packet);
-                }
+        Skin skin = player.getSkin();
+        SerializedImage skinData = skin.getSkinData();
+
+        BufferedImage bufferedImage = new BufferedImage(skinData.width, skinData.height, 6);
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(skinData.data);
+
+        for (int y = 0; y < bufferedImage.getHeight(); ++y) {
+            for (int x = 0; x < bufferedImage.getWidth(); ++x) {
+                Color color = new Color(byteArrayInputStream.read(), byteArrayInputStream.read(), byteArrayInputStream.read(), byteArrayInputStream.read());
+                bufferedImage.setRGB(x, y, color.getRGB());
             }
-        }, 200);
+        }
+
+        Skin producedSkin = new Skin();
+
+        producedSkin.setSkinId(skin.getSkinId());
+        producedSkin.setSkinData(skin.getSkinData());
+        producedSkin.setCapeData(skin.getCapeData());
+
+        BufferedImage customizeBufferedImage = new BufferedImage(128, 128, 2);
+
+        Graphics2D outputGraphics2D = customizeBufferedImage.createGraphics();
+        outputGraphics2D.drawImage(bufferedImage, 0, 0, null);
+        outputGraphics2D.dispose();
+
+        Graphics wingsGraphics = customizeBufferedImage.getGraphics();
+        wingsGraphics.drawImage(ImageIO.read(new File(Main.getPlugin().getDataFolder() + "/wings/" + wings.getName() + "/" + wings.getName() + ".png")), 0, 0, null);
+        wingsGraphics.dispose();
+
+        producedSkin.setSkinData(customizeBufferedImage);
+        producedSkin.setGeometryName(wings.getGeometryName());
+        producedSkin.setGeometryData(wings.getGeometryData());
+        producedSkin.setTrusted(true);
+        player.setSkin(producedSkin);
+        final PlayerSkinPacket packet = new PlayerSkinPacket();
+        packet.skin = producedSkin;
+        packet.newSkinName = player.getName();
+        packet.oldSkinName = skin.getSkinId();
+        packet.uuid = player.getUniqueId();
+        Server.broadcastPacket(Server.getInstance().getOnlinePlayers().values(), packet);
+        final Collection<Player> viewer = player.getViewers().values();
+        for (final Player paa : viewer) {
+            paa.batchDataPacket(packet);
+        }
+
+
+//        final Skin playerSkin = player.getSkin();
+//        SkinUtils.saveImage(Main.getPlugin(), playerSkin.getSkinData().width, playerSkin.getSkinData().height, playerSkin.getSkinData().data, player.getName());
+//        Server.getInstance().getScheduler().scheduleDelayedTask((Plugin)Main.getPlugin(), (Runnable)new Runnable() {
+//            @Override
+//            public void run() {
+//                final Path skinPath = Paths.get(Main.getPlugin().getDataFolder() + "/skins/" + player.getName() + ".png", new String[0]);
+//                BufferedImage skinData = null;
+//                try {
+//                    skinData = ImageIO.read(skinPath.toFile());
+//                }
+//                catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                final Skin skin = new Skin();
+//                skin.setSkinId(playerSkin.getSkinId());
+//                skin.setGeometryName(wings.getGeometryName());
+//                skin.setGeometryData(wings.getGeometryData());
+//                BufferedImage bufferedImage = null;
+//                try {
+//                    bufferedImage = ImageIO.read(new File(Main.getPlugin().getDataFolder() + "/wings/" + wings.getName() + "/"+wings.getName()+".png"));
+//                }
+//                catch (IOException e2) {
+//                    e2.printStackTrace();
+//                }
+//                final BufferedImage bff = new BufferedImage(128, 128, 2);
+//                final Graphics2D graphics2D = bff.createGraphics();
+//                graphics2D.drawImage(skinData, 0, 0, null);
+//                graphics2D.dispose();
+//                final Graphics2D graphics2De = bff.createGraphics();
+//                graphics2De.drawImage(bufferedImage, 0, 0, null);
+//                graphics2De.dispose();
+//                skin.setSkinData(bff);
+//                skin.setTrusted(true);
+//                player.setSkin(skin);
+//                final PlayerSkinPacket packet = new PlayerSkinPacket();
+//                packet.skin = skin;
+//                packet.newSkinName = player.getName();
+//                packet.oldSkinName = playerSkin.getSkinId();
+//                packet.uuid = player.getUniqueId();
+//                Server.broadcastPacket((Collection)Server.getInstance().getOnlinePlayers().values(), (DataPacket)packet);
+//                final Collection<Player> viewer = player.getViewers().values();
+//                for (final Player paa : viewer) {
+//                    paa.batchDataPacket((DataPacket)packet);
+//                }
+//            }
+//        }, 200);
     }
 
     static {

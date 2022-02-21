@@ -93,7 +93,6 @@ public class CommandsLoader
         registerrCommand(new GuildAdminCommand());
         registerrCommand(new IncognitoCommand());
         registerrCommand(new GuildGlobalCommand());
-        registerCommand(new WhitelistCommand());
     }
     
     public static void registerrCommand(final ConsoleCommand consoleCommand) {

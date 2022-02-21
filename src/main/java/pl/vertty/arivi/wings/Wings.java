@@ -47,10 +47,4 @@ public class Wings
     public String getGeometryData() {
         return this.geometryData;
     }
-    
-    public BufferedImage getImage() throws IOException {
-        final BufferedImage image = CreateImageFileFromGraphicsObject.main();
-        ImageColorTransparent.makeColorTransparent(image, this.color = new Color(0, 0, 0, 127));
-        return image;
-    }
 }

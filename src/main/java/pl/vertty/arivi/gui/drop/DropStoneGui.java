@@ -4,6 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemID;
+import cn.nukkit.item.enchantment.Enchantment;
 import cn.nukkit.utils.Config;
 import pl.vertty.arivi.Main;
 import pl.vertty.arivi.drop.base.Drop;
@@ -27,7 +28,10 @@ public class DropStoneGui {
         final Config c = Main.getPlugin().getConfig();
         final User userdrop = UserUtils.get(player.getName());
         for (final Drop drop : DropUtils.getDrops()) {
-            category.addElementAir(ItemData.fromItem(new Item(drop.getItem().getId(), 0, 1).setCustomName(ChatUtil.fixColor(drop.getInvName())).setLore(ChatUtil.fixColor(c.getString("drop.lore").replace(">>", "»").replace("{CHANCE}", Double.toString(drop.getChance())).replace("{HEIGHT}", (drop.getHeight() == 0) ? "Kazda" : Integer.toString(drop.getHeight())).replace("{LVL}", (drop.getLvl() == 0) ? "Brak" : Integer.toString(drop.getLvl())).replace("{FORTUNE}", drop.isFortune() ? "&awlaczone" : "&cwylaczone").replace("{ENABLE}", drop.getDisabled().contains(player.getName()) ? "&cwylaczony" : "&awlaczony").replace("{WYKOPANE}", String.valueOf(userdrop.getDrop(drop.getName()))).replace("{N}", "\n")))), new ItemClick() {
+            Item ia = new Item(drop.getItem().getId(), 0, 1);
+            ia.setCustomName(ChatUtil.fixColor(drop.getInvName()));
+            ia.setLore(ChatUtil.fixColor(c.getString("drop.lore").replace(">>", "»").replace("{CHANCE}", Double.toString(drop.getChance())).replace("{HEIGHT}", (drop.getHeight() == 0) ? "Kazda" : Integer.toString(drop.getHeight())).replace("{LVL}", (drop.getLvl() == 0) ? "Brak" : Integer.toString(drop.getLvl())).replace("{FORTUNE}", drop.isFortune() ? "&awlaczone" : "&cwylaczone").replace("{ENABLE}", drop.getDisabled().contains(player.getName()) ? "&cwylaczony" : "&awlaczony").replace("{WYKOPANE}", String.valueOf(userdrop.getDrop(drop.getName()))).replace("{N}", "\n")));
+            category.addElementAir(ItemData.fromItem(ia), new ItemClick() {
                 @Override
                 public void onClick(final Player player, final Item item) {
                     final Drop drop = Drop.getInv(item.getCustomName());
@@ -55,8 +59,8 @@ public class DropStoneGui {
         exp.setCustomName(ChatUtil.fixColor("&r&9DOSWIADCZENIE"));
         exp.setLore(ChatUtil.fixColor("&r&8>> &7STONE: &34"), ChatUtil.fixColor("&8>> &7OBSIDIAN: &312"));
         final Item cobble = new Item(4, Integer.valueOf(0), 1);
-        cobble.setCustomName(ChatUtil.fixColor("&9Cobblestone"));
-        cobble.setLore(ChatUtil.fixColor("&8>> &7Drop: " + (DropUtils.isCobble(player.getName()) ? "&awlaczony" : "&cwylaczony")));
+        cobble.setCustomName(ChatUtil.fixColor("&r&9Cobblestone"));
+        cobble.setLore(ChatUtil.fixColor("&r&8>> &7Drop: " + (DropUtils.isCobble(player.getName()) ? "&awlaczony" : "&cwylaczony")));
 
         category.addElement(46, ItemData.fromItem(on), new ItemClick() {
             @Override

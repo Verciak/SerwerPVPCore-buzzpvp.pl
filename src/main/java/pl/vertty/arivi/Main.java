@@ -68,9 +68,6 @@ public class Main extends PluginBase
         CraftingLoader.onCraftingLoad();
         MotdLoader.onLoad();
         EntityManager.init();
-        WhitelistManager.loadWhiteList();
-        WhitelistManager.loadWhiteListReason();
-        WhitelistManager.loadWhiteListStatus();
         ItemShopManager.loadUsers();
         try {
             WingsManager.init(this);

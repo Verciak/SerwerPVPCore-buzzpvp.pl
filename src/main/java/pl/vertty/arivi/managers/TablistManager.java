@@ -17,7 +17,7 @@ public class TablistManager
                 s = "&7" + i + ". &3";
             return s + "&e"+KamienManager.getKamien().get(i - 1).getName() + " &8(&f" + KamienManager.getKamien().get(i - 1).getkamien() + " &7wykopanego kamienia&8)";
         }
-        return "&7" + i + ". &7Brak";
+        return "&7" + i + ". &fBrak";
     }
 
     public static String getPerly(Integer i) {
@@ -27,7 +27,7 @@ public class TablistManager
                 s = "&7" + i + ". &3";
             return s + "&e"+PerlyManager.getPerly().get(i - 1).getName() + " &8(&f" + PerlyManager.getPerly().get(i - 1).getperla() + " &7rzuconych perel&8)";
         }
-        return "&7" + i + ". &7Brak";
+        return "&7" + i + ". &fBrak";
     }
 
     public static String getRefil(Integer i) {
@@ -37,7 +37,7 @@ public class TablistManager
                 s = "&7" + i + ". &3";
             return s + "&e" + RefilManager.getRefil().get(i - 1).getName() + " &8(&f" + RefilManager.getRefil().get(i - 1).getrefil() + " &7zjedzonych refili&8)";
         }
-        return "&7" + i + ". &7Brak";
+        return "&7" + i + ". &fBrak";
     }
 
     public static String getKox(Integer i) {
@@ -67,12 +67,12 @@ public class TablistManager
                 s = "&7" + i + ". &e";
             return s + "&e"+DeathManager.getDeaths().get(i - 1).getName() + " &8(&f" + DeathManager.getDeaths().get(i - 1).getDeaths() + " &7smierci&8)";
         }
-        return "&7" + i + ". &7Brak";
+        return "&7" + i + ". &fBrak";
     }
 
     public static String getReplacementR(final Integer i) {
         if (RankingManager.getRankings().size() < i) {
-            return "&7" + i + ". &7Brak";
+            return "&7" + i + ". &fBrak";
         }
         String s = "&7" + i + ". ";
         return ChatUtil.fixColor(s + "&e" + RankingManager.getRankings().get(i - 1).getName() + " &8(&f" + RankingManager.getRankings().get(i - 1).getPoints() + " &7punktow&8)");
@@ -80,7 +80,7 @@ public class TablistManager
     
     public static String getReplacementG(final Integer i) {
         if (RankingManager.getGuildRankings().size() < i) {
-            return "&7" + i + ". &7Brak";
+            return "&7" + i + ". &fBrak";
         }
         String s = "&7" + i + ". ";
         RankingManager.getGuildRankings().get(i - 1).getOnlineMembers();

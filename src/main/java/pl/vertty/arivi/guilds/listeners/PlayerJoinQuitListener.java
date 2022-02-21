@@ -19,9 +19,18 @@ import pl.vertty.arivi.guilds.managers.CombatManager;
 import pl.vertty.arivi.guilds.managers.UserManager;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.Listener;
+import pl.vertty.arivi.objects.BossBar;
 
 public class PlayerJoinQuitListener implements Listener
 {
+
+    @EventHandler
+    public void onPlayerLeave(PlayerQuitEvent event) {
+        if (BossBar.playerHasBossBar(event.getPlayer())) {
+            BossBar.removeBossBar(event.getPlayer());
+        }
+    }
+
 
     @EventHandler
     public void onCreate(PlayerLoginEvent e) {

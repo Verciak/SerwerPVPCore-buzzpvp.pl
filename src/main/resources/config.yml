@@ -82,10 +82,10 @@ protection:
 inventory-from-stone: '&c&lDROP ZE STONE'
 bc-level: '&7Gracz {NICK} awansowal na {LVL} kopania!'
 drop:
-  name: '&9{NAME}'
-  lore: ' &8>> &7Szansa: &3{CHANCE}%{N} &8>> &7Wypada pomiedzy: &7Y:&30 &7a
-    &3{HEIGHT} &7poziomem{N} &8>> &7Szczescie: &3{FORTUNE}{N} &8>> &7Drop: &a{ENABLE}{N}
-    &8>> &7Punkty: &3{LVL} &7pkt.{N} &8>> &7Wykopane: &3{WYKOPANE}'
+  name: '&r&9{NAME}'
+  lore: ' &r&8>> &7Szansa: &3{CHANCE}%{N} &r&8>> &7Wypada pomiedzy: &7Y:&30 &7a &3{HEIGHT}
+    &7poziomem{N} &r&8>> &7Szczescie: &3{FORTUNE}{N} &r&8>> &7Drop: &a{ENABLE}{N} &r&8>>
+    &7Punkty: &3{LVL} &7pkt.{N} &r&8>> &7Wykopane: &3{WYKOPANE}'
 turbo: 0
 turbo-exp: 0
 exp:

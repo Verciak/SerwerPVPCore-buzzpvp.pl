@@ -3,7 +3,11 @@ package pl.vertty.arivi.guilds.task;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
+import cn.nukkit.level.Location;
 import cn.nukkit.scheduler.NukkitRunnable;
+import cn.nukkit.utils.BossBarColor;
+import cn.nukkit.utils.DummyBossBar;
+import cn.nukkit.utils.DummyBossBar.Builder;
 import pl.vertty.arivi.Main;
 import pl.vertty.arivi.guilds.data.Combat;
 import pl.vertty.arivi.guilds.data.User;
@@ -12,6 +16,7 @@ import pl.vertty.arivi.guilds.data.yml.Config;
 import pl.vertty.arivi.guilds.managers.CombatManager;
 import pl.vertty.arivi.guilds.managers.UserManager;
 import pl.vertty.arivi.guilds.managers.guild.GuildManager;
+import pl.vertty.arivi.objects.BossBar;
 import pl.vertty.arivi.utils.ChatUtil;
 import pl.vertty.arivi.utils.DataUtil;
 
@@ -48,14 +53,74 @@ public class ActionBarTask extends NukkitRunnable
                 }
                 if (guild2 != guild) {
                     if (guild != null && guild.getAlly().contains(guild2.getTag())) {
-                        s = s + "&6Jestes na terytorium sojuszniczej gildii &8[&6" + guild2.getTag() + "&8]";
+                        if (BossBar.playerHasBossBar(player)) {
+                            Location heart = guild2.getRegion().getCenter();
+                            heart.setY(player.getFloorY() - 1);
+                            double distance = (player.getLocation().distance(heart) * 100) /(guild2.getRegion().getSize());
+                            DummyBossBar bossbar = BossBar.getPlayerBossBar(player);
+                            bossbar.setText(ChatUtil.fixColor("&6Jestes na terytorium sojuszniczej gildii &8[&6" + guild2.getTag() + "&8]"));
+                            bossbar.setColor(BossBarColor.YELLOW);
+                            bossbar.setLength((float) distance);
+                        } else {
+                            Location heart = guild2.getRegion().getCenter();
+                            heart.setY(player.getFloorY() - 1);
+                            double distance = (player.getLocation().distance(heart) * 100) /(guild2.getRegion().getSize());
+                            DummyBossBar bossBar = new Builder(player)
+                                    .text(ChatUtil.fixColor("&6Jestes na terytorium sojuszniczej gildii &8[&6" + guild2.getTag() + "&8]"))
+                                    .color(BossBarColor.YELLOW)
+                                    .build();
+
+                            bossBar.setLength((float) distance);
+                            player.createBossBar(bossBar);
+                            BossBar.addBossBar(player, bossBar);
+                        }
                     }
                     else {
-                        s = s + "&cJestes na terytorium wrogiej gildii &8[&c" + guild2.getTag() + "&8]";
+                        if (BossBar.playerHasBossBar(player)) {
+                            Location heart = guild2.getRegion().getCenter();
+                            heart.setY(player.getFloorY() - 1);
+                            double distance = (player.getLocation().distance(heart) * 100) /(guild2.getRegion().getSize());
+                            DummyBossBar bossbar = BossBar.getPlayerBossBar(player);
+                            bossbar.setText(ChatUtil.fixColor("&cJestes na terytorium wrogiej gildii &8[&c" + guild2.getTag() + "&8]"));
+                            bossbar.setColor(BossBarColor.RED);
+                            bossbar.setLength((float) distance);
+                        } else {
+                            Location heart = guild2.getRegion().getCenter();
+                            heart.setY(player.getFloorY() - 1);
+                            double distance = (player.getLocation().distance(heart) * 100) /(guild2.getRegion().getSize());
+                            DummyBossBar bossBar = new Builder(player)
+                                    .text(ChatUtil.fixColor("&cJestes na terytorium wrogiej gildii &8[&c" + guild2.getTag() + "&8]"))
+                                    .color(BossBarColor.RED)
+                                    .build();
+
+                            bossBar.setLength((float) distance);
+                            player.createBossBar(bossBar);
+                            BossBar.addBossBar(player, bossBar);
+                        }
                     }
                 }
                 else {
-                    s = s + "&aJestes na terytorium swojej gildi &8[&a" + guild2.getTag() + "&8]";
+                    if (BossBar.playerHasBossBar(player)) {
+                        Location heart = guild2.getRegion().getCenter();
+                        heart.setY(player.getFloorY() - 1);
+                        double distance = (player.getLocation().distance(heart) * 100) /(guild2.getRegion().getSize());
+                        DummyBossBar bossbar = BossBar.getPlayerBossBar(player);
+                        bossbar.setText(ChatUtil.fixColor("&aJestes na terytorium swojej gildi &8[&a" + guild2.getTag() + "&8]"));
+                        bossbar.setColor(BossBarColor.GREEN);
+                        bossbar.setLength((float) distance);
+                    } else {
+                        Location heart = guild2.getRegion().getCenter();
+                        heart.setY(player.getFloorY() - 1);
+                        double distance = (player.getLocation().distance(heart) * 100) /(guild2.getRegion().getSize());
+                        DummyBossBar bossBar = new Builder(player)
+                                .text(ChatUtil.fixColor("&aJestes na terytorium swojej gildi &8[&a" + guild2.getTag() + "&8]"))
+                                .color(BossBarColor.GREEN)
+                                .build();
+
+                        bossBar.setLength((float) distance);
+                        player.createBossBar(bossBar);
+                        BossBar.addBossBar(player, bossBar);
+                    }
                 }
             }
             if (guild != null && guild.isRegeneration()) {

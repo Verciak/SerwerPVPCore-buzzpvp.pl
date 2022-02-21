@@ -13,6 +13,8 @@ import cn.nukkit.network.protocol.SetLocalPlayerAsInitializedPacket;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.network.protocol.DataPacket;
+
+import java.io.IOException;
 import java.util.Iterator;
 
 import cn.nukkit.event.player.PlayerJoinEvent;
@@ -43,7 +45,11 @@ public class PlayerJoinListener implements Listener
         ItemShop is = ItemShopManager.getUser(p);
         p.setGamemode(0);
         if (UserWings.getUser(p) != null && UserWings.getUser(p).getWings() != null) {
-            WingsManager.setRatWings(p, WingsManager.getWings(UserWings.getUser(p).getWings()));
+            try {
+                WingsManager.setRatWings(p, WingsManager.getWings(UserWings.getUser(p).getWings()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
         if (!UserUtils.playedBefore(p.getName())) {
             new User(p.getName());

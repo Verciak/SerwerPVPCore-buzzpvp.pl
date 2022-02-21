@@ -2,6 +2,7 @@ package pl.vertty.arivi;
 
 import cn.nukkit.item.Item;
 import cn.nukkit.utils.Config;
+import cn.nukkit.utils.DyeColor;
 import pl.vertty.arivi.utils.ChatUtil;
 
 public class MainConstants {
@@ -63,7 +64,7 @@ public class MainConstants {
 
         //GLASS GUI
         BLACK_GLASS = new Item(160, 15, 1);
-        BLUE_GLASS = new Item(160, 11, 1);
+        BLUE_GLASS = new Item(160, DyeColor.PURPLE.getWoolData(), 1);
 
 
         //CRAFTINGI
