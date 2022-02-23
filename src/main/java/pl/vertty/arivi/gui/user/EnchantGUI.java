@@ -1,5 +1,5 @@
 
-package pl.vertty.arivi.gui;
+package pl.vertty.arivi.gui.user;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
@@ -84,7 +84,7 @@ public class EnchantGUI
                     if (p.getExperienceLevel() >= 20) {
                         final Item i = p.getInventory().getItemInHand();
                         p.getInventory().removeItem(i);
-                        i.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+                        i.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
                         p.getInventory().addItem(i);
                         p.setExperience(0, p.getExperienceLevel() - 20);
                     }
@@ -330,7 +330,7 @@ public class EnchantGUI
                     if (p.getExperienceLevel() >= 20) {
                         final Item i = p.getInventory().getItemInHand();
                         p.getInventory().removeItem(i);
-                        i.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+                        i.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
                         p.getInventory().addItem(i);
                         p.setExperience(0, p.getExperienceLevel() - 20);
                     }

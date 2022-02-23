@@ -6,7 +6,6 @@ import java.util.Iterator;
 import pl.vertty.arivi.guilds.data.guild.Guild;
 import org.apache.commons.lang3.StringUtils;
 import pl.vertty.arivi.guilds.utils.DataUtil;
-import pl.vertty.arivi.guilds.rank.RankingManager;
 import pl.vertty.arivi.guilds.data.yml.Config;
 import cn.nukkit.command.CommandSender;
 import pl.vertty.arivi.guilds.utils.ChatUtil;
@@ -14,6 +13,7 @@ import pl.vertty.arivi.guilds.managers.guild.GuildManager;
 import cn.nukkit.Player;
 import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.guilds.utils.command.PlayerCommand;
+import pl.vertty.arivi.managers.ranking.RankingManager;
 
 public class GuildInfoCommand extends PlayerCommand
 {
@@ -38,7 +38,7 @@ public class GuildInfoCommand extends PlayerCommand
         }
         final Iterator<String> iterator = Config.GUILD_COMMAND_INFO_SUCCESS.iterator();
         while (iterator.hasNext()) {
-            player.sendMessage(ChatUtil.fixColor(iterator.next().replace("{TAG}", g.getTag()).replace("{NAZWA}", g.getName()).replace("{OWNER}", g.getOwner()).replace("{POSITION}", Integer.toString(RankingManager.getPlaceGuild(g))).replace("{POINTS}", Integer.toString(g.getPoints())).replace("{KILLS}", Integer.toString(g.getKills())).replace("{DEATHS}", Integer.toString(g.getDeaths())).replace("{STARTTIME}", DataUtil.getDate(g.getCreateTime())).replace("{LIFE}", Integer.toString(g.getLife())).replace("{MEMBERS}", StringUtils.join((Object[])getMemberList(g.getMembers()), "&8, ")).replace("{ZASTEPCA}", g.getLeader()).replace("{PROLONG}", DataUtil.secondsToString(g.getProlong()))));
+            player.sendMessage(ChatUtil.fixColor(iterator.next().replace("{TAG}", g.getTag()).replace("{NAZWA}", g.getName()).replace("{OWNER}", g.getOwner()).replace("{POINTS}", Integer.toString(g.getPoints())).replace("{KILLS}", Integer.toString(g.getKills())).replace("{DEATHS}", Integer.toString(g.getDeaths())).replace("{STARTTIME}", DataUtil.getDate(g.getCreateTime())).replace("{LIFE}", Integer.toString(g.getLife())).replace("{MEMBERS}", StringUtils.join((Object[])getMemberList(g.getMembers()), "&8, ")).replace("{ZASTEPCA}", g.getLeader()).replace("{PROLONG}", DataUtil.secondsToString(g.getProlong()))));
         }
         return false;
     }

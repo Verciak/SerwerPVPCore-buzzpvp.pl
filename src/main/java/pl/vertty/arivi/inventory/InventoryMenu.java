@@ -136,30 +136,31 @@ public class InventoryMenu
         if (player == null) {
             throw new NullPointerException("player is marked non-null but is null");
         }
-        this.inventories.remove(player.getUniqueId());
-        InventoryMenuHandler.pmenus.remove(player.getUniqueId());
-        final Vector3 vec = new Vector3(player.x, player.y + 2.0, player.z);
-        if (this.isDoubleChest()) {
-            final Vector3 vec2 = vec.add(1.0, 0.0, 0.0);
-            player.level.sendBlocks(new Player[] { player }, new Vector3[] { vec, vec2 });
-            return;
-        }
-        player.level.sendBlocks(new Player[] { player }, new Vector3[] { vec });
+        player.getServer().getScheduler().scheduleDelayedTask(() -> {
+            this.inventories.remove(player.getUniqueId());
+            InventoryMenuHandler.pmenus.remove(player.getUniqueId());
+            final Vector3 vec = new Vector3(player.x, player.y + 2.0, player.z);
+            if (this.isDoubleChest()) {
+                final Vector3 vec2 = vec.add(1.0, 0.0, 0.0);
+                player.level.sendBlocks(new Player[] { player }, new Vector3[] { vec, vec2 });
+                return;
+            }
+            player.level.sendBlocks(new Player[] { player }, new Vector3[] { vec });
+        }, 7);
     }
     
     public void forceDestroy(@NonNull final Player player) {
-        if (player == null) {
-            throw new NullPointerException("player is marked non-null but is null");
-        }
-        player.getServer().getScheduler().scheduleDelayedTask((Runnable)new Runnable() {
-            @Override
-            public void run() {
-                final ContainerClosePacket pk = new ContainerClosePacket();
-                pk.windowId = player.getWindowId((Inventory)InventoryMenu.this.inventories.get(player.getUniqueId()));
-                pk.wasServerInitiated = true;
-                InventoryMenu.this.destroy(player);
-            }
-        }, 1);
+
+        player.getInventory().onClose(player);
+//        if (player == null) {
+//            throw new NullPointerException("player is marked non-null but is null");
+//        }
+//        player.getServer().getScheduler().scheduleDelayedTask(() -> {
+//            final ContainerClosePacket pk = new ContainerClosePacket();
+//            pk.windowId = player.getWindowId(InventoryMenu.this.inventories.get(player.getUniqueId()));
+//            pk.wasServerInitiated = true;
+//            InventoryMenu.this.destroy(player);
+//        }, 5);
     }
     
     public void setDoubleChest() {

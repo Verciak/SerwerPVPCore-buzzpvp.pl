@@ -4,6 +4,7 @@ package pl.vertty.arivi.guilds.commands.guild;
 import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.guilds.data.guild.Guild;
 import cn.nukkit.Server;
+import pl.vertty.arivi.guilds.managers.RoleManager;
 import pl.vertty.arivi.guilds.utils.ChatUtil;
 import pl.vertty.arivi.guilds.data.yml.Config;
 import pl.vertty.arivi.guilds.managers.guild.GuildManager;
@@ -19,8 +20,8 @@ public class GuildInviteCommand extends PlayerCommand
             player.sendMessage(ChatUtil.fixColor(Config.GUILD_NOT_GUILD));
             return false;
         }
-        if (!guild.isOwner(player.getName())) {
-            player.sendMessage(ChatUtil.fixColor(Config.GUILD_NOT_OWNER));
+        if (!RoleManager.getUser(player.getName()).isUpr_addMember()) {
+            player.sendMessage(ChatUtil.fixColor("&cNie posiadasz pozwolen od lidera!"));
             return false;
         }
         if (array.length < 2) {

@@ -141,13 +141,6 @@ public class ServerChatListener implements Listener
             User.skarbiec_head = false;
         }
         else {
-            if (User.update_name) {
-                GuildPermissionCommand.roler.setName(message);
-                User.update_name = false;
-                pl.vertty.arivi.guilds.utils.ChatUtil.sendMessage(player, "&7Nazwa roli zostala zmieniona na &9" + GuildPermissionCommand.roler.getName());
-                e.setCancelled(true);
-                return;
-            }
             if (message.startsWith("##")) {
                 e.setCancelled(true);
                 final Guild guild = GuildManager.getGuild(player);

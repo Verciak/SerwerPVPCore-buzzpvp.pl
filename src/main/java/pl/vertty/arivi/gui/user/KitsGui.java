@@ -1,5 +1,5 @@
 
-package pl.vertty.arivi.gui;
+package pl.vertty.arivi.gui.user;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
@@ -38,16 +38,16 @@ public class KitsGui
             @Override
             public void onClick(final Player p, final Item item) {
                 menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openMiesoKit(player), 13);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openMiesoKit(player), 15);
 
             }
         });
 
-        category.addElement(11, new ItemData(299, 0, 1, "&9GRACZ", new String[] { ChatUtil.fixColor("&8» &7Dostepny dla rangi: &ePLAYER"), ChatUtil.fixColor("&8» &7Czas: &f3 minuty"), "", ChatUtil.fixColor("&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
+        category.addElement(11, new ItemData(299, 0, 1, "&r&9GRACZ", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &ePLAYER"), ChatUtil.fixColor("&r&8» &7Czas: &f3 minuty"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
                 menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openPlayerKit(player), 13);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openPlayerKit(player), 15);
             }
         });
 
@@ -58,7 +58,7 @@ public class KitsGui
             @Override
             public void onClick(final Player p, final Item item) {
                 menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openVipKit(player), 13);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openVipKit(player), 15);
 
             }
         });
@@ -67,7 +67,7 @@ public class KitsGui
             @Override
             public void onClick(final Player p, final Item item) {
                 menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openSvipKit(player), 13);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openSvipKit(player), 15);
 
             }
         });
@@ -76,7 +76,7 @@ public class KitsGui
             @Override
             public void onClick(final Player p, final Item item) {
                 menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openSponsor(player), 13);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openSponsor(player), 15);
 
             }
         });
@@ -85,7 +85,7 @@ public class KitsGui
             @Override
             public void onClick(final Player p, final Item item) {
                 menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openTNT(player), 13);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openTNT(player), 15);
 
             }
         });
@@ -120,7 +120,7 @@ public class KitsGui
             @Override
             public void onClick(final Player p, final Item item) {
                 menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 13);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 15);
             }
         });
 
@@ -234,19 +234,19 @@ public class KitsGui
         sharp.addEnchantment(Enchantment.getEnchantment(17).setLevel(3));
 
         final Item buty = Item.get(309, 0, 1);
-        buty.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        buty.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
         buty.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
 
         final Item klata = Item.get(307, 0, 1);
-        klata.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        klata.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
         klata.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
 
         final Item bania = Item.get(306, 0, 1);
-        bania.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        bania.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
         bania.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
 
         final Item spodnie = Item.get(308, 0, 1);
-        spodnie.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        spodnie.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
         spodnie.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
 
         final Item kilof = Item.get(278, 0, 1);
@@ -280,7 +280,7 @@ public class KitsGui
             @Override
             public void onClick(final Player p, final Item item) {
                 menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 13);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 15);
             }
         });
 
@@ -403,19 +403,19 @@ public class KitsGui
         sharp.addEnchantment(Enchantment.getEnchantment(17).setLevel(3));
 
         final Item buty = Item.get(309, 0, 1);
-        buty.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        buty.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
         buty.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
 
         final Item klata = Item.get(307, 0, 1);
-        klata.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        klata.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
         klata.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
 
         final Item bania = Item.get(306, 0, 1);
-        bania.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        bania.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
         bania.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
 
         final Item spodnie = Item.get(308, 0, 1);
-        spodnie.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        spodnie.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
         spodnie.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
 
         final Item kilof = Item.get(278, 0, 1);
@@ -463,7 +463,7 @@ public class KitsGui
             @Override
             public void onClick(final Player p, final Item item) {
                 menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 13);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 15);
             }
         });
 
@@ -607,19 +607,19 @@ public class KitsGui
         sharp.addEnchantment(Enchantment.getEnchantment(17).setLevel(3));
 
         final Item buty = Item.get(309, 0, 1);
-        buty.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        buty.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
         buty.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
 
         final Item klata = Item.get(307, 0, 1);
-        klata.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        klata.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
         klata.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
 
         final Item bania = Item.get(306, 0, 1);
-        bania.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        bania.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
         bania.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
 
         final Item spodnie = Item.get(308, 0, 1);
-        spodnie.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
+        spodnie.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
         spodnie.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
 
         final Item kilof = Item.get(278, 0, 1);
@@ -677,7 +677,7 @@ public class KitsGui
             @Override
             public void onClick(final Player p, final Item item) {
                 menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 13);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 15);
             }
         });
 
@@ -822,14 +822,14 @@ public class KitsGui
         final User u = UserManager.getUser(player);
 
         category.setDoubleKitServerGui();
-        final Item mieso = new Item(320, 0, 64);
+        final Item mieso = Item.get(320, 0, 64);
         category.addElement(9, ItemData.fromItem(mieso));
 
         category.addElement(46, new ItemData(351, 1, 1, "&r&4POWROT"), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
                 menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 13);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 15);
             }
         });
 
@@ -904,11 +904,11 @@ public class KitsGui
 
         category.setDoubleKitServerGui();
 
-        final Item kilof = new Item(274, 0, 1);
+        final Item kilof = Item.get(274, 0, 1);
         kilof.addEnchantment(Enchantment.get(Enchantment.ID_DURABILITY).setLevel(3));
-        final Item ender = new Item(130, 0, 1);
-        final Item drewno = new Item(Item.WOOD, 0, 32);
-        final Item woda = new Item(ItemID.BUCKET, 8, 1);
+        final Item ender = Item.get(130, 0, 1);
+        final Item drewno = Item.get(Item.WOOD, 0, 32);
+        final Item woda = Item.get(ItemID.BUCKET, 8, 1);
 
         category.addElement(9, ItemData.fromItem(kilof));
         category.addElement(10, ItemData.fromItem(ender));
@@ -919,7 +919,7 @@ public class KitsGui
             @Override
             public void onClick(final Player p, final Item item) {
                 menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 13);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 15);
             }
         });
 

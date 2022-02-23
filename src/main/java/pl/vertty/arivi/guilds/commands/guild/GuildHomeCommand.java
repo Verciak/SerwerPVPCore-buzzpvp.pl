@@ -2,6 +2,7 @@
 package pl.vertty.arivi.guilds.commands.guild;
 
 import pl.vertty.arivi.guilds.data.guild.Guild;
+import pl.vertty.arivi.guilds.managers.RoleManager;
 import pl.vertty.arivi.utils.TimerUtil;
 import pl.vertty.arivi.guilds.utils.ChatUtil;
 import pl.vertty.arivi.guilds.data.yml.Config;
@@ -13,7 +14,7 @@ import pl.vertty.arivi.guilds.utils.command.PlayerCommand;
 public class GuildHomeCommand extends PlayerCommand
 {
     public GuildHomeCommand() {
-        super("baza", "/g baza", GroupType.PLAYER, new String[] { "home" });
+        super("baza", "/g baza", GroupType.PLAYER, new String[] { "home", "dom" });
     }
     
     @Override
@@ -21,6 +22,10 @@ public class GuildHomeCommand extends PlayerCommand
         final Guild guild = GuildManager.getGuild(player);
         if (guild == null) {
             player.sendMessage(ChatUtil.fixColor(Config.GUILD_NOT_GUILD));
+            return false;
+        }
+        if(!RoleManager.getUser(player).isUpr_base_teleport()){
+            ChatUtil.sendMessage(player, "&cNie posiadasz pozwolen od lidera!");
             return false;
         }
         final Guild guild2 = GuildManager.getGuild(player.getLocation());

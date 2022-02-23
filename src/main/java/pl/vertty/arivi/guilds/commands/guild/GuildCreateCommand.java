@@ -1,9 +1,11 @@
 
 package pl.vertty.arivi.guilds.commands.guild;
 
+import pl.vertty.arivi.guilds.data.Role;
 import pl.vertty.arivi.guilds.data.guild.Guild;
 import pl.vertty.arivi.guilds.data.User;
 import cn.nukkit.Server;
+import pl.vertty.arivi.guilds.managers.RoleManager;
 import pl.vertty.arivi.guilds.managers.guild.NameTagManager;
 import cn.nukkit.level.Location;
 import pl.vertty.arivi.guilds.utils.itemstack.ItemStackUtil;
@@ -67,6 +69,7 @@ public class GuildCreateCommand extends PlayerCommand
         final Guild guild = GuildManager.createGuild(upperCase.toUpperCase(), s, player, new Location(player.getLocation().getX(), player.getLevel().getHighestBlockAt(player.getLocation().getFloorX(), player.getLocation().getFloorZ()) + 1.5, player.getLocation().getZ()));
         guild.setHome(new Location(player.getLocation().getX(), 43.0, player.getLocation().getZ()));
         NameTagManager.refresh();
+        RoleManager.permsOwner(RoleManager.getUser(player));
         Server.getInstance().broadcastMessage(ChatUtil.fixColor(Config.GUILD_COMMAND_CREATE_MESSAGE.replace("{TAG}", guild.getTag()).replace("{NAZWA}", guild.getName()).replace("{NICK}", player.getName())));
         ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_COMMAND_CREATE_TITLE));
         ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_COMMAND_CREATE_SUBTITLE.replace("{TAG}", guild.getTag())));

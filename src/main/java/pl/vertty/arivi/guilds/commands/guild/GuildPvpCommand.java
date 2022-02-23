@@ -4,6 +4,7 @@ package pl.vertty.arivi.guilds.commands.guild;
 import pl.vertty.arivi.enums.GroupType;
 import java.util.Iterator;
 import pl.vertty.arivi.guilds.data.guild.Guild;
+import pl.vertty.arivi.guilds.managers.RoleManager;
 import pl.vertty.arivi.guilds.utils.ChatUtil;
 import pl.vertty.arivi.guilds.data.yml.Config;
 import pl.vertty.arivi.guilds.managers.guild.GuildManager;
@@ -19,11 +20,11 @@ public class GuildPvpCommand extends PlayerCommand
             player.sendMessage(ChatUtil.fixColor(Config.GUILD_NOT_GUILD));
             return false;
         }
-        if (!guild.isOwner(player.getName())) {
-            player.sendMessage(ChatUtil.fixColor(Config.GUILD_NOT_OWNER));
-            return false;
-        }
         if (array.length == 1) {
+            if (!RoleManager.getUser(player.getName()).isUpr_pvpguild()) {
+                player.sendMessage(ChatUtil.fixColor("&cNie posiadasz pozwolen od lidera!"));
+                return false;
+            }
             guild.setPvp(!guild.isPvp());
             final Iterator<Player> iterator = guild.getOnlineMembers().iterator();
             if (iterator.hasNext()) {
@@ -33,6 +34,10 @@ public class GuildPvpCommand extends PlayerCommand
             }
         }
         if (array[1].equalsIgnoreCase("sojusz")) {
+            if (!RoleManager.getUser(player.getName()).isUpr_pvpally()) {
+                player.sendMessage(ChatUtil.fixColor("&cNie posiadasz pozwolen od lidera!"));
+                return false;
+            }
             guild.setPvpAlly(!guild.isPvpAlly());
             final Iterator<Player> iterator2 = guild.getOnlineMembers().iterator();
             if (iterator2.hasNext()) {

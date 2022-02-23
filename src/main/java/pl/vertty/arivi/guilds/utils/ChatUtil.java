@@ -15,11 +15,11 @@ import java.util.regex.Pattern;
 public final class ChatUtil
 {
     public static String locToString2(final Location location) {
-        return String.valueOf(new StringBuilder().append(String.valueOf(location.getX())).append(":").append(location.getY()).append(":").append(location.getZ()));
+        return location.getX() + ":" + location.getY() + ":" + location.getZ();
     }
     
     public static void sendTitle(final Player player, final String str) {
-        player.sendTitle(fixColor(str), "", 5, 60, 5);
+        player.sendTitle(fixColor(str), "", 5, 100, 5);
     }
     
     public static boolean isInteger(final String s) {
@@ -59,15 +59,15 @@ public final class ChatUtil
     }
     
     public static String fixColor(final String s) {
-        return (s == null) ? "" : TextFormat.colorize('&', s).replace(">>", "»");
+        return (s == null) ? "" : TextFormat.colorize('&', "&r" + s).replace(">>", "»");
     }
     
     public static void sendSubTitle(final Player player, final String str) {
-        player.sendTitle("", fixColor(str), 5, 60, 5);
+        player.sendTitle("", fixColor(str), 5, 100, 5);
     }
     
     public static void sendFullTitle(final Player player, final String title, final String subtitle) {
-        player.sendTitle(fixColor(title), fixColor(subtitle), 5, 60, 5);
+        player.sendTitle(fixColor(title), fixColor(subtitle), 5, 100, 5);
     }
     
     public static void sendActionbar(final String s) {

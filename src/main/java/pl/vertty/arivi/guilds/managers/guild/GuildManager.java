@@ -3,6 +3,10 @@ package pl.vertty.arivi.guilds.managers.guild;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import pl.vertty.arivi.guilds.rank.GuildDeathManager;
+import pl.vertty.arivi.guilds.rank.GuildRankingManager;
+import pl.vertty.arivi.guilds.rank.GuildKillsManager;
 import pl.vertty.arivi.guilds.utils.Logger;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +17,6 @@ import pl.vertty.arivi.guilds.utils.region.CuboidUtil;
 import cn.nukkit.Server;
 import cn.nukkit.Player;
 import pl.vertty.arivi.Main;
-import pl.vertty.arivi.guilds.rank.RankingManager;
 import java.util.Iterator;
 import pl.vertty.arivi.guilds.data.yml.Config;
 import cn.nukkit.level.Location;
@@ -35,7 +38,10 @@ public class GuildManager
     }
     
     public static void deleteGuild(final Guild guild) {
-        RankingManager.removeRanking(guild);
+        GuildDeathManager.removeDeath(guild);
+        GuildRankingManager.removeDeath(guild);
+        GuildKillsManager.removeDeath(guild);
+
         GuildManager.guilds.remove(guild.getTag());
         lambdadeleteGuild1(guild);
         Main.getStore().update(false, String.valueOf(new StringBuilder().append("DELETE FROM `pCGuilds_guilds` WHERE `tag` = '").append(guild.getTag()).append("'")));
@@ -74,12 +80,35 @@ public class GuildManager
         }
         return "&8\u2764\u2764\u2764";
     }
+
+    public static void loadGuilds() {
+        try {
+            final ResultSet query = Main.getStore().query("SELECT * FROM `pCGuilds_guilds`");
+            while (query.next()) {
+                final Guild value = new Guild(query);
+                GuildManager.guilds.put(value.getTag(), value);
+                GuildRankingManager.addDeath(value);
+                GuildDeathManager.addDeath(value);
+                GuildKillsManager.addDeath(value);
+
+            }
+            query.close();
+            Logger.info(String.valueOf(new StringBuilder().append("Loaded ").append(GuildManager.guilds.size()).append(" guilds from pCGuilds_guilds")));
+        }
+        catch (SQLException ex) {
+            Logger.warning("Nie mozna zaladowac tabeli pCGuilds_guilds");
+            ex.printStackTrace();
+        }
+    }
+
     
     public static Guild createGuild(final String key, final String s, final Player player, final Location location) {
         final Guild value = new Guild(key, s, player, location);
         GuildManager.guilds.put(key, value);
         player.teleport(new Location((double)value.getRegion().getX(), 43.0, (double)value.getRegion().getZ()));
-        RankingManager.addRanking(value);
+        GuildRankingManager.addDeath(value);
+        GuildDeathManager.addDeath(value);
+        GuildKillsManager.addDeath(value);
         createRoomGuild(value);
         return value;
     }
@@ -208,23 +237,7 @@ public class GuildManager
         }
         return null;
     }
-    
-    public static void loadGuilds() {
-        try {
-            final ResultSet query = Main.getStore().query("SELECT * FROM `pCGuilds_guilds`");
-            while (query.next()) {
-                final Guild value = new Guild(query);
-                GuildManager.guilds.put(value.getTag(), value);
-                RankingManager.addRanking(value);
-            }
-            query.close();
-            Logger.info(String.valueOf(new StringBuilder().append("Loaded ").append(GuildManager.guilds.size()).append(" guilds from pCGuilds_guilds")));
-        }
-        catch (SQLException ex) {
-            Logger.warning("Nie mozna zaladowac tabeli pCGuilds_guilds");
-            ex.printStackTrace();
-        }
-    }
+
     
     static {
         GuildManager.guilds = new ConcurrentHashMap<String, Guild>();

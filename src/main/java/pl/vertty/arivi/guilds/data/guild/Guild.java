@@ -9,7 +9,6 @@ import pl.vertty.arivi.guilds.data.block.BlockRegeneration;
 import pl.vertty.arivi.guilds.data.guild.cuboid.Region;
 import pl.vertty.arivi.guilds.data.yml.Config;
 import pl.vertty.arivi.guilds.managers.guild.RelationType;
-import pl.vertty.arivi.guilds.managers.guild.RoleManager;
 import pl.vertty.arivi.guilds.utils.ChatUtil;
 import pl.vertty.arivi.guilds.utils.TimeUtil;
 import pl.vertty.arivi.inventory.SimpleInventoryMenu;
@@ -317,11 +316,6 @@ public class Guild
         this.regeneration = false;
         this.skarbiec = 0;
         this.skrzynka1 = "0;0;0;0;not";
-        RoleManager.addRole(tag, "ROLA 1");
-        RoleManager.addRole(tag, "ROLA 2");
-        RoleManager.addRole(tag, "ROLA 3");
-        RoleManager.addRole(tag, "ROLA 4");
-        RoleManager.addRole(tag, "ROLA 5");
         this.insert();
     }
     

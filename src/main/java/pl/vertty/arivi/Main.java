@@ -4,6 +4,7 @@ import cn.nukkit.block.Block;
 import cn.nukkit.block.BlockID;
 import lombok.SneakyThrows;
 import pl.vertty.arivi.guilds.data.Combat;
+import pl.vertty.arivi.guilds.managers.RoleManager;
 import pl.vertty.arivi.managers.*;
 import pl.vertty.arivi.mysql.Store;
 import pl.vertty.arivi.guilds.managers.CombatManager;
@@ -16,7 +17,6 @@ import cn.nukkit.level.Level;
 import pl.vertty.arivi.task.SprawdzMessageTimer;
 import cn.nukkit.Server;
 import pl.vertty.arivi.guilds.managers.guild.region.LockManager;
-import pl.vertty.arivi.guilds.managers.guild.RoleManager;
 import pl.vertty.arivi.guilds.managers.guild.WarManager;
 import java.sql.SQLException;
 import pl.vertty.arivi.wings.WingsManager;
@@ -62,13 +62,14 @@ public class Main extends PluginBase
         UserWings.loadUsers();
         DropsLoader.onDropsLoad();
         CommandsLoader.onCommandsLoad();
-        EventsLoader.onEventsLoad();
         TaskLoader.onTaskLoad();
         LevelLoad.onLevel();
         CraftingLoader.onCraftingLoad();
         MotdLoader.onLoad();
         EntityManager.init();
         ItemShopManager.loadUsers();
+        RoleManager.loadUsers();
+        BlockFactory.registerBlock(12, FixedSand.class);
         try {
             WingsManager.init(this);
         }
@@ -76,7 +77,6 @@ public class Main extends PluginBase
             throwables.printStackTrace();
         }
         WarManager.loadWars();
-        RoleManager.loadRoles();
         LockManager.loadLocks();
         final Level world = Server.getInstance().getDefaultLevel();
         world.setThundering(false);
@@ -94,6 +94,7 @@ public class Main extends PluginBase
             return;
         }
         MainConstants.set();
+        EventsLoader.onEventsLoad();
     }
     
     public void onDisable() {

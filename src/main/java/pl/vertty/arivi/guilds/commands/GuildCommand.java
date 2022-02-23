@@ -1,33 +1,8 @@
 
 package pl.vertty.arivi.guilds.commands;
 
-import pl.vertty.arivi.guilds.commands.guild.GuildNotificationCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildChestCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildInviteAllCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildWarsCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildPanelCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildFreeSpaceCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildKaraCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildItemsCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildPermissionCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildProlongCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildEnlargeCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildRankingCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildSetHomeCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildHomeCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildPvpCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildOwnerCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildLeaderCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildLeaveCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildKickCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildJoinCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildInviteCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildInfoCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildDeleteCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildCreateCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildCordinateCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildSkrzynkaCommand;
-import pl.vertty.arivi.guilds.commands.guild.GuildAllyCommand;
+import pl.vertty.arivi.guilds.commands.guild.*;
+
 import java.util.HashSet;
 import pl.vertty.arivi.enums.GroupType;
 import java.util.Iterator;
@@ -100,5 +75,6 @@ public class GuildCommand extends PlayerCommand
         GuildCommand.cmds.add(new GuildInviteAllCommand());
         GuildCommand.cmds.add(new GuildChestCommand());
         GuildCommand.cmds.add(new GuildNotificationCommand());
+        GuildCommand.cmds.add(new GuildTopCommand());
     }
 }

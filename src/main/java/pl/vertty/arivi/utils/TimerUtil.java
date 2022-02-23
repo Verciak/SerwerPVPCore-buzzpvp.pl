@@ -93,11 +93,13 @@ public class TimerUtil
         }
         u.setTeleport(true);
         final int finalDelay = delay;
-        final TaskHandler task = Server.getInstance().getScheduler().scheduleDelayedRepeatingTask((Plugin)Main.getPlugin(), (Runnable)new Runnable() {
+        TaskHandler task = Server.getInstance().getScheduler().scheduleDelayedRepeatingTask(Main.getPlugin(), new Runnable() {
             int time = finalDelay;
-            
             @Override
             public void run() {
+                if(time <= 0){
+                    return;
+                }
                 if (u.getOchrona() != 0L) {
                     ChatUtil.sendActionBar(p, "&7Teleport nastapi za: &e" + this.time + " &8:|: &7Ochrona: &e" + (DataUtil.secondsToString(u.getOchrona()).isEmpty() ? "1s" : DataUtil.secondsToString(u.getOchrona())));
                     --this.time;
@@ -113,14 +115,14 @@ public class TimerUtil
             public void success(final Player player) {
                 player.teleport(location);
                 task.cancel();
-                ChatUtil.sendMessage((CommandSender)player, "&aPrzeteleportowano!");
+                ChatUtil.sendMessage(player, "&aPrzeteleportowano!");
                 u.setTeleport(false);
             }
             
             @Override
             public void error(final Player player) {
                 task.cancel();
-                ChatUtil.sendMessage((CommandSender)player, "&cTeleportacja przerwana!");
+                ChatUtil.sendMessage(player, "&cTeleportacja przerwana!");
                 u.setTeleport(false);
             }
         }, delay);

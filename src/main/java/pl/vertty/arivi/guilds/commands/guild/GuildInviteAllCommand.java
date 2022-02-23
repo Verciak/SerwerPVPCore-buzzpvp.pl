@@ -8,6 +8,7 @@ import java.util.List;
 import cn.nukkit.level.Location;
 import java.util.Iterator;
 import pl.vertty.arivi.guilds.data.guild.Guild;
+import pl.vertty.arivi.guilds.managers.RoleManager;
 import pl.vertty.arivi.guilds.utils.ChatUtil;
 import pl.vertty.arivi.guilds.data.yml.Config;
 import pl.vertty.arivi.guilds.managers.guild.GuildManager;
@@ -23,8 +24,8 @@ public class GuildInviteAllCommand extends PlayerCommand
             player.sendMessage(ChatUtil.fixColor(Config.GUILD_NOT_GUILD));
             return false;
         }
-        if (!guild.isOwner(player)) {
-            player.sendMessage(ChatUtil.fixColor(Config.GUILD_NOT_OWNER));
+        if (!RoleManager.getUser(player.getName()).isUpr_addMember()) {
+            player.sendMessage(ChatUtil.fixColor("&cNie posiadasz pozwolen od lidera!"));
             return false;
         }
         for (final Player p : this.getPlayersInRadius(player, player.getLocation(), 5)) {

@@ -20,6 +20,8 @@ import java.util.Iterator;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.EventPriority;
 import pl.vertty.arivi.enums.GroupType;
+import pl.vertty.arivi.guilds.data.Role;
+import pl.vertty.arivi.guilds.managers.RoleManager;
 import pl.vertty.arivi.objects.ItemShop;
 import pl.vertty.arivi.managers.ItemShopManager;
 import pl.vertty.arivi.utils.exception.SkinChangeException;
@@ -42,6 +44,7 @@ public class PlayerJoinListener implements Listener
     public void onCreate(final PlayerLoginEvent e) {
         final Player p = e.getPlayer();
         final pl.vertty.arivi.guilds.data.User u = UserManager.getUser(p);
+        Role role = RoleManager.getUser(p);
         ItemShop is = ItemShopManager.getUser(p);
         p.setGamemode(0);
         if (UserWings.getUser(p) != null && UserWings.getUser(p).getWings() != null) {
@@ -53,6 +56,9 @@ public class PlayerJoinListener implements Listener
         }
         if (!UserUtils.playedBefore(p.getName())) {
             new User(p.getName());
+        }
+        if (role == null) {
+            RoleManager.createrUser(p);
         }
         if (u == null) {
             UserManager.createrUser(p);
@@ -75,6 +81,7 @@ public class PlayerJoinListener implements Listener
     public void onLogin(final PlayerLoginEvent event) throws SkinChangeException {
         final Player p = event.getPlayer();
         p.setGamemode(0);
+        p.setCheckMovement(false);
         final pl.vertty.arivi.guilds.data.User u = UserManager.getUser(p);
         SkinUtil.originalSkins.put(event.getPlayer().getUniqueId(), event.getPlayer().getSkin());
         if(u != null){
@@ -119,9 +126,9 @@ public class PlayerJoinListener implements Listener
             CombatManager.createCombat(p);
         }
         if (data instanceof SetLocalPlayerAsInitializedPacket && !p.hasPlayedBefore()) {
-            p.getInventory().addItem(new Item[] { Item.get(274, Integer.valueOf(0), 1) });
-            p.getInventory().addItem(new Item[] { Item.get(320, Integer.valueOf(0), 64) });
-            p.getInventory().addItem(new Item[] { Item.get(130, Integer.valueOf(0), 1) });
+            p.getInventory().addItem(Item.get(274, 0, 1));
+            p.getInventory().addItem(Item.get(320, 0, 64));
+            p.getInventory().addItem(Item.get(130, 0, 1));
             final int x = RandomUtils.getRandInt(-MainConstants.BORDER, MainConstants.BORDER);
             final int z = RandomUtils.getRandInt(-MainConstants.BORDER, MainConstants.BORDER);
             final Location location = p.getLocation();

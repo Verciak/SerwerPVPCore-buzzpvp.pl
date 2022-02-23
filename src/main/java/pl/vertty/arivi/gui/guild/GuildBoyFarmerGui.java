@@ -1,5 +1,5 @@
 
-package pl.vertty.arivi.gui;
+package pl.vertty.arivi.gui.guild;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;

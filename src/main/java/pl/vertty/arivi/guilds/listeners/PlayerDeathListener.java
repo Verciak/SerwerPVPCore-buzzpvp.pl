@@ -19,10 +19,10 @@ import pl.vertty.arivi.guilds.data.guild.Guild;
 import pl.vertty.arivi.guilds.managers.CombatManager;
 import pl.vertty.arivi.guilds.managers.UserManager;
 import pl.vertty.arivi.guilds.managers.guild.GuildManager;
-import pl.vertty.arivi.guilds.rank.RankingManager;
 import pl.vertty.arivi.guilds.utils.ChatUtil;
 import pl.vertty.arivi.guilds.utils.RandomUtil;
 import pl.vertty.arivi.managers.BackupManager;
+import pl.vertty.arivi.objects.BossBar;
 import pl.vertty.arivi.utils.DeathUtil;
 
 import java.util.ArrayList;
@@ -175,7 +175,9 @@ public class PlayerDeathListener implements Listener {
                         for (Player po2 : Server.getInstance().getOnlinePlayers().values()) {
                             ChatUtil.sendMessage(po2, DeathUtil.deathsMessage(add, remove, p, (Player) k));
                         }
-                        RankingManager.sortGuildRankings();
+                        if (BossBar.playerHasBossBar(p)) {
+                            BossBar.removeBossBar(p);
+                        }
                     }
                 }
             }

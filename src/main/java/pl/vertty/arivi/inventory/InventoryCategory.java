@@ -20,6 +20,37 @@ public class InventoryCategory
         this.itemClick = new HashMap<Integer, ItemClick>();
     }
 
+    public void setDoubleGuildRolesGui() {
+        int[] black = {
+                1, 2, 3,4, 5, 6, 7,9,18,27,36,17,26,35,44,46,51,47,52};
+        int[] blue = { 0, 8, 45, 53 };
+        for (int b : black)
+            addElement(b, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        for (int b : blue)
+            addElement(b, ItemData.fromItem(MainConstants.BLUE_GLASS));
+    }
+
+    public void setDoublePanelServerGUI() {
+        int[] black = {
+                1, 2, 3,4, 5, 6, 7, 9,10,11, 15,16,17, 18,19,20,22, 24,25,26, 27,28,30, 32, 34,35, 36,37,38,39,41,42,43,44,46,47, 48, 50,51,52};
+        int[] blue = { 0, 8, 45, 53 };
+        for (int b : black)
+            addElement(b, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        for (int b : blue)
+            addElement(b, ItemData.fromItem(MainConstants.BLUE_GLASS));
+    }
+
+    public void setDoubleGuildItemsGui() {
+        int[] black = {
+                1, 2, 3,4, 5, 6, 7,9,18,27,36,17,26,35,44,46,49,51,47,52,48,50};
+        int[] blue = { 0, 8, 45, 53 };
+        for (int b : black)
+            addElement(b, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        for (int b : blue)
+            addElement(b, ItemData.fromItem(MainConstants.BLUE_GLASS));
+    }
+
+
     public void setDoubleCXPandoraServerGui() {
         int[] black = {
                 1, 2, 3,4, 5, 6, 7,9,18,27,36,17,26,35,44,46,51,47,52,48,50};

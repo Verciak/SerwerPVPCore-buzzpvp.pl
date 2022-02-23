@@ -1,11 +1,10 @@
 
 package pl.vertty.arivi.guilds.commands.guild;
 
-import pl.vertty.arivi.guilds.data.guild.Role;
 import pl.vertty.arivi.guilds.data.User;
 import pl.vertty.arivi.guilds.data.guild.Guild;
 import cn.nukkit.Server;
-import pl.vertty.arivi.guilds.managers.guild.RoleManager;
+import pl.vertty.arivi.guilds.managers.RoleManager;
 import pl.vertty.arivi.guilds.managers.UserManager;
 import pl.vertty.arivi.guilds.utils.itemstack.ItemStackUtil;
 import pl.vertty.arivi.guilds.utils.ChatUtil;
@@ -54,22 +53,9 @@ public class GuildJoinCommand extends PlayerCommand
         guild.getInvites().remove(player);
         guild.addMember(player);
         final User user = UserManager.getUser(player);
-        final Role role2 = RoleManager.getRole(guild.getTag(), "ROLA 1");
-        user.setUpr_Furnace(role2.isUpr_Furnace());
-        user.setUpr_Logblock(role2.isUpr_Logblock());
-        user.setUpr_Lava(role2.isUpr_Lava());
-        user.setUpr_Boyfarmer(role2.isUpr_Boyfarmer());
-        user.setUpr_Chest(role2.isUpr_Chest());
-        user.setUpr_Tnt(role2.isUpr_Tnt());
-        user.setUpr_Place_Obsidian(role2.isUpr_Place_Obsidian());
-        user.setUpr_Place_Stone(role2.isUpr_Place_Stone());
-        user.setUpr_Break_Obsidian(role2.isUpr_Break_Obsidian());
-        user.setUpr_Lapis(role2.isUpr_Lapis());
-        user.setUpr_Break_Stone(role2.isUpr_Break_Stone());
-        user.setUpr_Water(role2.isUpr_Water());
-        user.setRole(role2.getName());
         player.sendMessage(ChatUtil.fixColor(Config.GUILD_COMMAND_JOIN_SUCCESS.replace("{TAG}", guild.getTag())));
         Server.getInstance().broadcastMessage(ChatUtil.fixColor(Config.GUILD_COMMAND_JOIN_MESSAGE.replace("{NICK}", player.getName()).replace("{TAG}", guild.getTag())));
+        RoleManager.permsOwnerOff(RoleManager.getUser(player));
         return false;
     }
 }

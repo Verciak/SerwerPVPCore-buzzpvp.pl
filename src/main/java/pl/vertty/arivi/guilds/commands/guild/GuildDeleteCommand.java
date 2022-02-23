@@ -3,6 +3,7 @@ package pl.vertty.arivi.guilds.commands.guild;
 
 import pl.vertty.arivi.guilds.data.guild.Guild;
 import cn.nukkit.Server;
+import pl.vertty.arivi.guilds.managers.RoleManager;
 import pl.vertty.arivi.guilds.utils.ChatUtil;
 import pl.vertty.arivi.guilds.data.yml.Config;
 import pl.vertty.arivi.guilds.managers.guild.GuildManager;
@@ -33,6 +34,7 @@ public class GuildDeleteCommand extends PlayerCommand
             ChatUtil.sendTitle(player, ChatUtil.fixColor(Config.GUILD_COMMAND_DELETE_TITLE));
             ChatUtil.sendSubTitle(player, ChatUtil.fixColor(Config.GUILD_COMMAND_DELETE_SUBTITLE.replace("{TAG}", guild.getTag())));
             GuildManager.deleteGuild(guild);
+            RoleManager.permsOwnerOff(RoleManager.getUser(player));
             return true;
         }
         return false;

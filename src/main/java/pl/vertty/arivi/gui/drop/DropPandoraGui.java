@@ -31,7 +31,7 @@ public class DropPandoraGui {
             @Override
             public void onClick(final Player player, final Item item) {
                 menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> DropMainGui.openMain(player), 13);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> DropMainGui.openMain(player), 15);
             }
         });
 

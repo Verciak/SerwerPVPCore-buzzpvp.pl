@@ -56,7 +56,6 @@ public class PlayerJoinQuitListener implements Listener
         final User usa = UserManager.getUser(player);
         User.skarbiec_eme = false;
         User.skarbiec_head = false;
-        User.update_name = false;
         User.war_create = false;
         User.war_stop = false;
         Combat combat = CombatManager.getCombat(player);

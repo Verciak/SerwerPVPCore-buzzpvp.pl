@@ -3,7 +3,7 @@ package pl.vertty.arivi.commands.root;
 import cn.nukkit.Player;
 import pl.vertty.arivi.commands.builder.PlayerCommand;
 import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.gui.AdminPanelGui;
+import pl.vertty.arivi.gui.user.AdminPanelGui;
 
 public class AdminPanelCommand extends PlayerCommand
 {

@@ -55,18 +55,6 @@ public class GuildOwnerCommand extends PlayerCommand
         }
         ItemStackUtil.removeItems(player, cost_OWNER_NORMAL, 1);
         guild.setOwner(user.getName());
-        user.setUpr_Boyfarmer(true);
-        user.setUpr_Break_Obsidian(true);
-        user.setUpr_Chest(true);
-        user.setUpr_Break_Stone(true);
-        user.setUpr_Lava(true);
-        user.setUpr_Place_Obsidian(true);
-        user.setUpr_Place_Stone(true);
-        user.setUpr_Tnt(true);
-        user.setUpr_Water(true);
-        user.setUpr_Lapis(true);
-        user.setUpr_Logblock(true);
-        user.setUpr_Furnace(true);
         Server.getInstance().broadcastMessage(ChatUtil.fixColor(Config.GUILD_COMMAND_LIDER_MESSAGE.replace("{NICK}", user.getName()).replace("{TAG}", guild.getTag())));
         return false;
     }

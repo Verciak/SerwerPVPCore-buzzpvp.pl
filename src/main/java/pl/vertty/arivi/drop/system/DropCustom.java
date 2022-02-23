@@ -34,11 +34,11 @@ public class DropCustom implements DropData
         if (DropUtils.isCobble(player.getName())) {
             for (final Enchantment e : tool.getEnchantments()) {
                 if (e.getId() == 16) {
-                    final Item stone = Item.get(1, Integer.valueOf(0), 1);
+                    final Item stone = Item.get(1, 0, 1);
                     drops.add(stone);
                 }
                 else {
-                    final Item stone = Item.get(4, Integer.valueOf(0), 1);
+                    final Item stone = Item.get(4, 0, 1);
                     drops.add(stone);
                 }
             }
@@ -78,11 +78,11 @@ public class DropCustom implements DropData
             user.addDrop(drop, amount);
             if (DropUtils.isEq(player.getName())) {
                 final PlayerInventory inventoryAutoAdd = player.getInventory();
-                final Item[] itemsToAdd = { Item.get(item.getId(), Integer.valueOf(0), item.getCount()) };
+                final Item[] itemsToAdd = { Item.get(item.getId(), 0, item.getCount()) };
                 for (int i = 0; i < itemsToAdd.length; ++i) {
                     final boolean canAddItem = inventoryAutoAdd.canAddItem(itemsToAdd[i]);
                     if (canAddItem) {
-                        inventoryAutoAdd.addItem(new Item[] { itemsToAdd[i] });
+                        inventoryAutoAdd.addItem(itemsToAdd[i]);
                     }
                     else {
                         if (drop.getItem().getId() == 368) {
@@ -96,7 +96,7 @@ public class DropCustom implements DropData
             }
             else {
                 final Location loc = block.getLocation();
-                final Item ia = new Item(drop.getItem().getId(), Integer.valueOf(0), amount);
+                final Item ia = new Item(drop.getItem().getId(), 0, amount);
                 loc.getLevel().dropItem(block.getLocation(), ia);
             }
             if (!DropUtils.isMsg(player.getName())) {

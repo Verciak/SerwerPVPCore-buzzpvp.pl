@@ -2,13 +2,46 @@
 package pl.vertty.arivi.managers;
 
 import pl.vertty.arivi.guilds.data.guild.Guild;
+import pl.vertty.arivi.guilds.rank.GuildDeathManager;
+import pl.vertty.arivi.guilds.rank.GuildKillsManager;
+import pl.vertty.arivi.guilds.rank.GuildRankingManager;
 import pl.vertty.arivi.managers.ranking.*;
 import pl.vertty.arivi.utils.ChatUtil;
 import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.rank.RankingManager;
 
 public class TablistManager
 {
+
+    public static String getGuildKills(Integer i) {
+        if (GuildKillsManager.getDeaths().size() >= i) {
+            String s = "&7" + i + ". &3";
+            if (i > 9)
+                s = "&7" + i + ". &3";
+            return s + "&e"+GuildKillsManager.getDeaths().get(i - 1).getTag() + " &8(&f" + GuildKillsManager.getDeaths().get(i - 1).getKills() + " &7zabitych graczy&8)";
+        }
+        return "&7" + i + ". &fBrak";
+    }
+
+    public static String getGuildDeaths(Integer i) {
+        if (GuildDeathManager.getDeaths().size() >= i) {
+            String s = "&7" + i + ". &3";
+            if (i > 9)
+                s = "&7" + i + ". &3";
+            return s + "&e"+GuildDeathManager.getDeaths().get(i - 1).getTag() + " &8(&f" + GuildDeathManager.getDeaths().get(i - 1).getDeaths() + " &7smierci graczy&8)";
+        }
+        return "&7" + i + ". &fBrak";
+    }
+
+    public static String getGuildPoints(Integer i) {
+        if (GuildRankingManager.getDeaths().size() >= i) {
+            String s = "&7" + i + ". &3";
+            if (i > 9)
+                s = "&7" + i + ". &3";
+            return s + "&e"+GuildRankingManager.getDeaths().get(i - 1).getTag() + " &8(&f" + GuildRankingManager.getDeaths().get(i - 1).getPoints() + " &7punktow gildii&8)";
+        }
+        return "&7" + i + ". &fBrak";
+    }
+
 
     public static String getKamien(Integer i) {
         if (KamienManager.getKamien().size() >= i) {
@@ -71,19 +104,19 @@ public class TablistManager
     }
 
     public static String getReplacementR(final Integer i) {
-        if (RankingManager.getRankings().size() < i) {
+        if (RankingManager.getDeaths().size() < i) {
             return "&7" + i + ". &fBrak";
         }
         String s = "&7" + i + ". ";
-        return ChatUtil.fixColor(s + "&e" + RankingManager.getRankings().get(i - 1).getName() + " &8(&f" + RankingManager.getRankings().get(i - 1).getPoints() + " &7punktow&8)");
+        return ChatUtil.fixColor(s + "&e" + RankingManager.getDeaths().get(i - 1).getName() + " &8(&f" + RankingManager.getDeaths().get(i - 1).getPoints() + " &7punktow&8)");
     }
     
     public static String getReplacementG(final Integer i) {
-        if (RankingManager.getGuildRankings().size() < i) {
+        if (GuildRankingManager.getDeaths().size() < i) {
             return "&7" + i + ". &fBrak";
         }
         String s = "&7" + i + ". ";
-        RankingManager.getGuildRankings().get(i - 1).getOnlineMembers();
-        return ChatUtil.fixColor(s + "&fe" + RankingManager.getGuildRankings().get(i - 1).getTag() + " &8- &7" + RankingManager.getGuildRankings().get(i - 1).getPoints() + "pkt");
+        GuildRankingManager.getDeaths().get(i - 1).getOnlineMembers();
+        return ChatUtil.fixColor(s + "&fe" + GuildRankingManager.getDeaths().get(i - 1).getTag() + " &8- &7" + GuildRankingManager.getDeaths().get(i - 1).getPoints() + "pkt");
     }
 }

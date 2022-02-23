@@ -6,7 +6,6 @@ import cn.nukkit.level.Location;
 import pl.vertty.arivi.Main;
 import pl.vertty.arivi.MainConstants;
 import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.rank.RankingManager;
 import pl.vertty.arivi.guilds.utils.Logger;
 import pl.vertty.arivi.managers.ranking.*;
 

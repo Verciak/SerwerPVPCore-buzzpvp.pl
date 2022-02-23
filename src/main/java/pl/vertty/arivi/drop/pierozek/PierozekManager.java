@@ -66,16 +66,16 @@ public class PierozekManager
     static {
         PierozekManager.drop = new ArrayList<>();
         final Item helm = new Item(306, 0, 1).setCustomName(ChatUtil.fixColor("&r&9Zelazny Helm 3/2"));
-        helm.addEnchantment(Enchantment.get(0).setLevel(3, true));
+        helm.addEnchantment(Enchantment.get(0).setLevel(4, true));
         helm.addEnchantment(Enchantment.get(17).setLevel(2, true));
         final Item klata = new Item(307, 0, 1).setCustomName(ChatUtil.fixColor("&r&9Zelazna Klata 3/2"));
-        klata.addEnchantment(Enchantment.get(0).setLevel(3, true));
+        klata.addEnchantment(Enchantment.get(0).setLevel(4, true));
         klata.addEnchantment(Enchantment.get(17).setLevel(2, true));
         final Item spodnie = new Item(308, 0, 1).setCustomName(ChatUtil.fixColor("&r&9Zelazne Spodnie 3/2"));
-        spodnie.addEnchantment(Enchantment.get(0).setLevel(3, true));
+        spodnie.addEnchantment(Enchantment.get(0).setLevel(4, true));
         spodnie.addEnchantment(Enchantment.get(17).setLevel(2, true));
         final Item buty = new Item(309, 0, 1).setCustomName(ChatUtil.fixColor("&r&9Zelazne Buty 3/2"));
-        buty.addEnchantment(Enchantment.get(0).setLevel(3, true));
+        buty.addEnchantment(Enchantment.get(0).setLevel(4, true));
         buty.addEnchantment(Enchantment.get(17).setLevel(2, true));
         final Item miecz = new Item(267, 0, 1).setCustomName(ChatUtil.fixColor("&r&9Zelazny Miecz 3/2/3"));
         miecz.addEnchantment(Enchantment.get(9).setLevel(3, true));

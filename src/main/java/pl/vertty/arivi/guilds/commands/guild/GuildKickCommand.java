@@ -4,6 +4,7 @@ package pl.vertty.arivi.guilds.commands.guild;
 import pl.vertty.arivi.guilds.data.User;
 import pl.vertty.arivi.guilds.data.guild.Guild;
 import cn.nukkit.Server;
+import pl.vertty.arivi.guilds.managers.RoleManager;
 import pl.vertty.arivi.guilds.managers.UserManager;
 import pl.vertty.arivi.guilds.utils.ChatUtil;
 import pl.vertty.arivi.guilds.data.yml.Config;
@@ -25,8 +26,8 @@ public class GuildKickCommand extends PlayerCommand
             player.sendMessage(ChatUtil.fixColor(Config.GUILD_NOT_GUILD));
             return false;
         }
-        if (!guild.isOwner(player.getName())) {
-            player.sendMessage(ChatUtil.fixColor(Config.GUILD_NOT_OWNER));
+        if (!RoleManager.getUser(player.getName()).isUpr_removeMember()) {
+            player.sendMessage(ChatUtil.fixColor("&cNie posiadasz pozwolen od lidera!"));
             return false;
         }
         if (array.length < 2) {
@@ -50,19 +51,6 @@ public class GuildKickCommand extends PlayerCommand
             guild.setLeader("Brak");
         }
         guild.removeMember(substring);
-        final User user = UserManager.getUser(substring);
-        user.setUpr_Boyfarmer(true);
-        user.setUpr_Break_Obsidian(true);
-        user.setUpr_Chest(true);
-        user.setUpr_Break_Stone(true);
-        user.setUpr_Lava(true);
-        user.setUpr_Place_Obsidian(true);
-        user.setUpr_Place_Stone(true);
-        user.setUpr_Tnt(true);
-        user.setUpr_Water(true);
-        user.setUpr_Lapis(true);
-        user.setUpr_Logblock(true);
-        user.setUpr_Furnace(true);
         Server.getInstance().broadcastMessage(ChatUtil.fixColor(Config.GUILD_COMMAND_KICK_MESSAGE.replace("{NICK}", substring).replace("{TAG}", guild.getTag()).replace("{NICK2}", player.getName())));
         return false;
     }

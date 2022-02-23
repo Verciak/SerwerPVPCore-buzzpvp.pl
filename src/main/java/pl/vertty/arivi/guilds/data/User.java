@@ -21,31 +21,17 @@ public class User
     private final List<Player> ignoreTell;
     public static boolean skarbiec_eme;
     public static boolean skarbiec_head;
-    public static boolean update_name;
     public static boolean war_create;
     public static boolean war_stop;
-    public static boolean upr_Logblock;
-    public static boolean upr_Break_Stone;
     public int asysts;
-    public boolean upr_Chest;
     public String lastkill;
-    public boolean upr_Boyfarmer;
     public int points;
-    public boolean upr_Break_Obsidian;
     public String name;
-    public boolean upr_Water;
     public boolean incognitoNick;
     public boolean incognitoSkin;
     public boolean incognitoGuild;
     public int deaths;
-    public String role;
-    public boolean upr_Furnace;
-    public boolean upr_Lapis;
     public int kills;
-    public boolean upr_Place_Obsidian;
-    public boolean upr_Lava;
-    public boolean upr_Place_Stone;
-    public boolean upr_Tnt;
     private long lastChat;
     private final String firstIP;
     private final String lastIP;
@@ -74,7 +60,6 @@ public class User
     private String home4;
     private String home5;
     private long lastHelpop;
-    private final long lastPearl;
     private String lastKill;
     private long lastKillTime;
     private boolean god;
@@ -134,16 +119,9 @@ public class User
         return ++this.packetsPerSecond > 450;
     }
     
-    public boolean isUpr_Logblock() {
-        return User.upr_Logblock;
-    }
-    
+
     private void insert() {
-        Main.getStore().asyncUpdate("INSERT INTO `pCGuilds_users`(`id`, `name`, `points`, `kills`, `deaths`, `asysts`, `upr_lava`, `upr_water`, `upr_break_obsidian`, `upr_break_stone`, `upr_place_obsidian`, `upr_place_stone`, `upr_chest`, `upr_tnt`, `upr_boyfarmer`, `upr_lapis`, `upr_logblock`, `upr_furnace`, `incognitoNick`, `incognitoSkin`, `incognitoGuild`, `role`, `kamien`,`kox`,`refil`, `perla`,`firstIP`, `lastIP`, `firstJoin`, `schowek_kox`, `schowek_refy`, `schowek_perly`, `schowek_sniezki`, `schowek_arrow`, `schowek_tnt`, `kit_start`, `kit_yt`, `kit_vip`, `kit_svip`, `kit_tnt`, `turboDrop`, `turboExp`, `ochrona`, `home1`,`home2`,`home3`,`home4`,`home5`, `lastKill`, `lastKillTime`, `god`, `lvl`, `exp`, `group`, `pandora`) VALUES (NULL, '" + this.getName() + "','" + this.getPoints() + "','" + this.getKills() + "','" + this.getDeaths() + "','" + this.getAsysts() + "','" + (this.isUpr_Lava() ? 1 : 0) + "','" + (this.isUpr_Water() ? 1 : 0) + "','" + (this.isUpr_Break_Obsidian() ? 1 : 0) + "','" + (this.isUpr_Break_Stone() ? 1 : 0) + "','" + (this.isUpr_Place_Obsidian() ? 1 : 0) + "','" + (this.isUpr_Place_Stone() ? 1 : 0) + "','" + (this.isUpr_Chest() ? 1 : 0) + "','" + (this.isUpr_Tnt() ? 1 : 0) + "','" + (this.isUpr_Boyfarmer() ? 1 : 0) + "','" + (this.isUpr_Lapis() ? 1 : 0) + "','" + (this.isUpr_Logblock() ? 1 : 0) + "','" + (this.isUpr_Furnace() ? 1 : 0) + "','" + (this.isIncognitoNick() ? 1 : 0) + "','" + (this.isIncognitoSkin() ? 1 : 0) + "','" + (this.isIncognitoGuild() ? 1 : 0) + "','" + this.getRole() + "','" + this.getkamien() + "','" + this.getkox() + "','" + this.getrefil() + "','" + this.getperla() + "','" + this.getFirstIP() + "','" + this.getLastIP() + "','" + this.getFirstJoin() + "','" + this.getKox() + "','" + this.getRefy() + "','" + this.getPerly() + "','" + this.getSniezki() + "','" + this.getArrow() + "','" + this.getTnt() + "','" + this.getKit_start() + "','" + this.getKit_yt() + "','" + this.getKit_vip() + "','" + this.getKit_svip() + "','" + this.getKit_tnt() + "','" + this.getTurboDrop() + "','" + this.getTurboExp() + "','" + this.getOchrona() + "','" + this.getHome1() + "','" + this.getHome2() + "','" + this.getHome3() + "','" + this.getHome4() + "','" + this.getHome5() + "','" + this.getLastKill() + "','" + this.getLastKillTime() + "','" + (this.isGod() ? 1 : 0) + "','" + this.getLvl() + "','" + this.getExp() + "','" + this.getGroup() + "','" + this.getPandora() + "')");
-    }
-    
-    public boolean isUpr_Boyfarmer() {
-        return this.upr_Boyfarmer;
+        Main.getStore().asyncUpdate("INSERT INTO `pCGuilds_users`(`id`, `name`, `points`, `kills`, `deaths`, `asysts`, `incognitoNick`, `incognitoSkin`, `incognitoGuild`, `kamien`,`kox`,`refil`, `perla`,`firstIP`, `lastIP`, `firstJoin`, `schowek_kox`, `schowek_refy`, `schowek_perly`, `schowek_sniezki`, `schowek_arrow`, `schowek_tnt`, `kit_start`, `kit_yt`, `kit_vip`, `kit_svip`, `kit_tnt`, `turboDrop`, `turboExp`, `ochrona`, `home1`,`home2`,`home3`,`home4`,`home5`, `lastKill`, `lastKillTime`, `god`, `lvl`, `exp`, `group`, `pandora`) VALUES (NULL, '" + this.getName() + "','" + this.getPoints() + "','" + this.getKills() + "','" + this.getDeaths() + "','" + this.getAsysts() + "','" + (this.isIncognitoNick() ? 1 : 0) + "','" + (this.isIncognitoSkin() ? 1 : 0) + "','" + (this.isIncognitoGuild() ? 1 : 0) + "','" + this.getkamien() + "','" + this.getkox() + "','" + this.getrefil() + "','" + this.getperla() + "','" + this.getFirstIP() + "','" + this.getLastIP() + "','" + this.getFirstJoin() + "','" + this.getKox() + "','" + this.getRefy() + "','" + this.getPerly() + "','" + this.getSniezki() + "','" + this.getArrow() + "','" + this.getTnt() + "','" + this.getKit_start() + "','" + this.getKit_yt() + "','" + this.getKit_vip() + "','" + this.getKit_svip() + "','" + this.getKit_tnt() + "','" + this.getTurboDrop() + "','" + this.getTurboExp() + "','" + this.getOchrona() + "','" + this.getHome1() + "','" + this.getHome2() + "','" + this.getHome3() + "','" + this.getHome4() + "','" + this.getHome5() + "','" + this.getLastKill() + "','" + this.getLastKillTime() + "','" + (this.isGod() ? 1 : 0) + "','" + this.getLvl() + "','" + this.getExp() + "','" + this.getGroup() + "','" + this.getPandora() + "')");
     }
 
     public void setKills(final int kills) {
@@ -162,42 +140,16 @@ public class User
     public int getKills() {
         return this.kills;
     }
-    
-    public void setUpr_Break_Stone(final boolean upr_Break_Stone) {
-        User.upr_Break_Stone = upr_Break_Stone;
-        Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `upr_break_stone` = '" + (this.isUpr_Break_Stone() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
-    }
-    
-    public boolean isUpr_Furnace() {
-        return this.upr_Furnace;
-    }
-    
-    public boolean isUpr_Place_Stone() {
-        return this.upr_Place_Stone;
-    }
-    
-    public boolean isUpr_Lava() {
-        return this.upr_Lava;
-    }
-    
+
     public int getAsysts() {
         return this.asysts;
-    }
-    
-    public void setUpr_Place_Stone(final boolean upr_Place_Stone) {
-        this.upr_Place_Stone = upr_Place_Stone;
-        Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `upr_place_stone` = '" + (this.isUpr_Place_Stone() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
     }
     
     public void setAsysts(final int asysts) {
         this.asysts = asysts;
         Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `asysts` = '" + this.getAsysts() + "' WHERE `name` ='" + this.getName() + "';");
     }
-    
-    public boolean isUpr_Water() {
-        return this.upr_Water;
-    }
-    
+
     public User(final ResultSet set) throws SQLException {
         this.name = set.getString("name");
         this.points = set.getInt("points");
@@ -205,26 +157,12 @@ public class User
         this.deaths = set.getInt("deaths");
         this.pandora = set.getInt("pandora");
         this.asysts = set.getInt("asysts");
-        this.upr_Lava = (set.getInt("upr_lava") == 1);
-        this.upr_Water = (set.getInt("upr_water") == 1);
-        this.upr_Break_Obsidian = (set.getInt("upr_break_obsidian") == 1);
-        upr_Break_Stone = (set.getInt("upr_break_stone") == 1);
-        this.upr_Place_Obsidian = (set.getInt("upr_place_obsidian") == 1);
-        this.upr_Place_Stone = (set.getInt("upr_place_stone") == 1);
-        this.upr_Chest = (set.getInt("upr_chest") == 1);
-        this.upr_Tnt = (set.getInt("upr_tnt") == 1);
-        this.upr_Boyfarmer = (set.getInt("upr_boyfarmer") == 1);
-        this.upr_Lapis = (set.getInt("upr_lapis") == 1);
-        upr_Logblock = (set.getInt("upr_logblock") == 1);
-        this.upr_Furnace = (set.getInt("upr_furnace") == 1);
         this.incognitoNick = (set.getInt("incognitoNick") == 1);
         this.incognitoSkin = (set.getInt("incognitoSkin") == 1);
         this.incognitoGuild = (set.getInt("incognitoGuild") == 1);
         this.lastkill = "";
-        this.role = set.getString("role");
         skarbiec_eme = false;
         skarbiec_head = false;
-        update_name = false;
         war_create = false;
         war_stop = false;
         this.kamien = set.getInt("kamien");
@@ -265,7 +203,6 @@ public class User
         this.ignoreTell = new ArrayList<>();
         this.tpa = new ArrayList<>();
         this.lastHelpop = 0L;
-        this.lastPearl = 0L;
         this.group = GroupType.valueOf(set.getString("group"));
     }
 
@@ -659,11 +596,7 @@ public class User
     public Guild getGuild() {
         return GuildManager.getGuild(this.getPlayer());
     }
-    
-    public boolean isUpr_Tnt() {
-        return this.upr_Tnt;
-    }
-    
+
     public void setDeaths(final int deaths) {
         this.deaths = deaths;
         Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `deaths` = '" + this.getDeaths() + "' WHERE `name` ='" + this.getName() + "';");
@@ -683,37 +616,9 @@ public class User
         Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `incognitoGuild` = '" + (this.isIncognitoGuild() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
     }
     
-    public void setUpr_Logblock(final boolean upr_Logblock) {
-        User.upr_Logblock = upr_Logblock;
-        Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `upr_logblock` = '" + (this.isUpr_Logblock() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
-    }
-    
     public void setPoints(final int points) {
         this.points = points;
         Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `points` = '" + this.getPoints() + "' WHERE `name` ='" + this.getName() + "';");
-    }
-    
-    public boolean isUpr_Place_Obsidian() {
-        return this.upr_Place_Obsidian;
-    }
-    
-    public void setUpr_Tnt(final boolean upr_Tnt) {
-        this.upr_Tnt = upr_Tnt;
-        Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `upr_tnt` = '" + (this.isUpr_Tnt() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
-    }
-    
-    public void setUpr_Place_Obsidian(final boolean upr_Place_Obsidian) {
-        this.upr_Place_Obsidian = upr_Place_Obsidian;
-        Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `upr_place_obsidian` = '" + (this.isUpr_Place_Obsidian() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
-    }
-    
-    public boolean isUpr_Break_Stone() {
-        return User.upr_Break_Stone;
-    }
-    
-    public void setUpr_Lapis(final boolean upr_Lapis) {
-        this.upr_Lapis = upr_Lapis;
-        Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `upr_lapis` = '" + (this.isUpr_Lapis() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
     }
     
     public void setName(final String name) {
@@ -725,55 +630,8 @@ public class User
         Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `incognitoNick` = '" + (this.isIncognitoNick() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
     }
     
-    public boolean isUpr_Break_Obsidian() {
-        return this.upr_Break_Obsidian;
-    }
-    
-    public void setUpr_Break_Obsidian(final boolean upr_Break_Obsidian) {
-        this.upr_Break_Obsidian = upr_Break_Obsidian;
-        Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `upr_break_obsidian` = '" + (this.isUpr_Break_Obsidian() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
-    }
-    
-    public void setUpr_Lava(final boolean upr_Lava) {
-        this.upr_Lava = upr_Lava;
-        Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `upr_lava` = '" + (this.isUpr_Lava() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
-    }
-    
-    public void setUpr_Furnace(final boolean upr_Furnace) {
-        this.upr_Furnace = upr_Furnace;
-        Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `upr_furnace` = '" + (this.isUpr_Furnace() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
-    }
-    
-    public String getRole() {
-        return this.role;
-    }
-    
-    public void setRole(final String role) {
-        this.role = role;
-        Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `role` = '" + this.getRole() + "' WHERE `name` ='" + this.getName() + "';");
-    }
-    
     public boolean isIncognitoNick() {
         return this.incognitoNick;
-    }
-    
-    public boolean isUpr_Lapis() {
-        return this.upr_Lapis;
-    }
-    
-    public void setUpr_Chest(final boolean upr_Chest) {
-        this.upr_Chest = upr_Chest;
-        Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `upr_chest` = '" + (this.isUpr_Chest() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
-    }
-    
-    public void setUpr_Boyfarmer(final boolean upr_Boyfarmer) {
-        this.upr_Boyfarmer = upr_Boyfarmer;
-        Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `upr_boyfarmer` = '" + (this.isUpr_Boyfarmer() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
-    }
-    
-    public void setUpr_Water(final boolean upr_Water) {
-        this.upr_Water = upr_Water;
-        Main.getStore().asyncUpdate("UPDATE `pCGuilds_users` SET `upr_water` = '" + (this.isUpr_Water() ? 1 : 0) + "' WHERE `name` ='" + this.getName() + "';");
     }
     
     public User(final Player player) {
@@ -783,26 +641,12 @@ public class User
         this.kills = 0;
         this.deaths = 0;
         this.asysts = 0;
-        this.upr_Lava = true;
-        this.upr_Water = true;
-        this.upr_Break_Obsidian = true;
-        upr_Break_Stone = true;
-        this.upr_Place_Obsidian = true;
-        this.upr_Place_Stone = true;
-        this.upr_Chest = true;
-        this.upr_Tnt = true;
-        this.upr_Boyfarmer = true;
-        this.upr_Lapis = true;
-        upr_Logblock = true;
-        this.upr_Furnace = true;
         this.incognitoNick = false;
         this.incognitoSkin = false;
         this.lastkill = "";
-        this.role = "";
         this.ignoreTell = new ArrayList<>();
         skarbiec_eme = false;
         skarbiec_head = false;
-        update_name = false;
         war_create = false;
         war_stop = false;
         this.kamien = 0;
@@ -842,17 +686,12 @@ public class User
         this.teleport = false;
         this.tpa = new ArrayList<>();
         this.lastHelpop = 0L;
-        this.lastPearl = 0L;
         this.group = GroupType.PLAYER;
         this.insert();
     }
     
     public int getPoints() {
         return this.points;
-    }
-    
-    public boolean isUpr_Chest() {
-        return this.upr_Chest;
     }
 
     public boolean isIgnoreTell(Player p) {

@@ -3,11 +3,10 @@ package pl.vertty.arivi.listeners;
 
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.item.enchantment.Enchantment;
-import java.util.Iterator;
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
 import pl.vertty.arivi.utils.ChatUtil;
-import pl.vertty.arivi.gui.EnchantGUI;
+import pl.vertty.arivi.gui.user.EnchantGUI;
 import cn.nukkit.level.Location;
 import pl.vertty.arivi.utils.EnchantUtils;
 import cn.nukkit.event.player.PlayerInteractEvent;

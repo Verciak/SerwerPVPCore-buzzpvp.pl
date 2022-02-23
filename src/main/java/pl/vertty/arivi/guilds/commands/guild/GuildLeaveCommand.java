@@ -5,6 +5,7 @@ import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.guilds.data.User;
 import pl.vertty.arivi.guilds.data.guild.Guild;
 import cn.nukkit.Server;
+import pl.vertty.arivi.guilds.managers.RoleManager;
 import pl.vertty.arivi.guilds.managers.UserManager;
 import pl.vertty.arivi.guilds.utils.ChatUtil;
 import pl.vertty.arivi.guilds.data.yml.Config;
@@ -29,20 +30,8 @@ public class GuildLeaveCommand extends PlayerCommand
             guild.setLeader("Brak");
         }
         guild.removeMember(player);
-        final User user = UserManager.getUser(player);
-        user.setUpr_Boyfarmer(true);
-        user.setUpr_Break_Obsidian(true);
-        user.setUpr_Chest(true);
-        user.setUpr_Break_Stone(true);
-        user.setUpr_Lava(true);
-        user.setUpr_Place_Obsidian(true);
-        user.setUpr_Place_Stone(true);
-        user.setUpr_Tnt(true);
-        user.setUpr_Water(true);
-        user.setUpr_Lapis(true);
-        user.setUpr_Logblock(true);
-        user.setUpr_Furnace(true);
         Server.getInstance().broadcastMessage(ChatUtil.fixColor(Config.GUILD_COMMAND_LEAVE_MESSAGE.replace("{NICK}", player.getName()).replace("{TAG}", guild.getTag())));
+        RoleManager.permsOwnerOff(RoleManager.getUser(player));
         return false;
     }
     

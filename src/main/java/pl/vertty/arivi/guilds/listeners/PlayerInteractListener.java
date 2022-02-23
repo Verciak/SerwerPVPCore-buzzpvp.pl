@@ -9,7 +9,6 @@ import cn.nukkit.block.Block;
 import org.apache.commons.lang3.StringUtils;
 import pl.vertty.arivi.guilds.commands.guild.GuildInfoCommand;
 import pl.vertty.arivi.guilds.utils.DataUtil;
-import pl.vertty.arivi.guilds.rank.RankingManager;
 import pl.vertty.arivi.guilds.commands.guild.GuildPanelCommand;
 import pl.vertty.arivi.guilds.managers.guild.GuildManager;
 import pl.vertty.arivi.guilds.data.User;
@@ -79,14 +78,14 @@ public class PlayerInteractListener implements Listener
         if (!playerInteractEvent.isCancelled() && clickedBlock != null) {
             final Guild guild = GuildManager.getGuild(clickedBlock.getLocation());
             if (clickedBlock.getId() == 19 && guild != null) {
-                if (guild.isMember(player.getName()) && guild.isOwner(player)) {
+                if (guild.isMember(player.getName())) {
                     GuildPanelCommand.openInv(player);
                     return;
                 }
                 if (guild.isMember(player.getName())) {
                     final Iterator<String> iterator = Config.GUILD_COMMAND_INFO_SUCCESS.iterator();
                     if (iterator.hasNext()) {
-                        player.sendMessage(ChatUtil.fixColor(iterator.next().replace("{TAG}", guild.getTag()).replace("{NAZWA}", guild.getName()).replace("{OWNER}", guild.getOwner()).replace("{POSITION}", Integer.toString(RankingManager.getPlaceGuild(guild))).replace("{POINTS}", Integer.toString(guild.getPoints())).replace("{KILLS}", Integer.toString(guild.getKills())).replace("{LIFE}", Integer.toString(guild.getLife())).replace("{DEATHS}", Integer.toString(guild.getDeaths())).replace("{STARTTIME}", DataUtil.getDate(guild.getCreateTime())).replace("{MEMBERS}", StringUtils.join((Object[])GuildInfoCommand.getMemberList(guild.getMembers()), "&8, ")).replace("{ZASTEPCA}", guild.getLeader()).replace("{PROLONG}", DataUtil.secondsToString(guild.getProlong()))));
+                        player.sendMessage(ChatUtil.fixColor(iterator.next().replace("{TAG}", guild.getTag()).replace("{NAZWA}", guild.getName()).replace("{OWNER}", guild.getOwner()).replace("{POINTS}", Integer.toString(guild.getPoints())).replace("{KILLS}", Integer.toString(guild.getKills())).replace("{LIFE}", Integer.toString(guild.getLife())).replace("{DEATHS}", Integer.toString(guild.getDeaths())).replace("{STARTTIME}", DataUtil.getDate(guild.getCreateTime())).replace("{MEMBERS}", StringUtils.join((Object[])GuildInfoCommand.getMemberList(guild.getMembers()), "&8, ")).replace("{ZASTEPCA}", guild.getLeader()).replace("{PROLONG}", DataUtil.secondsToString(guild.getProlong()))));
                     }
                 }
             }
