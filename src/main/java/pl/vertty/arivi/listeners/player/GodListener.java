@@ -1,25 +1,16 @@
 
 package pl.vertty.arivi.listeners.player;
 
-import cn.nukkit.Server;
-import cn.nukkit.command.CommandSender;
 import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.entity.*;
-import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.enchantment.Enchantment;
-import cn.nukkit.level.Location;
-import cn.nukkit.math.Vector3;
-import cn.nukkit.network.protocol.DataPacket;
-import cn.nukkit.network.protocol.LevelSoundEventPacket;
-import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.objects.User;
 import cn.nukkit.entity.Entity;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.managers.UserManager;
 import cn.nukkit.Player;
 import cn.nukkit.event.Listener;
-import pl.vertty.arivi.guilds.utils.ChatUtil;
 
 public class GodListener implements Listener
 {

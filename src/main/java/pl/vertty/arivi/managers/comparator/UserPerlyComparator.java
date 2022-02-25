@@ -1,7 +1,6 @@
 package pl.vertty.arivi.managers.comparator;
 
-import cn.nukkit.event.player.PlayerTeleportEvent;
-import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.objects.User;
 
 import java.util.Comparator;
 

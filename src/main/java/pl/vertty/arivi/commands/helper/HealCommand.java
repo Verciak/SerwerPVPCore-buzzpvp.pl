@@ -1,8 +1,8 @@
 package pl.vertty.arivi.commands.helper;
 
-import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.objects.User;
 import cn.nukkit.Server;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.managers.UserManager;
 import pl.vertty.arivi.utils.ChatUtil;
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;

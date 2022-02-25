@@ -2,10 +2,8 @@
 package pl.vertty.arivi.objects;
 
 import pl.vertty.arivi.Main;
-import pl.vertty.arivi.guilds.data.User;
-import java.util.Map;
 import pl.vertty.arivi.utils.InventoryUtil;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.managers.UserManager;
 import cn.nukkit.Player;
 import java.sql.SQLException;
 import java.sql.ResultSet;

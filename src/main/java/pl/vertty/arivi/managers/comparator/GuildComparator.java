@@ -1,7 +1,7 @@
 
 package pl.vertty.arivi.managers.comparator;
 
-import pl.vertty.arivi.guilds.data.guild.Guild;
+import pl.vertty.arivi.objects.guild.Guild;
 import java.util.Comparator;
 
 public class GuildComparator implements Comparator<Guild>

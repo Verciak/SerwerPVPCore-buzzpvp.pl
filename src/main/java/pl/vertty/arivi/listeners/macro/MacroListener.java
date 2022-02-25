@@ -1,24 +1,16 @@
 package pl.vertty.arivi.listeners.macro;
 
 import cn.nukkit.Player;
-import cn.nukkit.Server;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.inventory.transaction.data.UseItemOnEntityData;
-import cn.nukkit.network.protocol.DataPacket;
 import cn.nukkit.network.protocol.InventoryTransactionPacket;
 import cn.nukkit.network.protocol.LevelSoundEventPacket;
-import cn.nukkit.scheduler.AsyncTask;
-import pl.vertty.arivi.Main;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.managers.UserManager;
 import pl.vertty.arivi.managers.ACManager;
 import pl.vertty.arivi.objects.ACData;
 import pl.vertty.arivi.utils.ChatUtil;
 
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Arrays;
 import java.util.List;
 

@@ -29,7 +29,7 @@ public class DropObsidianGui {
 
         final Item info = new Item(ItemID.PAPER, 0, 1);
         info.setCustomName(ChatUtil.fixColor("&r&9INFORMACJE"));
-        info.setLore(ChatUtil.fixColor("&r&8>> &7Ilos jaka moze wydropic to: &31-3"));
+        info.setLore(ChatUtil.fixColor("&r&8>> &7Ilosc jaka moze wydropic to: &31-3"));
 
         category.addElement(49, ItemData.fromItem(back), new ItemClick() {
             @Override

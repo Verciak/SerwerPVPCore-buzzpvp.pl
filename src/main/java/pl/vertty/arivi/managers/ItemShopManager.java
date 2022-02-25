@@ -3,7 +3,7 @@ package pl.vertty.arivi.managers;
 
 import cn.nukkit.Player;
 import pl.vertty.arivi.Main;
-import pl.vertty.arivi.guilds.utils.Logger;
+import pl.vertty.arivi.utils.guild.Logger;
 import pl.vertty.arivi.objects.ItemShop;
 
 import java.sql.ResultSet;

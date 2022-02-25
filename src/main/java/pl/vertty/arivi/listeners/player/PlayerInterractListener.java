@@ -2,8 +2,8 @@ package pl.vertty.arivi.listeners.player;
 
 import cn.nukkit.Player;
 import cn.nukkit.event.EventHandler;
-import pl.vertty.arivi.guilds.data.Combat;
-import pl.vertty.arivi.guilds.managers.CombatManager;
+import pl.vertty.arivi.objects.Combat;
+import pl.vertty.arivi.managers.CombatManager;
 import pl.vertty.arivi.utils.ChatUtil;
 import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.Listener;

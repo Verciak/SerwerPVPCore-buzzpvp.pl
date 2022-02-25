@@ -3,24 +3,14 @@ package pl.vertty.arivi.task;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
-import cn.nukkit.block.BlockID;
-import cn.nukkit.level.Level;
 import cn.nukkit.level.Location;
 import cn.nukkit.scheduler.NukkitRunnable;
 import cn.nukkit.utils.BossBarColor;
 import cn.nukkit.utils.DummyBossBar;
-import pl.vertty.arivi.guilds.data.Combat;
-import pl.vertty.arivi.guilds.data.guild.Guild;
-import pl.vertty.arivi.guilds.data.yml.Config;
-import pl.vertty.arivi.guilds.managers.CombatManager;
-import pl.vertty.arivi.guilds.managers.guild.GuildManager;
-import pl.vertty.arivi.managers.FakeWater;
-import pl.vertty.arivi.managers.WaterManager;
+import pl.vertty.arivi.objects.guild.Guild;
+import pl.vertty.arivi.managers.guild.GuildManager;
 import pl.vertty.arivi.objects.BossBar;
 import pl.vertty.arivi.utils.ChatUtil;
-import pl.vertty.arivi.utils.DataUtil;
-
-import java.util.Map;
 
 public class BossBarTask extends NukkitRunnable
 {

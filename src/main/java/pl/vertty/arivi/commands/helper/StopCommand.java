@@ -6,7 +6,7 @@ import cn.nukkit.command.CommandSender;
 import pl.vertty.arivi.Main;
 import pl.vertty.arivi.commands.builder.Command;
 import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.guilds.managers.CombatManager;
+import pl.vertty.arivi.managers.CombatManager;
 import pl.vertty.arivi.utils.ChatUtil;
 
 import java.net.InetSocketAddress;

@@ -2,26 +2,20 @@
 package pl.vertty.arivi.gui.guild;
 
 import cn.nukkit.Player;
-import cn.nukkit.Server;
-import cn.nukkit.block.BlockID;
 import cn.nukkit.item.Item;
-import cn.nukkit.level.Location;
-import cn.nukkit.math.Vector3;
 import cn.nukkit.utils.DyeColor;
 import pl.vertty.arivi.Main;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.data.guild.Guild;
-import pl.vertty.arivi.guilds.managers.UserManager;
-import pl.vertty.arivi.guilds.managers.guild.GuildManager;
+import pl.vertty.arivi.objects.User;
+import pl.vertty.arivi.objects.guild.Guild;
+import pl.vertty.arivi.managers.UserManager;
+import pl.vertty.arivi.managers.guild.GuildManager;
 import pl.vertty.arivi.inventory.InventoryCategory;
 import pl.vertty.arivi.inventory.InventoryMenu;
 import pl.vertty.arivi.inventory.InventoryMenuHandler;
 import pl.vertty.arivi.inventory.item.ItemClick;
 import pl.vertty.arivi.inventory.item.ItemData;
-import pl.vertty.arivi.task.KopaczFarmerTask;
 import pl.vertty.arivi.task.SandFarmerTask;
 import pl.vertty.arivi.utils.ChatUtil;
-import pl.vertty.arivi.utils.SpaceUtil;
 
 public class GuildSandFarmerGui
 {

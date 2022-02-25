@@ -1,6 +1,6 @@
 package pl.vertty.arivi.managers.comparator;
 
-import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.objects.User;
 
 import java.util.Comparator;
 

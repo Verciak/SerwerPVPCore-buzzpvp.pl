@@ -4,8 +4,8 @@ import cn.nukkit.Player;
 import cn.nukkit.Server;
 import pl.vertty.arivi.commands.builder.PlayerCommand;
 import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.objects.User;
+import pl.vertty.arivi.managers.UserManager;
 import pl.vertty.arivi.utils.ChatUtil;
 
 public class IgnoreCommand extends PlayerCommand

@@ -3,24 +3,20 @@ package pl.vertty.arivi.managers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import pl.vertty.arivi.guilds.utils.Logger;
+import pl.vertty.arivi.utils.guild.Logger;
 import pl.vertty.arivi.Main;
 import pl.vertty.arivi.inventory.InventoryMenuHandler;
-import pl.vertty.arivi.utils.exception.SkinChangeException;
+
 import java.util.Arrays;
-import cn.nukkit.command.CommandSender;
+
 import pl.vertty.arivi.inventory.item.ItemClick;
 import pl.vertty.arivi.inventory.item.ItemData;
 import pl.vertty.arivi.utils.ChatUtil;
-import pl.vertty.arivi.guilds.utils.DataUtil;
+import pl.vertty.arivi.utils.guild.DataUtil;
 import cn.nukkit.item.Item;
 import java.util.concurrent.atomic.AtomicInteger;
 import pl.vertty.arivi.inventory.InventoryCategory;
 import pl.vertty.arivi.inventory.InventoryMenu;
-import java.util.Iterator;
-import java.util.stream.Collector;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 import cn.nukkit.Player;
 import cn.nukkit.inventory.PlayerInventory;
 import pl.vertty.arivi.objects.Backup;

@@ -7,10 +7,10 @@ import cn.nukkit.command.CommandSender;
 import cn.nukkit.scheduler.NukkitRunnable;
 import cn.nukkit.utils.Config;
 import pl.vertty.arivi.Main;
-import pl.vertty.arivi.guilds.data.Combat;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.managers.CombatManager;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.objects.Combat;
+import pl.vertty.arivi.objects.User;
+import pl.vertty.arivi.managers.CombatManager;
+import pl.vertty.arivi.managers.UserManager;
 import pl.vertty.arivi.utils.ChatUtil;
 
 public class AutoMessageTask extends NukkitRunnable

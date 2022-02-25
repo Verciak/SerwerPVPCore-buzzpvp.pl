@@ -7,8 +7,8 @@ import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.player.PlayerItemConsumeEvent;
 import cn.nukkit.item.Item;
 import cn.nukkit.potion.Effect;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.objects.User;
+import pl.vertty.arivi.managers.UserManager;
 
 public class ItemConsumeListener implements Listener {
 

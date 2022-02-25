@@ -19,10 +19,10 @@ import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.nbt.tag.DoubleTag;
 import cn.nukkit.nbt.tag.FloatTag;
 import cn.nukkit.nbt.tag.ListTag;
-import pl.vertty.arivi.guilds.data.guild.Guild;
-import pl.vertty.arivi.guilds.managers.CombatManager;
-import pl.vertty.arivi.guilds.managers.guild.GuildManager;
-import pl.vertty.arivi.guilds.utils.Coooldown;
+import pl.vertty.arivi.objects.guild.Guild;
+import pl.vertty.arivi.managers.CombatManager;
+import pl.vertty.arivi.managers.guild.GuildManager;
+import pl.vertty.arivi.utils.guild.Coooldown;
 import pl.vertty.arivi.utils.ChatUtil;
 
 import java.util.concurrent.TimeUnit;

@@ -6,7 +6,7 @@ import cn.nukkit.block.Block;
 import cn.nukkit.block.BlockID;
 import cn.nukkit.level.Location;
 import cn.nukkit.scheduler.NukkitRunnable;
-import pl.vertty.arivi.guilds.data.guild.Guild;
+import pl.vertty.arivi.objects.guild.Guild;
 import pl.vertty.arivi.utils.SpaceUtil;
 
 public class KopaczFarmerTask extends NukkitRunnable {

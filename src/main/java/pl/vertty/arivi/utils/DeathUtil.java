@@ -3,10 +3,10 @@ package pl.vertty.arivi.utils;
 import cn.nukkit.Player;
 import cn.nukkit.scheduler.NukkitRunnable;
 import pl.vertty.arivi.Main;
-import pl.vertty.arivi.guilds.data.Combat;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.data.guild.Guild;
-import pl.vertty.arivi.guilds.managers.guild.GuildManager;
+import pl.vertty.arivi.objects.Combat;
+import pl.vertty.arivi.objects.User;
+import pl.vertty.arivi.objects.guild.Guild;
+import pl.vertty.arivi.managers.guild.GuildManager;
 
 public class DeathUtil {
     public static String deathsMessage(final int plus, int minus, Player player, final Player killer) {

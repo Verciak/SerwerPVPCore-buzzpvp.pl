@@ -11,8 +11,8 @@ import pl.vertty.arivi.drop.utils.TimeUtils;
 import pl.vertty.arivi.drop.utils.Util;
 import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.gui.drop.DropMainGui;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.objects.User;
+import pl.vertty.arivi.managers.UserManager;
 import pl.vertty.arivi.utils.ChatUtil;
 
 public class DropCommand extends PlayerCommand

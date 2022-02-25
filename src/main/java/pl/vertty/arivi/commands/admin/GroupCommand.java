@@ -1,7 +1,7 @@
 package pl.vertty.arivi.commands.admin;
 
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.objects.User;
+import pl.vertty.arivi.managers.UserManager;
 import pl.vertty.arivi.utils.ChatUtil;
 import cn.nukkit.command.CommandSender;
 import pl.vertty.arivi.enums.GroupType;

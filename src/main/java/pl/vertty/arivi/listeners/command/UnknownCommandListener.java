@@ -1,22 +1,20 @@
 
 package pl.vertty.arivi.listeners.command;
 
-import cn.nukkit.command.CommandSender;
 import cn.nukkit.event.EventHandler;
-import java.util.Iterator;
 
 import cn.nukkit.event.EventPriority;
 import cn.nukkit.utils.Config;
-import pl.vertty.arivi.guilds.data.Combat;
-import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.objects.Combat;
+import pl.vertty.arivi.objects.User;
 import cn.nukkit.Player;
-import pl.vertty.arivi.guilds.data.guild.Guild;
-import pl.vertty.arivi.guilds.managers.CombatManager;
-import pl.vertty.arivi.guilds.managers.guild.GuildManager;
+import pl.vertty.arivi.objects.guild.Guild;
+import pl.vertty.arivi.managers.CombatManager;
+import pl.vertty.arivi.managers.guild.GuildManager;
 import pl.vertty.arivi.utils.ChatUtil;
 import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.Main;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.managers.UserManager;
 import cn.nukkit.event.player.PlayerCommandPreprocessEvent;
 import java.util.ArrayList;
 import cn.nukkit.event.Listener;

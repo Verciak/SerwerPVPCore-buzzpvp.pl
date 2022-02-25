@@ -11,11 +11,10 @@ import cn.nukkit.item.Item;
 import cn.nukkit.level.Location;
 import cn.nukkit.math.Vector3;
 import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.data.guild.Guild;
-import pl.vertty.arivi.guilds.managers.UserManager;
-import pl.vertty.arivi.guilds.managers.guild.GuildManager;
-import pl.vertty.arivi.listeners.player.PlayerInterractListener;
+import pl.vertty.arivi.objects.User;
+import pl.vertty.arivi.objects.guild.Guild;
+import pl.vertty.arivi.managers.UserManager;
+import pl.vertty.arivi.managers.guild.GuildManager;
 import pl.vertty.arivi.managers.FakeWater;
 import pl.vertty.arivi.managers.WaterManager;
 import pl.vertty.arivi.utils.ChatUtil;
@@ -41,7 +40,7 @@ public class SpawnProtectionListener implements Listener
                 FakeWater water = WaterManager.getWater(l);
                 if(water == null) {
                     e.setCancelled(true);
-                    pl.vertty.arivi.guilds.utils.ChatUtil.sendMessage(p, "&cNie mozesz zbierac na terenie spawna!");
+                    pl.vertty.arivi.utils.guild.ChatUtil.sendMessage(p, "&cNie mozesz zbierac na terenie spawna!");
                 } else {
                     WaterManager.removeWater(l);
                 }
@@ -52,7 +51,7 @@ public class SpawnProtectionListener implements Listener
             FakeWater water = WaterManager.getWater(l);
             if(water == null) {
                 e.setCancelled(true);
-                pl.vertty.arivi.guilds.utils.ChatUtil.sendMessage(p, "&cNie mozesz wylewac na terenie gildii!");
+                pl.vertty.arivi.utils.guild.ChatUtil.sendMessage(p, "&cNie mozesz wylewac na terenie gildii!");
             } else {
                 WaterManager.removeWater(l);
             }
@@ -74,7 +73,7 @@ public class SpawnProtectionListener implements Listener
                     WaterManager.createWater(l);
                 } else {
                     e.setCancelled(true);
-                    pl.vertty.arivi.guilds.utils.ChatUtil.sendMessage(p, "&cNie mozesz wylewac na terenie spawna!");
+                    pl.vertty.arivi.utils.guild.ChatUtil.sendMessage(p, "&cNie mozesz wylewac na terenie spawna!");
                 }
             }
         }
@@ -84,7 +83,7 @@ public class SpawnProtectionListener implements Listener
                 WaterManager.createWater(l);
             } else {
                 e.setCancelled(true);
-                pl.vertty.arivi.guilds.utils.ChatUtil.sendMessage(p, "&cNie mozesz wylewac na terenie gildii!");
+                pl.vertty.arivi.utils.guild.ChatUtil.sendMessage(p, "&cNie mozesz wylewac na terenie gildii!");
             }
         }
     }

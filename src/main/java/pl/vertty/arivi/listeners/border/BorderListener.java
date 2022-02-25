@@ -3,16 +3,12 @@ package pl.vertty.arivi.listeners.border;
 
 import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.EventPriority;
-import cn.nukkit.command.CommandSender;
 import pl.vertty.arivi.MainConstants;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.managers.UserManager;
 import cn.nukkit.event.block.BlockPlaceEvent;
 import cn.nukkit.event.EventHandler;
-import cn.nukkit.utils.Config;
-import cn.nukkit.level.Location;
 import cn.nukkit.Player;
 import pl.vertty.arivi.utils.ChatUtil;
-import pl.vertty.arivi.Main;
 import cn.nukkit.event.player.PlayerMoveEvent;
 import cn.nukkit.event.Listener;
 

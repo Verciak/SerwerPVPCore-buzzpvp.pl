@@ -19,7 +19,7 @@ import pl.vertty.arivi.drop.utils.RandomUtils;
 import pl.vertty.arivi.drop.utils.StringUtils;
 import pl.vertty.arivi.drop.utils.Util;
 import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.managers.UserManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ public class DropCustom implements DropData
     public void breakBlock(final Player player, final Item tool, final Block block, final User user) {
         final List<Item> drops = new ArrayList<>();
         final Config c = Main.getPlugin().getConfig();
-        player.addExperience(user.isTurboExp() ? (c.getInt("exp.stone") + 15) : c.getInt("exp.stone"));
+        player.addExperience(user.isTurboExp() ? (c.getInt("exp.stone") + 15) : c.getInt("exp.stone") + 5);
         if (DropUtils.isCobble(player.getName())) {
             for (final Enchantment e : tool.getEnchantments()) {
                 if (e.getId() == 16) {
@@ -48,7 +48,7 @@ public class DropCustom implements DropData
             if (drop.isDisabled(player.getName())) {
                 continue;
             }
-            final pl.vertty.arivi.guilds.data.User ua = UserManager.getUser(player);
+            final pl.vertty.arivi.objects.User ua = UserManager.getUser(player);
             final double chance = ua.can(GroupType.VIP) ? ((user.isTurbo() || Util.isTurbo()) ? MathUtils.calcTurbo(drop.getChance() + 1.0) : (drop.getChance() + 1.0)) : ((user.isTurbo() || Util.isTurbo()) ? MathUtils.calcTurbo(drop.getChance()) : drop.getChance());
             if (!RandomUtils.getChance(chance)) {
                 continue;
@@ -86,7 +86,7 @@ public class DropCustom implements DropData
                     }
                     else {
                         if (drop.getItem().getId() == 368) {
-                            final pl.vertty.arivi.guilds.data.User u = UserManager.getUser(player);
+                            final pl.vertty.arivi.objects.User u = UserManager.getUser(player);
                             u.addPerly(u.getPerly() + amount);
                             return;
                         }

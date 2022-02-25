@@ -2,7 +2,6 @@ package pl.vertty.arivi.listeners.reach;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
-import cn.nukkit.command.CommandSender;
 import cn.nukkit.entity.item.EntityFishingHook;
 import cn.nukkit.entity.projectile.EntityArrow;
 import cn.nukkit.entity.projectile.EntitySnowball;
@@ -10,12 +9,11 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.level.Location;
-import cn.nukkit.math.Vector3;
 import pl.vertty.arivi.Cooldown;
 import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.managers.UserManager;
-import pl.vertty.arivi.guilds.utils.ChatUtil;
+import pl.vertty.arivi.objects.User;
+import pl.vertty.arivi.managers.UserManager;
+import pl.vertty.arivi.utils.guild.ChatUtil;
 
 public class ReachListener implements Listener {
 

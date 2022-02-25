@@ -2,10 +2,10 @@
 package pl.vertty.arivi.managers.ranking;
 
 import java.util.LinkedList;
-import java.util.Comparator;
+
 import pl.vertty.arivi.managers.comparator.GuildComparator;
-import pl.vertty.arivi.guilds.data.guild.Guild;
-import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.objects.guild.Guild;
+import pl.vertty.arivi.objects.User;
 import java.util.List;
 
 public class AssistManager

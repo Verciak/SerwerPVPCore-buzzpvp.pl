@@ -1,16 +1,12 @@
 
 package pl.vertty.arivi.loader;
 
-import pl.vertty.arivi.managers.VanishManager;
-import cn.nukkit.Server;
 import pl.vertty.arivi.task.*;
-import pl.vertty.arivi.guilds.task.ActionBarTask;
-import pl.vertty.arivi.guilds.utils.TimeUtil;
-import pl.vertty.arivi.guilds.task.AutoSaveTask;
-import pl.vertty.arivi.guilds.task.CheckValidityTask;
-import cn.nukkit.plugin.Plugin;
+import pl.vertty.arivi.task.ActionBarTask;
+import pl.vertty.arivi.task.AutoSaveTask;
+import pl.vertty.arivi.task.CheckValidityTask;
 import pl.vertty.arivi.Main;
-import pl.vertty.arivi.guilds.task.NameTagUpdateTask;
+import pl.vertty.arivi.task.NameTagUpdateTask;
 
 public class TaskLoader
 {

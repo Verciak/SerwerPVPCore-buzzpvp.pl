@@ -20,23 +20,22 @@ import java.util.Iterator;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.EventPriority;
 import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.guilds.data.Role;
-import pl.vertty.arivi.guilds.managers.RoleManager;
+import pl.vertty.arivi.objects.Role;
+import pl.vertty.arivi.managers.RoleManager;
 import pl.vertty.arivi.managers.ACManager;
-import pl.vertty.arivi.objects.ACData;
 import pl.vertty.arivi.objects.ItemShop;
 import pl.vertty.arivi.managers.ItemShopManager;
 import pl.vertty.arivi.utils.exception.SkinChangeException;
 import pl.vertty.arivi.utils.SkinUtil;
 import cn.nukkit.event.EventHandler;
-import pl.vertty.arivi.guilds.data.Combat;
+import pl.vertty.arivi.objects.Combat;
 import cn.nukkit.Player;
-import pl.vertty.arivi.guilds.managers.CombatManager;
+import pl.vertty.arivi.managers.CombatManager;
 import pl.vertty.arivi.drop.base.User;
 import pl.vertty.arivi.drop.base.utils.UserUtils;
 import pl.vertty.arivi.wings.WingsManager;
 import pl.vertty.arivi.wings.mysql.UserWings;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.managers.UserManager;
 import cn.nukkit.event.player.PlayerLoginEvent;
 import cn.nukkit.event.Listener;
 
@@ -45,7 +44,7 @@ public class PlayerJoinListener implements Listener
     @EventHandler
     public void onCreate(final PlayerLoginEvent e) {
         final Player p = e.getPlayer();
-        final pl.vertty.arivi.guilds.data.User u = UserManager.getUser(p);
+        final pl.vertty.arivi.objects.User u = UserManager.getUser(p);
         Role role = RoleManager.getUser(p);
         ItemShop is = ItemShopManager.getUser(p);
         p.setGamemode(0);
@@ -87,7 +86,7 @@ public class PlayerJoinListener implements Listener
         final Player p = event.getPlayer();
         p.setGamemode(0);
         p.setCheckMovement(false);
-        final pl.vertty.arivi.guilds.data.User u = UserManager.getUser(p);
+        final pl.vertty.arivi.objects.User u = UserManager.getUser(p);
         SkinUtil.originalSkins.put(event.getPlayer().getUniqueId(), event.getPlayer().getSkin());
         if(u != null){
             if(!u.can(GroupType.HELPER)) {

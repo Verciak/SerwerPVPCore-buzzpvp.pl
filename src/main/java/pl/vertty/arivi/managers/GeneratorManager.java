@@ -1,21 +1,20 @@
 
 package pl.vertty.arivi.managers;
 
-import pl.vertty.arivi.guilds.utils.ChatUtil;
-import pl.vertty.arivi.guilds.data.yml.Config;
+import pl.vertty.arivi.utils.guild.ChatUtil;
+import pl.vertty.arivi.objects.yml.Config;
 import cn.nukkit.event.block.BlockPlaceEvent;
 import cn.nukkit.plugin.Plugin;
 import pl.vertty.arivi.Main;
 import cn.nukkit.level.Level;
-import pl.vertty.arivi.guilds.data.Combat;
+import pl.vertty.arivi.objects.Combat;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.Server;
-import pl.vertty.arivi.guilds.managers.CombatManager;
 import pl.vertty.arivi.enums.TimeUtil;
-import pl.vertty.arivi.guilds.data.guild.Guild;
+import pl.vertty.arivi.objects.guild.Guild;
 import cn.nukkit.block.Block;
 import cn.nukkit.scheduler.NukkitRunnable;
-import pl.vertty.arivi.guilds.managers.guild.GuildManager;
+import pl.vertty.arivi.managers.guild.GuildManager;
 import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.Player;
 

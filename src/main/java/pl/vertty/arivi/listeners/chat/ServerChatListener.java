@@ -2,26 +2,24 @@
 package pl.vertty.arivi.listeners.chat;
 
 import pl.vertty.arivi.Main;
-import pl.vertty.arivi.guilds.data.guild.Guild;
+import pl.vertty.arivi.objects.guild.Guild;
 import cn.nukkit.Server;
-import pl.vertty.arivi.guilds.commands.guild.GuildPermissionCommand;
 import cn.nukkit.item.Item;
-import pl.vertty.arivi.guilds.managers.guild.GuildManager;
+import pl.vertty.arivi.managers.guild.GuildManager;
 import pl.vertty.arivi.enums.TimeUtil;
 import pl.vertty.arivi.managers.SprawdzManager;
 import pl.vertty.arivi.utils.DataUtil;
-import cn.nukkit.command.CommandSender;
 import pl.vertty.arivi.utils.ChatUtil;
 import pl.vertty.arivi.managers.ChatManager;
 import cn.nukkit.event.player.PlayerChatEvent;
-import java.util.Iterator;
+
 import java.util.List;
 import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.EventHandler;
-import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.objects.User;
 import cn.nukkit.Player;
 import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.managers.UserManager;
 import cn.nukkit.event.player.PlayerCommandPreprocessEvent;
 import cn.nukkit.utils.Config;
 import cn.nukkit.event.Listener;
@@ -100,43 +98,43 @@ public class ServerChatListener implements Listener
         final String message = e.getMessage();
         if (User.skarbiec_eme) {
             final Guild guild = GuildManager.getGuild(player);
-            if (!pl.vertty.arivi.guilds.utils.ChatUtil.isInteger(message)) {
-                pl.vertty.arivi.guilds.utils.ChatUtil.sendTitle(player, pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.GUILD_PANEL_SKARBIEC_TITLE));
-                pl.vertty.arivi.guilds.utils.ChatUtil.sendSubTitle(player, pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.GUILD_PANEL_SKARBIEC_SUBTITLE5));
+            if (!pl.vertty.arivi.utils.guild.ChatUtil.isInteger(message)) {
+                pl.vertty.arivi.utils.guild.ChatUtil.sendTitle(player, pl.vertty.arivi.utils.guild.ChatUtil.fixColor(pl.vertty.arivi.objects.yml.Config.GUILD_PANEL_SKARBIEC_TITLE));
+                pl.vertty.arivi.utils.guild.ChatUtil.sendSubTitle(player, pl.vertty.arivi.utils.guild.ChatUtil.fixColor(pl.vertty.arivi.objects.yml.Config.GUILD_PANEL_SKARBIEC_SUBTITLE5));
                 User.skarbiec_eme = false;
                 return;
             }
             if (!player.getInventory().contains(new Item(388, Integer.valueOf(0), Integer.parseInt(message)))) {
-                pl.vertty.arivi.guilds.utils.ChatUtil.sendTitle(player, pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.GUILD_PANEL_SKARBIEC_TITLE));
-                pl.vertty.arivi.guilds.utils.ChatUtil.sendSubTitle(player, pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.GUILD_PANEL_SKARBIEC_SUBTITLE4));
+                pl.vertty.arivi.utils.guild.ChatUtil.sendTitle(player, pl.vertty.arivi.utils.guild.ChatUtil.fixColor(pl.vertty.arivi.objects.yml.Config.GUILD_PANEL_SKARBIEC_TITLE));
+                pl.vertty.arivi.utils.guild.ChatUtil.sendSubTitle(player, pl.vertty.arivi.utils.guild.ChatUtil.fixColor(pl.vertty.arivi.objects.yml.Config.GUILD_PANEL_SKARBIEC_SUBTITLE4));
                 User.skarbiec_eme = false;
                 return;
             }
             guild.setSkarbiec(guild.getSkarbiec() + Integer.parseInt(message));
             player.getInventory().removeItem(new Item(388, Integer.valueOf(0), Integer.parseInt(message)));
-            pl.vertty.arivi.guilds.utils.ChatUtil.sendTitle(player, pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.GUILD_PANEL_SKARBIEC_TITLE));
-            pl.vertty.arivi.guilds.utils.ChatUtil.sendSubTitle(player, pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.GUILD_PANEL_SKARBIEC_SUBTITLE3));
+            pl.vertty.arivi.utils.guild.ChatUtil.sendTitle(player, pl.vertty.arivi.utils.guild.ChatUtil.fixColor(pl.vertty.arivi.objects.yml.Config.GUILD_PANEL_SKARBIEC_TITLE));
+            pl.vertty.arivi.utils.guild.ChatUtil.sendSubTitle(player, pl.vertty.arivi.utils.guild.ChatUtil.fixColor(pl.vertty.arivi.objects.yml.Config.GUILD_PANEL_SKARBIEC_SUBTITLE3));
             e.setCancelled(true);
             User.skarbiec_eme = false;
         }
         else if (User.skarbiec_head) {
             final Guild guild = GuildManager.getGuild(player);
-            if (!pl.vertty.arivi.guilds.utils.ChatUtil.isInteger(message)) {
-                pl.vertty.arivi.guilds.utils.ChatUtil.sendTitle(player, pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.GUILD_PANEL_SKARBIEC_TITLE));
-                pl.vertty.arivi.guilds.utils.ChatUtil.sendSubTitle(player, pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.GUILD_PANEL_SKARBIEC_SUBTITLE5));
+            if (!pl.vertty.arivi.utils.guild.ChatUtil.isInteger(message)) {
+                pl.vertty.arivi.utils.guild.ChatUtil.sendTitle(player, pl.vertty.arivi.utils.guild.ChatUtil.fixColor(pl.vertty.arivi.objects.yml.Config.GUILD_PANEL_SKARBIEC_TITLE));
+                pl.vertty.arivi.utils.guild.ChatUtil.sendSubTitle(player, pl.vertty.arivi.utils.guild.ChatUtil.fixColor(pl.vertty.arivi.objects.yml.Config.GUILD_PANEL_SKARBIEC_SUBTITLE5));
                 User.skarbiec_head = false;
                 return;
             }
             if (!player.getInventory().contains(new Item(397, Integer.valueOf(3), Integer.parseInt(message)))) {
-                pl.vertty.arivi.guilds.utils.ChatUtil.sendTitle(player, pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.GUILD_PANEL_SKARBIEC_TITLE));
-                pl.vertty.arivi.guilds.utils.ChatUtil.sendSubTitle(player, pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.GUILD_PANEL_SKARBIEC_SUBTITLE2));
+                pl.vertty.arivi.utils.guild.ChatUtil.sendTitle(player, pl.vertty.arivi.utils.guild.ChatUtil.fixColor(pl.vertty.arivi.objects.yml.Config.GUILD_PANEL_SKARBIEC_TITLE));
+                pl.vertty.arivi.utils.guild.ChatUtil.sendSubTitle(player, pl.vertty.arivi.utils.guild.ChatUtil.fixColor(pl.vertty.arivi.objects.yml.Config.GUILD_PANEL_SKARBIEC_SUBTITLE2));
                 User.skarbiec_head = false;
                 return;
             }
             guild.setHead(guild.getHead() + Integer.parseInt(message));
             player.getInventory().removeItem(Item.get(397, Integer.valueOf(3), Integer.parseInt(message)));
-            pl.vertty.arivi.guilds.utils.ChatUtil.sendTitle(player, pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.GUILD_PANEL_SKARBIEC_TITLE));
-            pl.vertty.arivi.guilds.utils.ChatUtil.sendSubTitle(player, pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.GUILD_PANEL_SKARBIEC_SUBTITLE));
+            pl.vertty.arivi.utils.guild.ChatUtil.sendTitle(player, pl.vertty.arivi.utils.guild.ChatUtil.fixColor(pl.vertty.arivi.objects.yml.Config.GUILD_PANEL_SKARBIEC_TITLE));
+            pl.vertty.arivi.utils.guild.ChatUtil.sendSubTitle(player, pl.vertty.arivi.utils.guild.ChatUtil.fixColor(pl.vertty.arivi.objects.yml.Config.GUILD_PANEL_SKARBIEC_SUBTITLE));
             e.setCancelled(true);
             User.skarbiec_head = false;
         }
@@ -145,15 +143,15 @@ public class ServerChatListener implements Listener
                 e.setCancelled(true);
                 final Guild guild = GuildManager.getGuild(player);
                 if (guild == null) {
-                    pl.vertty.arivi.guilds.utils.ChatUtil.sendMessage(player, pl.vertty.arivi.guilds.data.yml.Config.GUILD_NOT_GUILD);
+                    pl.vertty.arivi.utils.guild.ChatUtil.sendMessage(player, pl.vertty.arivi.objects.yml.Config.GUILD_NOT_GUILD);
                     return;
                 }
                 final String replace = message.replaceFirst("##", "").replace("&", "");
-                guild.message(pl.vertty.arivi.guilds.data.yml.Config.CHAT_ALLY_USAGE.replace("{TAG}", guild.getTag()).replace("{NICK}", player.getName()).replace("{MESSAGE}", replace));
+                guild.message(pl.vertty.arivi.objects.yml.Config.CHAT_ALLY_USAGE.replace("{TAG}", guild.getTag()).replace("{NICK}", player.getName()).replace("{MESSAGE}", replace));
                 for (String s : guild.getAlly()) {
                     final Guild guild2 = GuildManager.getGuild(s);
                     if (guild2 != null) {
-                        guild2.message(pl.vertty.arivi.guilds.data.yml.Config.CHAT_ALLY_USAGE.replace("{TAG}", guild.getTag()).replace("{NICK}", player.getName()).replace("{MESSAGE}", replace));
+                        guild2.message(pl.vertty.arivi.objects.yml.Config.CHAT_ALLY_USAGE.replace("{TAG}", guild.getTag()).replace("{NICK}", player.getName()).replace("{MESSAGE}", replace));
                     }
                 }
             }
@@ -161,10 +159,10 @@ public class ServerChatListener implements Listener
                 e.setCancelled(true);
                 final Guild guild3 = GuildManager.getGuild(player);
                 if (guild3 == null) {
-                    pl.vertty.arivi.guilds.utils.ChatUtil.sendMessage(player, pl.vertty.arivi.guilds.data.yml.Config.GUILD_NOT_GUILD);
+                    pl.vertty.arivi.utils.guild.ChatUtil.sendMessage(player, pl.vertty.arivi.objects.yml.Config.GUILD_NOT_GUILD);
                     return;
                 }
-                guild3.message(pl.vertty.arivi.guilds.data.yml.Config.CHAT_GUILD_USAGE.replace("{NICK}", player.getName()).replace("{MESSAGE}", message.replaceFirst("#", "").replace("&", "")));
+                guild3.message(pl.vertty.arivi.objects.yml.Config.CHAT_GUILD_USAGE.replace("{NICK}", player.getName()).replace("{MESSAGE}", message.replaceFirst("#", "").replace("&", "")));
             }
             else {
                 if (!message.startsWith("!")) {
@@ -208,10 +206,10 @@ public class ServerChatListener implements Listener
                 e.setCancelled(true);
                 final Guild guild = GuildManager.getGuild(player);
                 if (guild == null) {
-                    player.sendMessage(pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.GUILD_NOT_GUILD));
+                    player.sendMessage(pl.vertty.arivi.utils.guild.ChatUtil.fixColor(pl.vertty.arivi.objects.yml.Config.GUILD_NOT_GUILD));
                     return;
                 }
-                guild.message(pl.vertty.arivi.guilds.utils.ChatUtil.fixColor(pl.vertty.arivi.guilds.data.yml.Config.CHAT_GUILD_HELP.replace("{NICK}", player.getName()).replace("{X}", Integer.toString(player.getLocation().getFloorX())).replace("{Z}", Integer.toString(player.getLocation().getFloorZ()))));
+                guild.message(pl.vertty.arivi.utils.guild.ChatUtil.fixColor(pl.vertty.arivi.objects.yml.Config.CHAT_GUILD_HELP.replace("{NICK}", player.getName()).replace("{X}", Integer.toString(player.getLocation().getFloorX())).replace("{Z}", Integer.toString(player.getLocation().getFloorZ()))));
             }
         }
     }

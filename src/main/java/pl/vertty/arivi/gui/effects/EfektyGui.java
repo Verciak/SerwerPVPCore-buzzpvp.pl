@@ -1,14 +1,9 @@
 package pl.vertty.arivi.gui.effects;
 
 import cn.nukkit.Player;
-import cn.nukkit.command.CommandSender;
 import cn.nukkit.item.Item;
 import cn.nukkit.potion.Effect;
-import cn.nukkit.utils.Config;
-import pl.vertty.arivi.Main;
 import pl.vertty.arivi.MainConstants;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.managers.UserManager;
 import pl.vertty.arivi.inventory.InventoryCategory;
 import pl.vertty.arivi.inventory.InventoryMenu;
 import pl.vertty.arivi.inventory.InventoryMenuHandler;

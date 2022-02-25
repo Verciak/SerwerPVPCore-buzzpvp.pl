@@ -1,13 +1,11 @@
 
 package pl.vertty.arivi.managers;
 
-import pl.vertty.arivi.guilds.data.guild.Guild;
-import pl.vertty.arivi.guilds.rank.GuildDeathManager;
-import pl.vertty.arivi.guilds.rank.GuildKillsManager;
-import pl.vertty.arivi.guilds.rank.GuildRankingManager;
+import pl.vertty.arivi.managers.ranking.GuildDeathManager;
+import pl.vertty.arivi.managers.ranking.GuildKillsManager;
+import pl.vertty.arivi.managers.ranking.GuildRankingManager;
 import pl.vertty.arivi.managers.ranking.*;
 import pl.vertty.arivi.utils.ChatUtil;
-import pl.vertty.arivi.guilds.data.User;
 
 public class TablistManager
 {

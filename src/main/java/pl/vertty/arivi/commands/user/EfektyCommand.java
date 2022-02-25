@@ -4,8 +4,8 @@ import cn.nukkit.Player;
 import pl.vertty.arivi.commands.builder.PlayerCommand;
 import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.gui.effects.EfektyGui;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.objects.User;
+import pl.vertty.arivi.managers.UserManager;
 
 public class EfektyCommand extends PlayerCommand
 {

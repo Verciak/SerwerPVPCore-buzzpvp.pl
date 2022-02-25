@@ -5,7 +5,7 @@ import cn.nukkit.plugin.Plugin;
 import cn.nukkit.potion.Effect;
 import cn.nukkit.scheduler.NukkitRunnable;
 import pl.vertty.arivi.Main;
-import pl.vertty.arivi.guilds.utils.ChatUtil;
+import pl.vertty.arivi.utils.guild.ChatUtil;
 import pl.vertty.arivi.managers.SprawdzManager;
 import pl.vertty.arivi.objects.Sprawdz;
 

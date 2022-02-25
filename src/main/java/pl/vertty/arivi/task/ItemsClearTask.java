@@ -4,10 +4,9 @@ import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.level.Level;
-import cn.nukkit.plugin.Plugin;
 import cn.nukkit.scheduler.NukkitRunnable;
 import pl.vertty.arivi.Main;
-import pl.vertty.arivi.guilds.utils.ChatUtil;
+import pl.vertty.arivi.utils.guild.ChatUtil;
 
 public class ItemsClearTask extends NukkitRunnable {
 

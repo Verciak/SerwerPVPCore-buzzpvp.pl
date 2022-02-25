@@ -5,11 +5,10 @@ import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemID;
-import cn.nukkit.utils.DyeColor;
 import pl.vertty.arivi.drop.pierozek.PierozekManager;
 import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.objects.User;
+import pl.vertty.arivi.managers.UserManager;
 import pl.vertty.arivi.inventory.InventoryCategory;
 import pl.vertty.arivi.inventory.InventoryMenu;
 import pl.vertty.arivi.inventory.InventoryMenuHandler;
@@ -19,7 +18,6 @@ import pl.vertty.arivi.objects.ItemShop;
 import pl.vertty.arivi.managers.ItemShopManager;
 import pl.vertty.arivi.utils.ChatUtil;
 import pl.vertty.arivi.utils.ItemUtil;
-import pl.vertty.arivi.utils.exception.SkinChangeException;
 
 public class ItemShopGui
 {

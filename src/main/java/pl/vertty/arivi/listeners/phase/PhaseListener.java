@@ -15,8 +15,8 @@ import cn.nukkit.math.BlockFace;
 import cn.nukkit.utils.Faceable;
 import pl.vertty.arivi.Cooldown;
 import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.objects.User;
+import pl.vertty.arivi.managers.UserManager;
 import pl.vertty.arivi.utils.ChatUtil;
 
 public class PhaseListener implements Listener {

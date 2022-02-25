@@ -1,12 +1,11 @@
 package pl.vertty.arivi.commands.user;
 
 import cn.nukkit.Player;
-import cn.nukkit.command.CommandSender;
 import cn.nukkit.item.Item;
 import pl.vertty.arivi.commands.builder.PlayerCommand;
 import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.objects.User;
+import pl.vertty.arivi.managers.UserManager;
 import pl.vertty.arivi.utils.ChatUtil;
 import pl.vertty.arivi.utils.PolishItemNames;
 import pl.vertty.arivi.utils.RepairUtil;

@@ -4,7 +4,7 @@ import cn.nukkit.block.Block;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
-import pl.vertty.arivi.guilds.utils.ChatUtil;
+import pl.vertty.arivi.utils.guild.ChatUtil;
 
 public class BlockBreakListener implements Listener {
     @EventHandler

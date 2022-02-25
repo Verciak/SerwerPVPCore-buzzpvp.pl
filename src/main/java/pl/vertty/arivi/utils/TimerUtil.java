@@ -10,12 +10,12 @@ import cn.nukkit.scheduler.TaskHandler;
 import pl.vertty.arivi.Main;
 import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.enums.TimerCallback;
-import pl.vertty.arivi.guilds.data.Combat;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.data.guild.Guild;
-import pl.vertty.arivi.guilds.managers.CombatManager;
-import pl.vertty.arivi.guilds.managers.UserManager;
-import pl.vertty.arivi.guilds.managers.guild.GuildManager;
+import pl.vertty.arivi.objects.Combat;
+import pl.vertty.arivi.objects.User;
+import pl.vertty.arivi.objects.guild.Guild;
+import pl.vertty.arivi.managers.CombatManager;
+import pl.vertty.arivi.managers.UserManager;
+import pl.vertty.arivi.managers.guild.GuildManager;
 import pl.vertty.arivi.managers.TimerManager;
 
 public class TimerUtil

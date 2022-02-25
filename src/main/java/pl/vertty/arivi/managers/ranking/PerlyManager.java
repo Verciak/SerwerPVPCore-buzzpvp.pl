@@ -1,7 +1,7 @@
 
 package pl.vertty.arivi.managers.ranking;
 
-import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.objects.User;
 import pl.vertty.arivi.managers.comparator.UserPerlyComparator;
 
 import java.util.LinkedList;

@@ -7,20 +7,19 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
 import pl.vertty.arivi.Main;
-import pl.vertty.arivi.guilds.data.User;
-import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.objects.User;
+import pl.vertty.arivi.managers.UserManager;
 import pl.vertty.arivi.utils.ChatUtil;
 import cn.nukkit.event.player.PlayerInteractEvent;
-import java.util.Iterator;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import cn.nukkit.block.Block;
 import cn.nukkit.event.player.PlayerTeleportEvent;
 import cn.nukkit.level.Location;
 import cn.nukkit.math.Vector3;
-import pl.vertty.arivi.guilds.utils.RandomUtil;
+import pl.vertty.arivi.utils.guild.RandomUtil;
 import cn.nukkit.Player;
 import cn.nukkit.event.Listener;
 
