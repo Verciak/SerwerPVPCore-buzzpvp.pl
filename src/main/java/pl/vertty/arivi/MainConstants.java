@@ -1,5 +1,6 @@
 package pl.vertty.arivi;
 
+import cn.nukkit.block.BlockID;
 import cn.nukkit.item.Item;
 import cn.nukkit.utils.Config;
 import cn.nukkit.utils.DyeColor;
@@ -36,16 +37,21 @@ public class MainConstants {
 
     //EFFECTS GUI
     public static Item HIGH_JUMP;
+    public static Item HIGH_JUMP2;
+
+    public static Item SILA1;
+    public static Item SILA2;
     public static Item SPEED;
+    public static Item SPEED2;
     public static Item FIRE;
     public static Item HASTE_1;
     public static Item HASTE_2;
-    public static Item HASTE_3;
 
 
     //ADMINPANEL COMMAND GUI STATUS
     public static Item PANDORA_ITEM_ADMINPANEL;
     public static Item KITS_ADMINPANEL;
+    public static Item ENCHANT_ADMINPANEL;
 
     //ENCHANT GUI
     public static Item UNBREAKING_1;
@@ -55,6 +61,7 @@ public class MainConstants {
     public static Item PROTECTION_1;
     public static Item PROTECTION_2;
     public static Item PROTECTION_3;
+    public static Item PROTECTION_4;
 
     public static void set() {
         //WCZYTYWANIE CFG
@@ -116,13 +123,33 @@ public class MainConstants {
 
 
         //EFFECTS GUI
-        HIGH_JUMP = new Item(Item.IRON_BOOTS, 0, 1);
-        HIGH_JUMP.setCustomName(ChatUtil.fixColor("&r&9WYSOKIE SKAKANIE II"));
+        HIGH_JUMP = new Item(Item.FEATHER, 0, 1);
+        HIGH_JUMP.setCustomName(ChatUtil.fixColor("&r&9WYSOKIE SKAKANIE I"));
         HIGH_JUMP.setLore(ChatUtil.fixColor("&r&8» &7Czas trwania: &32 minuty"), ChatUtil.fixColor("&r&7&8» &7Koszt: &332 emeraldy"), ChatUtil.fixColor(""), ChatUtil.fixColor("&r&8» &7Kliknij, aby zakupic!"));
+
+        HIGH_JUMP2 = new Item(Item.FEATHER, 0, 1);
+        HIGH_JUMP2.setCustomName(ChatUtil.fixColor("&r&9WYSOKIE SKAKANIE II"));
+        HIGH_JUMP2.setLore(ChatUtil.fixColor("&r&8» &7Czas trwania: &32 minuty"), ChatUtil.fixColor("&r&7&8» &7Koszt: &364 emeraldy"), ChatUtil.fixColor(""), ChatUtil.fixColor("&r&8» &7Kliknij, aby zakupic!"));
+
+
+        SILA1 = new Item(Item.BLAZE_ROD, 0, 1);
+        SILA1.setCustomName(ChatUtil.fixColor("&r&9SILA I"));
+        SILA1.setLore(ChatUtil.fixColor("&r&8» &7Czas trwania: &32 minuty"), ChatUtil.fixColor("&r&7&8» &7Koszt: &364 emeraldy"), ChatUtil.fixColor(""), ChatUtil.fixColor("&r&8» &7Efekt wylaczony!"));
+        SILA2 = new Item(Item.BLAZE_ROD, 0, 1);
+        SILA2.setCustomName(ChatUtil.fixColor("&r&9SILA II"));
+        SILA2.setLore(ChatUtil.fixColor("&r&8» &7Czas trwania: &32 minuty"), ChatUtil.fixColor("&r&7&8» &7Koszt: &3128 emeraldy"), ChatUtil.fixColor(""), ChatUtil.fixColor("&r&8» &7Efekt wylaczony!"));
+
+
+
 
         SPEED = new Item(Item.SUGAR, 0, 1);
         SPEED.setCustomName(ChatUtil.fixColor("&r&9SPEED I"));
         SPEED.setLore(ChatUtil.fixColor("&r&8» &7Czas trwania: &32 minuty"), ChatUtil.fixColor("&r&7&8» &7Koszt: &364 emeraldy"), ChatUtil.fixColor(""), ChatUtil.fixColor("&r&8» &7Kliknij, aby zakupic!"));
+
+        SPEED2 = new Item(Item.SUGAR, 0, 1);
+        SPEED2.setCustomName(ChatUtil.fixColor("&r&9SPEED II"));
+        SPEED2.setLore(ChatUtil.fixColor("&r&8» &7Czas trwania: &32 minuty"), ChatUtil.fixColor("&r&7&8» &7Koszt: &3128 emeraldy"), ChatUtil.fixColor(""), ChatUtil.fixColor("&r&8» &7Efekt wylaczony!"));
+
 
         FIRE = new Item(Item.BLAZE_POWDER, 0, 1);
         FIRE.setCustomName(ChatUtil.fixColor("&r&9OCHRONA PRZED OGNIEM"));
@@ -135,11 +162,6 @@ public class MainConstants {
         HASTE_2 = new Item(Item.END_CRYSTAL, 0, 1);
         HASTE_2.setCustomName(ChatUtil.fixColor("&r&9HASTE II"));
         HASTE_2.setLore(ChatUtil.fixColor("&r&8» &7Czas trwania: &32 minuty"), ChatUtil.fixColor("&r&7&8» &7Koszt: &364 emeraldy"), ChatUtil.fixColor(""), ChatUtil.fixColor("&r&8» &7Kliknij, aby zakupic!"));
-
-        HASTE_3 = new Item(Item.END_CRYSTAL, 0, 1);
-        HASTE_3.setCustomName(ChatUtil.fixColor("&r&9HASTE III"));
-        HASTE_3.setLore(ChatUtil.fixColor("&r&8» &7Czas trwania: &32 minuty"), ChatUtil.fixColor("&r&7&8» &7Koszt: &3128 emeraldy"), ChatUtil.fixColor(""), ChatUtil.fixColor("&r&8» &7Kliknij, aby zakupic!"));
-
         //ADMINPANEL COMMAND GUI
         PANDORA_ITEM_ADMINPANEL = new Item(122, 0, 1);
         PANDORA_ITEM_ADMINPANEL.setCustomName(ChatUtil.fixColor("&r&5Pandora"));
@@ -148,6 +170,11 @@ public class MainConstants {
         KITS_ADMINPANEL = new Item(368, 0, 1);
         KITS_ADMINPANEL.setCustomName(ChatUtil.fixColor("&r&5Kity"));
         KITS_ADMINPANEL.setLore(ChatUtil.fixColor("&r&8» &7Aktualny status: " + (config.getBoolean("enable.kits.status") ? "&a✔" : "&c✖")));
+
+        ENCHANT_ADMINPANEL = new Item(BlockID.ENCHANTING_TABLE, 0, 1);
+        ENCHANT_ADMINPANEL.setCustomName(ChatUtil.fixColor("&r&5Enchant"));
+        ENCHANT_ADMINPANEL.setLore(ChatUtil.fixColor("&r&8» &7Aktualny status: " + (config.getBoolean("enable.enchant.status") ? "&a✔" : "&c✖")));
+
 
         //ENCHANT GUI
         UNBREAKING_3 = new Item(403, 0, 1);
@@ -174,6 +201,10 @@ public class MainConstants {
         PROTECTION_3 = new Item(403, 0, 1);
         PROTECTION_3.setCustomName(ChatUtil.fixColor("&r&9Ochrona &eIII"));
         PROTECTION_3.setLore(ChatUtil.fixColor(new String[] { "&r&9Koszt: &720 LvL", "&r&9Ilosc wymaganych biblioteczek: &715" }));
+
+        PROTECTION_4 = new Item(403, 0, 1);
+        PROTECTION_4.setCustomName(ChatUtil.fixColor("&r&9Ochrona &eIV"));
+        PROTECTION_4.setLore(ChatUtil.fixColor(new String[] { "&r&9Koszt: &725 LvL", "&r&9Ilosc wymaganych biblioteczek: &720" }));
 
     }
 }

@@ -47,6 +47,11 @@ public class PlayerMoveListener implements Listener
             }
         }
 
+        if(GuildManager.getGuild(playerMoveEvent.getTo()) == null){
+            if (BossBar.playerHasBossBar(player)) {
+                BossBar.removeBossBar(player);
+            }
+        }
         player.addEffect(Effect.getEffect(16).setDuration(1200000000).setAmplifier(1).setVisible(false));
         final Guild guild = GuildManager.getGuild(playerMoveEvent.getTo());
         final Guild guild2 = GuildManager.getGuild(playerMoveEvent.getFrom());

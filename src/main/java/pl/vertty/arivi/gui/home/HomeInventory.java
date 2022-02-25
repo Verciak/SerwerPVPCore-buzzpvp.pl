@@ -64,7 +64,7 @@ public class HomeInventory
                         ChatUtil.sendMessage(p, "&8>> &cDom jest na terenie wrogiej gildii!");
                         return;
                     }
-                    p.getServer().getScheduler().scheduleDelayedTask(() -> TimerUtil.teleportSpawn(p, u.getHome1Location(), 10), 15);
+                    p.getServer().getScheduler().scheduleDelayedTask(() -> TimerUtil.teleportSpawn(p, u.getHome1Location(), 10), 19);
                 }
             });
         }
@@ -87,7 +87,7 @@ public class HomeInventory
                         ChatUtil.sendMessage(p, "&8>> &cDom jest na terenie wrogiej gildii!");
                         return;
                     }
-                    p.getServer().getScheduler().scheduleDelayedTask(() -> TimerUtil.teleportSpawn(p, u.getHome2Location(), 10), 15);
+                    p.getServer().getScheduler().scheduleDelayedTask(() -> TimerUtil.teleportSpawn(p, u.getHome2Location(), 10), 19);
                 }
             });
         }
@@ -111,7 +111,7 @@ public class HomeInventory
                             ChatUtil.sendMessage(p, "&8>> &cDom jest na terenie wrogiej gildii!");
                             return;
                         }
-                        p.getServer().getScheduler().scheduleDelayedTask(() -> TimerUtil.teleportSpawn(p, u.getHome3Location(), 10), 15);
+                        p.getServer().getScheduler().scheduleDelayedTask(() -> TimerUtil.teleportSpawn(p, u.getHome3Location(), 10), 19);
                     }
                 });
             }
@@ -136,7 +136,7 @@ public class HomeInventory
                             ChatUtil.sendMessage(p, "&8>> &cDom jest na terenie wrogiej gildii!");
                             return;
                         }
-                        p.getServer().getScheduler().scheduleDelayedTask(() -> TimerUtil.teleportSpawn(p, u.getHome4Location(), 10), 15);
+                        p.getServer().getScheduler().scheduleDelayedTask(() -> TimerUtil.teleportSpawn(p, u.getHome4Location(), 10), 19);
                     }
                 });
             }
@@ -159,7 +159,7 @@ public class HomeInventory
                             ChatUtil.sendMessage(p, "&8>> &cDom jest na terenie wrogiej gildii!");
                             return;
                         }
-                        p.getServer().getScheduler().scheduleDelayedTask(() -> TimerUtil.teleportSpawn(p, u.getHome5Location(), 10), 15);
+                        p.getServer().getScheduler().scheduleDelayedTask(() -> TimerUtil.teleportSpawn(p, u.getHome5Location(), 10), 19);
                     }
                 });
             }

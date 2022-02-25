@@ -20,6 +20,8 @@ import pl.vertty.arivi.inventory.item.ItemData;
 import pl.vertty.arivi.utils.ChatUtil;
 import pl.vertty.arivi.utils.ItemUtil;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +29,15 @@ public class Util
 {
     public static long turbo;
     public static long turbo_exp;
+
+
+    public static double round(double value, int places) {
+        if (places < 0)
+            throw new IllegalArgumentException();
+        BigDecimal bd = BigDecimal.valueOf(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
 
     public static void giveItemOnDeath(Player killer, Player p, Item... t) {
         Item[] returns = killer.getInventory().addItem(t.clone());

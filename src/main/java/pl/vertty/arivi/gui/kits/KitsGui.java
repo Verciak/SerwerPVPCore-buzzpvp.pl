@@ -1,14 +1,12 @@
 
-package pl.vertty.arivi.gui.user;
+package pl.vertty.arivi.gui.kits;
 
 import cn.nukkit.Player;
-import cn.nukkit.Server;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemID;
 import cn.nukkit.item.enchantment.Enchantment;
 import cn.nukkit.utils.Config;
 import pl.vertty.arivi.Main;
-import pl.vertty.arivi.MainConstants;
 import pl.vertty.arivi.drop.pierozek.PierozekManager;
 import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.enums.TimeUtil;
@@ -32,64 +30,58 @@ public class KitsGui
         final InventoryMenu menu = new InventoryMenu();
         final InventoryCategory category = new InventoryCategory();
 
-        category.setSmallServerGui();
+        category.setDoublCHUJGui();
 
-        category.addElement(10, new ItemData(320, 0, 1, "&r&9MIESO", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &ePLAYER"), ChatUtil.fixColor("&r&8» &7Czas: &f1 minute"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
+        category.addElement(33, new ItemData(320, 0, 1, "&r&9MIESO", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &ePLAYER"), ChatUtil.fixColor("&r&8» &7Czas: &f1 minute"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openMiesoKit(player), 15);
+                KitsGui.openMiesoKit(player);
 
             }
         });
 
-        category.addElement(11, new ItemData(299, 0, 1, "&r&9GRACZ", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &ePLAYER"), ChatUtil.fixColor("&r&8» &7Czas: &f3 minuty"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
+        category.addElement(24, new ItemData(299, 0, 1, "&r&9GRACZ", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &ePLAYER"), ChatUtil.fixColor("&r&8» &7Czas: &f3 minuty"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openPlayerKit(player), 15);
+                KitsGui.openPlayerKit(player);
             }
         });
 
 
-        category.addElement(12, ItemData.fromItem(MainConstants.BLACK_GLASS));
 
-        category.addElement(13, new ItemData(315, 0, 1, "&r&9VIP", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &eVIP"), ChatUtil.fixColor("&r&8» &7Czas: &f12 godzin"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
+        category.addElement(21, new ItemData(315, 0, 1, "&r&9VIP", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &eVIP"), ChatUtil.fixColor("&r&8» &7Czas: &f12 godzin"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openVipKit(player), 15);
+               KitsGui.openVipKit(player);
 
             }
         });
 
-        category.addElement(14, new ItemData(307, 0, 1, "&r&9SVIP", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &eSVIP"), ChatUtil.fixColor("&r&8» &7Czas: &f12 godzin"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
+        category.addElement(20, new ItemData(307, 0, 1, "&r&9SVIP", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &eSVIP"), ChatUtil.fixColor("&r&8» &7Czas: &f12 godzin"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openSvipKit(player), 15);
+                KitsGui.openSvipKit(player);
 
             }
         });
 
-        category.addElement(15, new ItemData(311, 0, 1, "&r&9SPONSOR", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &eSPONSOR"), ChatUtil.fixColor("&r&8» &7Czas: &f12 godzin"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
+        category.addElement(23, new ItemData(311, 0, 1, "&r&9SPONSOR", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &eSPONSOR"), ChatUtil.fixColor("&r&8» &7Czas: &f12 godzin"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openSponsor(player), 15);
+                KitsGui.openSponsor(player);
 
             }
         });
 
-        category.addElement(16, new ItemData(46, 0, 1, "&r&9TNT", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &eSPONSOR"), ChatUtil.fixColor("&r&8» &7Czas: &f24 godziny"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
+        category.addElement(29, new ItemData(46, 0, 1, "&r&9TNT", new String[] { ChatUtil.fixColor("&r&8» &7Dostepny dla rangi: &eSPONSOR"), ChatUtil.fixColor("&r&8» &7Czas: &f24 godziny"), "&r", ChatUtil.fixColor("&r&8» &7Kliknij, aby wyswietlic przedmioty w zestawie!") }), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openTNT(player), 15);
+                KitsGui.openTNT(player);
 
             }
         });
 
+        menu.setDoubleChest();
         menu.setMainCategory(category);
         menu.addCategory("kitsGui", category);
         menu.setName(ChatUtil.fixColor("&9KITY"));
@@ -119,8 +111,7 @@ public class KitsGui
         category.addElement(46, new ItemData(351, 1, 1, "&r&4POWROT"), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 15);
+                KitsGui.openKits(player);
             }
         });
 
@@ -279,8 +270,7 @@ public class KitsGui
         category.addElement(46, new ItemData(351, 1, 1, "&r&4POWROT"), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 15);
+                KitsGui.openKits(player);
             }
         });
 
@@ -462,8 +452,7 @@ public class KitsGui
         category.addElement(46, new ItemData(351, 1, 1, "&r&4POWROT"), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 15);
+                KitsGui.openKits(player);
             }
         });
 
@@ -676,8 +665,7 @@ public class KitsGui
         category.addElement(46, new ItemData(351, 1, 1, "&r&4POWROT"), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 15);
+                KitsGui.openKits(player);
             }
         });
 
@@ -828,8 +816,7 @@ public class KitsGui
         category.addElement(46, new ItemData(351, 1, 1, "&r&4POWROT"), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 15);
+                KitsGui.openKits(player);
             }
         });
 
@@ -918,8 +905,7 @@ public class KitsGui
         category.addElement(46, new ItemData(351, 1, 1, "&r&4POWROT"), new ItemClick() {
             @Override
             public void onClick(final Player p, final Item item) {
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> KitsGui.openKits(player), 15);
+               KitsGui.openKits(player);
             }
         });
 

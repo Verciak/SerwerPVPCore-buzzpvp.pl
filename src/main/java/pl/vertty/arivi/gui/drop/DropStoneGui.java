@@ -83,8 +83,7 @@ public class DropStoneGui {
         category.addElement(49, ItemData.fromItem(back), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item) {
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> DropMainGui.openMain(player), 15);
+                DropMainGui.openMain(player);
             }
         });
 

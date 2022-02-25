@@ -34,8 +34,8 @@ public class SpawnProtectionListener implements Listener
         Player p = e.getPlayer();
         Block i = e.getBlockClicked().getSide(e.getBlockFace().getOpposite());
         Location l = i.getLocation();
-        if (i.getLocation().getFloorX() <= 125 && i.getLocation().getFloorX() >= -125 && i.getLocation().getFloorZ() <= 125 && i.getLocation().getFloorZ() >= -125) {
-            if (i.getLocation().getFloorX() <= 60 && i.getLocation().getFloorX() >= -60 && i.getLocation().getFloorZ() <= 60 && i.getLocation().getFloorZ() >= -60) {
+        if (i.getLocation().getFloorX() <= 200 && i.getLocation().getFloorX() >= -200 && i.getLocation().getFloorZ() <= 200 && i.getLocation().getFloorZ() >= -200) {
+            if (i.getLocation().getFloorX() <= 101 && i.getLocation().getFloorX() >= -101 && i.getLocation().getFloorZ() <= 101 && i.getLocation().getFloorZ() >= -101) {
                 e.setCancelled(true);
             }else{
                 FakeWater water = WaterManager.getWater(l);
@@ -66,8 +66,8 @@ public class SpawnProtectionListener implements Listener
         Player p = e.getPlayer();
         Location l = e.getBlockClicked().getLocation();
         Block i = e.getBlockClicked();
-        if (i.getLocation().getFloorX() <= 125 && i.getLocation().getFloorX() >= -125 && i.getLocation().getFloorZ() <= 125 && i.getLocation().getFloorZ() >= -125) {
-            if (i.getLocation().getFloorX() <= 60 && i.getLocation().getFloorX() >= -60 && i.getLocation().getFloorZ() <= 60 && i.getLocation().getFloorZ() >= -60) {
+        if (i.getLocation().getFloorX() <= 200 && i.getLocation().getFloorX() >= -200 && i.getLocation().getFloorZ() <= 200 && i.getLocation().getFloorZ() >= -200) {
+            if (i.getLocation().getFloorX() <= 101 && i.getLocation().getFloorX() >= -101 && i.getLocation().getFloorZ() <= 101 && i.getLocation().getFloorZ() >= -101) {
                 e.setCancelled(true);
             }else{
                 if(e.getBucket().getName().toString().toUpperCase().contains("WATER")) {
@@ -96,7 +96,7 @@ public class SpawnProtectionListener implements Listener
         final Block i = e.getBlock();
         User u = UserManager.getUser(p);
 
-        if (!u.can(GroupType.ADMIN)  && i.getLocation().getFloorX() <= 125 && i.getLocation().getFloorX() >= -125 && i.getLocation().getFloorZ() <= 125 && i.getLocation().getFloorZ() >= -125) {
+        if (!u.can(GroupType.ADMIN)  && i.getLocation().getFloorX() <= 200 && i.getLocation().getFloorX() >= -200 && i.getLocation().getFloorZ() <= 200 && i.getLocation().getFloorZ() >= -200) {
             e.setCancelled(true);
         }
     }
@@ -109,7 +109,7 @@ public class SpawnProtectionListener implements Listener
         final Block i = e.getBlock();
         User u = UserManager.getUser(p);
 
-        if (((!u.can(GroupType.ADMIN)  && e.getBlock().getId() == Block.SNOW_BLOCK || e.getBlock().getId() == 125) || e.getBlock().getId() == 389 || p.getInventory().getItemInHand().getId() == 259 || p.getInventory().getItemInHand().getId() == 318 || p.getInventory().getItemInHand().getId() == 259) && i.getLocation().getFloorX() <= 60 && i.getLocation().getFloorX() >= -60 && i.getLocation().getFloorZ() <= 60 && i.getLocation().getFloorZ() >= -60) {
+        if (((!u.can(GroupType.ADMIN)  && e.getBlock().getId() == Block.SNOW_BLOCK || e.getBlock().getId() == 200) || e.getBlock().getId() == 389 || p.getInventory().getItemInHand().getId() == 259 || p.getInventory().getItemInHand().getId() == Item.FLINT_AND_STEEL || p.getInventory().getItemInHand().getId() == 259) && i.getLocation().getFloorX() <= 101 && i.getLocation().getFloorX() >= -101 && i.getLocation().getFloorZ() <= 101 && i.getLocation().getFloorZ() >= -101) {
             e.setCancelled(true);
         }
     }
@@ -120,7 +120,7 @@ public class SpawnProtectionListener implements Listener
         final Player p = e.getPlayer();
         User u = UserManager.getUser(p);
 
-        if (!u.can(GroupType.ADMIN)  && i.getLocation().getFloorX() <= 125 && i.getLocation().getFloorX() >= -125 && i.getLocation().getFloorZ() <= 125 && i.getLocation().getFloorZ() >= -125 && (i.getId() == 17 || i.getId() == 3 || i.getId() == 2) && (e.getPlayer().getInventory().getItemInHand().getId() == 279 || e.getPlayer().getInventory().getItemInHand().getId() == 271 || e.getPlayer().getInventory().getItemInHand().getId() == 286 || e.getPlayer().getInventory().getItemInHand().getId() == 286 || e.getPlayer().getInventory().getItemInHand().getId() == 258 || e.getPlayer().getInventory().getItemInHand().getId() == 275 || e.getPlayer().getInventory().getItemInHand().getId() == 277 || e.getPlayer().getInventory().getItemInHand().getId() == 269 || e.getPlayer().getInventory().getItemInHand().getId() == 284 || e.getPlayer().getInventory().getItemInHand().getId() == 284 || e.getPlayer().getInventory().getItemInHand().getId() == 256 || e.getPlayer().getInventory().getItemInHand().getId() == 273)) {
+        if (!u.can(GroupType.ADMIN)  && i.getLocation().getFloorX() <= 200 && i.getLocation().getFloorX() >= -200 && i.getLocation().getFloorZ() <= 200 && i.getLocation().getFloorZ() >= -200 && (i.getId() == 17 || i.getId() == 3 || i.getId() == 2) && (e.getPlayer().getInventory().getItemInHand().getId() == 279 || e.getPlayer().getInventory().getItemInHand().getId() == 271 || e.getPlayer().getInventory().getItemInHand().getId() == 286 || e.getPlayer().getInventory().getItemInHand().getId() == 286 || e.getPlayer().getInventory().getItemInHand().getId() == 258 || e.getPlayer().getInventory().getItemInHand().getId() == 275 || e.getPlayer().getInventory().getItemInHand().getId() == 277 || e.getPlayer().getInventory().getItemInHand().getId() == 269 || e.getPlayer().getInventory().getItemInHand().getId() == 284 || e.getPlayer().getInventory().getItemInHand().getId() == 284 || e.getPlayer().getInventory().getItemInHand().getId() == 256 || e.getPlayer().getInventory().getItemInHand().getId() == 273)) {
             e.setCancelled(true);
         }
     }
@@ -129,7 +129,7 @@ public class SpawnProtectionListener implements Listener
     public void onEntityDamage(final EntityDamageEvent event) {
         if (event.getEntity() instanceof Player) {
             final Player i = (Player)event.getEntity();
-            if (i.getLocation().getFloorX() <= 60 && i.getLocation().getFloorX() >= -60 && i.getLocation().getFloorZ() <= 60 && i.getLocation().getFloorZ() >= -60) {
+            if (i.getLocation().getFloorX() <= 101 && i.getLocation().getFloorX() >= -101 && i.getLocation().getFloorZ() <= 101 && i.getLocation().getFloorZ() >= -101) {
                 event.setCancelled(true);
             }
         }
@@ -138,7 +138,7 @@ public class SpawnProtectionListener implements Listener
     @EventHandler
     public void onEntityDamage(final PlayerDropItemEvent event) {
             final Player i = event.getPlayer();
-            if (i.getLocation().getFloorX() <= 60 && i.getLocation().getFloorX() >= -60 && i.getLocation().getFloorZ() <= 60 && i.getLocation().getFloorZ() >= -60) {
+            if (i.getLocation().getFloorX() <= 101 && i.getLocation().getFloorX() >= -101 && i.getLocation().getFloorZ() <= 101 && i.getLocation().getFloorZ() >= -101) {
                 event.setCancelled(true);
             }
     }
@@ -151,7 +151,7 @@ public class SpawnProtectionListener implements Listener
             p.sendMessage(ChatUtil.fixColor("&4Dotarles do granicy swiata! &8(&e%BORDER% kratek&8)").replace("%BORDER%", String.valueOf(800)));
             return;
         }
-        if (e.getCause().equals((Object)PlayerTeleportEvent.TeleportCause.ENDER_PEARL) && e.getTo().getFloorX() <= 60 && e.getTo().getFloorX() >= -60 && e.getTo().getFloorZ() <= 60 && e.getTo().getFloorZ() >= -60) {
+        if (e.getCause().equals((Object)PlayerTeleportEvent.TeleportCause.ENDER_PEARL) && e.getTo().getFloorX() <= 101 && e.getTo().getFloorX() >= -101 && e.getTo().getFloorZ() <= 101 && e.getTo().getFloorZ() >= -101) {
             e.setCancelled(true);
         }
     }
@@ -161,7 +161,7 @@ public class SpawnProtectionListener implements Listener
         if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
             final Player i = (Player)event.getEntity();
             final Player damage = (Player)event.getDamager();
-            if (i.getLocation().getFloorX() <= 60 && i.getLocation().getFloorX() >= -60 && i.getLocation().getFloorZ() <= 60 && i.getLocation().getFloorZ() >= -60) {
+            if (i.getLocation().getFloorX() <= 101 && i.getLocation().getFloorX() >= -101 && i.getLocation().getFloorZ() <= 101 && i.getLocation().getFloorZ() >= -101) {
                 event.setCancelled(true);
             }
         }
@@ -170,7 +170,7 @@ public class SpawnProtectionListener implements Listener
     @EventHandler
     private void onBlockSpreadEvent(final BlockSpreadEvent e) {
         final Block i = e.getBlock();
-        if (i.getLocation().getFloorX() <= 125 && i.getLocation().getFloorX() >= -125 && i.getLocation().getFloorZ() <= 125 && i.getLocation().getFloorZ() >= -125) {
+        if (i.getLocation().getFloorX() <= 200 && i.getLocation().getFloorX() >= -200 && i.getLocation().getFloorZ() <= 200 && i.getLocation().getFloorZ() >= -200) {
             e.setCancelled(true);
         }
     }
@@ -181,7 +181,7 @@ public class SpawnProtectionListener implements Listener
         final Block i = e.getBlock();
         User u = UserManager.getUser(p);
 
-        if (!u.can(GroupType.ADMIN)  && i.getLocation().getFloorX() <= 125 && i.getLocation().getFloorX() >= -125 && i.getLocation().getFloorZ() <= 125 && i.getLocation().getFloorZ() >= -125) {
+        if (!u.can(GroupType.ADMIN)  && i.getLocation().getFloorX() <= 200 && i.getLocation().getFloorX() >= -200 && i.getLocation().getFloorZ() <= 200 && i.getLocation().getFloorZ() >= -200) {
             e.setCancelled(true);
         }
     }
@@ -192,7 +192,7 @@ public class SpawnProtectionListener implements Listener
         final Block i = e.getBlock();
         User u = UserManager.getUser(p);
 
-        if (!u.can(GroupType.ADMIN)  && i.getLocation().getFloorX() <= 125 && i.getLocation().getFloorX() >= -125 && i.getLocation().getFloorZ() <= 125 && i.getLocation().getFloorZ() >= -125) {
+        if (!u.can(GroupType.ADMIN)  && i.getLocation().getFloorX() <= 200 && i.getLocation().getFloorX() >= -200 && i.getLocation().getFloorZ() <= 200 && i.getLocation().getFloorZ() >= -200) {
             e.setCancelled(true);
         }else if (i.getId() == 130) {
                 e.setDrops(new Item[0]);

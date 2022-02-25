@@ -3,7 +3,7 @@ package pl.vertty.arivi.commands.user;
 import cn.nukkit.Player;
 import pl.vertty.arivi.commands.builder.PlayerCommand;
 import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.gui.user.EfektyGui;
+import pl.vertty.arivi.gui.effects.EfektyGui;
 import pl.vertty.arivi.guilds.data.User;
 import pl.vertty.arivi.guilds.managers.UserManager;
 

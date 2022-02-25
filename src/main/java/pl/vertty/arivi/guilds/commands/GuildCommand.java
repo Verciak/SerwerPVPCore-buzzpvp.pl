@@ -71,7 +71,6 @@ public class GuildCommand extends PlayerCommand
         GuildCommand.cmds.add(new GuildKaraCommand());
         GuildCommand.cmds.add(new GuildFreeSpaceCommand());
         GuildCommand.cmds.add(new GuildPanelCommand());
-        GuildCommand.cmds.add(new GuildWarsCommand());
         GuildCommand.cmds.add(new GuildInviteAllCommand());
         GuildCommand.cmds.add(new GuildChestCommand());
         GuildCommand.cmds.add(new GuildNotificationCommand());

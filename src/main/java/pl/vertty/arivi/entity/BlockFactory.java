@@ -1,8 +1,10 @@
-package pl.vertty.arivi;
+package pl.vertty.arivi.entity;
 
 import cn.nukkit.Server;
 import cn.nukkit.block.Block;
 import cn.nukkit.block.BlockUnknown;
+import pl.vertty.arivi.Main;
+
 import java.lang.reflect.Constructor;
 
 public final class BlockFactory {

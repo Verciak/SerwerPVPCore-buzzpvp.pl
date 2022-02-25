@@ -1,5 +1,5 @@
 
-package pl.vertty.arivi.gui.user;
+package pl.vertty.arivi.gui.deposit;
 
 import cn.nukkit.Player;
 import cn.nukkit.item.Item;

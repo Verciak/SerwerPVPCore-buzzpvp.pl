@@ -48,7 +48,7 @@ public class GuildItemsCommand extends PlayerCommand
         for(Item itemstack : ItemStackUtil.getItems(s, 1)){
             category.addElementAir(ItemData.fromItem(itemstack
                     .setCustomName(ChatUtil.fixColor("&9" + itemstack.getName()))
-                    .setLore(ChatUtil.fixColor("&8» &7Posiadasz: &9" + ItemStackUtil.getItemAmount(itemstack, player, (short) 1) + "&7/&9" + itemstack.getCount()), ChatUtil.fixColor("&8» &7Procent posiadania: &9" + ItemStackUtil.getItemAmount(itemstack, player, (short) 1) / itemstack.getCount() * 100.0 + "&7%"))
+                    .setLore(ChatUtil.fixColor("&8» &7Posiadasz: &9" + ItemStackUtil.getItemAmount(itemstack, player) + "&7/&9" + itemstack.getCount()), ChatUtil.fixColor("&8» &7Procent posiadania: &9" + ItemStackUtil.getItemAmount(itemstack, player) / itemstack.getCount() * 100.0 + "&7%"))
             ));
         }
         menu.setDoubleChest();

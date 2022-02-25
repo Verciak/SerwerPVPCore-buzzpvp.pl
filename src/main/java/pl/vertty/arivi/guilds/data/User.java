@@ -71,53 +71,6 @@ public class User
     private int refil;
     private int perla;
     private int pandora;
-    private long speedminePerSecondTime;
-    public int speedminePerSecond;
-    private long packetsPerSecondTime;
-    public int packetsPerSecond;
-    private long macroPerSecondTime;
-    public int macroPerSecond;
-    private long entityPerSecondTime;
-    public int entityPerSecond;
-
-    public boolean hasMacroLimit() {
-        return this.macroPerSecond > 12;
-    }
-    public boolean entityLimit() {
-        if (this.entityPerSecondTime < System.currentTimeMillis()) {
-            this.entityPerSecondTime = System.currentTimeMillis() + 1000L;
-            this.entityPerSecond = 0;
-        }
-        return ++this.entityPerSecond >= 60;
-    }
-
-    public boolean speedmineLimit(boolean isHalf) {
-        if (this.speedminePerSecondTime < System.currentTimeMillis()) {
-            this.speedminePerSecondTime = System.currentTimeMillis() + (isHalf ? 500L : 1000L);
-            this.speedminePerSecond = 0;
-        }
-        return ++this.speedminePerSecond >= (isHalf ? 4 : 10);
-    }
-
-    public boolean macroLimit() {
-        if (this.macroPerSecondTime < System.currentTimeMillis()) {
-            this.macroPerSecondTime = System.currentTimeMillis() + 1000L;
-            this.macroPerSecond = 0;
-        }
-        return ++this.macroPerSecond > 12;
-    }
-
-    public boolean hasMacroMax() {
-        return this.macroPerSecond >= 100;
-    }
-
-    public boolean packetLimit() {
-        if (this.packetsPerSecondTime < System.currentTimeMillis()) {
-            this.packetsPerSecondTime = System.currentTimeMillis() + 1000L;
-            this.packetsPerSecond = 0;
-        }
-        return ++this.packetsPerSecond > 450;
-    }
     
 
     private void insert() {
@@ -194,7 +147,7 @@ public class User
         this.lastKill = set.getString("lastKill");
         this.lastKillTime = set.getLong("lastKillTime");
         this.lastChat = 0L;
-        this.kratki = 0;
+        this.kratki = 5;
         this.god = (set.getInt("god") == 1);
         this.lvl = set.getInt("lvl");
         this.exp = set.getInt("exp");
@@ -636,7 +589,7 @@ public class User
     
     public User(final Player player) {
         this.name = player.getName();
-        this.kratki = 0;
+        this.kratki = 5;
         this.points = 1000;
         this.kills = 0;
         this.deaths = 0;

@@ -20,7 +20,7 @@ public class SprawdzMessageTimer extends NukkitRunnable
             }
             else {
                 s.getPlayer().removeEffect(9);
-                s.getPlayer().removeEffect(15);
+                s.getPlayer().removeEffect(19);
             }
         }
     }

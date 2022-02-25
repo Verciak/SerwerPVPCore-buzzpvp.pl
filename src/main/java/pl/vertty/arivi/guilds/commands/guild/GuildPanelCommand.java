@@ -63,7 +63,7 @@ public class GuildPanelCommand extends PlayerCommand
                     return;
                 }
                 menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> GuildBoyFarmerGui.openTopki(player), 15);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> GuildBoyFarmerGui.openTopki(player), 19);
             }
         });
         category.addElement(13, ItemData.fromItem(new Item(1, 0, 1).setCustomName(ChatUtil.fixColor("&9Zarzadanie Kopaczami")).setLore(ChatUtil.fixColor("&8» &7Funkcja ktora pozwala zarzadzac &ffarmerami!"), ChatUtil.fixColor("&8» &7Kliknij aby otworzyc &fpanel Kopaczy!"))), new ItemClick() {
@@ -75,7 +75,7 @@ public class GuildPanelCommand extends PlayerCommand
                     return;
                 }
                 menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> GuildKopaczFarmerGui.openTopki(player), 15);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> GuildKopaczFarmerGui.openTopki(player), 19);
             }
         });
         category.addElement(14, ItemData.fromItem(new Item(12, 0, 1).setCustomName(ChatUtil.fixColor("&9Zarzadanie SandFarmerami")).setLore(ChatUtil.fixColor("&8» &7Funkcja ktora pozwala zarzadzac &ffarmerami!"), ChatUtil.fixColor("&8» &7Kliknij aby otworzyc &fpanel SandFarmerow!"))), new ItemClick() {
@@ -87,7 +87,7 @@ public class GuildPanelCommand extends PlayerCommand
                     return;
                 }
                 menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> GuildSandFarmerGui.openTopki(player), 15);
+                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> GuildSandFarmerGui.openTopki(player), 19);
             }
         });
 

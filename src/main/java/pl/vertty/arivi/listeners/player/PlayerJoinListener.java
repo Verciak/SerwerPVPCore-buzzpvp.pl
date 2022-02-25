@@ -22,6 +22,8 @@ import cn.nukkit.event.EventPriority;
 import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.guilds.data.Role;
 import pl.vertty.arivi.guilds.managers.RoleManager;
+import pl.vertty.arivi.managers.ACManager;
+import pl.vertty.arivi.objects.ACData;
 import pl.vertty.arivi.objects.ItemShop;
 import pl.vertty.arivi.managers.ItemShopManager;
 import pl.vertty.arivi.utils.exception.SkinChangeException;
@@ -53,6 +55,9 @@ public class PlayerJoinListener implements Listener
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+        }
+        if(ACManager.getUser(p) == null){
+            ACManager.createrUser(p);
         }
         if (!UserUtils.playedBefore(p.getName())) {
             new User(p.getName());

@@ -46,10 +46,6 @@ public class GuildManager
         lambdadeleteGuild1(guild);
         Main.getStore().update(false, String.valueOf(new StringBuilder().append("DELETE FROM `pCGuilds_guilds` WHERE `tag` = '").append(guild.getTag()).append("'")));
         Main.getStore().update(false, String.valueOf(new StringBuilder().append("DELETE FROM `pCGuilds_members` WHERE `tag` = '").append(guild.getTag()).append("'")));
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("DELETE FROM `pCGuilds_wars` WHERE `tag` = '").append(guild.getTag()).append("'")));
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("DELETE FROM `pCGuilds_logblock` WHERE `tag` = '").append(guild.getTag()).append("'")));
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("DELETE FROM `pCGuilds_lock` WHERE `tag` = '").append(guild.getTag()).append("'")));
-        Main.getStore().update(false, String.valueOf(new StringBuilder().append("DELETE FROM `pCGuilds_roles` WHERE `tag` = '").append(guild.getTag()).append("'")));
         final Iterator<String> iterator = guild.getAlly().iterator();
         while (iterator.hasNext()) {
             final Guild guild2 = getGuild(iterator.next());
@@ -125,7 +121,7 @@ public class GuildManager
     public static boolean canCreateGuildBySpawn(final Location location) {
         final int blockX = location.getLevel().getSpawnLocation().getFloorX();
         final int blockZ = location.getLevel().getSpawnLocation().getFloorZ();
-        return Math.abs(location.getFloorX() - blockX) >= 150 || Math.abs(location.getFloorZ() - blockZ) >= 150;
+        return Math.abs(location.getFloorX() - blockX) >= 250 || Math.abs(location.getFloorZ() - blockZ) >= 250;
     }
     
     private static void createRoomGuild(final Guild guild) {

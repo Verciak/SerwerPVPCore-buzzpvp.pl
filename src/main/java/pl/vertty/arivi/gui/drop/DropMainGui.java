@@ -18,45 +18,41 @@ public class DropMainGui{
     public static void openMain(final Player player) {
         final InventoryMenu menu = new InventoryMenu();
         final InventoryCategory category = new InventoryCategory();
-        category.setSmallMainDropGUI();
+        category.setDoublCHUJGui();
 
-        category.addElement(11, new ItemData(Item.LEAVES, 0, 1, "&r&9DROP Z LISCI", new String[]{ChatUtil.fixColor("&r&8>> &7Kliknij, aby otworzyc &3drop z lisci")}), new ItemClick() {
+        category.addElement(21, new ItemData(Item.LEAVES, 0, 1, "&r&9DROP Z LISCI", new String[]{ChatUtil.fixColor("&r&8>> &7Kliknij, aby otworzyc &3drop z lisci")}), new ItemClick() {
             @Override
             public void onClick(Player p0, Item p1) {
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> DropLeavesGui.openMain(player), 15);
+                DropLeavesGui.openMain(player);
             }
         });
-        category.addElement(12, new ItemData(Item.OBSIDIAN, 0, 1, "&r&9DROP Z OBSYDIANU", new String[]{ChatUtil.fixColor("&r&8>> &7Kliknij, aby otworzyc &3drop z obsydianu")}), new ItemClick() {
+        category.addElement(19, new ItemData(Item.OBSIDIAN, 0, 1, "&r&9DROP Z OBSYDIANU", new String[]{ChatUtil.fixColor("&r&8>> &7Kliknij, aby otworzyc &3drop z obsydianu")}), new ItemClick() {
             @Override
             public void onClick(Player p0, Item p1) {
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> DropObsidianGui.openMain(player), 15);
+                DropObsidianGui.openMain(player);
             }
         });
-        category.addElement(13, new ItemData(Item.DIAMOND, 0, 1, "&r&9DROP Z STONE", new String[]{ChatUtil.fixColor("&r&8>> &7Kliknij, aby otworzyc &3drop z stone")}), new ItemClick() {
+        category.addElement(23, new ItemData(Item.STONE, 0, 1, "&r&9DROP Z STONE", new String[]{ChatUtil.fixColor("&r&8>> &7Kliknij, aby otworzyc &3drop z stone")}), new ItemClick() {
             @Override
             public void onClick(Player p0, Item p1) {
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> DropStoneGui.openMain(player), 15);
+                DropStoneGui.openMain(player);
             }
         });
-        category.addElement(14, new ItemData(Block.MONSTER_SPAWNER, 0, 1, "&r&9DROP Z COBBLEX", new String[]{ChatUtil.fixColor("&r&8>> &7Kliknij, aby otworzyc &3drop z cobblex")}), new ItemClick() {
+        category.addElement(25, new ItemData(Block.MONSTER_SPAWNER, 0, 1, "&r&9DROP Z COBBLEX", new String[]{ChatUtil.fixColor("&r&8>> &7Kliknij, aby otworzyc &3drop z cobblex")}), new ItemClick() {
             @Override
             public void onClick(Player p0, Item p1) {
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> DropCobblexGui.openMain(player), 15);
+                DropCobblexGui.openMain(player);
             }
         });
-        category.addElement(15, new ItemData(Block.DRAGON_EGG, 0, 1, "&r&9DROP Z PANDOR", new String[]{ChatUtil.fixColor("&r&8>> &7Kliknij, aby otworzyc &3drop z pandor")}), new ItemClick() {
+        category.addElement(31, new ItemData(Block.DRAGON_EGG, 0, 1, "&r&9DROP Z PANDOR", new String[]{ChatUtil.fixColor("&r&8>> &7Kliknij, aby otworzyc &3drop z pandor")}), new ItemClick() {
             @Override
             public void onClick(Player p0, Item p1){
-                menu.forceDestroy(player);
-                Server.getInstance().getScheduler().scheduleDelayedTask(Main.getPlugin(), () -> DropPandoraGui.openMain(player), 15);
+                DropPandoraGui.openMain(player);
             }
         });
 
 
+        menu.setDoubleChest();
         menu.setMainCategory(category);
         menu.addCategory("MainDropGUI", category);
         menu.setName(ChatUtil.fixColor("&9MENU DROPU"));

@@ -26,9 +26,7 @@ public class GuildPvpCommand extends PlayerCommand
                 return false;
             }
             guild.setPvp(!guild.isPvp());
-            final Iterator<Player> iterator = guild.getOnlineMembers().iterator();
-            if (iterator.hasNext()) {
-                final Player p = iterator.next();
+            for(Player p : guild.getOnlineMembers()){
                 p.sendMessage(ChatUtil.fixColor(Config.GUILD_COMMAND_PVP_SUCCESS1.replace("{NICK}", player.getName()).replace("{STATUS}", guild.isPvp() ? "&awlaczyl" : "&cwylaczyl")));
                 return true;
             }
@@ -39,9 +37,7 @@ public class GuildPvpCommand extends PlayerCommand
                 return false;
             }
             guild.setPvpAlly(!guild.isPvpAlly());
-            final Iterator<Player> iterator2 = guild.getOnlineMembers().iterator();
-            if (iterator2.hasNext()) {
-                final Player p = iterator2.next();
+            for(Player p : guild.getOnlineMembers()){
                 p.sendMessage(ChatUtil.fixColor(Config.GUILD_COMMAND_PVP_SUCCESS2.replace("{NICK}", player.getName()).replace("{STATUS}", guild.isPvpAlly() ? "&awlaczyl" : "&cwylaczyl")));
                 return true;
             }

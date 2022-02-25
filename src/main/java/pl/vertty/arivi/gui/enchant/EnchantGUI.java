@@ -1,5 +1,5 @@
 
-package pl.vertty.arivi.gui.user;
+package pl.vertty.arivi.gui.enchant;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
@@ -71,6 +71,32 @@ public class EnchantGUI
                 }
             }
         });
+        category.addElement(18, ItemData.fromItem(MainConstants.PROTECTION_4), new ItemClick() {
+            @Override
+            public void onClick(final Player player, final Item item)  {
+                if (p.getInventory().getItemInHand().getId() == 322 || p.getInventory().getItemInHand().getId() == 466 || p.getInventory().getItemInHand().getId() == 122 || p.getInventory().getItemInHand().getId() == 368) {
+                    return;
+                }
+                if (p.getInventory().getItemInHand().getId() != 306 && p.getInventory().getItemInHand().getId() != 307 && p.getInventory().getItemInHand().getId() != 308 && p.getInventory().getItemInHand().getId() != 309) {
+                    return;
+                }
+                if (books >= 20) {
+                    if (p.getExperienceLevel() >= 25) {
+                        final Item i = p.getInventory().getItemInHand();
+                        p.getInventory().removeItem(i);
+                        i.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
+                        p.getInventory().addItem(i);
+                        p.setExperience(0, p.getExperienceLevel() - 25);
+                    }
+                    else {
+                        ChatUtil.sendMessage(p, "&cPotrzebujesz 20 level na pasku!");
+                    }
+                }
+                else {
+                    ChatUtil.sendMessage(p, "&cTen enchant wymaga 20 biblioteczek!");
+                }
+            }
+        });
         category.addElement(27, ItemData.fromItem(MainConstants.PROTECTION_3), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item)  {
@@ -84,7 +110,7 @@ public class EnchantGUI
                     if (p.getExperienceLevel() >= 20) {
                         final Item i = p.getInventory().getItemInHand();
                         p.getInventory().removeItem(i);
-                        i.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
+                        i.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
                         p.getInventory().addItem(i);
                         p.setExperience(0, p.getExperienceLevel() - 20);
                     }
@@ -112,7 +138,7 @@ public class EnchantGUI
                         p.getInventory().removeItem(i);
                         i.addEnchantment(Enchantment.getEnchantment(0).setLevel(2));
                         p.getInventory().addItem(i);
-                        p.setExperience(0, p.getExperienceLevel() - 15);
+                        p.setExperience(0, p.getExperienceLevel() - 19);
                     }
                     else {
                         ChatUtil.sendMessage(p, "&cPotrzebujesz 15 level na pasku!");
@@ -216,7 +242,7 @@ public class EnchantGUI
                         p.getInventory().removeItem(i);
                         i.addEnchantment(Enchantment.getEnchantment(2).setLevel(2));
                         p.getInventory().addItem(i);
-                        p.setExperience(0, p.getExperienceLevel() - 15);
+                        p.setExperience(0, p.getExperienceLevel() - 19);
                     }
                     else {
                         ChatUtil.sendMessage(p, "&cPotrzebujesz 15 level na pasku!");
@@ -317,6 +343,32 @@ public class EnchantGUI
                 }
             }
         });
+        category.addElement(18, ItemData.fromItem(MainConstants.PROTECTION_4), new ItemClick() {
+            @Override
+            public void onClick(final Player player, final Item item)  {
+                if (p.getInventory().getItemInHand().getId() == 322 || p.getInventory().getItemInHand().getId() == 466 || p.getInventory().getItemInHand().getId() == 122 || p.getInventory().getItemInHand().getId() == 368) {
+                    return;
+                }
+                if (p.getInventory().getItemInHand().getId() != 306 && p.getInventory().getItemInHand().getId() != 307 && p.getInventory().getItemInHand().getId() != 308 && p.getInventory().getItemInHand().getId() != 309) {
+                    return;
+                }
+                if (books >= 20) {
+                    if (p.getExperienceLevel() >= 25) {
+                        final Item i = p.getInventory().getItemInHand();
+                        p.getInventory().removeItem(i);
+                        i.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
+                        p.getInventory().addItem(i);
+                        p.setExperience(0, p.getExperienceLevel() - 25);
+                    }
+                    else {
+                        ChatUtil.sendMessage(p, "&cPotrzebujesz 20 level na pasku!");
+                    }
+                }
+                else {
+                    ChatUtil.sendMessage(p, "&cTen enchant wymaga 20 biblioteczek!");
+                }
+            }
+        });
         category.addElement(27, ItemData.fromItem(new Item(403, 0, 1).setCustomName(ChatUtil.fixColor("&9Ochrona &eIII")).setLore(ChatUtil.fixColor(new String[] { "&9Koszt: &720 LvL", "&9Ilosc wymaganych biblioteczek: &715" }))), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item)  {
@@ -330,7 +382,7 @@ public class EnchantGUI
                     if (p.getExperienceLevel() >= 20) {
                         final Item i = p.getInventory().getItemInHand();
                         p.getInventory().removeItem(i);
-                        i.addEnchantment(Enchantment.getEnchantment(0).setLevel(4));
+                        i.addEnchantment(Enchantment.getEnchantment(0).setLevel(3));
                         p.getInventory().addItem(i);
                         p.setExperience(0, p.getExperienceLevel() - 20);
                     }
@@ -358,7 +410,7 @@ public class EnchantGUI
                         p.getInventory().removeItem(i);
                         i.addEnchantment(Enchantment.getEnchantment(0).setLevel(2));
                         p.getInventory().addItem(i);
-                        p.setExperience(0, p.getExperienceLevel() - 15);
+                        p.setExperience(0, p.getExperienceLevel() - 19);
                     }
                     else {
                         ChatUtil.sendMessage(p, "&cPotrzebujesz 15 level na pasku!");
@@ -474,7 +526,7 @@ public class EnchantGUI
                         p.getInventory().removeItem(i);
                         i.addEnchantment(Enchantment.getEnchantment(18).setLevel(2));
                         p.getInventory().addItem(i);
-                        p.setExperience(0, p.getExperienceLevel() - 15);
+                        p.setExperience(0, p.getExperienceLevel() - 19);
                     }
                     else {
                         ChatUtil.sendMessage(p, "&cPotrzebujesz 15 level na pasku!");
@@ -552,7 +604,7 @@ public class EnchantGUI
                         p.getInventory().removeItem(i);
                         i.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
                         p.getInventory().addItem(i);
-                        p.setExperience(0, p.getExperienceLevel() - 15);
+                        p.setExperience(0, p.getExperienceLevel() - 19);
                     }
                     else {
                         ChatUtil.sendMessage(p, "&cPotrzebujesz 15 level na pasku!");
@@ -682,7 +734,7 @@ public class EnchantGUI
                         p.getInventory().removeItem(i);
                         i.addEnchantment(Enchantment.getEnchantment(15).setLevel(2));
                         p.getInventory().addItem(i);
-                        p.setExperience(0, p.getExperienceLevel() - 15);
+                        p.setExperience(0, p.getExperienceLevel() - 19);
                     }
                     else {
                         ChatUtil.sendMessage(p, "&cPotrzebujesz 15 level na pasku!");
@@ -746,7 +798,7 @@ public class EnchantGUI
                         p.getInventory().removeItem(i);
                         i.addEnchantment(Enchantment.getEnchantment(12).setLevel(2));
                         p.getInventory().addItem(i);
-                        p.setExperience(0, p.getExperienceLevel() - 15);
+                        p.setExperience(0, p.getExperienceLevel() - 19);
                     }
                     else {
                         ChatUtil.sendMessage(p, "&cPotrzebujesz 15 level na pasku!");
@@ -798,7 +850,7 @@ public class EnchantGUI
                         p.getInventory().removeItem(i);
                         i.addEnchantment(Enchantment.getEnchantment(13).setLevel(2));
                         p.getInventory().addItem(i);
-                        p.setExperience(0, p.getExperienceLevel() - 15);
+                        p.setExperience(0, p.getExperienceLevel() - 19);
                     }
                     else {
                         ChatUtil.sendMessage(p, "&cPotrzebujesz 15 level na pasku!");
@@ -876,7 +928,7 @@ public class EnchantGUI
                         p.getInventory().removeItem(i);
                         i.addEnchantment(Enchantment.getEnchantment(17).setLevel(2));
                         p.getInventory().addItem(i);
-                        p.setExperience(0, p.getExperienceLevel() - 15);
+                        p.setExperience(0, p.getExperienceLevel() - 19);
                     }
                     else {
                         ChatUtil.sendMessage(p, "&cPotrzebujesz 15 level na pasku!");
@@ -954,7 +1006,7 @@ public class EnchantGUI
                         p.getInventory().removeItem(i);
                         i.addEnchantment(Enchantment.getEnchantment(9).setLevel(2));
                         p.getInventory().addItem(i);
-                        p.setExperience(0, p.getExperienceLevel() - 15);
+                        p.setExperience(0, p.getExperienceLevel() - 19);
                     }
                     else {
                         ChatUtil.sendMessage(p, "&cPotrzebujesz 15 level na pasku!");

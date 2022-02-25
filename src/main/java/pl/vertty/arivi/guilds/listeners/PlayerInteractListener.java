@@ -15,11 +15,9 @@ import pl.vertty.arivi.guilds.data.User;
 import pl.vertty.arivi.guilds.managers.UserManager;
 import cn.nukkit.event.player.PlayerInteractEntityEvent;
 import cn.nukkit.event.EventHandler;
-import pl.vertty.arivi.guilds.data.guild.cuboid.Lock;
 import cn.nukkit.Player;
 import pl.vertty.arivi.guilds.utils.ChatUtil;
 import pl.vertty.arivi.guilds.data.yml.Config;
-import pl.vertty.arivi.guilds.managers.guild.region.LockManager;
 import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.Listener;
 import pl.vertty.arivi.guilds.utils.RandomUtil;
@@ -48,7 +46,7 @@ public class PlayerInteractListener implements Listener
                 }
                 int n = (int)(94.0D + (user3.getPoints() - user1.getPoints()) * -0.25D);
                 if (n <= 0) {
-                    n = RandomUtil.getRandInt(8, 15);
+                    n = RandomUtil.getRandInt(8, 19);
                 }
                 final int i = n / 4 * 3;
                 if (user1.isIncognitoNick()) {

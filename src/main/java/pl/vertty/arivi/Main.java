@@ -2,7 +2,9 @@ package pl.vertty.arivi;
 
 import cn.nukkit.block.Block;
 import cn.nukkit.block.BlockID;
+import cn.nukkit.entity.Entity;
 import lombok.SneakyThrows;
+import pl.vertty.arivi.entity.*;
 import pl.vertty.arivi.guilds.data.Combat;
 import pl.vertty.arivi.guilds.managers.RoleManager;
 import pl.vertty.arivi.managers.*;
@@ -16,8 +18,6 @@ import java.util.*;
 import cn.nukkit.level.Level;
 import pl.vertty.arivi.task.SprawdzMessageTimer;
 import cn.nukkit.Server;
-import pl.vertty.arivi.guilds.managers.guild.region.LockManager;
-import pl.vertty.arivi.guilds.managers.guild.WarManager;
 import java.sql.SQLException;
 import pl.vertty.arivi.wings.WingsManager;
 import pl.vertty.arivi.tnt.EntityManager;
@@ -69,6 +69,7 @@ public class Main extends PluginBase
         EntityManager.init();
         ItemShopManager.loadUsers();
         RoleManager.loadUsers();
+        registerEntity();
         BlockFactory.registerBlock(12, FixedSand.class);
         try {
             WingsManager.init(this);
@@ -76,8 +77,6 @@ public class Main extends PluginBase
         catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        WarManager.loadWars();
-        LockManager.loadLocks();
         final Level world = Server.getInstance().getDefaultLevel();
         world.setThundering(false);
         world.setTime(2000);
@@ -146,4 +145,14 @@ public class Main extends PluginBase
         }
         plugin.getPlugin().getServer().shutdown();
     }
+
+    private void registerEntity() {
+        long startTime = System.nanoTime();
+        Entity.registerEntity(Snowball.class.getSimpleName(), Snowball.class);
+        Entity.registerEntity(EnderPearl.class.getSimpleName(), EnderPearl.class);
+        Entity.registerEntity(Arrow.class.getSimpleName(), Arrow.class);
+        long endTime = System.nanoTime();
+        getLogger().info("Registered entities in {S}ms".replace("{S}", String.valueOf((endTime - startTime) / 1000000L)));
+    }
+
 }

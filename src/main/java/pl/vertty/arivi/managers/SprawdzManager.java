@@ -47,7 +47,7 @@ public class SprawdzManager
     
     public static Sprawdz delete(final Player p) {
         p.removeEffect(9);
-        p.removeEffect(15);
+        p.removeEffect(19);
         SprawdzManager.sprawdz.remove(p.getName());
         return null;
     }

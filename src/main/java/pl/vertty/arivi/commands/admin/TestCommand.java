@@ -8,7 +8,10 @@ import org.apache.commons.lang3.StringUtils;
 import pl.vertty.arivi.Main;
 import pl.vertty.arivi.commands.builder.Command;
 import pl.vertty.arivi.enums.GroupType;
+import pl.vertty.arivi.managers.ACManager;
 import pl.vertty.arivi.utils.ChatUtil;
+
+import java.util.Enumeration;
 
 public class TestCommand extends Command
 {

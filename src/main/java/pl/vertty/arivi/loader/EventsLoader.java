@@ -75,9 +75,12 @@ public class EventsLoader
         pluginManager.registerEvents(new PermissionListener(), Main.getPlugin());
         pluginManager.registerEvents(new PlayerBucketListener(), Main.getPlugin());
     }
+
+
+
     
     public static void onEventsLoad() {
         registerListeners();
-        registerListener(Main.getPlugin(),new PhaseListener(), new ReachListener(), new NukerListener(), new MacroListener(), new AsyncPlayerChatListener(), new LiquidFlowListener(), new ItemConsumeListener(), new RzucakListener(), new EnchantListener(), new BlockOpenInventoriesListener(), new SprawdzListener(), new PandoraListener(), new PlayerInterractListener(), new PlayerJoinListener(), new BreakDropListener(), new ProtectionListener(), new CheckLoginListener(), new GodListener(), new MovementListener(), new BorderListener(), new LogsListener(), new WeatherListener(), new CobbleXListener(), new TimerManager(), new ServerChatListener(), new CraftingBlockAndCreateListener(), new RandomTPListener(), new SpawnProtectionListener(), new pl.vertty.arivi.listeners.block.BlockBreakListener(), new pl.vertty.arivi.listeners.block.BlockPlaceListener());
+        registerListener(Main.getPlugin(), new PhaseListener(), new ReachListener(), new NukerListener(), new MacroListener(), new AsyncPlayerChatListener(), new LiquidFlowListener(), new ItemConsumeListener(), new RzucakListener(), new EnchantListener(), new BlockOpenInventoriesListener(), new SprawdzListener(), new PandoraListener(), new PlayerInterractListener(), new PlayerJoinListener(), new BreakDropListener(), new ProtectionListener(), new CheckLoginListener(), new GodListener(), new MovementListener(), new BorderListener(), new LogsListener(), new WeatherListener(), new CobbleXListener(), new TimerManager(), new ServerChatListener(), new CraftingBlockAndCreateListener(), new RandomTPListener(), new SpawnProtectionListener(), new pl.vertty.arivi.listeners.block.BlockBreakListener(), new pl.vertty.arivi.listeners.block.BlockPlaceListener());
     }
 }

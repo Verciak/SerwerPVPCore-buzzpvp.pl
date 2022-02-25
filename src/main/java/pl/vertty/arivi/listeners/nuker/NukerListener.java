@@ -16,7 +16,9 @@ import pl.vertty.arivi.Cooldown;
 import pl.vertty.arivi.enums.GroupType;
 import pl.vertty.arivi.guilds.data.User;
 import pl.vertty.arivi.guilds.managers.UserManager;
+import pl.vertty.arivi.managers.ACManager;
 import pl.vertty.arivi.managers.BanManager;
+import pl.vertty.arivi.objects.ACData;
 import pl.vertty.arivi.objects.Ban;
 import pl.vertty.arivi.utils.ChatUtil;
 
@@ -41,6 +43,8 @@ public class NukerListener implements Listener {
         Player p = e.getPlayer();
         Block i = e.getBlock();
         User u = UserManager.getUser(p);
+        ACData ac = ACManager.getUser(e.getPlayer());
+
         if (p.getGamemode() == 0) {
             Item item = e.getItem();
             Enchantment eff = item.getEnchantment(Enchantment.ID_EFFICIENCY);
@@ -48,7 +52,7 @@ public class NukerListener implements Listener {
                 if (!u.can(GroupType.ADMIN) && i.getLocation().getFloorX() <= 125 && i.getLocation().getFloorX() >= -125 && i.getLocation().getFloorZ() <= 125 && i.getLocation().getFloorZ() >= -125 && (i.getId() == 17 || i.getId() == 3 || i.getId() == 2) && (e.getPlayer().getInventory().getItemInHand().getId() == 279 || e.getPlayer().getInventory().getItemInHand().getId() == 271 || e.getPlayer().getInventory().getItemInHand().getId() == 286 || e.getPlayer().getInventory().getItemInHand().getId() == 286 || e.getPlayer().getInventory().getItemInHand().getId() == 258 || e.getPlayer().getInventory().getItemInHand().getId() == 275 || e.getPlayer().getInventory().getItemInHand().getId() == 277 || e.getPlayer().getInventory().getItemInHand().getId() == 269 || e.getPlayer().getInventory().getItemInHand().getId() == 284 || e.getPlayer().getInventory().getItemInHand().getId() == 284 || e.getPlayer().getInventory().getItemInHand().getId() == 256 || e.getPlayer().getInventory().getItemInHand().getId() == 273)) {
                     return;
                 }
-                if (u.speedmineLimit(!(eff != null && eff.getLevel() >= 6 || (p.hasEffect(Effect.HASTE) && (p.getEffect(Effect.HASTE) != null && p.getEffect(Effect.HASTE).getAmplifier() >= 1))))) {
+                if (ac.speedmineLimit(!(eff != null && eff.getLevel() >= 6 || (p.hasEffect(Effect.HASTE) && (p.getEffect(Effect.HASTE) != null && p.getEffect(Effect.HASTE).getAmplifier() >= 1))))) {
                     e.setCancelled();
                     for (Player paa : Server.getInstance().getOnlinePlayers().values()) {
                         User ua = UserManager.getUser(paa);

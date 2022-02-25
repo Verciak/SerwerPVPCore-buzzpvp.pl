@@ -1,4 +1,4 @@
-package pl.vertty.arivi;
+package pl.vertty.arivi.entity;
 
 import cn.nukkit.Player;
 import cn.nukkit.block.Block;

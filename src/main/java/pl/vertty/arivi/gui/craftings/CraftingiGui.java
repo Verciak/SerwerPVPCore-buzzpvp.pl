@@ -1,4 +1,4 @@
-package pl.vertty.arivi.gui.user;
+package pl.vertty.arivi.gui.craftings;
 
 import cn.nukkit.Player;
 import cn.nukkit.item.Item;

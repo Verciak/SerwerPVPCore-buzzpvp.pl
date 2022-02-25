@@ -5,8 +5,10 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.item.enchantment.Enchantment;
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
+import cn.nukkit.utils.Config;
+import pl.vertty.arivi.Main;
 import pl.vertty.arivi.utils.ChatUtil;
-import pl.vertty.arivi.gui.user.EnchantGUI;
+import pl.vertty.arivi.gui.enchant.EnchantGUI;
 import cn.nukkit.level.Location;
 import pl.vertty.arivi.utils.EnchantUtils;
 import cn.nukkit.event.player.PlayerInteractEvent;
@@ -17,6 +19,7 @@ public class EnchantListener implements Listener
     @EventHandler
     public void onEnchant(final PlayerInteractEvent e) {
         final Player p = e.getPlayer();
+        final Config c = Main.getPlugin().getConfig();
         if (e.getBlock().getId() == 116 && e.getAction() == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
             if (e.getItem() != null) {
                 int books = 0;
@@ -34,14 +37,29 @@ public class EnchantListener implements Listener
                     }
                 }
                 if (e.getItem().getId() == 276 || e.getItem().getId() == 267 || e.getItem().getId() == 283 || e.getItem().getId() == 272 || e.getItem().getId() == 268) {
+                    if (!c.getBoolean("enable.enchant.status")) {
+                        e.setCancelled(true);
+                        ChatUtil.sendTitle(p, "&9ENCAHNT", ChatUtil.fixColor("&cEnchanty na miecze i sety sa tymczasowo wylaczone!"));
+                        return;
+                    }
                     EnchantGUI.openMiecz(p, books);
                     e.setCancelled(true);
                 }
                 if (e.getItem().getId() == 302 || e.getItem().getId() == 310 || e.getItem().getId() == 311 || e.getItem().getId() == 312 || e.getItem().getId() == 313 || e.getItem().getId() == 314 || e.getItem().getId() == 306 || e.getItem().getId() == 298 || e.getItem().getId() == 303 || e.getItem().getId() == 315 || e.getItem().getId() == 307 || e.getItem().getId() == 299 || e.getItem().getId() == 304 || e.getItem().getId() == 316 || e.getItem().getId() == 308 || e.getItem().getId() == 300 || e.getItem().getId() == 305 || e.getItem().getId() == 317 || e.getItem().getId() == 309 || e.getItem().getId() == 301) {
+                    if (!c.getBoolean("enable.enchant.status")) {
+                        e.setCancelled(true);
+                        ChatUtil.sendTitle(p, "&9ENCAHNT", ChatUtil.fixColor("&cEnchanty na miecze i sety sa tymczasowo wylaczone!"));
+                        return;
+                    }
                     EnchantGUI.openSety(p, books);
                     e.setCancelled(true);
                 }
                 if (e.getItem().getId() == 305 || e.getItem().getId() == 313 || e.getItem().getId() == 317 || e.getItem().getId() == 309 || e.getItem().getId() == 301) {
+                    if (!c.getBoolean("enable.enchant.status")) {
+                        e.setCancelled(true);
+                        ChatUtil.sendTitle(p, "&9ENCAHNT", ChatUtil.fixColor("&cEnchanty na miecze i sety sa tymczasowo wylaczone!"));
+                        return;
+                    }
                     EnchantGUI.openButy(p, books);
                     e.setCancelled(true);
                 }

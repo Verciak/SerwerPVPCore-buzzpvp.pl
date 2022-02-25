@@ -54,6 +54,9 @@ enable:
   kits:
     status: true
     message: '&cKity dostepne beda o 21:00!'
+  enchant:
+    status: true
+    message: '&cEnchanty na miecze i sety sa tymczasowo wylaczone!'
   pandora:
     status: true
 limit:
@@ -72,8 +75,8 @@ wl:
   list:
     - VerttyPL
   reason: '&cTrwaja prace techniczne!'
-border: 800
-borderd: 800.0
+border: 600
+borderd: 600.0
 protection:
   have-player: '&7Gracz {NAME} posiada ochrone jeszcze przez {TIME}'
   end-title: '&9OCHRONA'
@@ -84,8 +87,8 @@ bc-level: '&7Gracz {NICK} awansowal na {LVL} kopania!'
 drop:
   name: '&r&9{NAME}'
   lore: ' &r&8>> &7Szansa: &3{CHANCE}%{N} &r&8>> &7Wypada pomiedzy: &7Y:&30 &7a &3{HEIGHT}
-    &7poziomem{N} &r&8>> &7Szczescie: &3{FORTUNE}{N} &r&8>> &7Drop: &a{ENABLE}{N} &r&8>>
-    &7Punkty: &3{LVL} &7pkt.{N} &r&8>> &7Wykopane: &3{WYKOPANE}'
+    &7poziomem{N} &r&8>> &7Szczescie: &3{FORTUNE}{N} &r&8>> &7Drop: &a{ENABLE}{N}
+    &r&8>> &7Punkty: &3{LVL} &7pkt.{N} &r&8>> &7Wykopane: &3{WYKOPANE}'
 turbo: 0
 turbo-exp: 0
 exp:
@@ -96,7 +99,7 @@ drops:
     item: 264
     height: 35
     slot: 0
-    chance: 2.7
+    chance: 7.7
     fortune: true
     lvl: 9
     message: '&7Trafiles na &3x{AMOUNT} Diament'
@@ -104,7 +107,7 @@ drops:
     item: 388
     height: 35
     slot: 1
-    chance: 2.7
+    chance: 7.7
     fortune: true
     lvl: 9
     message: '&7Trafiles na &3x{AMOUNT} Emerald'
@@ -112,7 +115,7 @@ drops:
     item: 266
     height: 50
     slot: 2
-    chance: 2.25
+    chance: 7.25
     fortune: true
     lvl: 6
     message: '&7Trafiles na &3x{AMOUNT} Zloto'
@@ -120,7 +123,7 @@ drops:
     item: 265
     height: 64
     slot: 3
-    chance: 3.75
+    chance: 8.75
     fortune: false
     lvl: 5
     message: '&7Trafiles na &3x{AMOUNT} Zelazo'
@@ -128,7 +131,7 @@ drops:
     item: 49
     height: 35
     slot: 4
-    chance: 2.1
+    chance: 7.1
     fortune: true
     lvl: 9
     message: '&7Trafiles na &3x{AMOUNT} Obsydian'
@@ -136,7 +139,7 @@ drops:
     item: 263
     height: 100
     slot: 5
-    chance: 3.0
+    chance: 8.0
     fortune: true
     lvl: 1
     message: '&7Trafiles na &3x{AMOUNT} Wegiel'
@@ -144,7 +147,7 @@ drops:
     item: 331
     height: 35
     slot: 6
-    chance: 3.6
+    chance: 8.6
     fortune: true
     lvl: 3
     message: '&7Trafiles na &3x{AMOUNT} Redstone'
@@ -152,7 +155,7 @@ drops:
     item: 340
     height: 25
     slot: 7
-    chance: 2.0
+    chance: 7.0
     fortune: false
     lvl: 4
     message: '&7Trafiles na &3x{AMOUNT} Ksiazka'
@@ -160,7 +163,7 @@ drops:
     item: 289
     height: 35
     slot: 8
-    chance: 2.25
+    chance: 7.25
     fortune: true
     lvl: 4
     message: '&7Trafiles na &3x{AMOUNT} Proch'
@@ -168,7 +171,7 @@ drops:
     item: 12
     height: 35
     slot: 9
-    chance: 2.5
+    chance: 8.5
     fortune: false
     lvl: 1
     message: '&7Trafiles na &3x{AMOUNT} Piasek'
@@ -176,7 +179,7 @@ drops:
     item: 368
     height: 35
     slot: 10
-    chance: 0.045
+    chance: 0.945
     fortune: true
     lvl: 10
     message: '&7Trafiles na &3x{AMOUNT} Perla'
@@ -201,7 +204,7 @@ gildia:
 slowmode: 5
 unknown-command: '&cNie odnaleziono takiej komendy na serwerze &6/pomoc'
 format:
-  global: '{GUILD}&7{POINTS} &9P{PRESTIZ} {PREFIX}{RANGA} &7{PLAYER} &8>> &r{SUFFIX}{MSG}'
+  global: '{GUILD}&7{POINTS} {PREFIX}{RANGA} &7{PLAYER} &8>> &r{SUFFIX}{MSG}'
   admin: '{PREFIX}{RANGA} &7{PLAYER} &8>> &r{SUFFIX}{MSG}'
   chat:
     player:

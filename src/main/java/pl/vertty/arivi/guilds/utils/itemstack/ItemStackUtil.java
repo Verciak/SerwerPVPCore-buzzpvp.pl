@@ -2,28 +2,18 @@
 package pl.vertty.arivi.guilds.utils.itemstack;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.block.Block;
 import cn.nukkit.command.CommandSender;
+import cn.nukkit.inventory.PlayerInventory;
 import cn.nukkit.item.Item;
+import cn.nukkit.math.Vector3;
 import pl.vertty.arivi.guilds.utils.ChatUtil;
 
 import java.util.*;
 
 public class ItemStackUtil
 {
-    public static int getItemAmount(final Item material, final Player player, final short durability) {
-        int amount = 0;
-        for (final Item i : player.getInventory().getContents().values()) {
-            if (i.getId() == material.getId()) {
-                amount += i.getCount();
-            }
-            else {
-                amount = 0;
-            }
-        }
-        return amount;
-    }
-    
     public static List<Item> getItems(final String string, final int modifier) {
         final List<Item> items = new ArrayList<Item>();
         for (final String s : string.split(";")) {
@@ -38,7 +28,51 @@ public class ItemStackUtil
         }
         return items;
     }
-    
+
+    public static boolean checkItems(final Player p, final String it, final int mod) {
+        final List<Item> items = getItems(it, mod);
+        return items.stream().map(is -> new Item(is.getId(), Integer.valueOf(is.getDamage()), is.getCount())).allMatch(item -> p.getInventory().contains(item));
+    }
+
+    public static int getItem(final String it, final int mod) {
+        final List<Item> items = getItems(it, mod);
+        return items.size();
+    }
+
+    public static String getItem(final Player p, final String it, final int mod) {
+        final List<Item> items = getItems(it, mod);
+        ChatUtil.sendMessage((CommandSender)p, "&7Brakuje ci:");
+        for (final Item is : items) {
+            final int id = is.getId();
+            final int data = is.getDamage();
+            final int amount = is.getCount();
+            final int ii = getItemAmount(is, p);
+            ChatUtil.sendMessage((CommandSender)p, color(ii, amount) + " - " + is.getCustomName() + " " + ii + "/" + amount + " - " + ii / (double)amount * 100.0 + "%\n");
+        }
+        return null;
+    }
+
+    public static String getItemJoin(final Player p, final String it, final int mod) {
+        final List<Item> items = getItems(it, mod);
+        String s = "&7Aby dolaczyc do gildii potrzbujesz &6";
+        for (final Item is : items) {
+            final int id = is.getId();
+            final int data = is.getDamage();
+            final int amount = is.getCount();
+            final int ii = getItemAmount(is, p);
+            s = s + is.getCustomName() + " " + amount + " &7sztuk";
+        }
+        ChatUtil.sendMessage((CommandSender)p, s);
+        return null;
+    }
+
+    public static int getAmount(final int i) {
+        if (i == 0) {
+            return 1;
+        }
+        return i;
+    }
+
     public static void removeItems(final Player p, final String it, final int mod) {
         final List<Item> items = getItems(it, mod);
         for (final Item is : items) {
@@ -48,25 +82,34 @@ public class ItemStackUtil
             }
         }
     }
-    
-    public static boolean checkItems(final Player p, final String it, final int mod) {
-        final List<Item> items = getItems(it, mod);
-        return items.stream().map(is -> new Item(is.getId(), Integer.valueOf(is.getDamage()), is.getCount())).allMatch(item -> p.getInventory().contains(item));
-    }
-    
-    public static String getItem(final Player p, final String it, final int mod) {
-        final List<Item> items = getItems(it, mod);
-        ChatUtil.sendMessage((CommandSender)p, "&7Brakuje ci:");
-        for (final Item is : items) {
-            final int id = is.getId();
-            final int data = is.getDamage();
-            final int amount = is.getCount();
-            final int ii = getItemAmount(is, p, (short)data);
-            ChatUtil.sendMessage(p, " &8>> &f" + is.getCustomName() + " &7" + ii + "/" + amount +"\n");
+
+    public static int getItemAmount(final Item material, final Player player) {
+        int amount = 0;
+        for (final Item itemStack : player.getInventory().getContents().values()) {
+            if (itemStack.getId() == material.getId()) {
+                amount += itemStack.getCount();
+            }
         }
-        return null;
+        return amount;
     }
-    
+
+    public static int getAmountOfItem(final Item is, final Player player, final short durability) {
+        int amount = 0;
+        for (final Item itemStack : player.getInventory().getContents().values()) {
+            if (itemStack != null && itemStack.getDamage() == durability) {
+                amount += itemStack.getCount();
+            }
+        }
+        return amount;
+    }
+
+    private static String color(final int i, final int i2) {
+        if (i >= i2) {
+            return ChatUtil.fixColor("&a");
+        }
+        return ChatUtil.fixColor("&c");
+    }
+
     public static int remove(final Item base, final Player player, final int amount) {
         int actual = 0;
         int remaining = amount;
@@ -98,39 +141,39 @@ public class ItemStackUtil
         }
         return actual;
     }
-    
-    public static String getItem(final String s, final int n) {
-        final Iterator<Item> iterator = getItems(s, n).iterator();
-        if (iterator.hasNext()) {
-            final Item itemStack = iterator.next();
-            return String.valueOf(new StringBuilder().append(itemStack.getCount()).append(" &9").append(itemStack.getCustomName()));
+
+    public static void giveItem(final Player player, final Item item) {
+        final Item daj = Item.get(item.getId(), Integer.valueOf(item.getDamage()), item.getCount());
+        if (item.hasCustomName()) {
+            daj.setCustomName(ChatUtil.fixColor(item.getCustomName()));
         }
-        return "puste";
-    }
-    
-    private static String color(final int n, final int n2) {
-        if (n >= n2) {
-            return ChatUtil.fixColor("&8&l");
+        if (item.hasEnchantments()) {
+            daj.addEnchantment(item.getEnchantments());
         }
-        return ChatUtil.fixColor("&8&l");
-    }
-    
-    public static Map<Block, Integer> getExplodedBlocks(final List<String> list) {
-        final HashMap<Block, Integer> hashMap = new HashMap<Block, Integer>();
-        final Iterator<String> iterator = list.iterator();
-        while (iterator.hasNext()) {
-            final String[] split = iterator.next().split(":");
-            hashMap.put(Block.get(Integer.parseInt(split[0])), Integer.parseInt(split[1]));
+        final PlayerInventory inventoryAutoAdd = player.getInventory();
+        final Item[] itemsToAdd = { daj };
+        for (int i = 0; i < itemsToAdd.length; ++i) {
+            final boolean canAddItem = inventoryAutoAdd.canAddItem(itemsToAdd[i]);
+            if (canAddItem) {
+                inventoryAutoAdd.addItem(new Item[] { itemsToAdd[i] });
+            }
+            else {
+                Server.getInstance().getDefaultLevel().dropItem(new Vector3(player.getX(), player.getY(), player.getZ()), daj);
+            }
         }
-        return hashMap;
     }
-    
-    public static List<Block> getRegenerationBlocks(final List<String> list) {
-        final ArrayList<Block> list2 = new ArrayList<Block>();
-        final Iterator<String> iterator = list.iterator();
-        while (iterator.hasNext()) {
-            list2.add(Block.get(Integer.parseInt(iterator.next())));
+
+    public static void giveItems(final Player player, final Item... Items) {
+        for (final Item item : Items) {
+            final Item daj = Item.get(item.getId(), Integer.valueOf(item.getDamage()), item.getCount());
+            if (item.hasCustomName()) {
+                daj.setCustomName(ChatUtil.fixColor(item.getCustomName()));
+            }
+            if (item.hasEnchantments()) {
+                daj.addEnchantment(item.getEnchantments());
+            }
+            giveItem(player, daj);
         }
-        return list2;
     }
+
 }

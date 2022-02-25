@@ -39,7 +39,6 @@ public class TimerUtil
         if (!u.can(GroupType.MODERATOR)) {
             ChatUtil.sendMessage((CommandSender)p, "&7Teleportacja nastapi za &e" + delay + " sekund");
         }
-        u.setTeleport(true);
         final TaskHandler task = Server.getInstance().getScheduler().scheduleDelayedRepeatingTask((Plugin)Main.getPlugin(), (Runnable)new Runnable() {
             int time = delay;
             
@@ -91,7 +90,6 @@ public class TimerUtil
             }
             ChatUtil.sendMessage((CommandSender)p, "&7Teleportacja nastapi za &e" + delay + " sekund");
         }
-        u.setTeleport(true);
         final int finalDelay = delay;
         TaskHandler task = Server.getInstance().getScheduler().scheduleDelayedRepeatingTask(Main.getPlugin(), new Runnable() {
             int time = finalDelay;

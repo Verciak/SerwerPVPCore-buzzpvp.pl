@@ -40,9 +40,41 @@ public class InventoryCategory
             addElement(b, ItemData.fromItem(MainConstants.BLUE_GLASS));
     }
 
+
+    public void setDoubleItemShopGui() {
+        int[] black = {
+                1, 2, 3,4, 5, 6, 7,9,18,27,36,17,26,35,44,46,20,21,22,23,24,30,32,49,51,47,52,48,50, 10,11,12,14,15,16,19,25,28,34,37,38,39,40,41,42,43};
+        int[] blue = { 0, 8, 45, 53 };
+        for (int b : black)
+            addElement(b, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        for (int b : blue)
+            addElement(b, ItemData.fromItem(MainConstants.BLUE_GLASS));
+    }
+
+    public void setDoubleEffectsGui() {
+        int[] black = {
+                1, 2, 3,4, 5, 6, 7,9,18,27,36,17,26,35,44,46,49,51,47,52,48,50, 10,11,12,13,14,15,16,19,25,28,34,37,38,39,40,41,42,43};
+        int[] blue = { 0, 8, 45, 53 };
+        for (int b : black)
+            addElement(b, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        for (int b : blue)
+            addElement(b, ItemData.fromItem(MainConstants.BLUE_GLASS));
+    }
+
+
     public void setDoubleGuildItemsGui() {
         int[] black = {
                 1, 2, 3,4, 5, 6, 7,9,18,27,36,17,26,35,44,46,49,51,47,52,48,50};
+        int[] blue = { 0, 8, 45, 53 };
+        for (int b : black)
+            addElement(b, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        for (int b : blue)
+            addElement(b, ItemData.fromItem(MainConstants.BLUE_GLASS));
+    }
+
+    public void setDoublCHUJGui() {
+        int[] black = {
+                1, 2, 3,4, 49,5, 6, 7,9,18,27,36,17,26,35,44,46,51,47,52,48,50};
         int[] blue = { 0, 8, 45, 53 };
         for (int b : black)
             addElement(b, ItemData.fromItem(MainConstants.BLACK_GLASS));
@@ -124,6 +156,17 @@ public class InventoryCategory
             addElement(b, ItemData.fromItem(MainConstants.BLUE_GLASS));
     }
 
+
+    public void setSmallFarmerServerGui() {
+        int[] black = {
+                1, 2, 3, 5, 6, 7, 9, 17, 19,
+                20, 21, 23, 24,10,12,14,16, 25 };
+        int[] blue = { 0, 8,13, 18, 26 };
+        for (int b : black)
+            addElement(b, ItemData.fromItem(MainConstants.BLACK_GLASS));
+        for (int b : blue)
+            addElement(b, ItemData.fromItem(MainConstants.BLUE_GLASS));
+    }
 
     public void setSmallServerGui() {
         int[] black = {

@@ -39,30 +39,24 @@ public class CobblexCommand extends PlayerCommand
                 return ChatUtil.sendMessage(p, "&8>> &7Muszisz miec &69x64 &7cobblestone");
             }
             final int r = RandomUtils.getRandInt(1, 3);
-            final Item cx = Item.get(52, Integer.valueOf(0));
+            final Item cx = Item.get(52, 0);
             cx.setCount(r);
             cx.setCustomName(ChatUtil.fixColor("&8* &6Cobblex &8*"));
-            cx.addEnchantment(new Enchantment[] { Enchantment.get(5).setLevel(10, false) });
+            cx.addEnchantment(Enchantment.get(5).setLevel(10, false));
             final PlayerInventory inv = p.getInventory();
             boolean canAddItem;
                 canAddItem = inv.canAddItem(cx);
                 if (canAddItem) {
-                    p.getInventory().addItem(new Item[] { cx });
+                    p.getInventory().addItem(cx);
                 }
                 else {
                     p.getLevel().dropItem(new Vector3(p.getX(), p.getFloorY(), p.getZ()), cx);
                 }
 
             ItemUtil.removeItems(p, "4:0-64:cobble", 9);
-            return ChatUtil.sendMessage(p, "&8>> &7Wycraftowales &6Cobblex &7x" + r);
+            return ChatUtil.sendMessage(p, "&8>> &7Stworzyles &9CobbleX &7w ilosci &3x" + r + " &8(&&91 - 3&8)");
         }
-        else {
-            if (args[0].equalsIgnoreCase("drop")) {
-                Util.openCobbleX(p);
-                return true;
-            }
-            return ChatUtil.sendMessage(p, this.getUsage());
-        }
+        return false;
     }
     
     static {

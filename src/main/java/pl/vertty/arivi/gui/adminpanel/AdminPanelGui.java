@@ -1,4 +1,4 @@
-package pl.vertty.arivi.gui.user;
+package pl.vertty.arivi.gui.adminpanel;
 
 import cn.nukkit.Player;
 import cn.nukkit.item.Item;
@@ -19,7 +19,7 @@ public class AdminPanelGui
 
         final InventoryMenu menu = new InventoryMenu();
         final InventoryCategory category = new InventoryCategory();
-        category.addElement(1, ItemData.fromItem(MainConstants.PANDORA_ITEM_ADMINPANEL), new ItemClick() {
+        category.addElement(0, ItemData.fromItem(MainConstants.PANDORA_ITEM_ADMINPANEL), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item) {
                 if(c.getBoolean("enable.pandora.status") == true){
@@ -35,7 +35,7 @@ public class AdminPanelGui
                 }
             }
         });
-        category.addElement(2, ItemData.fromItem(MainConstants.KITS_ADMINPANEL), new ItemClick() {
+        category.addElement(1, ItemData.fromItem(MainConstants.KITS_ADMINPANEL), new ItemClick() {
             @Override
             public void onClick(final Player player, final Item item) {
                 if(c.getBoolean("enable.kits.status") == true){
@@ -45,6 +45,22 @@ public class AdminPanelGui
                     open(player);
                 }else{
                     c.set("enable.kits.status", true);
+                    c.save();
+                    MainConstants.set();
+                    open(player);
+                }
+            }
+        });
+        category.addElement(2, ItemData.fromItem(MainConstants.ENCHANT_ADMINPANEL), new ItemClick() {
+            @Override
+            public void onClick(final Player player, final Item item) {
+                if(c.getBoolean("enable.enchant.status") == true){
+                    c.set("enable.enchant.status", false);
+                    c.save();
+                    MainConstants.set();
+                    open(player);
+                }else{
+                    c.set("enable.enchant.status", true);
                     c.save();
                     MainConstants.set();
                     open(player);
