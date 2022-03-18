@@ -3,15 +3,11 @@ package pl.vertty.arivi.utils;
 import cn.nukkit.Player;
 import cn.nukkit.scheduler.NukkitRunnable;
 import pl.vertty.arivi.Main;
-import pl.vertty.arivi.objects.Combat;
-import pl.vertty.arivi.objects.User;
-import pl.vertty.arivi.objects.guild.Guild;
-import pl.vertty.arivi.managers.guild.GuildManager;
+import pl.vertty.arivi.guilds.data.Combat;
+import pl.vertty.arivi.guilds.data.User;
 
 public class DeathUtil {
     public static String deathsMessage(final int plus, int minus, Player player, final Player killer) {
-        Guild u = GuildManager.getGuild(player);
-        Guild k = GuildManager.getGuild(killer);
         (new NukkitRunnable() {
             int i = 0;
 
@@ -24,12 +20,11 @@ public class DeathUtil {
                 }
             }
         }).runTaskTimerAsynchronously(Main.getPlugin(), 0, 3);
-        String m = "&7Gracz " + ((u == null) ? "" : ("&8[&c" + u.getTag() + "&8] ")) + "&9" + player.getName() + " &8(&c" + ((plus >= 0) ? ("-" + minus) : Integer.valueOf(minus)) + "&8) &7zostal zabity przez " + ((k == null) ? "" : ("&8[&c" + k.getTag() + "&8] ")) + "&9" + killer.getName() + " &8(&a" + ((plus >= 0) ? ("+" + plus) : Integer.valueOf(plus)) + "&8)";
+        String m = "&7Gracz &9" + player.getName() + " &8(&c" + ((plus >= 0) ? ("-" + minus) : Integer.valueOf(minus)) + "&8) &7zostal zabity przez &9" + killer.getName() + " &8(&a" + ((plus >= 0) ? ("+" + plus) : Integer.valueOf(plus)) + "&8)";
         return ChatUtil.fixColor(m);
     }
 
     public static String asystaMessage(final int plus, final Player player) {
-        Guild g = GuildManager.getGuild(player);
         (new NukkitRunnable() {
             int i = 0;
 
@@ -42,7 +37,7 @@ public class DeathUtil {
                 }
             }
         }).runTaskTimerAsynchronously(Main.getPlugin(), 0, 3);
-        String m = "&7Asystowal: " + ((g == null) ? "" : ("&8[&c" + g.getTag() + "&8] ")) + "&9" + player.getName() + " &8(&a" + ((plus >= 0) ? ("+" + plus) : Integer.valueOf(plus)) + "&8)";
+        String m = "&7Asystowal: &9" + player.getName() + " &8(&a" + ((plus >= 0) ? ("+" + plus) : Integer.valueOf(plus)) + "&8)";
         return ChatUtil.fixColor(m);
     }
 

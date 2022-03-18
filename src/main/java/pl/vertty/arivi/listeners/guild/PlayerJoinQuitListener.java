@@ -1,34 +1,33 @@
+// 
+// Decompiled by Procyon v0.5.36
+// 
 
-package pl.vertty.arivi.listeners.guild;
+package pl.vertty.arivi.guilds.listeners;
 
+import cn.nukkit.command.CommandSender;
 import cn.nukkit.event.player.PlayerLoginEvent;
-import pl.vertty.arivi.objects.guild.Guild;
-import pl.vertty.arivi.objects.Combat;
-import pl.vertty.arivi.utils.guild.ChatUtil;
-import pl.vertty.arivi.objects.yml.Config;
+import cn.nukkit.potion.Effect;
+import pl.vertty.arivi.enums.GroupType;
+import pl.vertty.arivi.enums.TimeUtil;
+import pl.vertty.arivi.guilds.data.Combat;
+import pl.vertty.arivi.guilds.rank.RankingManager;
+import pl.vertty.arivi.guilds.utils.ChatUtil;
+import pl.vertty.arivi.guilds.data.yml.Config;
 import cn.nukkit.Server;
-import pl.vertty.arivi.managers.guild.GuildManager;
 import cn.nukkit.event.player.PlayerKickEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.Player;
-import pl.vertty.arivi.objects.User;
-import pl.vertty.arivi.managers.CombatManager;
-import pl.vertty.arivi.managers.UserManager;
+import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.guilds.managers.CombatManager;
+import pl.vertty.arivi.guilds.managers.UserManager;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.Listener;
-import pl.vertty.arivi.objects.BossBar;
+import pl.vertty.arivi.guilds.utils.RandomUtil;
+import pl.vertty.arivi.utils.DeathUtil;
 
 public class PlayerJoinQuitListener implements Listener
 {
-
-    @EventHandler
-    public void onPlayerLeave(PlayerQuitEvent event) {
-        if (BossBar.playerHasBossBar(event.getPlayer())) {
-            BossBar.removeBossBar(event.getPlayer());
-        }
-    }
-
 
     @EventHandler
     public void onCreate(PlayerLoginEvent e) {
@@ -51,11 +50,6 @@ public class PlayerJoinQuitListener implements Listener
         if (CombatManager.getCombat(player) == null) {
             CombatManager.createCombat(player);
         }
-        final User usa = UserManager.getUser(player);
-        User.skarbiec_eme = false;
-        User.skarbiec_head = false;
-        User.war_create = false;
-        User.war_stop = false;
         Combat combat = CombatManager.getCombat(player);
         if (combat == null)
             CombatManager.createCombat(player);
@@ -91,8 +85,59 @@ public class PlayerJoinQuitListener implements Listener
             return;
         }
         player.setHealth(0.0f);
-        final Guild guild = GuildManager.getGuild(player);
-        final User user2 = UserManager.getUser(CombatManager.getCombat(player).getLastAttactkPlayer());
-        Server.getInstance().broadcastMessage(ChatUtil.fixColor(Config.ANTYLOGAUT_LOGAUT.replace("{NICK}", player.getName()).replace("{TAG}", (guild == null) ? "" : String.valueOf(new StringBuilder().append("&8[&c").append(guild.getTag()).append("&8] "))).replace("{PKT}", "25")));
+        final User kUser = UserManager.getUser(CombatManager.getCombat(player).getLastAttactkPlayer());
+
+        if (DeathUtil.isLastKill(kUser, player) == false){
+            user.removeCoins(3);
+            ChatUtil.sendMessage(user.getPlayer(), "&cStraciles &43 monety&c!");
+            if(kUser.can(GroupType.SPONSOR)){
+                kUser.addCoins(20);
+                ChatUtil.sendMessage(kUser.getPlayer(), "&7Otrzymales &320 monet &7za zabojstwo gracza!");
+            }else if(kUser.can(GroupType.YOUTUBER)){
+                kUser.addCoins(10);
+                ChatUtil.sendMessage(kUser.getPlayer(), "&7Otrzymales &310 monet &7za zabojstwo gracza!");
+            } else if(kUser.can(GroupType.SVIP)){
+                kUser.addCoins(15);
+                ChatUtil.sendMessage(kUser.getPlayer(), "&7Otrzymales &315 monet &7za zabojstwo gracza!");
+            } else if(kUser.can(GroupType.VIP)){
+                kUser.addCoins(10);
+                ChatUtil.sendMessage(kUser.getPlayer(), "&7Otrzymales &310 monet &7za zabojstwo gracza!");
+            } else if(kUser.can(GroupType.PLAYER)){
+                kUser.addCoins(5);
+                ChatUtil.sendMessage(kUser.getPlayer(), "&7Otrzymales &35 monet &7za zabojstwo gracza!");
+            }
+        }
+
+        if (DeathUtil.isLastKill(kUser, player)) {
+            ChatUtil.sendMessage((CommandSender) kUser.getPlayer(), "&cZabiles tego samego gracza w ciagu 10m");
+            for (Player po : Server.getInstance().getOnlinePlayers().values()) {
+                ChatUtil.sendMessage((CommandSender) po, DeathUtil.deathsMessage(0, 0, player, kUser.getPlayer()));
+            }
+        } else {
+            int add = (int) (94.0D + (kUser.getPoints() - ((user != null) ? user.getPoints() : 0)) * -0.25D);
+            if (add <= 0) {
+                add = RandomUtil.getRandInt(8, 15);
+            }
+            int remove = add / 4 * 3;
+            if (user != null) {
+                user.setPoints(user.getPoints() - remove);
+            }
+            kUser.setLastKillTime(System.currentTimeMillis() + TimeUtil.MINUTE.getTime(10));
+            kUser.setLastKill(player.getName());
+            kUser.setPoints(kUser.getPoints() + add);
+            kUser.setKills(kUser.getKills() + 1);
+            user.setDeaths(user.getDeaths() + 1);
+            if (kUser != null) {
+                kUser.getPlayer().addEffect(Effect.getEffect(12).setDuration(200).setAmplifier(0).setVisible(true));
+            }
+            for (Player po2 : Server.getInstance().getOnlinePlayers().values()) {
+                User u2 = UserManager.getUser(po2);
+                ChatUtil.sendMessage((CommandSender) po2, DeathUtil.deathsMessage(add, remove, player, kUser.getPlayer()));
+            }
+        }
+        CombatManager.getCombat(kUser.getPlayer()).setLastAttactTime(0);
+        RankingManager.sortUserRankings();
+
+        Server.getInstance().broadcastMessage(ChatUtil.fixColor(Config.ANTYLOGAUT_LOGAUT.replace("{NICK}", player.getName()).replace("{PKT}", "25")));
     }
 }

@@ -1,24 +1,26 @@
+// 
+// Decompiled by Procyon v0.5.36
+// 
 
 package pl.vertty.arivi.utils;
 
-import cn.nukkit.Player;
-import cn.nukkit.Server;
-import cn.nukkit.command.CommandSender;
+import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.guilds.managers.UserManager;
 import cn.nukkit.inventory.PlayerInventory;
-import cn.nukkit.item.Item;
 import cn.nukkit.math.Vector3;
-import pl.vertty.arivi.drop.base.Drop;
-import pl.vertty.arivi.drop.base.utils.UserUtils;
-import pl.vertty.arivi.objects.User;
-import pl.vertty.arivi.managers.UserManager;
-import pl.vertty.arivi.inventory.InventoryCategory;
-import pl.vertty.arivi.inventory.InventoryMenu;
+import cn.nukkit.Server;
+import java.util.Collection;
+import java.util.Arrays;
+import cn.nukkit.command.CommandSender;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import pl.vertty.arivi.inventory.InventoryMenuHandler;
 import pl.vertty.arivi.inventory.item.ItemData;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import cn.nukkit.item.Item;
+import pl.vertty.arivi.inventory.InventoryCategory;
+import pl.vertty.arivi.inventory.InventoryMenu;
+import cn.nukkit.Player;
 
 public class ItemUtil
 {
@@ -221,33 +223,6 @@ public class ItemUtil
         }
     }
     
-    public static void giveItemDrop(final Player player, final Item item, final Drop drop) {
-        final Item daj = Item.get(item.getId(), Integer.valueOf(item.getDamage()), item.getCount());
-        if (item.hasCustomName()) {
-            daj.setCustomName(ChatUtil.fixColor(item.getCustomName()));
-        }
-        if (item.hasEnchantments()) {
-            daj.addEnchantment(item.getEnchantments());
-        }
-        final PlayerInventory inventoryAutoAdd = player.getInventory();
-        final Item[] itemsToAdd = { daj };
-        for (int i = 0; i < itemsToAdd.length; ++i) {
-            final boolean canAddItem = inventoryAutoAdd.canAddItem(itemsToAdd[i]);
-            if (canAddItem) {
-                inventoryAutoAdd.addItem(new Item[] { itemsToAdd[i] });
-            }
-            else {
-                if (drop.getItem() == Item.get(368)) {
-                    final User ua = UserManager.getUser(player);
-                    ua.addPerly(item.getCount());
-                    return;
-                }
-                final pl.vertty.arivi.drop.base.User user = UserUtils.get(player.getName());
-                player.dropItem(Item.get(drop.getItem().getId(), drop.getItem().getDamage(), item.getCount()));
-            }
-        }
-    }
-    
     public static void giveItemsLore(final Player player, final Item... Items) {
         for (final Item item : Items) {
             final Item daj = Item.get(item.getId(), Integer.valueOf(item.getDamage()), item.getCount());
@@ -272,19 +247,6 @@ public class ItemUtil
                 daj.addEnchantment(item.getEnchantments());
             }
             giveItem(player, daj);
-        }
-    }
-    
-    public static void giveItemsDrop(final Player player, final Drop drop, final Item... Items) {
-        for (final Item item : Items) {
-            final Item daj = Item.get(item.getId(), Integer.valueOf(item.getDamage()), item.getCount());
-            if (item.hasCustomName()) {
-                daj.setCustomName(ChatUtil.fixColor(item.getCustomName()));
-            }
-            if (item.hasEnchantments()) {
-                daj.addEnchantment(item.getEnchantments());
-            }
-            giveItemDrop(player, daj, drop);
         }
     }
 }

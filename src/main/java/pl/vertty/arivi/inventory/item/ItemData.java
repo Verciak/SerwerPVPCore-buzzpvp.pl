@@ -65,7 +65,7 @@ public class ItemData
         this.damage = damage;
         this.count = count;
         this.customName = ChatUtil.fixColor(customName);
-        this.lores = lores;
+        this.lores = ChatUtil.fixColor(lores);
         this.enchantment = enchantment1;
     }
     
@@ -75,7 +75,7 @@ public class ItemData
             item.setCustomName(ChatUtil.fixColor(this.customName));
         }
         if (this.lores.length > 0) {
-            item.setLore(this.lores);
+            item.setLore(ChatUtil.fixColor(this.lores));
         }
         if (this.enchantment.length > 0) {
             item.addEnchantment(this.enchantment);

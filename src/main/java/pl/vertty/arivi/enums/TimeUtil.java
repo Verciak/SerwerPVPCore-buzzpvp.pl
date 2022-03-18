@@ -1,3 +1,7 @@
+// 
+// Decompiled by Procyon v0.5.36
+// 
+
 package pl.vertty.arivi.enums;
 
 public enum TimeUtil
@@ -9,7 +13,7 @@ public enum TimeUtil
     HOUR(3600000),
     DAY(86400000),
     WEEK(604800000);
-    
+
     private final int time;
 
     TimeUtil(final int time) {
@@ -19,15 +23,15 @@ public enum TimeUtil
     public int getTime() {
         return this.time;
     }
-    
+
     public int getTick() {
         return this.time / 50;
     }
-    
+
     public int getTime(final int multi) {
         return this.time * multi;
     }
-    
+
     public int getTick(final int multi) {
         return this.getTick() * multi;
     }

@@ -1,9 +1,13 @@
+// 
+// Decompiled by Procyon v0.5.36
+// 
+
 package pl.vertty.arivi.drop.utils;
 
+import java.util.concurrent.TimeUnit;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Stack;
-import java.util.concurrent.TimeUnit;
 
 public class TimeUtils
 {
@@ -29,7 +33,7 @@ public class TimeUtils
                     }
                     if (calc) {
                         try {
-                            final long i = Integer.parseInt(value.toString());
+                            final long i = Integer.valueOf(value.toString());
                             switch ((char)type.pop()) {
                                 case 'd': {
                                     time += i * 86400000L;
@@ -50,7 +54,7 @@ public class TimeUtils
                             }
                         }
                         catch (NumberFormatException e) {
-                            Util.sendError("Unknown number: " + value);
+                            System.out.println("Unknown number: " + value.toString());
                             return time;
                         }
                     }

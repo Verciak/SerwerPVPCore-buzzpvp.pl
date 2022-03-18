@@ -1,23 +1,40 @@
+// 
+// Decompiled by Procyon v0.5.36
+// 
 
 package pl.vertty.arivi.task;
 
-import cn.nukkit.Player;
-import cn.nukkit.Server;
+import cn.nukkit.block.Block;
 import cn.nukkit.block.BlockID;
+import cn.nukkit.level.Location;
+import cn.nukkit.math.Vector3;
+import pl.vertty.arivi.AntiGrief;
+import pl.vertty.arivi.guilds.data.Combat;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import cn.nukkit.level.Level;
-import cn.nukkit.scheduler.NukkitRunnable;
-import pl.vertty.arivi.objects.Combat;
-import pl.vertty.arivi.managers.CombatManager;
 import pl.vertty.arivi.managers.FakeWater;
 import pl.vertty.arivi.managers.WaterManager;
 import pl.vertty.arivi.utils.ChatUtil;
 import pl.vertty.arivi.utils.DataUtil;
-
-import java.util.Map;
+import pl.vertty.arivi.guilds.managers.CombatManager;
+import cn.nukkit.Player;
+import cn.nukkit.Server;
+import cn.nukkit.scheduler.NukkitRunnable;
 
 public class CombatTask extends NukkitRunnable
 {
     public void run() {
+        for (ConcurrentHashMap<String, String> s : (Iterable<ConcurrentHashMap<String, String>>) AntiGrief.getGrief().values()) {
+            if (Long.valueOf(s.get("time")).longValue() <= System.currentTimeMillis()) {
+                Location loc = new Location(Integer.valueOf(s.get("x")).intValue(), Integer.valueOf(s.get("y")).intValue(), Integer.valueOf(s.get("z")).intValue(), Server.getInstance().getLevelByName(s.get("world")));
+                Block v = loc.getLevelBlock();
+                if (AntiGrief.removeBlock(v))
+                    loc.getLevel().setBlock((Vector3)loc, Block.get(0));
+            }
+        }
         for(Map.Entry<Long, FakeWater> entry : WaterManager.getWaters().entrySet()) {
             if (!entry.getValue().canBeRemoved()) continue;
             if(entry.getValue().getLevel().getBlock(entry.getValue()).getId() == BlockID.STILL_WATER || entry.getValue().getLevel().getBlock(entry.getValue()).getId() == BlockID.WATER) {

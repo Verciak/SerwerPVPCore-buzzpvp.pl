@@ -1,17 +1,23 @@
+// 
+// Decompiled by Procyon v0.5.36
+// 
 
 package pl.vertty.arivi.task;
 
+import cn.nukkit.level.Level;
+import cn.nukkit.scheduler.Task;
+import pl.vertty.arivi.Main;
+import pl.vertty.arivi.guilds.data.Combat;
+import pl.vertty.arivi.guilds.data.User;
+import java.util.Iterator;
+import cn.nukkit.command.CommandSender;
+import pl.vertty.arivi.utils.ChatUtil;
+import pl.vertty.arivi.guilds.managers.CombatManager;
+import pl.vertty.arivi.guilds.managers.UserManager;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
-import cn.nukkit.command.CommandSender;
-import cn.nukkit.scheduler.NukkitRunnable;
 import cn.nukkit.utils.Config;
-import pl.vertty.arivi.Main;
-import pl.vertty.arivi.objects.Combat;
-import pl.vertty.arivi.objects.User;
-import pl.vertty.arivi.managers.CombatManager;
-import pl.vertty.arivi.managers.UserManager;
-import pl.vertty.arivi.utils.ChatUtil;
+import cn.nukkit.scheduler.NukkitRunnable;
 
 public class AutoMessageTask extends NukkitRunnable
 {
@@ -23,6 +29,19 @@ public class AutoMessageTask extends NukkitRunnable
     }
     
     public void run() {
+        for (Level level : Server.getInstance().getLevels().values()) {
+            level.setRaining(false);
+            level.setThundering(false);
+            level.setRainTime(240000);
+            level.setThunderTime(240000);
+            Server.getInstance().getScheduler().scheduleDelayedTask(new Task() {
+                public void onRun(int arg0) {
+                    level.sendWeather(Server.getInstance().getOnlinePlayers().values());
+                }
+            },  40);
+        }
+
+
         if (AutoMessageTask.c.getStringList("automsg").size() == 0) {
             return;
         }

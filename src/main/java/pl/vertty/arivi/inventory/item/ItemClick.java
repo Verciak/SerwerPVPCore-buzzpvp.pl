@@ -20,5 +20,5 @@ public abstract class ItemClick
         this.item = item;
     }
     
-    public abstract void onClick(final Player p0, final Item p1) throws SkinChangeException;
+    public abstract void onClick(final Player p0, final Item p1);
 }

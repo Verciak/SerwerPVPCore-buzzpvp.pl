@@ -1,29 +1,39 @@
+// 
+// Decompiled by Procyon v0.5.36
+// 
 
-package pl.vertty.arivi.listeners.guild;
+package pl.vertty.arivi.guilds.listeners;
 
-import java.util.Iterator;
-
+import cn.nukkit.event.entity.EntityDamageByEntityEvent;
+import cn.nukkit.event.player.PlayerTeleportEvent;
 import pl.vertty.arivi.Main;
-import pl.vertty.arivi.objects.Combat;
-import pl.vertty.arivi.objects.guild.Guild;
+import pl.vertty.arivi.guilds.data.Combat;
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
-import pl.vertty.arivi.managers.CombatManager;
-import pl.vertty.arivi.utils.guild.ChatUtil;
-import pl.vertty.arivi.objects.yml.Config;
-import pl.vertty.arivi.managers.guild.GuildManager;
+import pl.vertty.arivi.guilds.managers.CombatManager;
+import pl.vertty.arivi.guilds.utils.ChatUtil;
 import cn.nukkit.event.player.PlayerCommandPreprocessEvent;
 import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 
+import java.math.BigDecimal;
+
 public class AsyncPlayerChatListener implements Listener
 {
+
+    @EventHandler
+    public void onPlayerTeleport(final PlayerTeleportEvent event) {
+        if (event.getCause().equals(PlayerTeleportEvent.TeleportCause.ENDER_PEARL)) {
+            event.setCancelled(true);
+            event.getPlayer().teleport(event.getTo());
+        }
+    }
+
     @EventHandler(priority = EventPriority.HIGH)
     public void onCommand(final PlayerCommandPreprocessEvent playerCommandPreprocessEvent) {
         final Player player = playerCommandPreprocessEvent.getPlayer();
         final String message = playerCommandPreprocessEvent.getMessage();
-        final Guild guild = GuildManager.getGuild(player.getLocation());
         String pcmd = playerCommandPreprocessEvent.getMessage();
         Combat combat = CombatManager.getCombat(player);
         if (combat != null && combat.hasFight()) {
@@ -32,15 +42,6 @@ public class AsyncPlayerChatListener implements Listener
                     playerCommandPreprocessEvent.setCancelled(true);
                     ChatUtil.sendMessage((CommandSender) player, "&cTa komenda jest zablokowana podczas walki!");
                     return;
-                }
-            }
-        }
-        if (guild != null && !guild.isMember(player.getName()) && !player.isOp()) {
-            final Iterator<String> iterator = Config.CMD_IN_GUILD.iterator();
-            while (iterator.hasNext()) {
-                if (message.toLowerCase().contains(String.valueOf(new StringBuilder().append("/").append(iterator.next())))) {
-                    playerCommandPreprocessEvent.setCancelled(true);
-                    ChatUtil.sendMessage((CommandSender)player, Config.GUILD_COMMAND_USE_GUILD);
                 }
             }
         }

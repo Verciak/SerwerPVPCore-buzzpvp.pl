@@ -1,8 +1,12 @@
+// 
+// Decompiled by Procyon v0.5.36
+// 
+
 package pl.vertty.arivi.commands.admin;
 
-import pl.vertty.arivi.objects.User;
+import pl.vertty.arivi.guilds.data.User;
 import pl.vertty.arivi.enums.TimeUtil;
-import pl.vertty.arivi.managers.UserManager;
+import pl.vertty.arivi.guilds.managers.UserManager;
 import pl.vertty.arivi.utils.ChatUtil;
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
@@ -12,7 +16,7 @@ import pl.vertty.arivi.commands.builder.Command;
 public class StatsCommand extends Command
 {
     public StatsCommand() {
-        super("stats", "Ustawianie graczowi statystyk", "/stats <gracz> <kamien/kills/deaths/points/assists/exp/lvl> <ilosc> lub <ochrona/restart> <1>", GroupType.ADMIN, new String[] { "" });
+        super("stats", "Ustawianie graczowi statystyk", "/stats <gracz> <kills/deaths/points/assists> <ilosc> lub <restart> <1>", GroupType.ADMIN, new String[] { "" });
     }
     
     @Override
@@ -30,18 +34,15 @@ public class StatsCommand extends Command
             return ChatUtil.sendMessage(sender, "&4Blad: &cTo nie liczba!");
         }
         final int i = Integer.parseInt(args[2]);
-        final String s = args[1];
-        switch (s) {
-            case "ochrona": {
-                u.setOchrona(System.currentTimeMillis() + TimeUtil.MINUTE.getTime(3));
-                return ChatUtil.sendMessage(sender, "&8>> &7nadales ochrone dla &6" + u.getName());
-            }
+        final String s3;
+        final String s4;
+        final String s2 = s4 = (s3 = args[1]);
+        switch (s4) {
             case "restart": {
                 ua.setPoints(1000);
                 ua.setKills(0);
                 ua.setDeaths(0);
                 ua.setAsysts(0);
-                u.setOchrona(System.currentTimeMillis() + TimeUtil.MINUTE.getTime(5));
                 return ChatUtil.sendMessage(sender, "&8>> &cZresetowales statystyki gracza &6" + u.getName());
             }
             case "points": {
@@ -49,13 +50,6 @@ public class StatsCommand extends Command
                     return ChatUtil.sendMessage(sender, this.getUsage());
                 }
                 ua.setPoints(i);
-                return ChatUtil.sendMessage(sender, "&8>> &7Ustawiles &6" + args[1] + " &7na &6" + i + " &7gracza &6" + u.getName());
-            }
-            case "kamien": {
-                if (args.length < 3) {
-                    return ChatUtil.sendMessage(sender, this.getUsage());
-                }
-                u.setkamien(i);
                 return ChatUtil.sendMessage(sender, "&8>> &7Ustawiles &6" + args[1] + " &7na &6" + i + " &7gracza &6" + u.getName());
             }
             case "kills": {
@@ -70,22 +64,6 @@ public class StatsCommand extends Command
                     return ChatUtil.sendMessage(sender, this.getUsage());
                 }
                 ua.setDeaths(i);
-                return ChatUtil.sendMessage(sender, "&8>> &7Ustawiles &6" + args[1] + " &7na &6" + i + " &7gracza &6" + u.getName());
-            }
-            case "lvl":
-            case "level": {
-                if (args.length < 3) {
-                    return ChatUtil.sendMessage(sender, this.getUsage());
-                }
-                u.setLvl(i);
-                return ChatUtil.sendMessage(sender, "&8>> &7Ustawiles &6" + args[1] + " &7na &6" + i + " &7gracza &6" + u.getName());
-            }
-            case "exp":
-            case "experience": {
-                if (args.length < 3) {
-                    return ChatUtil.sendMessage(sender, this.getUsage());
-                }
-                u.setExp(i);
                 return ChatUtil.sendMessage(sender, "&8>> &7Ustawiles &6" + args[1] + " &7na &6" + i + " &7gracza &6" + u.getName());
             }
             case "assists": {

@@ -1,3 +1,7 @@
+// 
+// Decompiled by Procyon v0.5.36
+// 
+
 package pl.vertty.arivi.commands.helper;
 
 import cn.nukkit.Server;
@@ -6,7 +10,7 @@ import cn.nukkit.command.CommandSender;
 import pl.vertty.arivi.Main;
 import pl.vertty.arivi.commands.builder.Command;
 import pl.vertty.arivi.enums.GroupType;
-import pl.vertty.arivi.managers.CombatManager;
+import pl.vertty.arivi.guilds.managers.CombatManager;
 import pl.vertty.arivi.utils.ChatUtil;
 
 import java.net.InetSocketAddress;
@@ -18,7 +22,7 @@ public class StopCommand extends Command
     public StopCommand() {
         super("stop", "Zatrzymywanie serwera", "/stop", GroupType.HELPER, new String[] { "" });
     }
-
+    
     @Override
     public boolean onExecute(final CommandSender p, final String[] args) {
         Timer timer = new Timer();

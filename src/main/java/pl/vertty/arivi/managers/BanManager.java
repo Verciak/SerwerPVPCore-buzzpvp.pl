@@ -1,3 +1,6 @@
+// 
+// Decompiled by Procyon v0.5.36
+// 
 
 package pl.vertty.arivi.managers;
 
@@ -14,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class BanManager
 {
-    private static ConcurrentHashMap<String, Ban> bans = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<String, Ban> bans;
     
     public static Ban getBan(final String name) {
         for (final Ban ban : BanManager.bans.values()) {
@@ -36,11 +39,13 @@ public class BanManager
     
     public static void addBan(final String name, final Ban ban) {
         getBans().put(name, ban);
+        final Player p = Server.getInstance().getPlayer(name);
+        p.close(ChatUtil.fixColor(ban.getReason()));
     }
     
     public static void unban(final Ban ban) {
         getBans().remove(ban.getName());
-        Main.getStore().asyncUpdate("DELETE FROM `{P}bans` WHERE `name` ='" + ban.getName() + "'");
+        Main.getStore().update("DELETE FROM `{P}bans` WHERE `name` ='" + ban.getName() + "'");
     }
     
     public static void unbanAll() {
@@ -73,5 +78,8 @@ public class BanManager
     public static ConcurrentHashMap<String, Ban> getBans() {
         return BanManager.bans;
     }
-
+    
+    static {
+        BanManager.bans = new ConcurrentHashMap<String, Ban>();
+    }
 }

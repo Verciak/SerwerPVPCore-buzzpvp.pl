@@ -1,10 +1,10 @@
 mysql:
   prefix: core-
-  host: mysql.titanaxe.com
+  host: localhost
   port: 3306
-  user: srv207254
-  pass: 4d7Q4p88
-  name: srv207254
+  user: root
+  pass: domiS2002_!
+  name: blazepe
 check_allowed_commands:
   - wyslij
   - helpop
@@ -36,175 +36,25 @@ config:
         - schowek
         - depozyt
         - repair all
-      inguild:
-        - home
-        - sethome
-        - tpa
-        - tpdeny
-        - repair
-        - crafting
-        - wb
-        - repair all
-enable:
-  guilds:
-    status: true
-    items-normal: 57:0-16:Blok Diametowy;133:0-16:Blok Emeraldu;
-    items-vip: 57:0-12:Blok Diametowy;133:0-12:Blok Emeraldu;
-    items-svip: 57:0-8:Blok Diametowy;133:0-8:Blok Emeraldu;
-  kits:
-    status: true
-    message: '&cKity dostepne beda o 21:00!'
-  enchant:
-    status: true
-    message: '&cEnchanty na miecze i sety sa tymczasowo wylaczone!'
-  pandora:
-    status: true
 limit:
   kox: 1
   refy: 8
   perly: 3
-  sniezki: 8
-  arrow: 64
-  tnt: 3
 automsg:
   - '&7testowa'
   - '&ctestowa2'
 wl:
-  motd: '&3WaterPE.pl'
+  motd: '&3xxx.pl'
   enable: true
   list:
     - VerttyPL
   reason: '&cTrwaja prace techniczne!'
-border: 600
-borderd: 600.0
-protection:
-  have-player: '&7Gracz {NAME} posiada ochrone jeszcze przez {TIME}'
-  end-title: '&9OCHRONA'
-  end-subtitle: '&6Twoja ochrona dobiegla konca'
-  actionbar: '&9[OCHRONA] &6{TIME}'
-inventory-from-stone: '&c&lDROP ZE STONE'
-bc-level: '&7Gracz {NICK} awansowal na {LVL} kopania!'
-drop:
-  name: '&r&9{NAME}'
-  lore: ' &r&8>> &7Szansa: &3{CHANCE}%{N} &r&8>> &7Wypada pomiedzy: &7Y:&30 &7a &3{HEIGHT}
-    &7poziomem{N} &r&8>> &7Szczescie: &3{FORTUNE}{N} &r&8>> &7Drop: &a{ENABLE}{N}
-    &r&8>> &7Punkty: &3{LVL} &7pkt.{N} &r&8>> &7Wykopane: &3{WYKOPANE}'
-turbo: 0
-turbo-exp: 0
-exp:
-  stone: 3
-  obsidian: 5
-drops:
-  DIAMENT:
-    item: 264
-    height: 35
-    slot: 0
-    chance: 7.7
-    fortune: true
-    lvl: 9
-    message: '&7Trafiles na &3x{AMOUNT} Diament'
-  SZMARAGD:
-    item: 388
-    height: 35
-    slot: 1
-    chance: 7.7
-    fortune: true
-    lvl: 9
-    message: '&7Trafiles na &3x{AMOUNT} Emerald'
-  SZTABKA ZLOTA:
-    item: 266
-    height: 50
-    slot: 2
-    chance: 7.25
-    fortune: true
-    lvl: 6
-    message: '&7Trafiles na &3x{AMOUNT} Zloto'
-  SZTABKA ZELAZA:
-    item: 265
-    height: 64
-    slot: 3
-    chance: 8.75
-    fortune: false
-    lvl: 5
-    message: '&7Trafiles na &3x{AMOUNT} Zelazo'
-  OBSYDIAN:
-    item: 49
-    height: 35
-    slot: 4
-    chance: 7.1
-    fortune: true
-    lvl: 9
-    message: '&7Trafiles na &3x{AMOUNT} Obsydian'
-  WEGIEL:
-    item: 263
-    height: 100
-    slot: 5
-    chance: 8.0
-    fortune: true
-    lvl: 1
-    message: '&7Trafiles na &3x{AMOUNT} Wegiel'
-  REDSTONE:
-    item: 331
-    height: 35
-    slot: 6
-    chance: 8.6
-    fortune: true
-    lvl: 3
-    message: '&7Trafiles na &3x{AMOUNT} Redstone'
-  KSIAZKA:
-    item: 340
-    height: 25
-    slot: 7
-    chance: 7.0
-    fortune: false
-    lvl: 4
-    message: '&7Trafiles na &3x{AMOUNT} Ksiazka'
-  PROCH:
-    item: 289
-    height: 35
-    slot: 8
-    chance: 7.25
-    fortune: true
-    lvl: 4
-    message: '&7Trafiles na &3x{AMOUNT} Proch'
-  PIASEK:
-    item: 12
-    height: 35
-    slot: 9
-    chance: 8.5
-    fortune: false
-    lvl: 1
-    message: '&7Trafiles na &3x{AMOUNT} Piasek'
-  PERLA:
-    item: 368
-    height: 35
-    slot: 10
-    chance: 0.945
-    fortune: true
-    lvl: 10
-    message: '&7Trafiles na &3x{AMOUNT} Perla'
-gildia:
-  tnt:
-    protection_enable: true
-    howhour: 24
-    explodetime: 120
-  prolong:
-    start: 7
-    max: 1
-    add: 7
-  life:
-    start: 3
-    cooldown: 24
-  size:
-    start: 24
-    max: 74
-    add: 1
-    between: 20
-    spawn_distance: 400
+border: 800
+borderd: 800.0
 slowmode: 5
 unknown-command: '&cNie odnaleziono takiej komendy na serwerze &6/pomoc'
 format:
-  global: '{GUILD}&7{POINTS} {PREFIX}{RANGA} &7{PLAYER} &8>> &r{SUFFIX}{MSG}'
+  global: '&7{POINTS} {PREFIX}{RANGA} &7{PLAYER} &8>> &r{SUFFIX}{MSG}'
   admin: '{PREFIX}{RANGA} &7{PLAYER} &8>> &r{SUFFIX}{MSG}'
   chat:
     player:
@@ -247,8 +97,8 @@ format:
       prefix: '&4'
       suffix: '&6'
       fullname: ROOT
-pomoc: TEST{N}TEST
-vip: TEST{N}TEST
-svip: TEST{N}TEST
-sponsor: TEST{N}TEST
-yt: TEST{N}TEST
+pomoc: "TEST{N}TEST"
+vip: "TEST{N}TEST"
+svip: "TEST{N}TEST"
+sponsor: "TEST{N}TEST"
+yt: "TEST{N}TEST"

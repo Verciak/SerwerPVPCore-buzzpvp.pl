@@ -1,41 +1,20 @@
+// 
+// Decompiled by Procyon v0.5.36
+// 
 
-package pl.vertty.arivi.utils.guild.region;
-
-import cn.nukkit.Player;
-import cn.nukkit.block.Block;
-import cn.nukkit.command.CommandSender;
-import cn.nukkit.level.Location;
-import cn.nukkit.math.Vector3;
-import pl.vertty.arivi.objects.guild.Guild;
-import pl.vertty.arivi.managers.guild.GuildManager;
-import pl.vertty.arivi.utils.guild.ChatUtil;
+package pl.vertty.arivi.guilds.utils.region;
 
 import java.util.ArrayList;
 import java.util.List;
+import cn.nukkit.command.CommandSender;
+import pl.vertty.arivi.guilds.utils.ChatUtil;
+import cn.nukkit.block.Block;
+import cn.nukkit.math.Vector3;
+import cn.nukkit.level.Location;
+import cn.nukkit.Player;
 
 public final class CuboidUtil
 {
-    public static boolean cancelAction(final Player player, final Location location, final String s, final int n, final String s2) {
-        if (player.isOp() && location.getLevel().getBlock(new Vector3((double)location.getFloorX(), (double)location.getFloorY(), (double)location.getFloorZ())) != Block.get(19)) {
-            return false;
-        }
-        final Guild guildByLoc = GuildManager.getGuildByLoc(location);
-        if (guildByLoc == null) {
-            return false;
-        }
-        if (!guildByLoc.isMember(player.getName())) {
-            ChatUtil.sendMessage((CommandSender)player, s);
-            return true;
-        }
-        if (n == 19) {
-            return false;
-        }
-        if (n == 165) {
-            player.setMotion(new Vector3(0.0, 3.0, 0.0));
-            return false;
-        }
-        return false;
-    }
     
     public static List<Location> getSquare(final Location center, final int radius) {
         final List<Location> locs = new ArrayList<Location>();
