@@ -7,8 +7,8 @@ import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.inventory.transaction.data.UseItemOnEntityData;
 import cn.nukkit.network.protocol.InventoryTransactionPacket;
 import cn.nukkit.network.protocol.LevelSoundEventPacket;
-import pl.vertty.arivi.managers.ACManager;
-import pl.vertty.arivi.objects.ACData;
+import pl.vertty.arivi.guilds.data.User;
+import pl.vertty.arivi.guilds.managers.UserManager;
 import pl.vertty.arivi.utils.ChatUtil;
 
 import java.util.Arrays;
@@ -20,36 +20,40 @@ public class MacroListener implements Listener {
             LevelSoundEventPacket.SOUND_PREPARE_ATTACK, LevelSoundEventPacket.SOUND_CONDUIT_ATTACK, LevelSoundEventPacket.SOUND_BLOCK_TURTLE_EGG_ATTACK);
 
     @EventHandler
-    public void onMacro(DataPacketReceiveEvent e) {
-        Player player = e.getPlayer();
-        if (player == null || player.getName() == null) return;
-        ACData u = ACManager.getUser(player);
-        if (u.packetLimit()) {
+    public void onMacro(DataPacketReceiveEvent e){
+        User u = UserManager.getUser(e.getPlayer());
+        if(u != null && u.packetLimit()){
             e.setCancelled(true);
+            e.getPlayer().close(ChatUtil.fixColor("&cPrzekroczyles limit pakietow!"));
             return;
         }
-        if (e.getPacket() instanceof LevelSoundEventPacket) {
-            if (sounds.contains(((LevelSoundEventPacket) e.getPacket()).sound)) {
+        if(e.getPacket() instanceof LevelSoundEventPacket) {
+            if(sounds.contains(((LevelSoundEventPacket) e.getPacket()).sound)) {
                 e.setCancelled(true);
-                if (u.hasMacroMax()) {
-                    e.setCancelled(true);
-                    return;
-                }
-                if (u.macroLimit()) {
-                    player.sendTitle(ChatUtil.fixColor("&l&4LIMIT CPS"), ChatUtil.fixColor("&cMaksymalna ilosc CPS: 12"));
+                Player p = e.getPlayer();
+                if(u != null) {
+                    if(u.hasMacroMax()){
+                        e.getPlayer().close(ChatUtil.fixColor("&cPrzekroczyles limit pakietow!"));
+                        return;
+                    }
+                    if(u.macroLimit()) {
+                        e.getPlayer().sendTitle(ChatUtil.fixColor("&l&4LIMIT CPS"), ChatUtil.fixColor("&cMaksymalna ilosc CPS: 12"));
+                    }
                 }
             }
-        } else if (e.getPacket() instanceof InventoryTransactionPacket) {
+        } else if(e.getPacket() instanceof InventoryTransactionPacket){
             InventoryTransactionPacket pa = (InventoryTransactionPacket) e.getPacket();
-            if (pa.transactionType == InventoryTransactionPacket.TYPE_USE_ITEM_ON_ENTITY) {
-                if (u.entityLimit()) {
+            if(pa.transactionType == InventoryTransactionPacket.TYPE_USE_ITEM_ON_ENTITY){
+                if(u != null && u.entityLimit()){
                     e.setCancelled(true);
+                    e.getPlayer().close(ChatUtil.fixColor("&cPrzekroczyles limit pakietow!"));
                     return;
                 }
                 UseItemOnEntityData data = (UseItemOnEntityData) pa.transactionData;
-                if (data.actionType == InventoryTransactionPacket.USE_ITEM_ON_ENTITY_ACTION_ATTACK) {
-                    if (u.hasMacroLimit()) {
+                if(data.actionType == InventoryTransactionPacket.USE_ITEM_ON_ENTITY_ACTION_ATTACK){
+                    if(u != null && u.hasMacroLimit()){
                         e.setCancelled(true);
+                        return;
                     }
                 }
             }

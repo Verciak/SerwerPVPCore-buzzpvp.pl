@@ -1,3 +1,7 @@
+// 
+// Decompiled by Procyon v0.5.36
+// 
+
 package pl.vertty.arivi.commands.user;
 
 import cn.nukkit.Player;
